@@ -49,7 +49,13 @@ const appRoutes: Routes = [
     component: ManageInvitationsComponent,
     data: { title: 'Mng' }
   },
- 
+  ///////////////////
+  {
+    path: 'resource/info',
+    component: ResourceInfoComponent,
+    data: {title: 'Mng'}
+  },
+  ///////////////////
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'

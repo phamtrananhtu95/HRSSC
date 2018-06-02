@@ -1,25 +1,28 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div id="main" style="text-align:center">
-  <!-- <h1>
-      <button (click)="getUser()"></button>
-      <div *ngIf="user">
-        Welcome to {{user.userName}}!
-      </div>
-  </h1> -->
-  <div id="header">
-    <app-header></app-header>
-  </div>
+<!-- Main navbar -->
+<div class="navbar navbar-inverse">
+  <app-header></app-header>
+</div>
 
-  <div id="container">
-    <div id="menu-left">
-      <app-menu-left></app-menu-left>
+<!-- Page container -->
+<div class="page-container">
+
+  <!-- Page content -->
+  <div class="page-content">
+
+    <!-- Main sidebar -->
+    <div class="sidebar sidebar-main">
+      <div class="sidebar-content">
+
+      </div>
     </div>
-    <div id="component">
+    <!-- end main sidebar -->
+
+    <!-- Main content -->
+    <div class="content-wrapper">
       <router-outlet></router-outlet>
     </div>
+    <!-- End Main content -->
   </div>
-  <div id="footer">
-    <app-footer></app-footer>
-  </div>
-
+  <!-- end Page content -->
 </div>
+<!--end  Page container -->
