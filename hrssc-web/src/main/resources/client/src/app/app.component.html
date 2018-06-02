@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="main" style="text-align:center">
+  <!-- <h1>
+      <button (click)="getUser()"></button>
+      <div *ngIf="user">
+        Welcome to {{user.userName}}!
+      </div>
+  </h1> -->
+  <div id="header">
+    <app-header></app-header>
+  </div>
+
+  <div id="container">
+    <div id="menu-left">
+      <app-menu-left></app-menu-left>
+    </div>
+    <div id="component">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div id="footer">
+    <app-footer></app-footer>
+  </div>
+
+</div>
