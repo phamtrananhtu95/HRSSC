@@ -35,6 +35,11 @@ const appRoutes: Routes = [
     data: { title: 'LoginComponent' }
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+    data: {title: 'Register'}
+  },
+  {
     path: 'home',
     component: HomeComponent,
     data: { title: 'Heroes List' }
@@ -53,7 +58,12 @@ const appRoutes: Routes = [
   {
     path: 'resource/info',
     component: ResourceInfoComponent,
-    data: {title: 'Mng'}
+    data: {title: 'ResourceInfo'}
+  },
+  {
+    path: 'project/info',
+    component: ProjectInfoComponent,
+    data: {title: 'ProjectInfo'}
   },
   ///////////////////
   { path: '',

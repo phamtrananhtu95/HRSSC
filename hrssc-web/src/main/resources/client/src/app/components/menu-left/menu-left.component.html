@@ -1,4 +1,4 @@
-<h2>
+<!-- <h2>
   Manage resources
 </h2>
 <ul>
@@ -12,7 +12,54 @@
   <ul>
     <li><a [routerLink]="['manager/resource']">Resource</a></li>
     <li><a [routerLink]="['manager/invitations']">Manage invitations</a></li>
-  </ul>
+  </ul> -->
+
+  
+
+ 
+      <!-- User menu -->
+      <div class="sidebar-user">
+        <div class="category-content">
+          <div class="media">
+            <a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+            <div class="media-body">
+              <span class="media-heading text-semibold">Anh Tú</span>
+              <div class="text-size-mini text-muted">
+                <i class="icon-calculator text-size-small"></i> &nbsp;Apple
+              </div>
+            </div>
+
+           
+          </div>
+        </div>
+      </div>
+      <!-- /user menu -->
+      <!-- Main navigation -->
+      <div class="sidebar-category sidebar-category-visible">
+        <div class="category-content no-padding">
+          <ul class="navigation navigation-main navigation-accordion">
+            <!-- Main -->
+            <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+            <li class="active"><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+            <li>
+              <a href="#"><i class="icon-stack2"></i> <span>Manage resources</span></a>
+              <ul>
+                <li><a href="layout_navbar_fixed.html">Resource</a></li>
+                <li class="navigation-divider"></li>
+                <li><a href="layout_navbar_sidebar_fixed.html"><span>Manage invitations <span class="label bg-blue-400">4</span></span></a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#"><i class="icon-copy"></i> <span>Manage project</span></a>
+              <ul>
+                <li><a href="layout_navbar_fixed.html">Project</a></li>
+                <li class="navigation-divider"></li>
+                <li><a href="layout_navbar_sidebar_fixed.html"><span>Manage appliances <span class="label bg-blue-400">4</span></span></a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
 
 
