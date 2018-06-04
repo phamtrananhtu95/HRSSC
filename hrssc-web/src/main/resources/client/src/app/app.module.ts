@@ -35,6 +35,11 @@ const appRoutes: Routes = [
     data: { title: 'LoginComponent' }
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+    data: {title: 'Register'}
+  },
+  {
     path: 'home',
     component: HomeComponent,
     data: { title: 'Heroes List' }
@@ -49,7 +54,18 @@ const appRoutes: Routes = [
     component: ManageInvitationsComponent,
     data: { title: 'Mng' }
   },
- 
+  ///////////////////
+  {
+    path: 'resource/info',
+    component: ResourceInfoComponent,
+    data: {title: 'ResourceInfo'}
+  },
+  {
+    path: 'project/info',
+    component: ProjectInfoComponent,
+    data: {title: 'ProjectInfo'}
+  },
+  ///////////////////
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'

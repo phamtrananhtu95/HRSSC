@@ -1,12 +1,13 @@
 button{
-  background: lightseagreen;
+    background: lightseagreen;
+  }
+  .content{
+    background: white;
+    width: 40%;
+    height: 950px;
+  }
+  .panel-heading{
+    font-weight: 900;
+    text-transform: uppercase;
 }
-.content{
-  background: white;
-  width: 40%;
-  height: 950px;
-}
-.panel-heading{
-  font-weight: 900;
-  text-transform: uppercase;
-}
+  
