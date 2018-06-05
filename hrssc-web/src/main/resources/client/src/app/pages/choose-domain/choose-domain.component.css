@@ -1,0 +1,23 @@
+.panel-flat{
+    width: 40%;
+    height: auto;
+  }
+  .choose-position{
+    position: relative;
+    left:400px;
+    top: 100px
+  }
+  .content-group{
+    font-size: large;
+  }
+  h1{
+    font-weight: bold;
+    position: relative;
+    left: 200px;
+  }
+  td{
+    width: 250px;
+  }
+  legend{
+    margin-top: 25px;
+  }

@@ -1,3 +1,67 @@
-<p>
-  manage-appliances works!
-</p>
+<button type="button" class="btn btn-primary btn-labeled btn-labeled-right" data-toggle="modal" data-target="#modal_theme_info">Feedback
+</button>
+
+<!-- Info modal -->
+<div id="modal_theme_info" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <div class="text-center">
+              <img src="assets/img/kas-logo-65-65.png" class="text-center" alt="">
+              <h1 class="modal-title text-center text-muted">Your feedback</h1>
+          </div>
+          
+        </div>
+
+        <div class="modal-body">
+          <!-- List  -->
+          <h3>What is your opinion ..?</h3>
+          <div class="row lead evaluation">
+              <div id="colorstar" class="starrr ratable" ></div>
+              <span id="count">0</span> star(s) - <span id="meaning"> </span>
+                  
+              
+                  <div class='indicators' style="display:none">
+                      <div id='textwr'>What went wrong?</div>
+                      <input id="rate[]" name="rate[]" type="text" placeholder="" class="form-control input-md" style="display:none;">
+                      <input id="rating[]" name="rating[]" type="text" placeholder="" class="form-control input-md rateval" style="display:none;">
+                      
+                      <span class="button-checkbox">
+                      <button type="button" class="btn criteria" data-color="info">Punctuallity</button>
+                       <input type="checkbox" class="hidden"  />
+                      </span>
+                      <span class="button-checkbox">
+                      <button type="button" class="btn criteria" data-color="info">Assistance</button>
+                       <input type="checkbox" class="hidden"  />
+                      </span>
+                      <span class="button-checkbox">
+                      <button type="button" class="btn criteria" data-color="info">Knowledge</button>
+                       <input type="checkbox" class="hidden"  />
+                      </span>
+                  </div>
+                  
+              
+        </div>
+           <!-- list -->
+          <hr>
+          <!-- List  -->
+          
+         <!-- list -->
+          <hr>
+         <!-- List  -->
+          
+       <!-- list -->
+
+       <hr>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

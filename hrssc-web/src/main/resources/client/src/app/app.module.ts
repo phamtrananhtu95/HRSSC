@@ -28,7 +28,7 @@ import { RegisterComponent } from './pages/register/register.component';
 
 
 const appRoutes: Routes = [
-  
+  ///////////////
   {
     path: 'login',
     component: LoginComponent,
@@ -39,6 +39,12 @@ const appRoutes: Routes = [
     component: RegisterComponent,
     data: {title: 'Register'}
   },
+  {
+    path: 'login/chooseDomain',
+    component: ChooseDomainComponent,
+    data: {title: 'First Login'}
+  },
+  ///////////////////
   {
     path: 'home',
     component: HomeComponent,
@@ -54,6 +60,11 @@ const appRoutes: Routes = [
     component: ManageInvitationsComponent,
     data: { title: 'Mng' }
   },
+  {
+    path: 'manager/appliances',
+    component: ManageAppliancesComponent,
+    data: { title: 'Mng' }
+  },
   ///////////////////
   {
     path: 'resource/info',
@@ -64,6 +75,11 @@ const appRoutes: Routes = [
     path: 'project/info',
     component: ProjectInfoComponent,
     data: {title: 'ProjectInfo'}
+  },
+  {
+    path: 'company/info',
+    component: CompanyInfoComponent,
+    data: {title: 'CompanyInfo'}
   },
   ///////////////////
   { path: '',
