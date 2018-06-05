@@ -19,4 +19,12 @@ public interface UsersService {
 	 * @return updated user
 	 */
 	UserDto updateUser(final UserDto user);
+
+	/**
+	 * Deletes user by user id
+	 * 
+	 * @param userId
+	 * @return user by user id
+	 */
+	void deleteUserById(Long userId);
 }

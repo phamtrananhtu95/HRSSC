@@ -27,4 +27,9 @@ public class UsersServiceImpl implements UsersService {
 		return user;
 	}
 
+	@Override
+	public void deleteUserById(final Long userId) {
+		// TODO Auto-generated method stub
+	}
+
 }
