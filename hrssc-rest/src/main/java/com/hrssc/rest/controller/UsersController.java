@@ -2,6 +2,7 @@ package com.hrssc.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,11 @@ public class UsersController {
 
 	@PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UserDto updateUser(@RequestBody final UserDto user) {
-		return userService.updateUser(user);
+		return userService.update(user);
+	}
+
+	@DeleteMapping(value = "/delete/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteUser(@PathVariable("userId") final Long userId) {
+		userService.delete(userId);
 	}
 }

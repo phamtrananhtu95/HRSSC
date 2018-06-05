@@ -21,10 +21,15 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public UserDto updateUser(final UserDto user) {
+	public UserDto update(final UserDto user) {
 		//TODO: Save object user to DB
 		// Ex: userRepo.save(user)
 		return user;
+	}
+
+	@Override
+	public void delete(final Long userId) {
+		// TODO Auto-generated method stub
 	}
 
 }

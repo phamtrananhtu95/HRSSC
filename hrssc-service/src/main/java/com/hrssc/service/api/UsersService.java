@@ -18,5 +18,13 @@ public interface UsersService {
 	 * @param user
 	 * @return updated user
 	 */
-	UserDto updateUser(final UserDto user);
+	UserDto update(final UserDto user);
+
+	/**
+	 * Delete user by user id
+	 * 
+	 * @param userId
+	 * @return user by user id
+	 */
+	void delete(final Long userId);
 }
