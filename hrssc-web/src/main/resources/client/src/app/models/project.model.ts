@@ -7,6 +7,8 @@ export class Project {
     resourceNeed: number;
     discription: string;
     company: string;
+    status: string;
+    matched: number;
 }
 
 export class projectList {
@@ -21,6 +23,8 @@ export class projectList {
         project1.skill = "java";
         project1.resourceNeed = 2;
         project1.discription = "hihi";
+        project1.status = "On going";
+        project1.matched=5;
         project1.company = "fpt software";
         
         let project2 = new Project();
@@ -32,6 +36,8 @@ export class projectList {
         project2.resourceNeed = 2;
         project2.discription = "bla bla";
         project2.company = "abc software";
+        project2.status = "Pending";
+        project2.matched=2;
 
         let project3 = new Project();
         project3.id = 3;
@@ -42,6 +48,8 @@ export class projectList {
         project3.resourceNeed = 2;
         project3.discription = "hic hic";
         project3.company = "hihi software";
+        project3.status = "On going";
+        project3.matched=1;
 
         let project4 = new Project();
         project4.id = 4;
@@ -52,7 +60,9 @@ export class projectList {
         project4.resourceNeed = 4;
         project4.discription = ":D";
         project4.company = "haha software";
+        project4.status = "Pending";
+        project4.matched=4;
 
-        this.projects.push(project1, project2, project3, project4);
+        this.projects.push(project1, project2, project3, project4,project4,project4,project4,project4,project4);
     }
 }

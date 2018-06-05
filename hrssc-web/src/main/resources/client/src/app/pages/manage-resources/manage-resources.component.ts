@@ -7,12 +7,12 @@ import { User, UserList } from '../../models';
   styleUrls: ['./manage-resources.component.css']
 })
 export class ManageResourcesComponent implements OnInit {
-  public resource: User[]
+  public resources: User[]
 
   constructor() { }
 
   ngOnInit() {
-    this.resource = new UserList().users;
+    this.resources = new UserList().users;
   }
 
 }

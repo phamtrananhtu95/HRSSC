@@ -4,6 +4,63 @@
   employee 2
 </p> -->
 <div class="col-md-12" id="main">
+  <!-- Page header -->
+<div class="page-header page-header-default">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4>
+          <i class="icon-arrow-left52 position-left"></i>
+          <span class="text-semibold">Manage resource</span> - Resource</h4>
+      </div>
+  
+      <div class="heading-elements">
+        <div class="heading-btn-group">
+          <form action="#" class="main-search">
+            <div class="input-group content-group btn-float has-text">
+              <input type="text" class="form-control input-lg" placeholder="Search">
+              <div class="input-group-btn">
+                <button type="submit" class="btn bg-slate-600 btn-icon btn-lg">
+                  <i class="icon-search4"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <div class="breadcrumb-line">
+      <ul class="breadcrumb">
+        <li>
+          <a href="index.html">
+            <i class="icon-home2 position-left"></i> Home</a>
+        </li>
+        <li>
+          <a href="appearance_content_panels.html">Manage resource</a>
+        </li>
+        <li class="active">Resource</li>
+      </ul>
+  
+      <!-- <ul class="breadcrumb-elements">
+          <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-gear position-left"></i>
+              Settings
+              <span class="caret"></span>
+            </a>
+    
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+              <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+              <li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+              <li class="divider"></li>
+              <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+            </ul>
+          </li>
+        </ul> -->
+    </div>
+  </div>
   <div id="button-add-emp">
   <button  type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_small">
     <b>
@@ -40,13 +97,13 @@
                           <th>Matched</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody *ngFor="let resource of resources">
                         <tr>
-                          <td>1</td>
-                          <td>Phạm Trần Anh Tú</td>
-                          <td>Sql, java</td>
-                          <td>Available</td>
-                          <td>3</td>
+                          <td>{{resource.id}}</td>
+                          <td>{{resource.name}}</td>
+                          <td>{{resource.skill}}</td>
+                          <td>{{resource.status}}</td>
+                          <td>{{resource.matched}}</td>
                           <td class="btn-r-e">
                             <button type="button" class="btn"><i class="icon-pencil"></i></button>
                           </td>
@@ -55,45 +112,7 @@
                           </td>
 
                         </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Hồ Thái Thiện</td>
-                          <td>java, javascript, c#</td>
-                          <td>Available</td>
-                          <td>5</td>
-                            <td class="btn-r-e">
-                              <button type="button" class="btn"><i class="icon-pencil"></i></button>
-                            </td>
-                          <td class="btn-r-e">
-                              <button type="button" class="btn"><i class="icon-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Nguyễn Nhật Hà</td>
-                          <td>C3, java, sql, sap</td>
-                          <td>Available</td>
-                          <td>2</td>
-                          <td class="btn-r-e">
-                            <button type="button" class="btn"><i class="icon-pencil"></i></button>
-                          </td>
-                                <td class="btn-r-e">
-                                    <button type="button" class="btn"><i class="icon-trash"></i></button>
-                                  </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Phúc</td>
-                            <td>C3, java, sql, sap</td>
-                            <td>Available</td>
-                            <td>2</td>
-                            <td class="btn-r-e">
-                              <button type="button" class="btn"><i class="icon-pencil"></i></button>
-                            </td>
-                            <td class="btn-r-e">
-                                <button type="button" class="btn"><i class="icon-trash"></i></button>
-                              </td>
-                          </tr>
+                        
                       </tbody>
                     </table>
                   </div>
@@ -101,11 +120,11 @@
           </div>
 
           <div class="tab-pane" id="highlighted-justified-tab2">
-             squid laeggin.
+             Inactive resource.
           </div>
 
           <div class="tab-pane" id="highlighted-justified-tab3">
-            Busy employee
+            Busy resource
           </div>
         </div>
 

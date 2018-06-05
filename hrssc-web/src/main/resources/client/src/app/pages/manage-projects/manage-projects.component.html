@@ -1,3 +1,211 @@
-<p>
-  manage-projects works!
-</p>
+<!-- <p>
+  manage-resources works!
+  employee 1
+  employee 2
+</p> -->
+<div class="col-md-12" id="main">
+   <!-- Page header -->
+<div class="page-header page-header-default">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4>
+          <i class="icon-arrow-left52 position-left"></i>
+          <span class="text-semibold">Manage resource</span> - Resource</h4>
+      </div>
+  
+      <div class="heading-elements">
+        <div class="heading-btn-group">
+          <!-- <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a> -->
+          <form action="#" class="main-search">
+            <div class="input-group content-group btn-float has-text">
+              <input type="text" class="form-control input-lg" placeholder="Search">
+              <div class="input-group-btn">
+                <button type="submit" class="btn bg-slate-600 btn-icon btn-lg">
+                  <i class="icon-search4"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <div class="breadcrumb-line">
+      <ul class="breadcrumb">
+        <li>
+          <a href="index.html">
+            <i class="icon-home2 position-left"></i> Home</a>
+        </li>
+        <li>
+          <a href="appearance_content_panels.html">Manage resource</a>
+        </li>
+        <li class="active">Project</li>
+      </ul>
+  
+      <!-- <ul class="breadcrumb-elements">
+          <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-gear position-left"></i>
+              Settings
+              <span class="caret"></span>
+            </a>
+    
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+              <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+              <li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+              <li class="divider"></li>
+              <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+            </ul>
+          </li>
+        </ul> -->
+    </div>
+  </div>
+    <div id="button-add-emp">
+    <button  type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_small">
+      <b>
+        <i class="icon-user-plus"></i>
+      </b> Add new project
+    </button>
+    </div>
+    <div class="panel panel-flat">
+      <div class="panel-body">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+            <li class="active">
+              <a href="#highlighted-justified-tab1" data-toggle="tab" aria-expanded="false">Openning</a>
+            </li>
+            <li class="">
+              <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">Closed</a>
+            </li>
+          </ul>
+  
+          <div class="tab-content">
+            <div class="tab-pane active" id="highlighted-justified-tab1">
+                <div class="panel panel-flat">
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Skill</th>
+                            <th>Status</th>
+                            <th>Matched</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let project of projects">
+                          <tr>
+                            <td>{{project.id}}</td>
+                            <td>{{project.name}}</td>
+                            <td>{{project.skill}}</td>
+                            <td>{{project.status}}</td>
+                            <td>{{project.matched}}</td>
+                            <td class="btn-r-e">
+                              <button type="button" class="btn"><i class="icon-pencil"></i></button>
+                            </td>
+                            <td class="btn-r-e">
+                              <button type="button" class="btn"><i class="icon-trash"></i></button>
+                            </td>
+  
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+            </div>
+  
+            <div class="tab-pane" id="highlighted-justified-tab2">
+               Close project
+            </div>
+          </div>
+  
+          <!-- popup add new -->
+          <div class="modal-content">
+              <div id="modal_small" class="modal fade" style="display: none;">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h5 class="modal-title">Manager project</h5>
+                      </div>
+      
+                      <div class="modal-body">
+                          <fieldset class="content-group">
+                              <legend class="text-bold">Add new a project</legend>
+            
+                              <div class="form-group">
+                                <!-- <label class="control-label col-lg-2">Input with icons</label> -->
+                                <div class="col-lg-12">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group has-feedback has-feedback-left">
+                                        <label>Project name</label>
+                                        <input type="text" class="form-control input-xlg" placeholder="Abc application">
+                                        <div class="form-control-feedback">
+                                          <i class="icon-office"></i>
+                                        </div>
+                                      </div>
+            
+                                      <div class="form-group has-feedback has-feedback-left">
+                                          <label>Duration</label>
+                                        <input type="text" class="form-control input-lg" placeholder="1 (month)">
+                                        <div class="form-control-feedback">
+                                          <i class="icon-make-group"></i>
+                                        </div>
+                                      </div>
+            
+                                      <div class="form-group has-feedback has-feedback-left">
+                                          <label>Start date</label>
+                                        <input type="text" class="form-control" placeholder="25-10-2018">
+                                        <div class="form-control-feedback">
+                                          <i class="icon-droplets"></i>
+                                        </div>
+                                      </div>
+            
+                                      <div class="form-group has-feedback has-feedback-left">
+                                          <label>Skill</label>
+                                        <input type="text" class="form-control input-sm" placeholder="java, sql">
+                                        <div class="form-control-feedback">
+                                          <i class="icon-pin-alt"></i>
+                                        </div>
+                                      </div>
+            
+                                      <div class="form-group has-feedback has-feedback-left">
+                                          <label>Resouce need</label>
+                                        <input type="text" class="form-control input-xs" placeholder="2 (employees)">
+                                        <div class="form-control-feedback">
+                                          <i class="icon-help"></i>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group has-feedback has-feedback-left">
+                                          <label>Discription</label>
+                                        <input type="text" class="form-control input-xs" placeholder="overview about project">
+                                        <div class="form-control-feedback">
+                                          <i class="icon-help"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+            
+                                    
+                                  </div>
+                                </div>
+                              </div>
+            
+                            </fieldset>
+                      </div>
+      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add new</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>

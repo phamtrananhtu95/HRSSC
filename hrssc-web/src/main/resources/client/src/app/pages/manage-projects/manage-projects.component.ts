@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Project, projectList } from '../../models';
 
 @Component({
   selector: 'app-manage-projects',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageProjectsComponent implements OnInit {
 
+  projects:Project[];
   constructor() { }
 
   ngOnInit() {
+    this.projects = new projectList().projects;
   }
 
 }

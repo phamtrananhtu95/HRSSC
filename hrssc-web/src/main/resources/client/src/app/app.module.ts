@@ -26,36 +26,73 @@ import { AdminManageAccountRequestComponent } from './pages/admin-manage-account
 import { ChefManageAccountManagerComponent } from './pages/chef-manage-account-manager/chef-manage-account-manager.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { MenuLeftService } from './components/menu-left/menu-left.component.service';
 
 
 const appRoutes: Routes = [
-  
+
   {
     path: 'login',
     component: LoginComponent,
     data: { title: 'LoginComponent' }
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+    data: { title: 'Register' }
+  },
+  {
     path: 'home',
     component: HomeComponent,
-    data: { title: 'Heroes List' }
+    data: { title: 'Home' }
+  },
+  {
+    path: 'chooseDomain',
+    component: ChooseDomainComponent,
+    data: { title: 'choose domain' }
+  },
+  {
+    path: 'company/info',
+    component: CompanyInfoComponent,
+    data: { title: 'Company info' }
+  },
+  {
+    path: 'manager/appliance',
+    component: ManageAppliancesComponent,
+    data: { title: 'manage appliance page for manager' }
+  },
+  {
+    path: 'manager/invitation',
+    component: ManageInvitationsComponent,
+    data: { title: 'manage invitation page for manager' }
   },
   {
     path: 'manager/resource',
     component: ManageResourcesComponent,
-    data: { title: 'Mng' }
+    data: { title: 'manage resource page for manager' }
   },
   {
-    path: 'manager/invitations',
-    component: ManageInvitationsComponent,
-    data: { title: 'Mng' }
+    path: 'manager/project',
+    component: ManageProjectsComponent,
+    data: { title: 'manage project page for manager' }
   },
- 
-  { path: '',
+  {
+    path: 'manager/project/info',
+    component: ProjectInfoComponent,
+    data: { title: 'Project info for nomal user watch' }
+  },
+  {
+    path: 'manager/resource/info',
+    component: ResourceInfoComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: '**',
+  {
+    path: '**',
     redirectTo: '/home',
     pathMatch: 'full'
   }
@@ -94,7 +131,8 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [AppComponent,],
+  providers: [AppComponent, MenuLeftService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

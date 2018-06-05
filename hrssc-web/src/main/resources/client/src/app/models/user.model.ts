@@ -69,5 +69,13 @@ export class UserList {
         user4.status="Busy";
         user4.matched=0;
         this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
+        this.users.push(user4);
     }
 }
