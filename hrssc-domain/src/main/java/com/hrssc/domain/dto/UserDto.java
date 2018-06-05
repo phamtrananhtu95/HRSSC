@@ -24,4 +24,6 @@ public class UserDto {
 	private String email;
 
 	private String address;
+	
+	private Integer experienceYear;
 }
