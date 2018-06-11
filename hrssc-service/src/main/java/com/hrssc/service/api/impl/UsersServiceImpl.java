@@ -10,13 +10,9 @@ public class UsersServiceImpl implements UsersService {
 
 	public UserDto getUserById(final Long userId) {
 		return UserDto.builder()
-		.id(userId)
-		.userName("mapppp")
-		.firstName("heo")
-		.lastName("map")
-		.phone("123456789")
-		.email("quynhduong92@gmail.com")
-		.address("020 Tran Tan")
+		.username("admin")
+		.password("admin")
+		.role("admin")
 		.build();
 	}
 
@@ -30,6 +26,12 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public void deleteUserById(final Long userId) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void login(boolean checkLogin) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

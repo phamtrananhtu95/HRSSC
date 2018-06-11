@@ -27,4 +27,6 @@ public interface UsersService {
 	 * @return user by user id
 	 */
 	void deleteUserById(Long userId);
+	
+	void login(boolean checkLogin);
 }

@@ -3,7 +3,6 @@ import { RestService } from './rest.service';
 
 @Injectable()
 export class EmployeeService {
-  public employee: any;
   constructor(
     private restService: RestService
   ) { }

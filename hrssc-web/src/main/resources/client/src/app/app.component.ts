@@ -16,9 +16,9 @@ import { MenuLeftService } from './components/menu-left/menu-left.component.serv
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public user: any;
-  subscription : any;
+  subscription: any;
   hideMenu: boolean;
   constructor(
     private http: Http,
@@ -26,12 +26,12 @@ export class AppComponent implements OnInit{
   ) {
   }
 
-    ngOnInit() {
-      this.menu.currentVisible.subscribe(hideMenu => {
-        console.log(hideMenu);
-        this.hideMenu = hideMenu;
+  ngOnInit() {
+    this.menu.currentVisible.subscribe(hideMenu => {
+      console.log(hideMenu);
+      this.hideMenu = hideMenu;
     });
-    }
+  }
 
   // getUser() {
   //   this.getName().subscribe(

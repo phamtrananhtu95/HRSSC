@@ -1,10 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+
+import { StorageServiceModule} from 'angular-webstorage-service';
+
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -32,6 +36,7 @@ import { LoginService } from './services/login.service';
 import { EmployeeService } from './services/employee.service';
 import { SessionsService } from './services/sessions.service';
 import { AuthenticateService } from './services/authenticate.service';
+import { User } from './models';
 
 
 const appRoutes: Routes = [
@@ -128,18 +133,28 @@ const appRoutes: Routes = [
     AdminManageAccountRequestComponent,
     ChefManageAccountManagerComponent,
     FeedbackComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpModule,
+    StorageServiceModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
     )
   ],
-  providers: [AppComponent, MenuLeftService, RestService, LoginService, SessionsService, AuthenticateService, EmployeeService],
+  providers: [
+    AppComponent,
+    MenuLeftService,
+    RestService,
+    LoginService,
+    SessionsService,
+    AuthenticateService,
+    EmployeeService,
+    User],
   bootstrap: [AppComponent]
 })
 export class AppModule {

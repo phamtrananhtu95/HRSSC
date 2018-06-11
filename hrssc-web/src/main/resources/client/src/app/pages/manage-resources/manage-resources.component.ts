@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserList } from '../../models';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-manage-resources',
@@ -12,7 +12,7 @@ export class ManageResourcesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.resources = new UserList().users;
+    // this.resources = new UserList().users;
   }
 
 }

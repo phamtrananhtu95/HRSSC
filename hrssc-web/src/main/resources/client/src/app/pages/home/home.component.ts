@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserList } from '../../models/user.model';
+import { User } from '../../models/user.model';
 import { Project, projectList, companyList, Company, Employee } from '../../models';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   constructor(private router:Router, private employeeService:EmployeeService) { }
 
   ngOnInit() {
-    this.users = new UserList().users;
     this.projects= new projectList().projects;
     this.companies = new companyList().companies;
     this.employeeService.getEmployees().subscribe(res=>{
