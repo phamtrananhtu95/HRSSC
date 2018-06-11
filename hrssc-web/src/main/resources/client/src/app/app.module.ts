@@ -31,6 +31,7 @@ import { MenuLeftService } from './components/menu-left/menu-left.component.serv
 
 const appRoutes: Routes = [
 
+
   {
     path: 'login',
     component: LoginComponent,
