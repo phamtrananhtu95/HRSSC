@@ -1,0 +1,158 @@
+<!-- <p>
+  manage-resources works!
+  employee 1
+  employee 2
+</p> -->
+<div class="col-md-12" id="main">
+    <!-- Page header -->
+<div class="page-header page-header-default">
+        <div class="page-header-content">
+          <div class="page-title">
+            <h4>
+              <i class="icon-arrow-left52 position-left"></i>
+              <span class="text-semibold">Home</span></h4>
+          </div>
+      
+          <div class="heading-elements">
+            <div class="heading-btn-group">
+              <form action="#" class="main-search">
+                <div class="input-group content-group btn-float has-text">
+                  <input type="text" class="form-control input-lg" placeholder="Search">
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn bg-slate-600 btn-icon btn-lg">
+                      <i class="icon-search4"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+        <div class="breadcrumb-line">
+          <ul class="breadcrumb">
+            <li>
+              <a href="index.html">
+                <i class="icon-home2 position-left"></i> Home</a>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
+    <div class="content">
+        <h2>There are available resources and projects</h2>
+    </div>
+
+    <!-- resource-project -->
+    
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            <div class="tabbable">
+                <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                    <li class="active">
+                        <a href="#highlighted-justified-tab1" data-toggle="tab" aria-expanded="false">Resource</a>
+                    </li>
+                    <li class="">
+                        <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">Project</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="highlighted-justified-tab1">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6" *ngFor="let employee of employees">
+                                <div class="panel panel-body" id="resource" (click)="viewResourceDetail(user)">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="assets/images/avatar.png" data-popup="lightbox">
+                                                <img src="assets/images/avatar.png" class="img-circle img-lg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">{{employee.name}}</h6>
+                                            <span class="text-muted">{{employee.company}}</span>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">{{employee.skill}}</h6>
+                                            <span class="text-muted">25-5-2018</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="highlighted-justified-tab2">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6" *ngFor="let project of projects">
+                                <div class="panel panel-body" id="resource" (click)="viewProjectDetail(project)">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="assets/images/evolable-asia-logo-170-151.png" data-popup="lightbox">
+                                                <img src="assets/images/evolable-asia-logo-170-151.png" class="img-circle img-lg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">{{project.name}}</h6>
+                                            <span class="text-muted">{{project.company}}</span>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">{{project.skill}}</h6>
+                                            <span class="text-muted">25-5-2018</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top companies -->
+    <div class="content">
+        <h2>Top companies</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6" *ngFor="let company of companies">
+            <div class="thumbnail" id="company" (click)="viewCompanyDetail(company)">
+                <div class="thumb thumb-rounded">
+                    <img src="assets/images/evolable-asia-logo-170-151.png" alt="">
+                    <div class="caption-overflow">
+                        <span>
+                            <a href="assets/images/avatar.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox">
+                                <i class="icon-plus2"></i>
+                            </a>
+                            <a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs">
+                                <i class="icon-link"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="caption text-center">
+                    <h6 class="text-semibold no-margin">{{company.name}}
+                        <small class="display-block">{{company.location}}</small>
+                    </h6>
+                    <ul class="icons-list mt-15">
+                        <li>
+                            <a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Google Drive">
+                                <i class="icon-google-drive"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Twitter">
+                                <i class="icon-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Github">
+                                <i class="icon-github"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

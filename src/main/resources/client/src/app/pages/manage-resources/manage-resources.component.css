@@ -1,0 +1,19 @@
+/* #main{
+    position: relative;
+}
+#button-add-emp{
+    position: absolute;
+bottom: 5px;
+right: 10px;
+} */
+
+#button-add-emp{
+ right: 0px;
+ margin-bottom: 5px;
+}
+.btn-r-e{
+    width: 20px;
+}
+.btn-r-e button{
+    background: none;
+}
