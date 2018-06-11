@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     this.menu.hideMenu(true);
   }
 
-  ngDestroy(){
+  ngOnDestroy (){
     this.menu.hideMenu(false);
   }
 }

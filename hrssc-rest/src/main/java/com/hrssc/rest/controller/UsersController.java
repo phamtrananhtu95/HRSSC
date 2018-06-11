@@ -21,7 +21,7 @@ public class UsersController {
 	private UsersService userService;
 
 	@GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDto getUserById(@PathVariable("userId") final Long userId) {
+	public UserDto getUserById(@PathVariable("") final Long userId) {
 		return userService.getUserById(userId);
 	}
 

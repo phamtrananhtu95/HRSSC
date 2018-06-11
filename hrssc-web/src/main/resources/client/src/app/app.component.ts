@@ -33,24 +33,24 @@ export class AppComponent implements OnInit{
     });
     }
 
-  getUser() {
-    this.getName().subscribe(
-      res => {
-        this.user = res;
-      }
-    )
-  }
+  // getUser() {
+  //   this.getName().subscribe(
+  //     res => {
+  //       this.user = res;
+  //     }
+  //   )
+  // }
 
-  getName() {
-    let url = 'users/1';
-    return this.get(url);
-  }
+  // getName() {
+  //   let url = 'users/1';
+  //   return this.get(url);
+  // }
 
-  get(path): Observable<any> {
-    return this.http.get(`${environment.baseUrl}${path}`,
-    )
-      .map((response: any) => response.json())
-  }
+  // get(path): Observable<any> {
+  //   return this.http.get(`${environment.baseUrl}${path}`,
+  //   )
+  //     .map((response: any) => response.json())
+  // }
 
 
 

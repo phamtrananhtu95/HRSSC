@@ -27,9 +27,16 @@ import { ChefManageAccountManagerComponent } from './pages/chef-manage-account-m
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MenuLeftService } from './components/menu-left/menu-left.component.service';
+import { RestService } from './services/rest.service';
+import { LoginService } from './services/login.service';
+import { EmployeeService } from './services/employee.service';
+import { SessionsService } from './services/sessions.service';
+import { AuthenticateService } from './services/authenticate.service';
 
 
 const appRoutes: Routes = [
+
+
 
 
   {
@@ -132,7 +139,7 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [AppComponent, MenuLeftService],
+  providers: [AppComponent, MenuLeftService, RestService, LoginService, SessionsService, AuthenticateService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
