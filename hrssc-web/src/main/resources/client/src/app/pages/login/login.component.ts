@@ -3,6 +3,7 @@ import { MenuLeftService } from '../../components/menu-left/menu-left.component.
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { User } from '../../models';
+import { AuthenticateService } from '../../services/authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,13 @@ export class LoginComponent implements OnInit {
   constructor(
     public menu: MenuLeftService,
     private loginService: LoginService,
-    private router: Router) { }
+    private router: Router,
+    private authenticate: AuthenticateService
+  ) { }
 
   ngOnInit() {
     this.menu.hideMenu(true);
+    this.authenticate.setLogin(false);
   }
 
   ngOnDestroy() {
@@ -34,6 +38,7 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         if (result) {
           // login successful
+          this.authenticate.setLogin(true);
           this.router.navigate(['home']);
         } else {
           // login failed

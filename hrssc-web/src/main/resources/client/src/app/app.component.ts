@@ -5,11 +5,7 @@ import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { MenuLeftService } from './components/menu-left/menu-left.component.service';
-// interface UserResponse{
-//   login: string,
-//   bio: string,
-//   company: string
-// }
+
 
 @Component({
   selector: 'app-root',
@@ -32,26 +28,4 @@ export class AppComponent implements OnInit {
       this.hideMenu = hideMenu;
     });
   }
-
-  // getUser() {
-  //   this.getName().subscribe(
-  //     res => {
-  //       this.user = res;
-  //     }
-  //   )
-  // }
-
-  // getName() {
-  //   let url = 'users/1';
-  //   return this.get(url);
-  // }
-
-  // get(path): Observable<any> {
-  //   return this.http.get(`${environment.baseUrl}${path}`,
-  //   )
-  //     .map((response: any) => response.json())
-  // }
-
-
-
 }
