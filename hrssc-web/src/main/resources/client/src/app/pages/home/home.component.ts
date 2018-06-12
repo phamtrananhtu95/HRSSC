@@ -4,6 +4,7 @@ import { Project, projectList, companyList, Company, Employee } from '../../mode
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'hrssc-home',
@@ -16,11 +17,13 @@ export class HomeComponent implements OnInit {
   public projects: Project[];
   public companies: Company[];
   public employees: Employee[];
+  
+  public parentTitle = "Home";
 
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
-    private authenticate: AuthenticateService
+    private authenticate: AuthenticateService,
   ) { }
 
   ngOnInit() {
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
       this.projects = new projectList().projects;
       this.companies = new companyList().companies;
       this.employeeService.getEmployees().subscribe(res => {
-        this.employees = res;
+      this.employees = res;
       });
     }
   }

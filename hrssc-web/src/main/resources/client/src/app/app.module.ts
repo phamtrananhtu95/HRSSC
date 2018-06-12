@@ -37,6 +37,8 @@ import { EmployeeService } from './services/employee.service';
 import { SessionsService } from './services/sessions.service';
 import { AuthenticateService } from './services/authenticate.service';
 import { User } from './models';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { TitleService } from './services/title.service';
 
 
 const appRoutes: Routes = [
@@ -134,6 +136,7 @@ const appRoutes: Routes = [
     ChefManageAccountManagerComponent,
     FeedbackComponent,
     RegisterComponent,
+    PageHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -154,7 +157,9 @@ const appRoutes: Routes = [
     SessionsService,
     AuthenticateService,
     EmployeeService,
-    User],
+    User,
+    TitleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
