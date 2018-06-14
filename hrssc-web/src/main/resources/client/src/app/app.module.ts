@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { StorageServiceModule} from 'angular-webstorage-service';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -144,6 +145,8 @@ const appRoutes: Routes = [
     HttpModule,
     StorageServiceModule,
     FormsModule,
+    CustomFormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

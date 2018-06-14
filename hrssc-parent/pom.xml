@@ -46,5 +46,6 @@
 		<module>../hrssc-domain</module>
 		<module>../hrssc-rest</module>
 		<module>../hrssc-service</module>
+		<module>../hrssc-repo</module>
 	</modules>
 </project>

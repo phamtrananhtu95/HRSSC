@@ -24,6 +24,7 @@
     "angular-webstorage-service": "^1.0.2",
     "core-js": "^2.4.1",
     "jquery": "^3.3.1",
+    "ng2-validation": "^4.2.0",
     "popper.js": "^1.14.3",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
