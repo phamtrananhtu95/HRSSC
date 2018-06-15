@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomFormsModule, CustomValidators } from 'ng2-validation';
-import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,29 +8,25 @@ import { Validators, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  model: FormGroup;
-  constructor() {
-    let requiredInput = new FormControl('', Validators.required);
-    let number = new FormControl('',  CustomValidators.equalTo(requiredInput));
 
-    this.model = new FormGroup({
-      // field: new FormControl('', CustomValidators.range([5, 9]))
-      number: number,
-      requiredInput: requiredInput
-    });
+  public isValidFormSubmitted = false;
+
+  public emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
+  public registerInfo = {
+    email: ""
   }
+  constructor() { }
 
-  
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.model = new FormGroup({
-      'requiredInput': new FormControl(this.model, [
-        Validators.required,
-      ]),
-    });
-  }
-
-  onSubmit(form) {
-    console.log(form);
+  onFormSubmit(form: NgForm) {
+    this.isValidFormSubmitted = false;
+    if (form.invalid) {
+      return;
+    }
+    this.isValidFormSubmitted = true;
+    this.registerInfo = form.value;
+    console.log(this.registerInfo);
   }
 }

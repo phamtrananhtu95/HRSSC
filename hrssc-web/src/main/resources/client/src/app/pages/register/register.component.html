@@ -1,11 +1,10 @@
-
 <div class="content" class="col-md-6">
   <div class="panel-heading">
     <h2 class="panel-title">Request for Account</h2>
 
   </div>
   <div class="panel-body">
-    <form class="form-horizontal" action="#">
+    <form class="form-horizontal" #registerForm="ngForm" (ngSubmit)="onFormSubmit(registerForm)">
       <fieldset class="content-group">
         <legend class="text-bold">Company information</legend>
 
@@ -13,10 +12,15 @@
           <label class="control-label col-lg-2">Name</label>
           <div class="col-lg-10">
             <input type="text" class="form-control" placeholder="Enter your company name..." 
-            [(ngModel)]="model.field" name="field" #field="ngModel" 
-              number required />
-            <p *ngIf="field.errors?.number">error message</p>
-            <p *ngIf="field.errors?.requiredInput">required</p>
+            name="email" required [ngModel]="registerInfo.email" [pattern]="emailPattern" #representEmail="ngModel" />
+            <div *ngIf="representEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+              <div *ngIf="representEmail.errors.required">
+                Email required.
+              </div>
+              <div *ngIf="representEmail.errors.pattern">
+                Email not valid.
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -97,35 +101,31 @@
   </div>
 </div>
 
+<!-- 
+<div class="content" class="col-md-6">
+  <div class="panel-heading">
+    <h2 class="panel-title">Request for Account</h2>
 
-<form class="form-horizontal form-validate-jquery" action="#" novalidate="novalidate">
-    <fieldset class="content-group">
-      <legend class="text-bold">Basic inputs</legend>
-
-      <!-- Basic text input -->
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" #registerForm="ngForm" (ngSubmit)="onFormSubmit(registerForm)">
       <div class="form-group">
-        <label class="control-label col-lg-3">Basic text input <span class="text-danger">*</span></label>
-        <div class="col-lg-9">
-          <input type="text" name="basic" class="form-control" required="required" placeholder="Text input validation" aria-required="true">
-        </div>
-      </div>
-      <!-- /basic text input -->
-
-
-      <!-- Input with icons -->
-      <div class="form-group has-feedback">
-        <label class="control-label col-lg-3">Input with icon <span class="text-danger">*</span></label>
-        <div class="col-lg-9">
-          <input type="text" name="with_icon" class="form-control" required="required" placeholder="Text input with icon validation" aria-required="true">
-          <div class="form-control-feedback">
-            <i class="icon-droplets"></i>
+        <label class="control-label col-lg-2">Email</label>
+        <div class="col-lg-10">
+          <input name="email" required [ngModel]="registerInfo.email" [pattern]="emailPattern" #representEmail="ngModel">
+          <div *ngIf="representEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+            <div *ngIf="representEmail.errors.required">
+              Email required.
+            </div>
+            <div *ngIf="representEmail.errors.pattern">
+              Email not valid.
+            </div>
           </div>
         </div>
       </div>
-      <!-- /input with icons -->
-    </fieldset>
-    <div class="text-right">
-      <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-right"></i></button>
-      <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
-    </div>
-  </form>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div> -->
