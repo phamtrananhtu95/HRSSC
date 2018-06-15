@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-appliances.component.css']
 })
 export class ManageAppliancesComponent implements OnInit {
-
+  public parentTitle = "Home";
+  public title = " - Manage resources";
+  public subTitle = " - Appliance";
   constructor() { }
 
   ngOnInit() {

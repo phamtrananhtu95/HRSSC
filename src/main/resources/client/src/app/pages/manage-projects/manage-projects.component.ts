@@ -7,6 +7,10 @@ import { Project, projectList } from '../../models';
   styleUrls: ['./manage-projects.component.css']
 })
 export class ManageProjectsComponent implements OnInit {
+  
+  public parentTitle = "Home";
+  public title = " - Manage projects";
+  public subTitle = " - Project";
 
   projects:Project[];
   constructor() { }

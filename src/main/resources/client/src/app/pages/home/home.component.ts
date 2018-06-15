@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserList } from '../../models/user.model';
+import { User } from '../../models/user.model';
 import { Project, projectList, companyList, Company, Employee } from '../../models';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
+import { AuthenticateService } from '../../services/authenticate.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'hrssc-home',
@@ -12,30 +14,37 @@ import { EmployeeService } from '../../services/employee.service';
 export class HomeComponent implements OnInit {
 
   public users: User[];
-  public projects:Project[];
-  public companies:Company[];
+  public projects: Project[];
+  public companies: Company[];
   public employees: Employee[];
+  
+  public parentTitle = "Home";
 
-  constructor(private router:Router, private employeeService:EmployeeService) { }
+  constructor(
+    private router: Router,
+    private employeeService: EmployeeService,
+    private authenticate: AuthenticateService,
+  ) { }
 
   ngOnInit() {
-    this.users = new UserList().users;
-    this.projects= new projectList().projects;
-    this.companies = new companyList().companies;
-    this.employeeService.getEmployees().subscribe(res=>{
+    if (this.authenticate.checkLogin()) {
+      this.projects = new projectList().projects;
+      this.companies = new companyList().companies;
+      this.employeeService.getEmployees().subscribe(res => {
       this.employees = res;
-    });
+      });
+    }
   }
 
-  viewResourceDetail(user:User){
+  viewResourceDetail(user: User) {
     this.router.navigate(['manager/resource/info']);
   }
 
-  viewProjectDetail(project:Project){
+  viewProjectDetail(project: Project) {
     this.router.navigate(['manager/project/info']);
   }
 
-  viewCompanyDetail(company:Company){
+  viewCompanyDetail(company: Company) {
     this.router.navigate(['company/info']);
   }
 

@@ -6,7 +6,7 @@
       <div class="content col-sm-6">
 
         <!-- Form with validation -->
-        <form action="index.html" class="form-validate" novalidate="novalidate">
+        <form action="index.html" class="form-validate" (ngSubmit)="login()" #f="ngForm" novalidate="novalidate">
           <div class="login-form">
             <div class="text-center">
               <div class="icon-object border-slate-300 text-slate-300">
@@ -18,14 +18,14 @@
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-              <input type="text" class="form-control" placeholder="Username" name="username" required="required" aria-required="true">
+              <input [(ngModel)]="user.username" #username="ngModel" type="text" class="form-control" placeholder="Username" name="username" required="required" aria-required="true">
               <div class="form-control-feedback">
                 <i class="icon-user text-muted"></i>
               </div>
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-              <input type="password" class="form-control" placeholder="Password" name="password" required="required" aria-required="true">
+              <input [(ngModel)]="user.password" #password="ngModel" type="password" class="form-control" placeholder="Password" name="password" required="required" aria-required="true">
               <div class="form-control-feedback">
                 <i class="icon-lock2 text-muted"></i>
               </div>
@@ -39,6 +39,7 @@
 
             <div class="content-divider text-muted form-group">
               <span>Don't have an account?</span>
+              <div>{{error}}</div>
             </div>
             <a href="login_registration.html" class="btn btn-default btn-block content-group">Sign up</a>
             <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserList } from '../../models';
-
-import { EmployeeService } from '../../services/employee.service';
-import { resource } from 'selenium-webdriver/http';
+import { User } from '../../models';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-manage-resources',
@@ -10,19 +8,17 @@ import { resource } from 'selenium-webdriver/http';
   styleUrls: ['./manage-resources.component.css']
 })
 export class ManageResourcesComponent implements OnInit {
-  public resources: User[]
-
-  constructor(private _employeeService:EmployeeService) {
-   }
+  // public resources: User[]
+  public parentTitle = "Home";
+  public title = " - Manage resources";
+  public subTitle = " - Resource";
+  
+  constructor() { }
 
   ngOnInit() {
+    // title:""
     // this.resources = new UserList().users;
-    this._employeeService.getEmployees().subscribe((resources)=> {
-      console.log(resources);
-      this.resources = resources;
-    },(error)=>{
-      console.log(error);
-    });
+    // this.titleService.setTile("Home","Manager resource","Resource");
   }
 
 }

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/hrssc</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <mapping class="com.example.HRSSC.models.Company"/>
+      <mapping class="com.example.HRSSC.models.Feedback"/>
+      <mapping class="com.example.HRSSC.models.HumanResource"/>
+      <mapping class="com.example.HRSSC.models.Interaction"/>
+      <mapping class="com.example.HRSSC.models.Job"/>
+      <mapping class="com.example.HRSSC.models.Notification"/>
+      <mapping class="com.example.HRSSC.models.Permission"/>
+      <mapping class="com.example.HRSSC.models.Position"/>
+      <mapping class="com.example.HRSSC.models.PositionRequirements"/>
+      <mapping class="com.example.HRSSC.models.Project"/>
+      <mapping class="com.example.HRSSC.models.ResourceSkills"/>
+      <mapping class="com.example.HRSSC.models.Role"/>
+      <mapping class="com.example.HRSSC.models.RolePermissions"/>
+      <mapping class="com.example.HRSSC.models.Skill"/>
+      <mapping class="com.example.HRSSC.models.SkillRequirements"/>
+      <mapping class="com.example.HRSSC.models.User"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

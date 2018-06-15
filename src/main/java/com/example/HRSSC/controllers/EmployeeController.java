@@ -1,7 +1,5 @@
 package com.example.HRSSC.controllers;
 
-import com.example.HRSSC.models.Employee;
-import com.example.HRSSC.services.api.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,11 +16,11 @@ import java.util.List;
 @RequestMapping("/employees")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
-
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Employee> getEmployees(){
-        return employeeService.getEmployees();
-    }
+//    @Autowired
+//    private EmployeeService employeeService;
+//
+//    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Employee> getEmployees(){
+//        return employeeService.getEmployees();
+//    }
 }

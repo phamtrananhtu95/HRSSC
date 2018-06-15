@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-invitations.component.css']
 })
 export class ManageInvitationsComponent implements OnInit {
+  
+  public parentTitle = "Home";
+  public title = " - Manage resources";
+  public subTitle = " - Invite";
 
   constructor() { }
 
