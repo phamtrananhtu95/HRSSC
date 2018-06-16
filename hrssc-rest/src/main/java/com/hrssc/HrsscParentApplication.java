@@ -1,4 +1,4 @@
-package com.hrssc.rest.app;
+package com.hrssc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -14,6 +14,7 @@ import com.hrssc.service.UsersService;
 public class UsersServiceImpl implements UsersService {
 
 	private static Logger logger = Logger.getLogger(UsersServiceImpl.class.getName());
+
 	@Autowired
 	private UserRepository userRepository;
 
