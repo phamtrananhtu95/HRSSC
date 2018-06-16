@@ -70,9 +70,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.cors().and()
                 .authorizeRequests()
                 .mvcMatchers("/",
-                        "/login"
+                        "/login",
+                        "/manageCompanies/allRequests"
                 ).permitAll()
-//                .mvcMatchers("/roles/**").hasAuthority("EDIT_PERMISSION")
+                .mvcMatchers("/manageCompanies/**").hasAuthority("MANAGE_COMPANIES")
 //                .mvcMatchers("/users/**").access("hasAuthority('EDIT_USER')")
 //                .mvcMatchers("/criteria/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
 //                .mvcMatchers("/template/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
