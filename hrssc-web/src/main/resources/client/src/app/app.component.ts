@@ -5,7 +5,6 @@ import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { MenuLeftService } from './components/menu-left/menu-left.component.service';
-import { HeaderService } from './components/header/header.component.service';
 
 
 @Component({
@@ -14,25 +13,21 @@ import { HeaderService } from './components/header/header.component.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  static API_URL= "http://locahost:8080";
+
   public user: any;
   subscription: any;
   hideMenu: boolean;
-  hideHeader: boolean;
   constructor(
     private http: Http,
-    public menu: MenuLeftService,
-    public header: HeaderService
+    public menu: MenuLeftService
   ) {
   }
 
   ngOnInit() {
     this.menu.currentVisible.subscribe(hideMenu => {
-      console.log("Hide menu = " + hideMenu);
+      console.log(hideMenu);
       this.hideMenu = hideMenu;
-    });
-    this.header.currentVisible.subscribe(hideHeader => {
-      console.log("Hide header = " + hideHeader);
-      this.hideHeader = hideHeader;
     });
   }
 }

@@ -1,15 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import {MomentModule} from 'angular2-moment/moment.module';
 
 import { StorageServiceModule} from 'angular-webstorage-service';
-import { CustomFormsModule } from 'ng2-validation';
 
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -41,12 +39,10 @@ import { AuthenticateService } from './services/authenticate.service';
 import { User } from './models';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { TitleService } from './services/title.service';
-import { HeaderService } from './components/header/header.component.service';
+import { UrlPermisson } from './urlPermisson/url.permisson';
 
 
 const appRoutes: Routes = [
-
-
 
 
   {
@@ -62,6 +58,7 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [UrlPermisson],
     data: { title: 'Home' }
   },
   {
@@ -105,14 +102,8 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
     path: '**',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    redirectTo: '/login',
   }
 ];
 
@@ -147,9 +138,6 @@ const appRoutes: Routes = [
     HttpModule,
     StorageServiceModule,
     FormsModule,
-    CustomFormsModule,
-    ReactiveFormsModule,
-    MomentModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
@@ -165,7 +153,7 @@ const appRoutes: Routes = [
     EmployeeService,
     User,
     TitleService,
-    HeaderService
+    UrlPermisson
   ],
   bootstrap: [AppComponent]
 })

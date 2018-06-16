@@ -1,7 +1,3 @@
-
-#menuLeft[hidden] {
-    display: none;
-}
-#header[hidden] {
+.sidebar.sidebar-main[hidden] {
     display: none;
 }

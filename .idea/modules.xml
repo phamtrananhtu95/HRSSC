@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hrssc-rest/hrssc-rest.iml" filepath="$PROJECT_DIR$/hrssc-rest/hrssc-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hrssc-web/hrssc-web.iml" filepath="$PROJECT_DIR$/hrssc-web/hrssc-web.iml" />
+    </modules>
+  </component>
+</project>

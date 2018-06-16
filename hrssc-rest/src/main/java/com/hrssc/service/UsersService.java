@@ -1,6 +1,7 @@
 package com.hrssc.service;
 
 import com.hrssc.domain.dto.UserDto;
+import com.hrssc.entities.User;
 
 public interface UsersService {
 
@@ -29,4 +30,6 @@ public interface UsersService {
 	void deleteUserById(Long userId);
 	
 	void login(boolean checkLogin);
+
+	User getAuthenticatedUser();
 }

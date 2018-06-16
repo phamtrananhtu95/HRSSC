@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/hrssc</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <mapping class="com.hrssc.entities.ChosenDomains"/>
+      <mapping class="com.hrssc.entities.Company"/>
+      <mapping class="com.hrssc.entities.Feedback"/>
+      <mapping class="com.hrssc.entities.HumanResource"/>
+      <mapping class="com.hrssc.entities.Interaction"/>
+      <mapping class="com.hrssc.entities.Job"/>
+      <mapping class="com.hrssc.entities.Notification"/>
+      <mapping class="com.hrssc.entities.Permission"/>
+      <mapping class="com.hrssc.entities.Position"/>
+      <mapping class="com.hrssc.entities.PositionRequirements"/>
+      <mapping class="com.hrssc.entities.Project"/>
+      <mapping class="com.hrssc.entities.ResourceSkills"/>
+      <mapping class="com.hrssc.entities.Role"/>
+      <mapping class="com.hrssc.entities.RolePermissions"/>
+      <mapping class="com.hrssc.entities.Skill"/>
+      <mapping class="com.hrssc.entities.SkillRequirements"/>
+      <mapping class="com.hrssc.entities.TemporaryInfo"/>
+      <mapping class="com.hrssc.entities.User"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

@@ -1,16 +1,13 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { HeaderService } from './header.component.service';
+import { Component, OnInit } from '@angular/core';
 
-@Injectable()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  providers:[HeaderService]
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(header: HeaderService) { }
+  constructor() { }
 
   ngOnInit() {
   }
