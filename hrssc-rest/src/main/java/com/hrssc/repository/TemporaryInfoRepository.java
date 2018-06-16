@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface TemporaryInfoRepository extends JpaRepository<TemporaryInfo, Integer> {
 
-    
+   TemporaryInfo findById(int id);
 
 }

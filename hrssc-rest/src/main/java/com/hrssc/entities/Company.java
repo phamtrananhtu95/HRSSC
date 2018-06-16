@@ -12,9 +12,9 @@ public class Company {
     private String name;
     private String address;
     private String city;
-    private long tel;
+    private String tel;
     private String email;
-    private String status;
+    private int status;
     private String logo;
     private Collection<HumanResource> humanResourcesById;
     private Collection<Project> projectsById;
@@ -62,11 +62,11 @@ public class Company {
 
     @Basic
     @Column(name = "tel", nullable = false)
-    public long getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(long tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -82,11 +82,11 @@ public class Company {
 
     @Basic
     @Column(name = "status", nullable = false, length = 45)
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -113,7 +113,7 @@ public class Company {
         if (address != null ? !address.equals(company.address) : company.address != null) return false;
         if (city != null ? !city.equals(company.city) : company.city != null) return false;
         if (email != null ? !email.equals(company.email) : company.email != null) return false;
-        if (status != null ? !status.equals(company.status) : company.status != null) return false;
+        if (status !=company.status) return false;
         if (logo != null ? !logo.equals(company.logo) : company.logo != null) return false;
 
         return true;
@@ -125,9 +125,9 @@ public class Company {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (int) (tel ^ (tel >>> 32));
+        result = 31 * result + (tel !=null ? tel.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (status ^ (status >>>32));
         result = 31 * result + (logo != null ? logo.hashCode() : 0);
         return result;
     }

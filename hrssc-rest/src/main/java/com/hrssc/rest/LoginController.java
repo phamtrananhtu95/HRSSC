@@ -1,5 +1,6 @@
 package com.hrssc.rest;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hrssc.entities.User;
 import com.hrssc.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,15 @@ public class LoginController {
 //		return loginService.login(user);
 //	}
 
-	@GetMapping(value = {"/","/login"}, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(value = {"/","/login"})
 	@CrossOrigin
-	private User login(){
-		return userService.getAuthenticatedUser();
+	private String login(){
+		User user = userService.getAuthenticatedUser();
+		if(user!=null){
+			return user.getUsername();
+		}
+		return null;
 	}
 
 }

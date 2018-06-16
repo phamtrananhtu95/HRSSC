@@ -71,9 +71,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .mvcMatchers("/",
                         "/login",
-                        "/manageCompanies/allRequests"
+                        "/register"
                 ).permitAll()
-                .mvcMatchers("/manageCompanies/**").hasAuthority("MANAGE_COMPANIES")
+                .mvcMatchers("/manage-companies/**").hasAuthority("MANAGE_COMPANIES")
 //                .mvcMatchers("/users/**").access("hasAuthority('EDIT_USER')")
 //                .mvcMatchers("/criteria/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
 //                .mvcMatchers("/template/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")

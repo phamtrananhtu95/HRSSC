@@ -7,5 +7,6 @@ import java.util.List;
 public interface ManageCompaniesService {
 
     List<TemporaryInfo> loadAllRequest();
+    void saveCompany(int tempInfoId);
 
 }
