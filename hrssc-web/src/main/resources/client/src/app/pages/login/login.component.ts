@@ -27,13 +27,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.menu.hideMenu(true);
-    this.header.hideHeader(true);
+    // this.header.hideHeader(true);
     this.authenticate.setLogin(false);
   }
 
   ngOnDestroy() {
     this.menu.hideMenu(false);
-    this.header.hideHeader(false);
+    // this.header.hideHeader(false);
     // console.log("header destroy: " + this.header.hideHeader);
   }
 

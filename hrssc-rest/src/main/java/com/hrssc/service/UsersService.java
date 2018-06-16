@@ -1,4 +1,4 @@
-package com.hrssc.service.api;
+package com.hrssc.service;
 
 import com.hrssc.domain.dto.UserDto;
 

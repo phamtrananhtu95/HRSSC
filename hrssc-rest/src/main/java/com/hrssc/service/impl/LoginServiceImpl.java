@@ -1,12 +1,12 @@
-package com.hrssc.service.api.impl;
+package com.hrssc.service.impl;
 
 import org.springframework.stereotype.Service;
 
 import com.hrssc.domain.dto.UserDto;
-import com.hrssc.service.api.loginService;
+import com.hrssc.service.LoginService;
 
 @Service
-public class loginServiceImp implements loginService{
+public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public Boolean login(UserDto user) {

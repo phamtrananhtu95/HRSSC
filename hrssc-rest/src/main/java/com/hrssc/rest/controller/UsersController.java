@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hrssc.domain.dto.UserDto;
-import com.hrssc.service.api.UsersService;
+import com.hrssc.service.UsersService;
 
 @RestController
 @RequestMapping("/users")

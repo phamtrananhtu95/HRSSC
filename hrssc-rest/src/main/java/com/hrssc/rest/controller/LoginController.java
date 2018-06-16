@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hrssc.domain.dto.UserDto;
-import com.hrssc.service.api.loginService;
+import com.hrssc.service.LoginService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -17,7 +17,7 @@ import com.hrssc.service.api.loginService;
 public class LoginController {
 
 	@Autowired
-	private loginService loginService;
+	private LoginService loginService;
 
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean login(@RequestBody final UserDto user) {

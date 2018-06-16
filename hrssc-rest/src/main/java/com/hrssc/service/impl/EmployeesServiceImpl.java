@@ -1,15 +1,16 @@
-package com.hrssc.service.api.impl;
+package com.hrssc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hrssc.domain.dto.EmployeeDto;
-import com.hrssc.service.api.EmployeesService;
 
 import org.springframework.stereotype.Service;
 
+import com.hrssc.domain.dto.EmployeeDto;
+import com.hrssc.service.EmployeesService;
+
 @Service
-public class EmployeesServiceImp implements EmployeesService {
+public class EmployeesServiceImpl implements EmployeesService {
 
 	@Override
 	public List<EmployeeDto> getEmployees() {

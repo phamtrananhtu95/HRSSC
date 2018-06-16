@@ -15,10 +15,9 @@
   </properties>
 
   <parent>
-  	<groupId>com.hrssc</groupId>
-  	<artifactId>hrssc-parent</artifactId>
-  	<version>1.0</version>
-  	<relativePath>../hrssc-parent/pom.xml</relativePath>
+  	<groupId>org.springframework.boot</groupId>
+  	<artifactId>spring-boot-starter-parent</artifactId>
+  	<version>2.0.2.RELEASE</version>
   </parent>
   
   <dependencies>
@@ -43,16 +42,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-    	<groupId>com.hrssc</groupId>
-    	<artifactId>hrssc-domain</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.hrssc</groupId>
-    	<artifactId>hrssc-service</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

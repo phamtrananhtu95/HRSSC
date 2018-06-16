@@ -1,9 +1,9 @@
-package com.hrssc.service.api.impl;
+package com.hrssc.service.impl;
 
 import org.springframework.stereotype.Service;
 
 import com.hrssc.domain.dto.UserDto;
-import com.hrssc.service.api.UsersService;
+import com.hrssc.service.UsersService;
 
 @Service
 public class UsersServiceImpl implements UsersService {
