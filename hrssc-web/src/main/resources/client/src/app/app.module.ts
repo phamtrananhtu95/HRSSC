@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import {MomentModule} from 'angular2-moment/moment.module';
 
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { CustomFormsModule } from 'ng2-validation';
@@ -40,6 +41,7 @@ import { AuthenticateService } from './services/authenticate.service';
 import { User } from './models';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { TitleService } from './services/title.service';
+import { HeaderService } from './components/header/header.component.service';
 
 
 const appRoutes: Routes = [
@@ -147,6 +149,7 @@ const appRoutes: Routes = [
     FormsModule,
     CustomFormsModule,
     ReactiveFormsModule,
+    MomentModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
@@ -161,7 +164,8 @@ const appRoutes: Routes = [
     AuthenticateService,
     EmployeeService,
     User,
-    TitleService
+    TitleService,
+    HeaderService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuLeftService } from '../../components/menu-left/menu-left.component.service';
+import { HeaderService } from '../../components/header/header.component.service';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { User } from '../../models';
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public menu: MenuLeftService,
+    public header: HeaderService,
     private loginService: LoginService,
     private router: Router,
     private authenticate: AuthenticateService
@@ -25,11 +27,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.menu.hideMenu(true);
+    this.header.hideHeader(true);
     this.authenticate.setLogin(false);
   }
 
   ngOnDestroy() {
     this.menu.hideMenu(false);
+    this.header.hideHeader(false);
+    // console.log("header destroy: " + this.header.hideHeader);
   }
 
   login() {

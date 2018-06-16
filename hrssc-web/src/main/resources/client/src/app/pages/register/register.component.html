@@ -11,14 +11,14 @@
         <div class="form-group">
           <label class="control-label col-lg-2">Name</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="Enter your company name..." 
-            name="email" required [ngModel]="registerInfo.email" [pattern]="emailPattern" #representEmail="ngModel" />
+            <input type="text" class="form-control" placeholder="Enter your company name..." name="email" required [ngModel]="registerInfo.email"
+              [pattern]="emailPattern" #representEmail="ngModel" />
             <div *ngIf="representEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
               <div *ngIf="representEmail.errors.required">
-                Email required.
+                <label id="basic-error" class="validation-error-label" for="basic">This field is required.</label>
               </div>
               <div *ngIf="representEmail.errors.pattern">
-                Email not valid.
+                <label id="basic-error" class="validation-error-label" for="basic">Please enter a valid email address.</label>
               </div>
             </div>
           </div>

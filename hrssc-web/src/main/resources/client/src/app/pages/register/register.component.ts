@@ -27,6 +27,6 @@ export class RegisterComponent implements OnInit {
     }
     this.isValidFormSubmitted = true;
     this.registerInfo = form.value;
-    console.log(this.registerInfo);
+    // console.log(this.registerInfo);
   }
 }
