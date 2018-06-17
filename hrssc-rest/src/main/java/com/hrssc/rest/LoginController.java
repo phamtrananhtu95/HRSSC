@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
 	@GetMapping(value = {""})
-	@CrossOrigin
 	public Principal user(Principal principal) {
 		return principal;
 	}

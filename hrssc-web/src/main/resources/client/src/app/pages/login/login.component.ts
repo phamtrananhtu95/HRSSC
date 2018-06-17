@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     }
     this.loginService.login(body)
       .subscribe(res => {
-        if (res && res.principal && res.principal.username) {
+        if (res && res.name) {
           // login successful
           this.authenticate.setLogin(true);
           this.router.navigate(['home']);
