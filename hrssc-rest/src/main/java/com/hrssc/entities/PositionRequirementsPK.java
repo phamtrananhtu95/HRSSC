@@ -3,15 +3,13 @@ package com.hrssc.entities;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 public class PositionRequirementsPK implements Serializable {
     private int positionId;
     private int projectId;
 
-    @Column(name = "position_id", nullable = false)
+    @Column(name = "position_id")
     @Id
     public int getPositionId() {
         return positionId;
@@ -21,7 +19,7 @@ public class PositionRequirementsPK implements Serializable {
         this.positionId = positionId;
     }
 
-    @Column(name = "project_id", nullable = false)
+    @Column(name = "project_id")
     @Id
     public int getProjectId() {
         return projectId;
@@ -35,19 +33,14 @@ public class PositionRequirementsPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PositionRequirementsPK that = (PositionRequirementsPK) o;
-
-        if (positionId != that.positionId) return false;
-        if (projectId != that.projectId) return false;
-
-        return true;
+        return positionId == that.positionId &&
+                projectId == that.projectId;
     }
 
     @Override
     public int hashCode() {
-        int result = positionId;
-        result = 31 * result + projectId;
-        return result;
+
+        return Objects.hash(positionId, projectId);
     }
 }

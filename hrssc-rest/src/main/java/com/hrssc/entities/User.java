@@ -1,11 +1,11 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class User {
     private int id;
@@ -18,16 +18,9 @@ public class User {
     private boolean isFirstLogin;
     private int roleId;
     private int companyId;
-    private Collection<ChosenDomains> chosenDomainssById;
-    private Collection<Feedback> feedbacksById;
-    private Collection<HumanResource> humanResourcesById;
-    private Collection<Notification> notificationsById;
-    private Collection<Project> projectsById;
-    private Role roleByRoleId;
-    private Company companyByCompanyId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -37,7 +30,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "username", nullable = false, length = 20)
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -47,7 +40,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -57,7 +50,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "fullname", nullable = true, length = 45)
+    @Column(name = "fullname")
     public String getFullname() {
         return fullname;
     }
@@ -67,7 +60,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "email", nullable = true, length = 45)
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -77,7 +70,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "tel", nullable = true, length = 45)
+    @Column(name = "tel")
     public String getTel() {
         return tel;
     }
@@ -87,7 +80,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "status", nullable = true)
+    @Column(name = "status")
     public Integer getStatus() {
         return status;
     }
@@ -97,7 +90,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "is_first_login", nullable = false)
+    @Column(name = "is_first_login")
     public boolean isFirstLogin() {
         return isFirstLogin;
     }
@@ -107,7 +100,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "role_id", nullable = false)
+    @Column(name = "role_id")
     public int getRoleId() {
         return roleId;
     }
@@ -117,7 +110,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     public int getCompanyId() {
         return companyId;
     }
@@ -130,100 +123,22 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (id != user.id) return false;
-        if (isFirstLogin != user.isFirstLogin) return false;
-        if (roleId != user.roleId) return false;
-        if (companyId != user.companyId) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (fullname != null ? !fullname.equals(user.fullname) : user.fullname != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (tel != null ? !tel.equals(user.tel) : user.tel != null) return false;
-        if (status != null ? !status.equals(user.status) : user.status != null) return false;
-
-        return true;
+        return id == user.id &&
+                isFirstLogin == user.isFirstLogin &&
+                roleId == user.roleId &&
+                companyId == user.companyId &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(fullname, user.fullname) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(tel, user.tel) &&
+                Objects.equals(status, user.status);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (fullname != null ? fullname.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (tel != null ? tel.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (isFirstLogin ? 1 : 0);
-        result = 31 * result + roleId;
-        result = 31 * result + companyId;
-        return result;
-    }
 
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<ChosenDomains> getChosenDomainssById() {
-        return chosenDomainssById;
-    }
-
-    public void setChosenDomainssById(Collection<ChosenDomains> chosenDomainssById) {
-        this.chosenDomainssById = chosenDomainssById;
-    }
-
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Feedback> getFeedbacksById() {
-        return feedbacksById;
-    }
-
-    public void setFeedbacksById(Collection<Feedback> feedbacksById) {
-        this.feedbacksById = feedbacksById;
-    }
-
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<HumanResource> getHumanResourcesById() {
-        return humanResourcesById;
-    }
-
-    public void setHumanResourcesById(Collection<HumanResource> humanResourcesById) {
-        this.humanResourcesById = humanResourcesById;
-    }
-
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Notification> getNotificationsById() {
-        return notificationsById;
-    }
-
-    public void setNotificationsById(Collection<Notification> notificationsById) {
-        this.notificationsById = notificationsById;
-    }
-
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Project> getProjectsById() {
-        return projectsById;
-    }
-
-    public void setProjectsById(Collection<Project> projectsById) {
-        this.projectsById = projectsById;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public Role getRoleByRoleId() {
-        return roleByRoleId;
-    }
-
-    public void setRoleByRoleId(Role roleByRoleId) {
-        this.roleByRoleId = roleByRoleId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public Company getCompanyByCompanyId() {
-        return companyByCompanyId;
-    }
-
-    public void setCompanyByCompanyId(Company companyByCompanyId) {
-        this.companyByCompanyId = companyByCompanyId;
+        return Objects.hash(id, username, password, fullname, email, tel, status, isFirstLogin, roleId, companyId);
     }
 }

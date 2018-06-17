@@ -1,19 +1,18 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Role {
     private int id;
     private String title;
-    private Collection<User> usersById;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -23,7 +22,7 @@ public class Role {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 20)
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -36,28 +35,14 @@ public class Role {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Role role = (Role) o;
-
-        if (id != role.id) return false;
-        if (title != null ? !title.equals(role.title) : role.title != null) return false;
-
-        return true;
+        return id == role.id &&
+                Objects.equals(title, role.title);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        return result;
-    }
 
-    @OneToMany(mappedBy = "roleByRoleId")
-    public Collection<User> getUsersById() {
-        return usersById;
-    }
-
-    public void setUsersById(Collection<User> usersById) {
-        this.usersById = usersById;
+        return Objects.hash(id, title);
     }
 }

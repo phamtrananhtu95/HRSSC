@@ -1,10 +1,11 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Notification {
     private int id;
@@ -13,12 +14,9 @@ public class Notification {
     private int humanResourceId;
     private int projectId;
     private boolean isRead;
-    private User userByUserId;
-    private HumanResource humanResourceByHumanResourceId;
-    private Project projectByProjectId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -28,7 +26,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "type", nullable = false, length = 45)
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -38,7 +36,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     public int getUserId() {
         return userId;
     }
@@ -48,7 +46,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "human_resource_id", nullable = false)
+    @Column(name = "human_resource_id")
     public int getHumanResourceId() {
         return humanResourceId;
     }
@@ -58,7 +56,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "project_id", nullable = false)
+    @Column(name = "project_id")
     public int getProjectId() {
         return projectId;
     }
@@ -68,7 +66,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "is_read", nullable = false)
+    @Column(name = "is_read")
     public boolean isRead() {
         return isRead;
     }
@@ -81,57 +79,18 @@ public class Notification {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Notification that = (Notification) o;
-
-        if (id != that.id) return false;
-        if (userId != that.userId) return false;
-        if (humanResourceId != that.humanResourceId) return false;
-        if (projectId != that.projectId) return false;
-        if (isRead != that.isRead) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-
-        return true;
+        return id == that.id &&
+                userId == that.userId &&
+                humanResourceId == that.humanResourceId &&
+                projectId == that.projectId &&
+                isRead == that.isRead &&
+                Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + userId;
-        result = 31 * result + humanResourceId;
-        result = 31 * result + projectId;
-        result = 31 * result + (isRead ? 1 : 0);
-        return result;
-    }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public User getUserByUserId() {
-        return userByUserId;
-    }
-
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public HumanResource getHumanResourceByHumanResourceId() {
-        return humanResourceByHumanResourceId;
-    }
-
-    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
-        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public Project getProjectByProjectId() {
-        return projectByProjectId;
-    }
-
-    public void setProjectByProjectId(Project projectByProjectId) {
-        this.projectByProjectId = projectByProjectId;
+        return Objects.hash(id, type, userId, humanResourceId, projectId, isRead);
     }
 }

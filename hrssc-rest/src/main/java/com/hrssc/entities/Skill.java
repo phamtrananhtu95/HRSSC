@@ -1,20 +1,18 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Skill {
     private int id;
     private String title;
-    private Collection<ResourceSkills> resourceSkillssById;
-    private Collection<SkillRequirements> skillRequirementssById;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -24,7 +22,7 @@ public class Skill {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 45)
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -37,37 +35,14 @@ public class Skill {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Skill skill = (Skill) o;
-
-        if (id != skill.id) return false;
-        if (title != null ? !title.equals(skill.title) : skill.title != null) return false;
-
-        return true;
+        return id == skill.id &&
+                Objects.equals(title, skill.title);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        return result;
-    }
 
-    @OneToMany(mappedBy = "skillBySkillId")
-    public Collection<ResourceSkills> getResourceSkillssById() {
-        return resourceSkillssById;
-    }
-
-    public void setResourceSkillssById(Collection<ResourceSkills> resourceSkillssById) {
-        this.resourceSkillssById = resourceSkillssById;
-    }
-
-    @OneToMany(mappedBy = "skillBySkillId")
-    public Collection<SkillRequirements> getSkillRequirementssById() {
-        return skillRequirementssById;
-    }
-
-    public void setSkillRequirementssById(Collection<SkillRequirements> skillRequirementssById) {
-        this.skillRequirementssById = skillRequirementssById;
+        return Objects.hash(id, title);
     }
 }

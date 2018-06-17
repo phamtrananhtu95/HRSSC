@@ -1,21 +1,19 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Position {
     private int id;
     private String title;
     private String level;
-    private Collection<HumanResource> humanResourcesById;
-    private Collection<PositionRequirements> positionRequirementssById;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -25,7 +23,7 @@ public class Position {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 45)
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -35,7 +33,7 @@ public class Position {
     }
 
     @Basic
-    @Column(name = "level", nullable = false, length = 45)
+    @Column(name = "level")
     public String getLevel() {
         return level;
     }
@@ -48,39 +46,15 @@ public class Position {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Position position = (Position) o;
-
-        if (id != position.id) return false;
-        if (title != null ? !title.equals(position.title) : position.title != null) return false;
-        if (level != null ? !level.equals(position.level) : position.level != null) return false;
-
-        return true;
+        return id == position.id &&
+                Objects.equals(title, position.title) &&
+                Objects.equals(level, position.level);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (level != null ? level.hashCode() : 0);
-        return result;
-    }
 
-    @OneToMany(mappedBy = "positionByPositionId")
-    public Collection<HumanResource> getHumanResourcesById() {
-        return humanResourcesById;
-    }
-
-    public void setHumanResourcesById(Collection<HumanResource> humanResourcesById) {
-        this.humanResourcesById = humanResourcesById;
-    }
-
-    @OneToMany(mappedBy = "positionByPositionId")
-    public Collection<PositionRequirements> getPositionRequirementssById() {
-        return positionRequirementssById;
-    }
-
-    public void setPositionRequirementssById(Collection<PositionRequirements> positionRequirementssById) {
-        this.positionRequirementssById = positionRequirementssById;
+        return Objects.hash(id, title, level);
     }
 }

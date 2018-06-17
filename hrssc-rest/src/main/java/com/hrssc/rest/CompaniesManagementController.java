@@ -23,9 +23,9 @@ public class CompaniesManagementController {
 
     }
 
-    @PostMapping(value = "**/save-company")
-    private void saveCompany(@RequestParam("tempId") String tempInfoId){
-        manageCompaniesService.saveCompany(Integer.parseInt(tempInfoId));
+    @PostMapping(value = "**/accept-company")
+    private boolean acceptCompany(@RequestParam("tempId") String tempInfoId){
+        return manageCompaniesService.acceptCompany(Integer.parseInt(tempInfoId));
     }
 
 }

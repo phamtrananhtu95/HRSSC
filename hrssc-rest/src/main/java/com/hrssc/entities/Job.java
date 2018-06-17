@@ -1,21 +1,20 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Job {
     private int id;
     private Long timestamp;
     private int projectId;
     private int humanResourceId;
-    private Project projectByProjectId;
-    private HumanResource humanResourceByHumanResourceId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -25,7 +24,7 @@ public class Job {
     }
 
     @Basic
-    @Column(name = "timestamp", nullable = true)
+    @Column(name = "timestamp")
     public Long getTimestamp() {
         return timestamp;
     }
@@ -35,7 +34,7 @@ public class Job {
     }
 
     @Basic
-    @Column(name = "project_id", nullable = false)
+    @Column(name = "project_id")
     public int getProjectId() {
         return projectId;
     }
@@ -45,7 +44,7 @@ public class Job {
     }
 
     @Basic
-    @Column(name = "human_resource_id", nullable = false)
+    @Column(name = "human_resource_id")
     public int getHumanResourceId() {
         return humanResourceId;
     }
@@ -58,43 +57,16 @@ public class Job {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Job job = (Job) o;
-
-        if (id != job.id) return false;
-        if (projectId != job.projectId) return false;
-        if (humanResourceId != job.humanResourceId) return false;
-        if (timestamp != null ? !timestamp.equals(job.timestamp) : job.timestamp != null) return false;
-
-        return true;
+        return id == job.id &&
+                projectId == job.projectId &&
+                humanResourceId == job.humanResourceId &&
+                Objects.equals(timestamp, job.timestamp);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
-        result = 31 * result + projectId;
-        result = 31 * result + humanResourceId;
-        return result;
-    }
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public Project getProjectByProjectId() {
-        return projectByProjectId;
-    }
-
-    public void setProjectByProjectId(Project projectByProjectId) {
-        this.projectByProjectId = projectByProjectId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public HumanResource getHumanResourceByHumanResourceId() {
-        return humanResourceByHumanResourceId;
-    }
-
-    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
-        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+        return Objects.hash(id, timestamp, projectId, humanResourceId);
     }
 }

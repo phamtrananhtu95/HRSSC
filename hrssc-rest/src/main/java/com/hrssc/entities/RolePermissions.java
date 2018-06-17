@@ -1,10 +1,8 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 @Table(name = "role_permissions", schema = "hrssc", catalog = "")
 public class RolePermissions {
@@ -13,7 +11,7 @@ public class RolePermissions {
     private int permissionId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -23,7 +21,7 @@ public class RolePermissions {
     }
 
     @Basic
-    @Column(name = "role_id", nullable = false)
+    @Column(name = "role_id")
     public int getRoleId() {
         return roleId;
     }
@@ -33,7 +31,7 @@ public class RolePermissions {
     }
 
     @Basic
-    @Column(name = "permission_id", nullable = false)
+    @Column(name = "permission_id")
     public int getPermissionId() {
         return permissionId;
     }
@@ -46,21 +44,15 @@ public class RolePermissions {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         RolePermissions that = (RolePermissions) o;
-
-        if (id != that.id) return false;
-        if (roleId != that.roleId) return false;
-        if (permissionId != that.permissionId) return false;
-
-        return true;
+        return id == that.id &&
+                roleId == that.roleId &&
+                permissionId == that.permissionId;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + roleId;
-        result = 31 * result + permissionId;
-        return result;
+
+        return Objects.hash(id, roleId, permissionId);
     }
 }

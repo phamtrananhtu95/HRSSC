@@ -13,6 +13,9 @@ public class HumanResource {
     private String tel;
     private Long availableDate;
     private Long availableDuration;
+    private int companyId;
+    private int positionId;
+    private int userId;
 
     @Id
     @Column(name = "id")
@@ -84,6 +87,36 @@ public class HumanResource {
         this.availableDuration = availableDuration;
     }
 
+    @Basic
+    @Column(name = "company_id")
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    @Basic
+    @Column(name = "position_id")
+    public int getPositionId() {
+        return positionId;
+    }
+
+    public void setPositionId(int positionId) {
+        this.positionId = positionId;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,6 +124,9 @@ public class HumanResource {
         HumanResource that = (HumanResource) o;
         return id == that.id &&
                 status == that.status &&
+                companyId == that.companyId &&
+                positionId == that.positionId &&
+                userId == that.userId &&
                 Objects.equals(fullname, that.fullname) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(tel, that.tel) &&
@@ -101,6 +137,6 @@ public class HumanResource {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration);
+        return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration, companyId, positionId, userId);
     }
 }

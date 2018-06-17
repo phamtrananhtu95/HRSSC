@@ -10,13 +10,16 @@ import com.hrssc.repository.TemporaryInfoRepository;
 import com.hrssc.repository.UserRepository;
 import com.hrssc.service.ManageCompaniesService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NonUniqueResultException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service("manageCompaniesService")
 public class ManageCompaniesServiceImpl implements ManageCompaniesService {
@@ -35,9 +38,18 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
        return tempInfoRepo.findAll();
     }
 
+    public boolean acceptCompany(int tempInfoId){
+        if(saveCompany(tempInfoId)){
+            if(saveUser(tempInfoId)){
+                if(removeTempInfo(tempInfoId)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-
-    public void saveCompany(int tempInfoId){
+    public boolean saveCompany(int tempInfoId){
         TemporaryInfo temp = tempInfoRepo.findById(tempInfoId);
 
         Company company = new Company();
@@ -47,34 +59,64 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
         company.setStatus(CompanyStatus.ACTIVATED);
         company.setEmail(temp.getCompanyEmail());
         company.setTel(temp.getCompanyTel());
-        companyRepo.save(company);
-        company = companyRepo.findByName(temp.getCompanyName());
 
 
-        User user = new User();
-        user.setUsername(temp.getCompanyEmail());
-        user.setEmail(temp.getRepresenttativeEmail());
-        user.setFullname(temp.getRepresentativeName());
-        user.setFirstLogin(true);
+        try{
+            companyRepo.save(company);
+            return true;
+        }catch (Exception e){
+            Logger.getLogger(ManageCompaniesServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
+            return false;
+        }
+
+    }
+
+    public boolean saveUser(int tempInfoId){
+        try {
+            TemporaryInfo temp = tempInfoRepo.findById(tempInfoId);
+
+            Company company = companyRepo.findByName(temp.getCompanyName());
+            User user = new User();
+            user.setUsername(temp.getCompanyEmail());
+            user.setEmail(temp.getRepresenttativeEmail());
+            user.setFullname(temp.getRepresentativeName());
+            user.setFirstLogin(true);
 
 //        String rawPassword = randomPassword(); // Use this to notify user via email after this
 //        System.out.println("password: "+rawPassword);
-        String rawPassword = "12345";
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            String rawPassword = "12345";
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-        String encodedPassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPassword(encodedPassword);
+            String encodedPassword = bCryptPasswordEncoder.encode(rawPassword);
+            user.setPassword(encodedPassword);
 
-        user.setCompanyId(company.getId());
-        user.setRoleId(2);
-        user.setTel(temp.getRepresentativeTel());
-        user.setStatus(UserStatus.ACTIVATED);
-        userRepo.save(user);
+            user.setCompanyId(company.getId());
+            user.setRoleId(2);
+            user.setTel(temp.getRepresentativeTel());
+            user.setStatus(UserStatus.ACTIVATED);
+            userRepo.save(user);
+            return true;
+        }catch(NonUniqueResultException e){
+            Logger.getLogger(ManageCompaniesServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
+            return false;
+        }
     }
-
-    private static String randomPassword(){
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        return RandomStringUtils.random( 6, characters );
+    public boolean removeTempInfo(int id){
+        try{
+            TemporaryInfo temp = tempInfoRepo.findById(id);
+            if(temp != null){
+                tempInfoRepo.delete(temp);
+                return true;
+            }
+            return false;
+        }catch(Exception e){
+            Logger.getLogger(ManageCompaniesServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
+            return false;
+        }
     }
+//    private static String randomPassword(){
+//        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//        return RandomStringUtils.random( 6, characters );
+//    }
 
 }

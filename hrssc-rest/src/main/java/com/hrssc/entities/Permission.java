@@ -4,17 +4,15 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Permission {
     private int id;
     private String title;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -24,7 +22,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 255)
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -37,19 +35,14 @@ public class Permission {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Permission that = (Permission) o;
-
-        if (id != that.id) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-
-        return true;
+        return id == that.id &&
+                Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, title);
     }
 }

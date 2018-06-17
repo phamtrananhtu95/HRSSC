@@ -18,6 +18,8 @@ public class Project {
     private String domain;
     private int processStatus;
     private int requestStatus;
+    private int userId;
+    private int companyId;
     private String payment;
 
     @Id
@@ -121,6 +123,26 @@ public class Project {
     }
 
     @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "company_id")
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    @Basic
     @Column(name = "payment")
     public String getPayment() {
         return payment;
@@ -141,6 +163,8 @@ public class Project {
                 duration == project.duration &&
                 processStatus == project.processStatus &&
                 requestStatus == project.requestStatus &&
+                userId == project.userId &&
+                companyId == project.companyId &&
                 Objects.equals(title, project.title) &&
                 Objects.equals(description, project.description) &&
                 Objects.equals(type, project.type) &&
@@ -151,6 +175,6 @@ public class Project {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, payment);
+        return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, userId, companyId, payment);
     }
 }

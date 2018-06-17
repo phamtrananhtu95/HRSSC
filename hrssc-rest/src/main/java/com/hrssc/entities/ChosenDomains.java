@@ -1,10 +1,8 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 @Table(name = "chosen_domains", schema = "hrssc", catalog = "")
 public class ChosenDomains {
@@ -13,10 +11,9 @@ public class ChosenDomains {
     private String locations;
     private String skills;
     private int userId;
-    private User userByUserId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -26,7 +23,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "positions", nullable = true, length = 255)
+    @Column(name = "positions")
     public String getPositions() {
         return positions;
     }
@@ -36,7 +33,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "locations", nullable = true, length = 255)
+    @Column(name = "locations")
     public String getLocations() {
         return locations;
     }
@@ -46,7 +43,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "skills", nullable = true, length = 255)
+    @Column(name = "skills")
     public String getSkills() {
         return skills;
     }
@@ -56,7 +53,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     public int getUserId() {
         return userId;
     }
@@ -69,35 +66,17 @@ public class ChosenDomains {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ChosenDomains that = (ChosenDomains) o;
-
-        if (id != that.id) return false;
-        if (userId != that.userId) return false;
-        if (positions != null ? !positions.equals(that.positions) : that.positions != null) return false;
-        if (locations != null ? !locations.equals(that.locations) : that.locations != null) return false;
-        if (skills != null ? !skills.equals(that.skills) : that.skills != null) return false;
-
-        return true;
+        return id == that.id &&
+                userId == that.userId &&
+                Objects.equals(positions, that.positions) &&
+                Objects.equals(locations, that.locations) &&
+                Objects.equals(skills, that.skills);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (positions != null ? positions.hashCode() : 0);
-        result = 31 * result + (locations != null ? locations.hashCode() : 0);
-        result = 31 * result + (skills != null ? skills.hashCode() : 0);
-        result = 31 * result + userId;
-        return result;
-    }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public User getUserByUserId() {
-        return userByUserId;
-    }
-
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+        return Objects.hash(id, positions, locations, skills, userId);
     }
 }

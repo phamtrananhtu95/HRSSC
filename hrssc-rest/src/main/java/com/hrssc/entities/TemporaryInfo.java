@@ -1,10 +1,8 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 @Table(name = "temporary_info", schema = "hrssc", catalog = "")
 public class TemporaryInfo {
@@ -22,7 +20,7 @@ public class TemporaryInfo {
     private String representativeTitle;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -32,7 +30,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_name", nullable = false, length = 45)
+    @Column(name = "company_name")
     public String getCompanyName() {
         return companyName;
     }
@@ -42,7 +40,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_address", nullable = false, length = 45)
+    @Column(name = "company_address")
     public String getCompanyAddress() {
         return companyAddress;
     }
@@ -52,7 +50,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_city", nullable = false, length = 45)
+    @Column(name = "company_city")
     public String getCompanyCity() {
         return companyCity;
     }
@@ -62,7 +60,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_country", nullable = false, length = 45)
+    @Column(name = "company_country")
     public String getCompanyCountry() {
         return companyCountry;
     }
@@ -72,7 +70,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_tax", nullable = false, length = 45)
+    @Column(name = "company_tax")
     public String getCompanyTax() {
         return companyTax;
     }
@@ -82,7 +80,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_email", nullable = false, length = 45)
+    @Column(name = "company_email")
     public String getCompanyEmail() {
         return companyEmail;
     }
@@ -92,7 +90,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_tel", nullable = false, length = 45)
+    @Column(name = "company_tel")
     public String getCompanyTel() {
         return companyTel;
     }
@@ -102,7 +100,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representative_name", nullable = false, length = 45)
+    @Column(name = "representative_name")
     public String getRepresentativeName() {
         return representativeName;
     }
@@ -112,7 +110,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representtative_email", nullable = false, length = 45)
+    @Column(name = "representtative_email")
     public String getRepresenttativeEmail() {
         return representtativeEmail;
     }
@@ -122,7 +120,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representative_tel", nullable = false, length = 45)
+    @Column(name = "representative_tel")
     public String getRepresentativeTel() {
         return representativeTel;
     }
@@ -132,7 +130,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representative_title", nullable = false, length = 45)
+    @Column(name = "representative_title")
     public String getRepresentativeTitle() {
         return representativeTitle;
     }
@@ -145,45 +143,24 @@ public class TemporaryInfo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TemporaryInfo that = (TemporaryInfo) o;
-
-        if (id != that.id) return false;
-        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-        if (companyAddress != null ? !companyAddress.equals(that.companyAddress) : that.companyAddress != null)
-            return false;
-        if (companyCity != null ? !companyCity.equals(that.companyCity) : that.companyCity != null) return false;
-        if (companyCountry != null ? !companyCountry.equals(that.companyCountry) : that.companyCountry != null)
-            return false;
-        if (companyTax != null ? !companyTax.equals(that.companyTax) : that.companyTax != null) return false;
-        if (companyEmail != null ? !companyEmail.equals(that.companyEmail) : that.companyEmail != null) return false;
-        if (companyTel != null ? !companyTel.equals(that.companyTel) : that.companyTel != null) return false;
-        if (representativeName != null ? !representativeName.equals(that.representativeName) : that.representativeName != null)
-            return false;
-        if (representtativeEmail != null ? !representtativeEmail.equals(that.representtativeEmail) : that.representtativeEmail != null)
-            return false;
-        if (representativeTel != null ? !representativeTel.equals(that.representativeTel) : that.representativeTel != null)
-            return false;
-        if (representativeTitle != null ? !representativeTitle.equals(that.representativeTitle) : that.representativeTitle != null)
-            return false;
-
-        return true;
+        return id == that.id &&
+                Objects.equals(companyName, that.companyName) &&
+                Objects.equals(companyAddress, that.companyAddress) &&
+                Objects.equals(companyCity, that.companyCity) &&
+                Objects.equals(companyCountry, that.companyCountry) &&
+                Objects.equals(companyTax, that.companyTax) &&
+                Objects.equals(companyEmail, that.companyEmail) &&
+                Objects.equals(companyTel, that.companyTel) &&
+                Objects.equals(representativeName, that.representativeName) &&
+                Objects.equals(representtativeEmail, that.representtativeEmail) &&
+                Objects.equals(representativeTel, that.representativeTel) &&
+                Objects.equals(representativeTitle, that.representativeTitle);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
-        result = 31 * result + (companyAddress != null ? companyAddress.hashCode() : 0);
-        result = 31 * result + (companyCity != null ? companyCity.hashCode() : 0);
-        result = 31 * result + (companyCountry != null ? companyCountry.hashCode() : 0);
-        result = 31 * result + (companyTax != null ? companyTax.hashCode() : 0);
-        result = 31 * result + (companyEmail != null ? companyEmail.hashCode() : 0);
-        result = 31 * result + (companyTel != null ? companyTel.hashCode() : 0);
-        result = 31 * result + (representativeName != null ? representativeName.hashCode() : 0);
-        result = 31 * result + (representtativeEmail != null ? representtativeEmail.hashCode() : 0);
-        result = 31 * result + (representativeTel != null ? representativeTel.hashCode() : 0);
-        result = 31 * result + (representativeTitle != null ? representativeTitle.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, companyName, companyAddress, companyCity, companyCountry, companyTax, companyEmail, companyTel, representativeName, representtativeEmail, representativeTel, representativeTitle);
     }
 }

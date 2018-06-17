@@ -1,15 +1,14 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 @Builder
 @AllArgsConstructor
@@ -22,16 +21,13 @@ public class Company {
     private String email;
     private int status;
     private String logo;
-    private Collection<HumanResource> humanResourcesById;
-    private Collection<Project> projectsById;
-    private Collection<User> usersById;
 
     public Company() {
 
     }
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -41,7 +37,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -51,7 +47,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "address", nullable = false, length = 45)
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -61,7 +57,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "city", nullable = false, length = 45)
+    @Column(name = "city")
     public String getCity() {
         return city;
     }
@@ -71,7 +67,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "tel", nullable = false)
+    @Column(name = "tel")
     public String getTel() {
         return tel;
     }
@@ -81,7 +77,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 45)
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -91,7 +87,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "status", nullable = false, length = 45)
+    @Column(name = "status")
     public int getStatus() {
         return status;
     }
@@ -101,7 +97,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "logo", nullable = false, length = 255)
+    @Column(name = "logo")
     public String getLogo() {
         return logo;
     }
@@ -114,58 +110,20 @@ public class Company {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Company company = (Company) o;
-
-        if (id != company.id) return false;
-        if (tel != company.tel) return false;
-        if (name != null ? !name.equals(company.name) : company.name != null) return false;
-        if (address != null ? !address.equals(company.address) : company.address != null) return false;
-        if (city != null ? !city.equals(company.city) : company.city != null) return false;
-        if (email != null ? !email.equals(company.email) : company.email != null) return false;
-        if (status !=company.status) return false;
-        if (logo != null ? !logo.equals(company.logo) : company.logo != null) return false;
-
-        return true;
+        return id == company.id &&
+                status == company.status &&
+                Objects.equals(name, company.name) &&
+                Objects.equals(address, company.address) &&
+                Objects.equals(city, company.city) &&
+                Objects.equals(tel, company.tel) &&
+                Objects.equals(email, company.email) &&
+                Objects.equals(logo, company.logo);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (tel !=null ? tel.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (status ^ (status >>>32));
-        result = 31 * result + (logo != null ? logo.hashCode() : 0);
-        return result;
-    }
 
-    @OneToMany(mappedBy = "companyByCompanyId")
-    public Collection<HumanResource> getHumanResourcesById() {
-        return humanResourcesById;
-    }
-
-    public void setHumanResourcesById(Collection<HumanResource> humanResourcesById) {
-        this.humanResourcesById = humanResourcesById;
-    }
-
-    @OneToMany(mappedBy = "companyByCompanyId")
-    public Collection<Project> getProjectsById() {
-        return projectsById;
-    }
-
-    public void setProjectsById(Collection<Project> projectsById) {
-        this.projectsById = projectsById;
-    }
-
-    @OneToMany(mappedBy = "companyByCompanyId")
-    public Collection<User> getUsersById() {
-        return usersById;
-    }
-
-    public void setUsersById(Collection<User> usersById) {
-        this.usersById = usersById;
+        return Objects.hash(id, name, address, city, tel, email, status, logo);
     }
 }
