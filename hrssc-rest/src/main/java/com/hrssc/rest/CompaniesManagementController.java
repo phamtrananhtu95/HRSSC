@@ -1,9 +1,8 @@
 package com.hrssc.rest;
 
 import com.hrssc.entities.TemporaryInfo;
-import com.hrssc.service.ManageCompaniesService;
+import com.hrssc.service.CompaniesManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,11 +12,11 @@ import java.util.List;
 public class CompaniesManagementController {
 
     @Autowired
-    ManageCompaniesService manageCompaniesService;
+    CompaniesManagementService companiesManagementService;
 
     @GetMapping(value = "**/all-requests")
     private List<TemporaryInfo> loadAllRequest(){
-        List<TemporaryInfo> requestList = manageCompaniesService.loadAllRequest();
+        List<TemporaryInfo> requestList = companiesManagementService.loadAllRequest();
 
         return requestList;
 
@@ -25,7 +24,7 @@ public class CompaniesManagementController {
 
     @PostMapping(value = "**/accept-company")
     private boolean acceptCompany(@RequestParam("tempId") String tempInfoId){
-        return manageCompaniesService.acceptCompany(Integer.parseInt(tempInfoId));
+        return companiesManagementService.acceptCompany(Integer.parseInt(tempInfoId));
     }
 
 }

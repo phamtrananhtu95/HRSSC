@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hrssc.domain.dto.UserDto;
-import com.hrssc.service.UsersService;
+import com.hrssc.service.ManagerManagementService;
 
 @RestController
 @RequestMapping("/manage-manager")
-public class UsersController {
+public class ManagerManagementController {
 
 	@Autowired
-	private UsersService userService;
+	private ManagerManagementService userService;
 
 	@GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDto getUserById(@PathVariable("") final Long userId) {
+	public UserDto getUserById(@PathVariable("userId") final Long userId) {
 		return userService.getUserById(userId);
 	}
 
@@ -34,5 +34,13 @@ public class UsersController {
 	@DeleteMapping(value = "/delete/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteUserById(@PathVariable("userId") final Long userId) {
 		userService.deleteUserById(userId);
+	}
+
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String addManager(@RequestBody User user){
+        if(userService.addUser(user)){
+            return "OK";
+        }
+        return "Email Existed";
 	}
 }

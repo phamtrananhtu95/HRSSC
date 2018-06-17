@@ -3,27 +3,21 @@ package com.hrssc.service.impl;
 import com.hrssc.entities.Company;
 import com.hrssc.entities.TemporaryInfo;
 import com.hrssc.entities.User;
-import com.hrssc.model.CompanyStatus;
 import com.hrssc.model.Constant;
-import com.hrssc.model.UserStatus;
 import com.hrssc.repository.CompanyRepository;
 import com.hrssc.repository.TemporaryInfoRepository;
 import com.hrssc.repository.UserRepository;
-import com.hrssc.service.ManageCompaniesService;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.slf4j.event.Level;
+import com.hrssc.service.CompaniesManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NonUniqueResultException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Service("manageCompaniesService")
-public class ManageCompaniesServiceImpl implements ManageCompaniesService {
+public class CompaniesManagementServiceImpl implements CompaniesManagementService {
 
     @Autowired
     TemporaryInfoRepository tempInfoRepo;
@@ -66,7 +60,7 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
             companyRepo.save(company);
             return true;
         }catch (Exception e){
-            Logger.getLogger(ManageCompaniesServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
+            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
             return false;
         }
 
@@ -98,7 +92,7 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
             userRepo.save(user);
             return true;
         }catch(NonUniqueResultException e){
-            Logger.getLogger(ManageCompaniesServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
+            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
             return false;
         }
     }
@@ -111,7 +105,7 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
             }
             return false;
         }catch(Exception e){
-            Logger.getLogger(ManageCompaniesServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
+            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
             return false;
         }
     }

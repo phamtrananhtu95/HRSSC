@@ -1,20 +1,17 @@
 package com.hrssc.rest;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hrssc.entities.User;
-import com.hrssc.service.UsersService;
+import com.hrssc.service.ManagerManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import com.hrssc.domain.dto.UserDto;
 import com.hrssc.service.LoginService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class LoginController {
 	@Autowired
-	private UsersService userService;
+	private ManagerManagementService userService;
 	@Autowired
 	private LoginService loginService;
 
