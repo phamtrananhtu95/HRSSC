@@ -14,8 +14,8 @@ public class CompanyDto {
 	    private String name;
 	    private String address;
 	    private String city;
-	    private Long tel;
+	    private String tel;
 	    private String email;
-	    private String status;
+	    private int status;
 	    private String logo;
 }

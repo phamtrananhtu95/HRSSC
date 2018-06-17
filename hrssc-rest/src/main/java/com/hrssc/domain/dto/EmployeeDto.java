@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class EmployeeDto {
 	private int id;
 	private String fullname;
-	private String status;
+	private int status;
 	private String email;
 	private String tel;
 	private Long availableDate;
