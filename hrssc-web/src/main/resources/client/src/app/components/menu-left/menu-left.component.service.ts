@@ -7,10 +7,10 @@ export class MenuLeftService {
   private hideMenuSource = new BehaviorSubject(false);
   currentVisible = this.hideMenuSource.asObservable();
   constructor() {
-   }
+  }
 
   hideMenu(visible: boolean) {
-      this.hideMenuSource.next(visible);
+    this.hideMenuSource.next(visible);
   }
 
 }

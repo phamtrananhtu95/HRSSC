@@ -1,17 +1,26 @@
-<div class="content">
+<div class="content" class="col-md-6">
   <div class="panel-heading">
     <h2 class="panel-title">Request for Account</h2>
 
   </div>
   <div class="panel-body">
-    <form class="form-horizontal" action="#">
+    <form class="form-horizontal" #registerForm="ngForm" (ngSubmit)="onFormSubmit(registerForm)">
       <fieldset class="content-group">
         <legend class="text-bold">Company information</legend>
 
         <div class="form-group">
           <label class="control-label col-lg-2">Name</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="Enter your company name...">
+            <input type="text" class="form-control" placeholder="Enter your company name..." name="email" required [ngModel]="registerInfo.email"
+              [pattern]="emailPattern" #representEmail="ngModel" />
+            <div *ngIf="representEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+              <div *ngIf="representEmail.errors.required">
+                <label id="basic-error" class="validation-error-label" for="basic">This field is required.</label>
+              </div>
+              <div *ngIf="representEmail.errors.pattern">
+                <label id="basic-error" class="validation-error-label" for="basic">Please enter a valid email address.</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -91,3 +100,32 @@
     </form>
   </div>
 </div>
+
+<!-- 
+<div class="content" class="col-md-6">
+  <div class="panel-heading">
+    <h2 class="panel-title">Request for Account</h2>
+
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" #registerForm="ngForm" (ngSubmit)="onFormSubmit(registerForm)">
+      <div class="form-group">
+        <label class="control-label col-lg-2">Email</label>
+        <div class="col-lg-10">
+          <input name="email" required [ngModel]="registerInfo.email" [pattern]="emailPattern" #representEmail="ngModel">
+          <div *ngIf="representEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+            <div *ngIf="representEmail.errors.required">
+              Email required.
+            </div>
+            <div *ngIf="representEmail.errors.pattern">
+              Email not valid.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div> -->

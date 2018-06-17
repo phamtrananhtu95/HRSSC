@@ -1,5 +1,7 @@
 package com.hrssc.domain.dto;
 
+import com.hrssc.entities.HumanResource;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,22 +12,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeDto {
-
-	private Long id;
-
-	private String name;
-
-	private String dob;
-
-	private String skill;
-
-	private String experience;
-
-	private String phone;
-
+	private int id;
+	private String fullname;
+	private String status;
 	private String email;
-	
-	private String company;
-	
-	private Integer matched;
+	private String tel;
+	private Long availableDate;
+	private Long availableDuration;
+
+	public EmployeeDto getEmployee(final HumanResource humanResource) {
+		return EmployeeDto.builder().id(humanResource.getId()).fullname(humanResource.getFullname())
+				.status(humanResource.getStatus()).email(humanResource.getEmail()).tel(humanResource.getTel())
+				.availableDate(humanResource.getAvailableDate()).availableDuration(humanResource.getAvailableDuration())
+				.build();
+	}
 }

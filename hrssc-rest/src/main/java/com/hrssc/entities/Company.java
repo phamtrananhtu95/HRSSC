@@ -1,12 +1,16 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+
+import lombok.Builder;
+
 import java.util.Collection;
 
 /**
  * Created by Thien on 6/16/2018.
  */
 @Entity
+@Builder
 public class Company {
     private int id;
     private String name;

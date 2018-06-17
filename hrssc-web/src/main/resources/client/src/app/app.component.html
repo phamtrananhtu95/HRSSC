@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse" [hidden]="hideHeader" id="header">
   <app-header></app-header>
 </div>
 
@@ -10,7 +10,7 @@
   <div class="page-content">
 
     <!-- Main sidebar -->
-    <div class="sidebar sidebar-main" [hidden]="hideMenu">
+    <div class="sidebar sidebar-main" [hidden]="hideMenu" id="menuLeft">
       <div class="sidebar-content">
         <app-menu-left></app-menu-left>
       </div>
