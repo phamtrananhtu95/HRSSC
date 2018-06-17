@@ -4,6 +4,7 @@ import com.hrssc.entities.Company;
 import com.hrssc.entities.TemporaryInfo;
 import com.hrssc.entities.User;
 import com.hrssc.model.CompanyStatus;
+import com.hrssc.model.Constant;
 import com.hrssc.model.UserStatus;
 import com.hrssc.repository.CompanyRepository;
 import com.hrssc.repository.TemporaryInfoRepository;
@@ -56,7 +57,7 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
         company.setName(temp.getCompanyName());
         company.setAddress(temp.getCompanyAddress());
         company.setCity(temp.getCompanyCity());
-        company.setStatus(CompanyStatus.ACTIVATED);
+        company.setStatus(Constant.CompanyStatus.ACTIVATED);
         company.setEmail(temp.getCompanyEmail());
         company.setTel(temp.getCompanyTel());
 
@@ -93,7 +94,7 @@ public class ManageCompaniesServiceImpl implements ManageCompaniesService {
             user.setCompanyId(company.getId());
             user.setRoleId(2);
             user.setTel(temp.getRepresentativeTel());
-            user.setStatus(UserStatus.ACTIVATED);
+            user.setStatus(Constant.UserStatus.ACTIVATED);
             userRepo.save(user);
             return true;
         }catch(NonUniqueResultException e){
