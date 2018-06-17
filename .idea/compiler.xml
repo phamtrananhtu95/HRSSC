@@ -10,5 +10,9 @@
         <module name="hrssc-web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hrssc-rest" target="1.8" />
+      <module name="hrssc-web" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -52,16 +52,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .passwordEncoder(passwordEncoder());
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurerAdapter() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+//
+//            }
+//        };
+//    }
 
 
     @Override
@@ -74,7 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/register"
                 ).permitAll()
                 .mvcMatchers("/manage-companies/**").hasAuthority("MANAGE_COMPANIES")
-//                .mvcMatchers("/users/**").access("hasAuthority('EDIT_USER')")
+                .mvcMatchers("/manage-manager/**").access("hasAuthority('MANAGE_MANAGER')")
 //                .mvcMatchers("/criteria/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
 //                .mvcMatchers("/template/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
                 .anyRequest().authenticated()

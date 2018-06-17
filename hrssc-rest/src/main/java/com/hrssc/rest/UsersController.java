@@ -1,5 +1,6 @@
 package com.hrssc.rest;
 
+import com.hrssc.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +15,7 @@ import com.hrssc.domain.dto.UserDto;
 import com.hrssc.service.UsersService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/manage-manager")
 public class UsersController {
 
 	@Autowired
@@ -26,7 +27,7 @@ public class UsersController {
 	}
 
 	@PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDto updateUser(@RequestBody final UserDto user) {
+	public boolean updateUser(@RequestBody User user) {
 		return userService.updateUser(user);
 	}
 

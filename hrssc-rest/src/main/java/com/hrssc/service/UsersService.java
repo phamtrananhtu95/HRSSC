@@ -19,7 +19,7 @@ public interface UsersService {
 	 * @param user
 	 * @return updated user
 	 */
-	UserDto updateUser(final UserDto user);
+	boolean updateUser(User user);
 
 	/**
 	 * Deletes user by user id
