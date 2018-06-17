@@ -1,11 +1,11 @@
 package com.hrssc.entities;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
-/**
- * Created by Thien on 6/16/2018.
- */
 @Entity
 public class Project {
     private int id;
@@ -16,20 +16,12 @@ public class Project {
     private long duration;
     private String type;
     private String domain;
-    private String processStatus;
-    private String requestStatus;
-    private int userId;
-    private int companyId;
-    private Collection<Interaction> interactionsById;
-    private Collection<Job> jobsById;
-    private Collection<Notification> notificationsById;
-    private Collection<PositionRequirements> positionRequirementssById;
-    private User userByUserId;
-    private Company companyByCompanyId;
-    private Collection<SkillRequirements> skillRequirementssById;
+    private int processStatus;
+    private int requestStatus;
+    private String payment;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -39,7 +31,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 45)
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -49,7 +41,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = 45)
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -59,7 +51,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     public long getCreateDate() {
         return createDate;
     }
@@ -69,7 +61,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     public long getEndDate() {
         return endDate;
     }
@@ -79,7 +71,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "duration", nullable = false)
+    @Column(name = "duration")
     public long getDuration() {
         return duration;
     }
@@ -89,7 +81,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "type", nullable = false, length = 45)
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -99,7 +91,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "domain", nullable = false, length = 45)
+    @Column(name = "domain")
     public String getDomain() {
         return domain;
     }
@@ -109,149 +101,56 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "process_status", nullable = false, length = 45)
-    public String getProcessStatus() {
+    @Column(name = "process_status")
+    public int getProcessStatus() {
         return processStatus;
     }
 
-    public void setProcessStatus(String processStatus) {
+    public void setProcessStatus(int processStatus) {
         this.processStatus = processStatus;
     }
 
     @Basic
-    @Column(name = "request_status", nullable = false, length = 45)
-    public String getRequestStatus() {
+    @Column(name = "request_status")
+    public int getRequestStatus() {
         return requestStatus;
     }
 
-    public void setRequestStatus(String requestStatus) {
+    public void setRequestStatus(int requestStatus) {
         this.requestStatus = requestStatus;
     }
 
     @Basic
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
-        return userId;
+    @Column(name = "payment")
+    public String getPayment() {
+        return payment;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "company_id", nullable = false)
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
+    public void setPayment(String payment) {
+        this.payment = payment;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Project project = (Project) o;
-
-        if (id != project.id) return false;
-        if (createDate != project.createDate) return false;
-        if (endDate != project.endDate) return false;
-        if (duration != project.duration) return false;
-        if (userId != project.userId) return false;
-        if (companyId != project.companyId) return false;
-        if (title != null ? !title.equals(project.title) : project.title != null) return false;
-        if (description != null ? !description.equals(project.description) : project.description != null) return false;
-        if (type != null ? !type.equals(project.type) : project.type != null) return false;
-        if (domain != null ? !domain.equals(project.domain) : project.domain != null) return false;
-        if (processStatus != null ? !processStatus.equals(project.processStatus) : project.processStatus != null)
-            return false;
-        if (requestStatus != null ? !requestStatus.equals(project.requestStatus) : project.requestStatus != null)
-            return false;
-
-        return true;
+        return id == project.id &&
+                createDate == project.createDate &&
+                endDate == project.endDate &&
+                duration == project.duration &&
+                processStatus == project.processStatus &&
+                requestStatus == project.requestStatus &&
+                Objects.equals(title, project.title) &&
+                Objects.equals(description, project.description) &&
+                Objects.equals(type, project.type) &&
+                Objects.equals(domain, project.domain) &&
+                Objects.equals(payment, project.payment);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (int) (createDate ^ (createDate >>> 32));
-        result = 31 * result + (int) (endDate ^ (endDate >>> 32));
-        result = 31 * result + (int) (duration ^ (duration >>> 32));
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (domain != null ? domain.hashCode() : 0);
-        result = 31 * result + (processStatus != null ? processStatus.hashCode() : 0);
-        result = 31 * result + (requestStatus != null ? requestStatus.hashCode() : 0);
-        result = 31 * result + userId;
-        result = 31 * result + companyId;
-        return result;
-    }
 
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<Interaction> getInteractionsById() {
-        return interactionsById;
-    }
-
-    public void setInteractionsById(Collection<Interaction> interactionsById) {
-        this.interactionsById = interactionsById;
-    }
-
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<Job> getJobsById() {
-        return jobsById;
-    }
-
-    public void setJobsById(Collection<Job> jobsById) {
-        this.jobsById = jobsById;
-    }
-
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<Notification> getNotificationsById() {
-        return notificationsById;
-    }
-
-    public void setNotificationsById(Collection<Notification> notificationsById) {
-        this.notificationsById = notificationsById;
-    }
-
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<PositionRequirements> getPositionRequirementssById() {
-        return positionRequirementssById;
-    }
-
-    public void setPositionRequirementssById(Collection<PositionRequirements> positionRequirementssById) {
-        this.positionRequirementssById = positionRequirementssById;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public User getUserByUserId() {
-        return userByUserId;
-    }
-
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public Company getCompanyByCompanyId() {
-        return companyByCompanyId;
-    }
-
-    public void setCompanyByCompanyId(Company companyByCompanyId) {
-        this.companyByCompanyId = companyByCompanyId;
-    }
-
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<SkillRequirements> getSkillRequirementssById() {
-        return skillRequirementssById;
-    }
-
-    public void setSkillRequirementssById(Collection<SkillRequirements> skillRequirementssById) {
-        this.skillRequirementssById = skillRequirementssById;
+        return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, payment);
     }
 }

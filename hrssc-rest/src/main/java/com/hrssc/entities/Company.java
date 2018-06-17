@@ -2,6 +2,7 @@ package com.hrssc.entities;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Collection;
  */
 @Entity
 @Builder
+@AllArgsConstructor
 public class Company {
     private int id;
     private String name;
@@ -23,6 +25,10 @@ public class Company {
     private Collection<HumanResource> humanResourcesById;
     private Collection<Project> projectsById;
     private Collection<User> usersById;
+
+    public Company() {
+
+    }
 
     @Id
     @Column(name = "id", nullable = false)
