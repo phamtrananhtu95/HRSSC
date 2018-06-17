@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
-  public user: User = new User();
+  public username: string;
+  public password: string;
 
   constructor(
     public menu: MenuLeftService,
@@ -27,21 +28,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.menu.hideMenu(true);
-    // this.header.hideHeader(true);
     this.authenticate.setLogin(false);
   }
 
   ngOnDestroy() {
     this.menu.hideMenu(false);
-    // this.header.hideHeader(false);
-    // console.log("header destroy: " + this.header.hideHeader);
   }
 
   login() {
     this.loading = true;
-    this.loginService.login(this.user)
-      .subscribe(result => {
-        if (result) {
+    let body = {
+      username: this.username,
+      password: this.password
+    }
+    this.loginService.login(body)
+      .subscribe(res => {
+        if (res && res.principal && res.principal.username) {
           // login successful
           this.authenticate.setLogin(true);
           this.router.navigate(['home']);
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         this.loading = false;
-        this.error = error;
+        this.error = 'Username or password is incorrect';
       });
   }
 }

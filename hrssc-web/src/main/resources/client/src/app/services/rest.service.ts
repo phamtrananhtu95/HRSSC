@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -14,7 +14,36 @@ export class RestService {
   }
 
   post(path, body): Observable<any> {
-    return this.http.post(`${environment.baseUrl}${path}`,body)
+    return this.http.post(`${environment.baseUrl}${path}`, body)
       .map((response: any) => response.json())
+  }
+
+  postParam(path, user): Observable<any> {
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    var body = 'username=' + user.username + '&password=' + user.password;
+
+    return this.http.post(`${environment.baseUrl}${path}`, body,
+      {
+        headers: headers
+      })
+      .map((response: any) => response.json())
+  }
+
+  authorize(path, body) {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json')
+    // creating base64 encoded String from user name and password
+    var base64Credential: string = btoa(body.username + ':' + body.password);
+    headers.append("Authorization", "Basic " + base64Credential);
+    // headers.append("cache-control", "no-cache");
+
+    let options = new RequestOptions();
+
+    options.headers = headers;
+
+    return this.http.get(`${environment.baseUrl}${path}`, options)
+      .map((response: any) => response.json());
   }
 }

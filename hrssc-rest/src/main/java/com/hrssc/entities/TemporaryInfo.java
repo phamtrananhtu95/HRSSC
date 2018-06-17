@@ -1,10 +1,16 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import java.util.Objects;
 
 @Entity
 @Table(name = "temporary_info", schema = "hrssc", catalog = "")
+@Builder
+@AllArgsConstructor
 public class TemporaryInfo {
     private int id;
     private String companyName;

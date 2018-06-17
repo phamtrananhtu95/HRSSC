@@ -6,10 +6,13 @@ import { User } from '../models';
 export class LoginService {
 
 
-  constructor(private restService: RestService, private user: User) { }
-  
-  login(user) {
-    let url = 'login';
-    return this.restService.post(url, user);
+  constructor(
+    private restService: RestService,
+    private user: User
+  ) { }
+
+  login(body) {
+    let path = 'login';
+    return this.restService.authorize(path, body);
   }
 }

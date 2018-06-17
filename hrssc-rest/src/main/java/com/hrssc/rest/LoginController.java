@@ -1,34 +1,17 @@
 package com.hrssc.rest;
 
-import com.hrssc.entities.User;
-import com.hrssc.service.ManagerManagementService;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.security.Principal;
+
 import org.springframework.web.bind.annotation.*;
 
-import com.hrssc.service.LoginService;
-
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@RequestMapping("/login")
+
 public class LoginController {
-	@Autowired
-	private ManagerManagementService userService;
-	@Autowired
-	private LoginService loginService;
 
-//	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-//	public Boolean login(@RequestBody final UserDto user) {
-//		return loginService.login(user);
-//	}
-
-
-	@GetMapping(value = {"/","/login"})
+	@GetMapping(value = {""})
 	@CrossOrigin
-	private String login(){
-		User user = userService.getAuthenticatedUser();
-		if(user!=null){
-			return user.getUsername();
-		}
-		return null;
+	public Principal user(Principal principal) {
+		return principal;
 	}
-
 }
