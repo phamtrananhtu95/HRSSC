@@ -24,5 +24,6 @@ public class Constant {
         public static final int REMOVED = 0;
 
     }
+    public static final String COMMA = ",";
 
 }

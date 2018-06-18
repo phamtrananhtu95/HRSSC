@@ -2,8 +2,6 @@ package com.hrssc.entities;
 
 import javax.persistence.*;
 
-import com.hrssc.entities.Company.CompanyBuilder;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

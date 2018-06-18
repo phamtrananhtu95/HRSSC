@@ -17,8 +17,8 @@ public class ChooseDomainController {
 	@Autowired
 	private ChooseDomainService chooseDomainService;
 
-	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ChooseDomainDto createChooseDomain(@RequestBody ChooseDomainDto chooseDomain) {
+	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ChooseDomainDto createChooseDomain(@RequestBody final ChooseDomainDto chooseDomain) {
 		return chooseDomainService.createChooseDomain(chooseDomain);
 	}
 }
