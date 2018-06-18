@@ -1,20 +1,32 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.UserView;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "user")
 public class User {
+    @JsonView(UserView.overview.class)
     private int id;
+    @JsonView(UserView.overview.class)
     private String username;
     private String password;
+    @JsonView(UserView.overview.class)
     private String fullname;
+    @JsonView(UserView.overview.class)
     private String email;
+    @JsonView(UserView.overview.class)
     private String tel;
+    @JsonView(UserView.overview.class)
     private Integer status;
+    @JsonView(UserView.overview.class)
     private boolean isFirstLogin;
+    @JsonView(UserView.overview.class)
     private int roleId;
+    @JsonView(UserView.overview.class)
     private int companyId;
     private Collection<ChosenDomains> chosenDomainsById;
     private Collection<Feedback> feedbacksById;

@@ -1,5 +1,7 @@
 package com.hrssc.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.UserView;
 import com.hrssc.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,11 +23,16 @@ public class ManagerManagementController {
 	@Autowired
 	private ManagerManagementService userService;
 
-	@GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDto getUserById(@PathVariable("userId") final Long userId) {
-		return userService.getUserById(userId);
-	}
+	//@PostMapping(value = "/get/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	//public User getManagerById(@PathVariable("userId") int userId) {
+	//	return userService.getManagerById(userId);
+	//}
 
+	@JsonView(UserView.overview.class)
+	@PostMapping(value = "/get/{userId}")
+	public User getManagerById(@PathVariable("userId") int userId) {
+		return userService.getManagerById(userId);
+	}
 	@PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateUser(@RequestBody User user) {
 		return userService.updateUser(user);
@@ -38,9 +45,9 @@ public class ManagerManagementController {
 
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String addManager(@RequestBody User user){
-        if(userService.addUser(user)){
+        if(userService.addManager(user)){
             return "OK";
         }
-        return "Email Existed";
+        return "Email Existed.";
 	}
 }

@@ -8,10 +8,10 @@ public interface ManagerManagementService {
 	/**
 	 * Returns user by user id
 	 * 
-	 * @param userId
+	 * @param id
 	 * @return user by user id
 	 */
-	UserDto getUserById(final Long userId);
+	User getManagerById(int id);
 
 	/**
 	 * Updates user
@@ -19,7 +19,7 @@ public interface ManagerManagementService {
 	 * @param user
 	 * @return updated user
 	 */
-	boolean updateUser(User user);
+	boolean updateUser(com.hrssc.entities.User user);
 
 	/**
 	 * Deletes user by user id
@@ -31,8 +31,8 @@ public interface ManagerManagementService {
 	
 	void login(boolean checkLogin);
 
-	User getAuthenticatedUser();
+	com.hrssc.entities.User getAuthenticatedUser();
 
 	boolean checkExistingEmail(String email);
-	boolean addUser(User user);
+	boolean addManager(com.hrssc.entities.User user);
 }

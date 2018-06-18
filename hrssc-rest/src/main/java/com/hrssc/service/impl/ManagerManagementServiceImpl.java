@@ -1,5 +1,6 @@
 package com.hrssc.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.entities.User;
 import com.hrssc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,17 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public UserDto getUserById(final Long userId) {
-		return UserDto.builder().username("admin").password("admin").role("admin").build();
+	public User getManagerById(int id) {
+        User user = userRepository.findManagerById(id);
+	    return user;
 	}
 
 	@Override
-	public boolean updateUser(final User userInfo) {
-		final Optional<User> userEntity = userRepository.findByUsername(userInfo.getUsername());
+	public boolean updateUser(final com.hrssc.entities.User userInfo) {
+		final Optional<com.hrssc.entities.User> userEntity = userRepository.findByUsername(userInfo.getUsername());
 
 		if (!userEntity.isPresent()) {
-			final User updatedUser = userEntity.get();
+			final com.hrssc.entities.User updatedUser = userEntity.get();
 			updatedUser.setId(userInfo.getId());
 			updatedUser.setEmail(userInfo.getEmail());
 			updatedUser.setFirstLogin(userInfo.isFirstLogin());
@@ -67,7 +69,7 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 	}
 
 	@Override
-	public boolean addUser(User user) {
+	public boolean addManager(com.hrssc.entities.User user) {
 		user.setUsername(user.getEmail());
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -79,10 +81,10 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 	}
 
 	@Override
-	public User getAuthenticatedUser() {
+	public com.hrssc.entities.User getAuthenticatedUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		Optional<User> user = userRepository.findByUsername(username);
-		return user.isPresent() ? user.get() : new User();
+		Optional<com.hrssc.entities.User> user = userRepository.findByUsername(username);
+		return user.isPresent() ? user.get() : new com.hrssc.entities.User();
 	}
 }
