@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +17,17 @@ public class HumanResource {
     private int companyId;
     private int positionId;
     private int userId;
+    private Collection<Feedback> feedbacksById;
+    private Company companyByCompanyId;
+    private Position positionByPositionId;
+    private User userByUserId;
+    private Collection<Interaction> interactionsById;
+    private Collection<Job> jobsById;
+    private Collection<Notification> notificationsById;
+    private Collection<ResourceSkills> resourceSkillsById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -28,7 +37,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "fullname")
+    @Column(name = "fullname", nullable = false, length = 45)
     public String getFullname() {
         return fullname;
     }
@@ -38,7 +47,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     public int getStatus() {
         return status;
     }
@@ -48,7 +57,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 45)
     public String getEmail() {
         return email;
     }
@@ -58,7 +67,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "tel")
+    @Column(name = "tel", nullable = true, length = 45)
     public String getTel() {
         return tel;
     }
@@ -68,7 +77,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "available_date")
+    @Column(name = "available_date", nullable = true)
     public Long getAvailableDate() {
         return availableDate;
     }
@@ -78,7 +87,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "available_duration")
+    @Column(name = "available_duration", nullable = true)
     public Long getAvailableDuration() {
         return availableDuration;
     }
@@ -88,7 +97,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "company_id")
+    @Column(name = "company_id", nullable = false)
     public int getCompanyId() {
         return companyId;
     }
@@ -98,7 +107,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "position_id")
+    @Column(name = "position_id", nullable = false)
     public int getPositionId() {
         return positionId;
     }
@@ -108,7 +117,7 @@ public class HumanResource {
     }
 
     @Basic
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -138,5 +147,80 @@ public class HumanResource {
     public int hashCode() {
 
         return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration, companyId, positionId, userId);
+    }
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<Feedback> getFeedbacksById() {
+        return feedbacksById;
+    }
+
+    public void setFeedbacksById(Collection<Feedback> feedbacksById) {
+        this.feedbacksById = feedbacksById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Company getCompanyByCompanyId() {
+        return companyByCompanyId;
+    }
+
+    public void setCompanyByCompanyId(Company companyByCompanyId) {
+        this.companyByCompanyId = companyByCompanyId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "position_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Position getPositionByPositionId() {
+        return positionByPositionId;
+    }
+
+    public void setPositionByPositionId(Position positionByPositionId) {
+        this.positionByPositionId = positionByPositionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
+    }
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<Interaction> getInteractionsById() {
+        return interactionsById;
+    }
+
+    public void setInteractionsById(Collection<Interaction> interactionsById) {
+        this.interactionsById = interactionsById;
+    }
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<Job> getJobsById() {
+        return jobsById;
+    }
+
+    public void setJobsById(Collection<Job> jobsById) {
+        this.jobsById = jobsById;
+    }
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<Notification> getNotificationsById() {
+        return notificationsById;
+    }
+
+    public void setNotificationsById(Collection<Notification> notificationsById) {
+        this.notificationsById = notificationsById;
+    }
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<ResourceSkills> getResourceSkillsById() {
+        return resourceSkillsById;
+    }
+
+    public void setResourceSkillsById(Collection<ResourceSkills> resourceSkillsById) {
+        this.resourceSkillsById = resourceSkillsById;
     }
 }

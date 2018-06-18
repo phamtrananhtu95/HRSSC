@@ -1,9 +1,6 @@
 package com.hrssc.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,9 +11,12 @@ public class Notification {
     private int humanResourceId;
     private int projectId;
     private boolean isRead;
+    private User userByUserId;
+    private HumanResource humanResourceByHumanResourceId;
+    private Project projectByProjectId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -26,7 +26,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "type")
+    @Column(name = "type", nullable = false, length = 45)
     public String getType() {
         return type;
     }
@@ -36,7 +36,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -46,7 +46,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "human_resource_id")
+    @Column(name = "human_resource_id", nullable = false)
     public int getHumanResourceId() {
         return humanResourceId;
     }
@@ -56,7 +56,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     public int getProjectId() {
         return projectId;
     }
@@ -66,7 +66,7 @@ public class Notification {
     }
 
     @Basic
-    @Column(name = "is_read")
+    @Column(name = "is_read", nullable = false)
     public boolean isRead() {
         return isRead;
     }
@@ -92,5 +92,35 @@ public class Notification {
     public int hashCode() {
 
         return Objects.hash(id, type, userId, humanResourceId, projectId, isRead);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public HumanResource getHumanResourceByHumanResourceId() {
+        return humanResourceByHumanResourceId;
+    }
+
+    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
+        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Project getProjectByProjectId() {
+        return projectByProjectId;
+    }
+
+    public void setProjectByProjectId(Project projectByProjectId) {
+        this.projectByProjectId = projectByProjectId;
     }
 }

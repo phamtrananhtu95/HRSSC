@@ -26,7 +26,7 @@ public class TemporaryInfo {
     private String representativeTitle;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -36,7 +36,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_name")
+    @Column(name = "company_name", nullable = false, length = 45)
     public String getCompanyName() {
         return companyName;
     }
@@ -46,7 +46,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_address")
+    @Column(name = "company_address", nullable = false, length = 45)
     public String getCompanyAddress() {
         return companyAddress;
     }
@@ -56,7 +56,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_city")
+    @Column(name = "company_city", nullable = false, length = 45)
     public String getCompanyCity() {
         return companyCity;
     }
@@ -66,7 +66,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_country")
+    @Column(name = "company_country", nullable = false, length = 45)
     public String getCompanyCountry() {
         return companyCountry;
     }
@@ -76,7 +76,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_tax")
+    @Column(name = "company_tax", nullable = false, length = 45)
     public String getCompanyTax() {
         return companyTax;
     }
@@ -86,7 +86,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_email")
+    @Column(name = "company_email", nullable = false, length = 45)
     public String getCompanyEmail() {
         return companyEmail;
     }
@@ -96,7 +96,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "company_tel")
+    @Column(name = "company_tel", nullable = false, length = 45)
     public String getCompanyTel() {
         return companyTel;
     }
@@ -106,7 +106,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representative_name")
+    @Column(name = "representative_name", nullable = false, length = 45)
     public String getRepresentativeName() {
         return representativeName;
     }
@@ -116,7 +116,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representtative_email")
+    @Column(name = "representtative_email", nullable = false, length = 45)
     public String getRepresenttativeEmail() {
         return representtativeEmail;
     }
@@ -126,7 +126,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representative_tel")
+    @Column(name = "representative_tel", nullable = false, length = 45)
     public String getRepresentativeTel() {
         return representativeTel;
     }
@@ -136,7 +136,7 @@ public class TemporaryInfo {
     }
 
     @Basic
-    @Column(name = "representative_title")
+    @Column(name = "representative_title", nullable = false, length = 45)
     public String getRepresentativeTitle() {
         return representativeTitle;
     }

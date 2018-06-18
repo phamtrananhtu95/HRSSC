@@ -9,9 +9,11 @@ public class ResourceSkills {
     private int id;
     private int skillId;
     private int humanResourceId;
+    private Skill skillBySkillId;
+    private HumanResource humanResourceByHumanResourceId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -21,7 +23,7 @@ public class ResourceSkills {
     }
 
     @Basic
-    @Column(name = "skill_id")
+    @Column(name = "skill_id", nullable = false)
     public int getSkillId() {
         return skillId;
     }
@@ -31,7 +33,7 @@ public class ResourceSkills {
     }
 
     @Basic
-    @Column(name = "human_resource_id")
+    @Column(name = "human_resource_id", nullable = false)
     public int getHumanResourceId() {
         return humanResourceId;
     }
@@ -54,5 +56,25 @@ public class ResourceSkills {
     public int hashCode() {
 
         return Objects.hash(id, skillId, humanResourceId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Skill getSkillBySkillId() {
+        return skillBySkillId;
+    }
+
+    public void setSkillBySkillId(Skill skillBySkillId) {
+        this.skillBySkillId = skillBySkillId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public HumanResource getHumanResourceByHumanResourceId() {
+        return humanResourceByHumanResourceId;
+    }
+
+    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
+        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
     }
 }

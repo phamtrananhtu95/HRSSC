@@ -1,9 +1,7 @@
 package com.hrssc.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +9,11 @@ public class Position {
     private int id;
     private String title;
     private String level;
+    private Collection<HumanResource> humanResourcesById;
+    private Collection<PositionRequirements> positionRequirementsById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -23,7 +23,7 @@ public class Position {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", nullable = false, length = 45)
     public String getTitle() {
         return title;
     }
@@ -33,7 +33,7 @@ public class Position {
     }
 
     @Basic
-    @Column(name = "level")
+    @Column(name = "level", nullable = false, length = 45)
     public String getLevel() {
         return level;
     }
@@ -56,5 +56,23 @@ public class Position {
     public int hashCode() {
 
         return Objects.hash(id, title, level);
+    }
+
+    @OneToMany(mappedBy = "positionByPositionId")
+    public Collection<HumanResource> getHumanResourcesById() {
+        return humanResourcesById;
+    }
+
+    public void setHumanResourcesById(Collection<HumanResource> humanResourcesById) {
+        this.humanResourcesById = humanResourcesById;
+    }
+
+    @OneToMany(mappedBy = "positionByPositionId")
+    public Collection<PositionRequirements> getPositionRequirementsById() {
+        return positionRequirementsById;
+    }
+
+    public void setPositionRequirementsById(Collection<PositionRequirements> positionRequirementsById) {
+        this.positionRequirementsById = positionRequirementsById;
     }
 }

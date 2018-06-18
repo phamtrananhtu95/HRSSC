@@ -11,7 +11,7 @@ public class RolePermissions {
     private int permissionId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -21,7 +21,7 @@ public class RolePermissions {
     }
 
     @Basic
-    @Column(name = "role_id")
+    @Column(name = "role_id", nullable = false)
     public int getRoleId() {
         return roleId;
     }
@@ -31,7 +31,7 @@ public class RolePermissions {
     }
 
     @Basic
-    @Column(name = "permission_id")
+    @Column(name = "permission_id", nullable = false)
     public int getPermissionId() {
         return permissionId;
     }

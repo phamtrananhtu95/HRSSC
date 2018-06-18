@@ -1,9 +1,6 @@
 package com.hrssc.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,9 +11,11 @@ public class Feedback {
     private long timestamp;
     private int userId;
     private int humanResourceId;
+    private User userByUserId;
+    private HumanResource humanResourceByHumanResourceId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -26,7 +25,7 @@ public class Feedback {
     }
 
     @Basic
-    @Column(name = "rating")
+    @Column(name = "rating", nullable = false, precision = 0)
     public double getRating() {
         return rating;
     }
@@ -36,7 +35,7 @@ public class Feedback {
     }
 
     @Basic
-    @Column(name = "comment")
+    @Column(name = "comment", nullable = true, length = 200)
     public String getComment() {
         return comment;
     }
@@ -46,7 +45,7 @@ public class Feedback {
     }
 
     @Basic
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     public long getTimestamp() {
         return timestamp;
     }
@@ -56,7 +55,7 @@ public class Feedback {
     }
 
     @Basic
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -66,7 +65,7 @@ public class Feedback {
     }
 
     @Basic
-    @Column(name = "human_resource_id")
+    @Column(name = "human_resource_id", nullable = false)
     public int getHumanResourceId() {
         return humanResourceId;
     }
@@ -92,5 +91,25 @@ public class Feedback {
     public int hashCode() {
 
         return Objects.hash(id, rating, comment, timestamp, userId, humanResourceId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public HumanResource getHumanResourceByHumanResourceId() {
+        return humanResourceByHumanResourceId;
+    }
+
+    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
+        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
     }
 }

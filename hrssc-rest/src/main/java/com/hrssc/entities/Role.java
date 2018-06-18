@@ -1,18 +1,17 @@
 package com.hrssc.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class Role {
     private int id;
     private String title;
+    private Collection<User> usersById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -22,7 +21,7 @@ public class Role {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", nullable = false, length = 20)
     public String getTitle() {
         return title;
     }
@@ -44,5 +43,14 @@ public class Role {
     public int hashCode() {
 
         return Objects.hash(id, title);
+    }
+
+    @OneToMany(mappedBy = "roleByRoleId")
+    public Collection<User> getUsersById() {
+        return usersById;
+    }
+
+    public void setUsersById(Collection<User> usersById) {
+        this.usersById = usersById;
     }
 }

@@ -17,9 +17,10 @@ public class ChosenDomains {
     private String locations;
     private String skills;
     private int userId;
+    private User userByUserId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -29,7 +30,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "positions")
+    @Column(name = "positions", nullable = true, length = 255)
     public String getPositions() {
         return positions;
     }
@@ -39,7 +40,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "locations")
+    @Column(name = "locations", nullable = true, length = 255)
     public String getLocations() {
         return locations;
     }
@@ -49,7 +50,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "skills")
+    @Column(name = "skills", nullable = true, length = 255)
     public String getSkills() {
         return skills;
     }
@@ -59,7 +60,7 @@ public class ChosenDomains {
     }
 
     @Basic
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -84,5 +85,15 @@ public class ChosenDomains {
     public int hashCode() {
 
         return Objects.hash(id, positions, locations, skills, userId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
     }
 }

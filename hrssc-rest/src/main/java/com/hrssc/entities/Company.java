@@ -3,10 +3,8 @@ package com.hrssc.entities;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -21,13 +19,16 @@ public class Company {
     private String email;
     private int status;
     private String logo;
+    private Collection<HumanResource> humanResourcesById;
+    private Collection<Project> projectsById;
+    private Collection<User> usersById;
 
     public Company() {
 
     }
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -37,7 +38,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -47,7 +48,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "address")
+    @Column(name = "address", nullable = false, length = 45)
     public String getAddress() {
         return address;
     }
@@ -57,7 +58,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "city")
+    @Column(name = "city", nullable = false, length = 45)
     public String getCity() {
         return city;
     }
@@ -67,7 +68,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "tel")
+    @Column(name = "tel", nullable = false, length = 45)
     public String getTel() {
         return tel;
     }
@@ -77,7 +78,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 45)
     public String getEmail() {
         return email;
     }
@@ -87,7 +88,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     public int getStatus() {
         return status;
     }
@@ -97,7 +98,7 @@ public class Company {
     }
 
     @Basic
-    @Column(name = "logo")
+    @Column(name = "logo", nullable = true, length = 255)
     public String getLogo() {
         return logo;
     }
@@ -125,5 +126,32 @@ public class Company {
     public int hashCode() {
 
         return Objects.hash(id, name, address, city, tel, email, status, logo);
+    }
+
+    @OneToMany(mappedBy = "companyByCompanyId")
+    public Collection<HumanResource> getHumanResourcesById() {
+        return humanResourcesById;
+    }
+
+    public void setHumanResourcesById(Collection<HumanResource> humanResourcesById) {
+        this.humanResourcesById = humanResourcesById;
+    }
+
+    @OneToMany(mappedBy = "companyByCompanyId")
+    public Collection<Project> getProjectsById() {
+        return projectsById;
+    }
+
+    public void setProjectsById(Collection<Project> projectsById) {
+        this.projectsById = projectsById;
+    }
+
+    @OneToMany(mappedBy = "companyByCompanyId")
+    public Collection<User> getUsersById() {
+        return usersById;
+    }
+
+    public void setUsersById(Collection<User> usersById) {
+        this.usersById = usersById;
     }
 }

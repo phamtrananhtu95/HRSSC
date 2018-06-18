@@ -9,9 +9,11 @@ import java.util.Objects;
 public class PositionRequirements {
     private int positionId;
     private int projectId;
+    private Position positionByPositionId;
+    private Project projectByProjectId;
 
     @Id
-    @Column(name = "position_id")
+    @Column(name = "position_id", nullable = false)
     public int getPositionId() {
         return positionId;
     }
@@ -21,7 +23,7 @@ public class PositionRequirements {
     }
 
     @Id
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     public int getProjectId() {
         return projectId;
     }
@@ -43,5 +45,25 @@ public class PositionRequirements {
     public int hashCode() {
 
         return Objects.hash(positionId, projectId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "position_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Position getPositionByPositionId() {
+        return positionByPositionId;
+    }
+
+    public void setPositionByPositionId(Position positionByPositionId) {
+        this.positionByPositionId = positionByPositionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Project getProjectByProjectId() {
+        return projectByProjectId;
+    }
+
+    public void setProjectByProjectId(Project projectByProjectId) {
+        this.projectByProjectId = projectByProjectId;
     }
 }

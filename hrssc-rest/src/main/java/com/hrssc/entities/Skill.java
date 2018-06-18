@@ -1,18 +1,18 @@
 package com.hrssc.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class Skill {
     private int id;
     private String title;
+    private Collection<ResourceSkills> resourceSkillsById;
+    private Collection<SkillRequirements> skillRequirementsById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -22,7 +22,7 @@ public class Skill {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", nullable = false, length = 45)
     public String getTitle() {
         return title;
     }
@@ -44,5 +44,23 @@ public class Skill {
     public int hashCode() {
 
         return Objects.hash(id, title);
+    }
+
+    @OneToMany(mappedBy = "skillBySkillId")
+    public Collection<ResourceSkills> getResourceSkillsById() {
+        return resourceSkillsById;
+    }
+
+    public void setResourceSkillsById(Collection<ResourceSkills> resourceSkillsById) {
+        this.resourceSkillsById = resourceSkillsById;
+    }
+
+    @OneToMany(mappedBy = "skillBySkillId")
+    public Collection<SkillRequirements> getSkillRequirementsById() {
+        return skillRequirementsById;
+    }
+
+    public void setSkillRequirementsById(Collection<SkillRequirements> skillRequirementsById) {
+        this.skillRequirementsById = skillRequirementsById;
     }
 }

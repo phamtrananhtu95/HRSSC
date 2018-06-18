@@ -9,7 +9,7 @@ public class PositionRequirementsPK implements Serializable {
     private int positionId;
     private int projectId;
 
-    @Column(name = "position_id")
+    @Column(name = "position_id", nullable = false)
     @Id
     public int getPositionId() {
         return positionId;
@@ -19,7 +19,7 @@ public class PositionRequirementsPK implements Serializable {
         this.positionId = positionId;
     }
 
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     @Id
     public int getProjectId() {
         return projectId;

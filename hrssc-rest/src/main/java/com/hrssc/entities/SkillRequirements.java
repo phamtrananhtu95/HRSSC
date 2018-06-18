@@ -9,9 +9,11 @@ public class SkillRequirements {
     private int id;
     private int skillId;
     private int projectId;
+    private Skill skillBySkillId;
+    private Project projectByProjectId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -21,7 +23,7 @@ public class SkillRequirements {
     }
 
     @Basic
-    @Column(name = "skill_id")
+    @Column(name = "skill_id", nullable = false)
     public int getSkillId() {
         return skillId;
     }
@@ -31,7 +33,7 @@ public class SkillRequirements {
     }
 
     @Basic
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     public int getProjectId() {
         return projectId;
     }
@@ -54,5 +56,25 @@ public class SkillRequirements {
     public int hashCode() {
 
         return Objects.hash(id, skillId, projectId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Skill getSkillBySkillId() {
+        return skillBySkillId;
+    }
+
+    public void setSkillBySkillId(Skill skillBySkillId) {
+        this.skillBySkillId = skillBySkillId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Project getProjectByProjectId() {
+        return projectByProjectId;
+    }
+
+    public void setProjectByProjectId(Project projectByProjectId) {
+        this.projectByProjectId = projectByProjectId;
     }
 }

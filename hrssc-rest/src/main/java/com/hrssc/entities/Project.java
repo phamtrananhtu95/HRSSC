@@ -1,9 +1,7 @@
 package com.hrssc.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -21,9 +19,16 @@ public class Project {
     private int userId;
     private int companyId;
     private String payment;
+    private Collection<Interaction> interactionsById;
+    private Collection<Job> jobsById;
+    private Collection<Notification> notificationsById;
+    private Collection<PositionRequirements> positionRequirementsById;
+    private User userByUserId;
+    private Company companyByCompanyId;
+    private Collection<SkillRequirements> skillRequirementsById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -33,7 +38,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", nullable = false, length = 45)
     public String getTitle() {
         return title;
     }
@@ -43,7 +48,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", nullable = false, length = 45)
     public String getDescription() {
         return description;
     }
@@ -53,7 +58,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false)
     public long getCreateDate() {
         return createDate;
     }
@@ -63,7 +68,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     public long getEndDate() {
         return endDate;
     }
@@ -73,7 +78,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "duration")
+    @Column(name = "duration", nullable = false)
     public long getDuration() {
         return duration;
     }
@@ -83,7 +88,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "type")
+    @Column(name = "type", nullable = false, length = 45)
     public String getType() {
         return type;
     }
@@ -93,7 +98,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "domain")
+    @Column(name = "domain", nullable = false, length = 45)
     public String getDomain() {
         return domain;
     }
@@ -103,7 +108,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "process_status")
+    @Column(name = "process_status", nullable = false)
     public int getProcessStatus() {
         return processStatus;
     }
@@ -113,7 +118,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "request_status")
+    @Column(name = "request_status", nullable = false)
     public int getRequestStatus() {
         return requestStatus;
     }
@@ -123,7 +128,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -133,7 +138,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "company_id")
+    @Column(name = "company_id", nullable = false)
     public int getCompanyId() {
         return companyId;
     }
@@ -143,7 +148,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "payment")
+    @Column(name = "payment", nullable = false, length = 45)
     public String getPayment() {
         return payment;
     }
@@ -176,5 +181,70 @@ public class Project {
     public int hashCode() {
 
         return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, userId, companyId, payment);
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<Interaction> getInteractionsById() {
+        return interactionsById;
+    }
+
+    public void setInteractionsById(Collection<Interaction> interactionsById) {
+        this.interactionsById = interactionsById;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<Job> getJobsById() {
+        return jobsById;
+    }
+
+    public void setJobsById(Collection<Job> jobsById) {
+        this.jobsById = jobsById;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<Notification> getNotificationsById() {
+        return notificationsById;
+    }
+
+    public void setNotificationsById(Collection<Notification> notificationsById) {
+        this.notificationsById = notificationsById;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<PositionRequirements> getPositionRequirementsById() {
+        return positionRequirementsById;
+    }
+
+    public void setPositionRequirementsById(Collection<PositionRequirements> positionRequirementsById) {
+        this.positionRequirementsById = positionRequirementsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Company getCompanyByCompanyId() {
+        return companyByCompanyId;
+    }
+
+    public void setCompanyByCompanyId(Company companyByCompanyId) {
+        this.companyByCompanyId = companyByCompanyId;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<SkillRequirements> getSkillRequirementsById() {
+        return skillRequirementsById;
+    }
+
+    public void setSkillRequirementsById(Collection<SkillRequirements> skillRequirementsById) {
+        this.skillRequirementsById = skillRequirementsById;
     }
 }
