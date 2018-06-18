@@ -13,7 +13,7 @@ export class SessionsService {
     this.storage.set(key, val);
   }
 
-  getFromLocal(key): Observable<any> {
+  getFromLocal(key): any {
     console.log('recieved= key:' + key);
     return this.storage.get(key);
   }

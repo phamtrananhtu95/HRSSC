@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.menu.hideMenu(true);
-    this.header.hideMenu(true);
+    this.header.hideHeader(true);
     this.authenticate.setLogin(false);
   }
 
   ngOnDestroy() {
     this.menu.hideMenu(false);
+    this.header.hideHeader(false);
   }
 
   login() {
@@ -46,7 +47,10 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res && res.name) {
           // login successful
+
           this.authenticate.setLogin(true);
+          // Save user info authen
+          this.authenticate.saveUserInfo(res);
           this.router.navigate(['home']);
         } else {
           // login failed

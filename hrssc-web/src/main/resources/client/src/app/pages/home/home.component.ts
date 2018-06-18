@@ -30,9 +30,9 @@ export class HomeComponent implements OnInit {
     if (this.authenticate.checkLogin()) {
       this.projects = new projectList().projects;
       this.companies = new companyList().companies;
-      this.employeeService.getEmployees().subscribe(res => {
-      this.employees = res;
-      });
+      // this.employeeService.getEmployees().subscribe(res => {
+      // this.employees = res;
+      // });
     }
   }
 

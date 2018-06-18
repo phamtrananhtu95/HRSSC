@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HeaderService } from './header.component.service';
+import { AuthenticateService } from '../../services/authenticate.service';
 
 @Injectable()
 @Component({
@@ -9,10 +10,15 @@ import { HeaderService } from './header.component.service';
   providers:[HeaderService]
 })
 export class HeaderComponent implements OnInit {
+  private userName: any;
 
-  constructor(header: HeaderService) { }
+  constructor(
+    public header: HeaderService,
+    public authenticateService: AuthenticateService
+  ) { }
 
   ngOnInit() {
+    this.userName = this.authenticateService.getUserName();
   }
 
 }

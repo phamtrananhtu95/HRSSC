@@ -9,7 +9,7 @@ export class HeaderService {
   constructor() {
   }
 
-  hideMenu(visible: boolean) {
+  hideHeader(visible: boolean) {
     this.hideMenuSource.next(visible);
   }
 

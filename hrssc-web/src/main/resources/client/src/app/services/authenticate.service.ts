@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class AuthenticateService {
 
+  public USER_INFOR = "user-info";
   public HAS_LOGIN = "has-login";
   constructor(
     private session: SessionsService,
@@ -28,5 +29,17 @@ export class AuthenticateService {
     return false;
   }
 
+  saveUserInfo(userInfo: any){
+    this.session.saveInLocal(this.USER_INFOR, userInfo);
+  }
+
+  getUsetInfo(){
+    return this.session.getFromLocal(this.USER_INFOR);
+  }
+
+  getUserName(){
+    let userInfo = this.getUsetInfo();
+    return userInfo ? userInfo.name : null;
+  }
 
 }

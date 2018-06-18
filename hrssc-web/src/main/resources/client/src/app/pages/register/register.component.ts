@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() { 
     this.menu.hideMenu(true);
-    this.header.hideMenu(true);
+    this.header.hideHeader(true);
   }
 
   onFormSubmit(form: NgForm) {

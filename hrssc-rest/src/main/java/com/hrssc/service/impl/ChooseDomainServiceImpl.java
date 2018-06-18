@@ -35,10 +35,10 @@ public class ChooseDomainServiceImpl implements ChooseDomainService {
 			return new ChooseDomainDto();
 		}
 
-		final String positions = chooseDomain.getPositions().isEmpty()
+		final String positions = !chooseDomain.getPositions().isEmpty()
 				? chooseDomain.getPositions().stream().collect(Collectors.joining(Constant.COMMA))
 				: StringUtils.EMPTY;
-		final String locations = chooseDomain.getLocations().isEmpty()
+		final String locations = !chooseDomain.getLocations().isEmpty()
 				? chooseDomain.getLocations().stream().collect(Collectors.joining(Constant.COMMA))
 				: StringUtils.EMPTY;
 
