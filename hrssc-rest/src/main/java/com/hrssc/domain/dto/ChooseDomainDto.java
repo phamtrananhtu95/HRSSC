@@ -1,8 +1,11 @@
 package com.hrssc.domain.dto;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.hrssc.domain.Constant;
 import com.hrssc.entities.ChosenDomains;
@@ -22,9 +25,11 @@ public class ChooseDomainDto {
 	private List<String> locations;
 
 	public ChooseDomainDto(final ChosenDomains chosenDomains) {
-		this.positions = Arrays.asList(chosenDomains.getPositions().split(Constant.COMMA)).stream()
-				.collect(Collectors.toList());
-		this.locations = Arrays.asList(chosenDomains.getLocations().split(Constant.COMMA)).stream()
-				.collect(Collectors.toList());
+		this.positions = StringUtils.isBlank(chosenDomains.getPositions()) ? Arrays
+				.asList(chosenDomains.getPositions().split(Constant.COMMA)).stream().collect(Collectors.toList())
+				: Collections.emptyList();
+		this.locations = StringUtils.isBlank(chosenDomains.getLocations()) ? Arrays
+				.asList(chosenDomains.getLocations().split(Constant.COMMA)).stream().collect(Collectors.toList())
+				: Collections.emptyList();
 	}
 }

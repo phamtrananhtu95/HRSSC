@@ -3,6 +3,7 @@ package com.hrssc.service.impl;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,10 +35,15 @@ public class ChooseDomainServiceImpl implements ChooseDomainService {
 			return new ChooseDomainDto();
 		}
 
-		final ChosenDomains chosenDomain = chooseDomainRepository.save(ChosenDomains.builder()
-				.positions(chooseDomain.getPositions().stream().collect(Collectors.joining(Constant.COMMA)))
-				.locations(chooseDomain.getLocations().stream().collect(Collectors.joining(Constant.COMMA)))
-				.userId(user.get().getId()).build());
+		final String positions = chooseDomain.getPositions().isEmpty()
+				? chooseDomain.getPositions().stream().collect(Collectors.joining(Constant.COMMA))
+				: StringUtils.EMPTY;
+		final String locations = chooseDomain.getLocations().isEmpty()
+				? chooseDomain.getLocations().stream().collect(Collectors.joining(Constant.COMMA))
+				: StringUtils.EMPTY;
+
+		final ChosenDomains chosenDomain = chooseDomainRepository.save(
+				ChosenDomains.builder().positions(positions).locations(locations).userId(user.get().getId()).build());
 
 		return new ChooseDomainDto(chosenDomain);
 	}
