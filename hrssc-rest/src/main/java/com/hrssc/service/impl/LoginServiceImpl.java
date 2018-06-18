@@ -2,7 +2,7 @@ package com.hrssc.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.hrssc.domain.dto.UserDto;
+import com.hrssc.model.UserDto;
 import com.hrssc.service.LoginService;
 
 @Service

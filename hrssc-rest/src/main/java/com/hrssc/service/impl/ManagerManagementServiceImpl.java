@@ -10,11 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
 
-import com.hrssc.domain.dto.UserDto;
+import com.hrssc.model.UserDto;
 import com.hrssc.service.ManagerManagementService;
-
-import javax.persistence.EntityExistsException;
-import javax.persistence.NoResultException;
 
 @Service
 public class ManagerManagementServiceImpl implements ManagerManagementService {

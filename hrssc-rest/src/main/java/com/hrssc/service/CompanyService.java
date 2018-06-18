@@ -1,6 +1,6 @@
 package com.hrssc.service;
 
-import com.hrssc.domain.dto.CompanyDto;
+import com.hrssc.model.CompanyDto;
 
 public interface CompanyService {
 

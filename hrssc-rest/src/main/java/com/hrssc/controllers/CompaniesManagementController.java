@@ -1,4 +1,4 @@
-package com.hrssc.rest;
+package com.hrssc.controllers;
 
 import com.hrssc.entities.TemporaryInfo;
 import com.hrssc.service.CompaniesManagementService;

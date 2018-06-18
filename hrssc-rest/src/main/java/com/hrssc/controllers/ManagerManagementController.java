@@ -1,4 +1,4 @@
-package com.hrssc.rest;
+package com.hrssc.controllers;
 
 import com.hrssc.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hrssc.domain.dto.UserDto;
+import com.hrssc.model.UserDto;
 import com.hrssc.service.ManagerManagementService;
 
 @RestController

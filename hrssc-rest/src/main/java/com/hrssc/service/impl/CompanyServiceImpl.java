@@ -1,14 +1,10 @@
 package com.hrssc.service.impl;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hrssc.domain.dto.CompanyDto;
-import com.hrssc.entities.Company;
+import com.hrssc.model.CompanyDto;
 import com.hrssc.entities.TemporaryInfo;
-import com.hrssc.repository.CompanyRepository;
 import com.hrssc.repository.TemporaryInfoRepository;
 import com.hrssc.service.CompanyService;
 

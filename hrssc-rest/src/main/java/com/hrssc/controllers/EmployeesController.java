@@ -1,15 +1,14 @@
-package com.hrssc.rest;
+package com.hrssc.controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hrssc.domain.dto.EmployeeDto;
+import com.hrssc.model.EmployeeDto;
 import com.hrssc.service.EmployeesService;
 
 @RestController
