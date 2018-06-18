@@ -3,7 +3,7 @@ package com.hrssc.service.impl;
 import com.hrssc.entities.Company;
 import com.hrssc.entities.TemporaryInfo;
 import com.hrssc.entities.User;
-import com.hrssc.model.Constant;
+import com.hrssc.domain.Constant;
 import com.hrssc.repository.CompanyRepository;
 import com.hrssc.repository.TemporaryInfoRepository;
 import com.hrssc.repository.UserRepository;

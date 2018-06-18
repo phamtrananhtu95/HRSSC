@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hrssc.model.EmployeeDto;
+import com.hrssc.domain.dto.EmployeeDto;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.repository.HumanResourceRepository;
 import com.hrssc.service.EmployeesService;

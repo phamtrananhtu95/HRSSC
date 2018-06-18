@@ -1,4 +1,4 @@
-package com.hrssc.model;
+package com.hrssc.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

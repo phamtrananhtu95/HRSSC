@@ -2,7 +2,7 @@ package com.hrssc.service;
 
 import java.util.List;
 
-import com.hrssc.model.EmployeeDto;
+import com.hrssc.domain.dto.EmployeeDto;
 
 
 

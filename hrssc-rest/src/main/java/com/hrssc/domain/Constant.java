@@ -1,4 +1,4 @@
-package com.hrssc.model;
+package com.hrssc.domain;
 
 public class Constant {
     public class CompanyStatus {

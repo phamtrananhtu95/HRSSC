@@ -1,4 +1,4 @@
-package com.hrssc.model;
+package com.hrssc.domain.dto;
 
 import com.hrssc.entities.HumanResource;
 

@@ -1,6 +1,6 @@
 package com.hrssc.service;
 
-import com.hrssc.model.UserDto;
+import com.hrssc.domain.dto.UserDto;
 
 public interface LoginService {
 

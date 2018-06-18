@@ -3,7 +3,7 @@ package com.hrssc.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hrssc.model.CompanyDto;
+import com.hrssc.domain.dto.CompanyDto;
 import com.hrssc.entities.TemporaryInfo;
 import com.hrssc.repository.TemporaryInfoRepository;
 import com.hrssc.service.CompanyService;
