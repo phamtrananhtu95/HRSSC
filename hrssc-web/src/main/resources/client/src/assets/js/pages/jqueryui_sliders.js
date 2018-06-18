@@ -90,7 +90,7 @@ $(function() {
             $(".ui-slider-methods").slider('enable');
         }
         else {
-            $(".ui-slider-methods").slider('disable'); 
+            $(".ui-slider-methods").slider('disable');
         }
     };
 
@@ -209,7 +209,7 @@ $(function() {
     });
 
 
-    // Hide rest of the points
+    // Hide controllers of the points
     $(".ui-slider-limits").slider({
         max: 20,
         range: true,
@@ -236,7 +236,7 @@ $(function() {
         value: 2
     });
     $(".ui-slider-suffix-prefix").slider("pips", {
-        rest: "label", 
+        rest: "label",
         prefix: "$",
         suffix: ".00"
     });

@@ -166,7 +166,7 @@ $(function() {
     });
 
 
-    // Hide rest of the points
+    // Hide controllers of the points
     $(".ui-slider-limits").slider({
         max: 20,
         range: true,
@@ -193,7 +193,7 @@ $(function() {
         value: 2
     });
     $(".ui-slider-suffix-prefix").slider("pips", {
-        rest: "label", 
+        rest: "label",
         prefix: "$",
         suffix: ".00"
     });
@@ -574,7 +574,7 @@ $(function() {
             '70%': 70,
             // I never liked 80.
             '90%': 90,
-            'max': 100 
+            'max': 100
         },
         snap: true,
         connect: true,
@@ -730,5 +730,5 @@ $(function() {
             'max': [100]
         }
     });
-    
+
 });
