@@ -1,9 +1,17 @@
 package com.hrssc.entities;
 
 import javax.persistence.*;
+
+import com.hrssc.entities.Company.CompanyBuilder;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import java.util.Objects;
 
 @Entity
+@Builder
+@AllArgsConstructor
 @Table(name = "chosen_domains", schema = "hrssc", catalog = "")
 public class ChosenDomains {
     private int id;
