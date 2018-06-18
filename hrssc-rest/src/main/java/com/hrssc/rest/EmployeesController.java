@@ -1,4 +1,4 @@
-package com.hrssc.controllers;
+package com.hrssc.rest;
 
 import java.util.List;
 

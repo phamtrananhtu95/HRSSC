@@ -1,4 +1,4 @@
-package com.hrssc.controllers;
+package com.hrssc.rest;
 
 import com.hrssc.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
