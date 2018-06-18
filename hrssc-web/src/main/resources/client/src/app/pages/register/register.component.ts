@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomFormsModule, CustomValidators } from 'ng2-validation';
 import { NgForm } from '@angular/forms';
+import { MenuLeftService } from '../../components/menu-left/menu-left.component.service';
+import { HeaderService } from '../../components/header/header.component.service';
 
 @Component({
   selector: 'app-register',
@@ -16,9 +18,15 @@ export class RegisterComponent implements OnInit {
   public registerInfo = {
     email: ""
   }
-  constructor() { }
+  constructor(
+    public menu: MenuLeftService,
+    public header: HeaderService
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.menu.hideMenu(true);
+    this.header.hideMenu(true);
+  }
 
   onFormSubmit(form: NgForm) {
     this.isValidFormSubmitted = false;

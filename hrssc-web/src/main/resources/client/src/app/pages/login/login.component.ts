@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.menu.hideMenu(true);
+    this.header.hideMenu(true);
     this.authenticate.setLogin(false);
   }
 
