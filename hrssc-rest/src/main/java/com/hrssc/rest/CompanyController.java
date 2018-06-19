@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hrssc.domain.dto.CompanyDto;
+import com.hrssc.domain.dto.RegisterDto;
 import com.hrssc.service.CompanyService;
 
 @RestController
@@ -16,9 +16,5 @@ public class CompanyController {
 	
 	@Autowired
 	private CompanyService companyService ;
-	
-	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public CompanyDto createCompany(@RequestBody CompanyDto company) {
-		return companyService.createCompany(company);
-	}
+
 }

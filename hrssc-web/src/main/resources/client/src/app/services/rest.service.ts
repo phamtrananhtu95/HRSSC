@@ -18,19 +18,6 @@ export class RestService {
       .map((response: any) => response.json())
   }
 
-  postParam(path, user): Observable<any> {
-
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    var body = 'username=' + user.username + '&password=' + user.password;
-
-    return this.http.post(`${environment.baseUrl}${path}`, body,
-      {
-        headers: headers
-      })
-      .map((response: any) => response.json())
-  }
-
   authorize(path, body) {
     let headers = new Headers();
     headers.append('Accept', 'application/json')

@@ -40,8 +40,9 @@ import { SessionsService } from './services/sessions.service';
 import { AuthenticateService } from './services/authenticate.service';
 import { User } from './models';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
-import { TitleService } from './services/title.service';
+import { RegisterService } from './services/register.service';
 import { HeaderService } from './components/header/header.component.service';
+import { Register } from './models/register.model';
 
 
 const appRoutes: Routes = [
@@ -105,6 +106,16 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
+    path: 'admin/manage/company',
+    component: AdminManageCompanyComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
+    path: 'admin/manage/request',
+    component: AdminManageAccountRequestComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -164,8 +175,9 @@ const appRoutes: Routes = [
     AuthenticateService,
     EmployeeService,
     User,
-    TitleService,
-    HeaderService
+    HeaderService,
+    RegisterService,
+    Register
   ],
   bootstrap: [AppComponent]
 })

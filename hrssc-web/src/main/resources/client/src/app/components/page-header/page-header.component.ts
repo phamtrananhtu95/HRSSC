@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-page-header',

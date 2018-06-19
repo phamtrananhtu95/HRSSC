@@ -29,10 +29,91 @@
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Company name" name="email" required [ngModel]="registerInfo.email" [pattern]="emailPattern"
-                    #representEmail="ngModel">
+                  <input [(ngModel)]="registerInfo.companyName" type="text" class="form-control" placeholder="Company name" name="companyName">
                   <div class="form-control-feedback">
                     <i class="icon-user-check text-muted"></i>
+                  </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.companyAddress" type="text" class="form-control" placeholder="Address" name="companyAddress">
+                  <div class="form-control-feedback">
+                    <i class="icon-user-check text-muted"></i>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group has-feedback has-feedback-left">
+                  <select name="select" class="form-control">
+                    <option value="opt1">Hồ Chí Minh</option>
+                    <option value="opt2">Hà Nội</option>
+                    <option value="opt3">Đà Nẵng</option>
+                    <option value="opt4">Others</option>
+                  </select>
+                  <div class="form-control-feedback">
+                    <i class="icon-user-lock text-muted"></i>
+                  </div>
+                </div> -->
+
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.companyCity" type="text" class="form-control" placeholder="City" name="companyCity">
+                  <div class="form-control-feedback">
+                    <i class="icon-user-lock text-muted"></i>
+                  </div>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.companyCountry" type="text" class="form-control" placeholder="Country" name="companyCountry">
+                  <div class="form-control-feedback">
+                    <i class="icon-user-lock text-muted"></i>
+                  </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.companyTax" type="text" class="form-control" placeholder="Tax code" name="companyTax">
+                  <div class="form-control-feedback">
+                    <i class="icon-user-lock text-muted"></i>
+                  </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.companyEmail" type="text" class="form-control" placeholder="Company Email" required [pattern]="emailPattern"
+                    #companyEmail="ngModel" name="companyEmail">
+                  <div class="form-control-feedback">
+                    <i class="icon-mention text-muted"></i>
+                  </div>
+                  <div *ngIf="companyEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    <div *ngIf="companyEmail.errors.required">
+                      <label id="basic-error" class="validation-error-label" for="basic">This field is required.</label>
+                    </div>
+                    <div *ngIf="companyEmail.errors.pattern">
+                      <label id="basic-error" class="validation-error-label" for="basic">Please enter a valid email address.</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.companyTel" type="text" class="form-control" placeholder="Phone" name="companyTel">
+                  <div class="form-control-feedback">
+                    <i class="icon-user-lock text-muted"></i>
+                  </div>
+                </div>
+
+                <div class="content-divider text-muted form-group">
+                  <span> Representative information</span>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.representativeName" type="text" class="form-control" placeholder="Name" name="representativeName">
+                  <div class="form-control-feedback">
+                    <i class="icon-mention text-muted"></i>
+                  </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input [(ngModel)]="registerInfo.representtativeEmail" type="text" class="form-control" placeholder="Representtative Email"
+                    required [pattern]="emailPattern" #representEmail="ngModel" name="representtativeEmail">
+                  <div class="form-control-feedback">
+                    <i class="icon-mention text-muted"></i>
                   </div>
                   <div *ngIf="representEmail.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
                     <div *ngIf="representEmail.errors.required">
@@ -45,91 +126,24 @@
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
-                  <input type="password" class="form-control" placeholder="Website">
+                  <input [(ngModel)]="registerInfo.representativeTel" type="text" class="form-control" placeholder="Representative Phone" name="representativeTel">
                   <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
+                    <i class="icon-mention text-muted"></i>
                   </div>
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Address">
+                  <input [(ngModel)]="registerInfo.representativeTitle" type="text" class="form-control" placeholder="Representative Title"
+                    name="representativeTitle">
                   <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
+                    <i class="icon-mention text-muted"></i>
                   </div>
                 </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Website">
-                  <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <select name="select" class="form-control">
-                    <option value="opt1">Hồ Chí Minh</option>
-                    <option value="opt2">Hà Nội</option>
-                    <option value="opt3">Đà Nẵng</option>
-                    <option value="opt4">Others</option>
-                  </select>
-                  <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Tax code">
-                  <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Phone">
-                  <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Fax">
-                  <div class="form-control-feedback">
-                    <i class="icon-user-lock text-muted"></i>
-                  </div>
-                </div>
-
 
                 <div class="content-divider text-muted form-group">
-                  <span> Representative information</span>
+                  <span>{{error}}</span>
                 </div>
 
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Name">
-                  <div class="form-control-feedback">
-                    <i class="icon-mention text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Title">
-                  <div class="form-control-feedback">
-                    <i class="icon-mention text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Phone">
-                  <div class="form-control-feedback">
-                    <i class="icon-mention text-muted"></i>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Email">
-                  <div class="form-control-feedback">
-                    <i class="icon-mention text-muted"></i>
-                  </div>
-                </div>
                 <button type="submit" class="btn bg-teal btn-block btn-lg">Submit
                   <i class="icon-circle-right2 position-right"></i>
                 </button>

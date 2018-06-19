@@ -3,10 +3,13 @@ package com.hrssc.entities;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.UserView;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@Data
 @Entity(name = "user")
 public class User {
     @JsonView(UserView.overview.class)

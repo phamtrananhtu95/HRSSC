@@ -4,7 +4,6 @@ import { Project, projectList, companyList, Company, Employee } from '../../mode
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
-import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'hrssc-home',

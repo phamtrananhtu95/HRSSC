@@ -1,5 +1,6 @@
 package com.hrssc.service.impl;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,11 @@ public class ChooseDomainServiceImpl implements ChooseDomainService {
 				? chooseDomain.getLocations().stream().collect(Collectors.joining(Constant.COMMA))
 				: StringUtils.EMPTY;
 
-		final ChosenDomains chosenDomain = chooseDomainRepository.save(
-				ChosenDomains.builder().positions(positions).locations(locations).userId(user.get().getId()).build());
+		final ChosenDomains chosenDomain = chooseDomainRepository
+				.save(ChosenDomains.builder().positions(positions).locations(locations).userId(user.get().getId()).build());
 
+		user.get().setFirstLogin(false);
+		userRepository.save(user.get());
 		return new ChooseDomainDto(chosenDomain);
 	}
 

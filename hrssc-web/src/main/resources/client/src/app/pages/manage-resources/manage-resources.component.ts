@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models';
-import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-manage-resources',
