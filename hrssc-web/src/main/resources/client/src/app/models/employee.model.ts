@@ -1,14 +1,14 @@
 export class Employee {
     id: number;
-    name: string;
-    dob: number;
-    skill: string;
-    experience: number;
-    phone: string;
+    fullname: string;
+    status: number;
     email: string;
+    tel: string;
+    availableDate: number;
+    availableDuration: number;
+    skills: string[];
     company: string;
-    status: string;
-    matched: number;
+
     constructor() {
     }
 }

@@ -39,7 +39,7 @@ export class AuthenticateService {
 
   getUserName(){
     let userInfo = this.getUsetInfo();
-    return userInfo ? userInfo.name : null;
+    return userInfo ? userInfo.username : null;
   }
 
 }

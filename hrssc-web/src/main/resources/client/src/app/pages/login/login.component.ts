@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
     this.loginService.login(body)
       .subscribe(res => {
-        if (res && res.name) {
+        if (res && res.username) {
           // login successful
 
           this.authenticate.setLogin(true);

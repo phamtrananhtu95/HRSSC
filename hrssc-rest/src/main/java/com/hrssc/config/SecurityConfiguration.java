@@ -51,17 +51,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder());
     }
-//
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurerAdapter() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-//
-//            }
-//        };
-//    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+
+            }
+        };
+    }
 
 
     @Override
@@ -71,7 +71,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .mvcMatchers("/",
                         "/login",
-                        "/register"
+                        "/register",
+                        "/humanResource"
                 ).permitAll()
                 .mvcMatchers("/manage-companies/**").hasAuthority("MANAGE_COMPANIES")
                 .mvcMatchers("/manage-manager/**").access("hasAuthority('MANAGE_MANAGER')")

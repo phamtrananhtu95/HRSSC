@@ -8,7 +8,7 @@ export class EmployeeService {
   ) { }
 
   getEmployees() {
-    let url = 'employees';
+    let url = 'humanResource';
     return this.restService.get(url);
   }
 

@@ -10,12 +10,12 @@ export class RestService {
 
   get(path): Observable<any> {
     return this.http.get(`${environment.baseUrl}${path}`)
-      .map((response: any) => response.json())
+      .map((response: any) => response.json());
   }
 
   post(path, body): Observable<any> {
     return this.http.post(`${environment.baseUrl}${path}`, body)
-      .map((response: any) => response.json())
+      .map((response: any) => response.json());
   }
 
   authorize(path, body) {
