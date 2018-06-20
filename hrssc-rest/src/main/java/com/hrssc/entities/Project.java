@@ -1,21 +1,32 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ProjectView;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class Project {
+    @JsonView(ProjectView.ListView.class)
     private int id;
+    @JsonView(ProjectView.ListView.class)
     private String title;
     private String description;
+    @JsonView(ProjectView.ListView.class)
     private long createDate;
+    @JsonView(ProjectView.ListView.class)
     private long endDate;
+    @JsonView(ProjectView.ListView.class)
     private long duration;
     private String type;
     private String domain;
+    @JsonView(ProjectView.ListView.class)
     private int processStatus;
+    @JsonView(ProjectView.ListView.class)
     private int requestStatus;
+    @JsonView(ProjectView.ListView.class)
     private int userId;
     private int companyId;
     private String payment;
