@@ -5,10 +5,7 @@ import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Project;
 import com.hrssc.service.ProjectManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,10 @@ public class ProjectManagementController {
     @GetMapping(value = "/load-project/{managerId}")
     public List<Project> getProjectByManagerId(@PathVariable(value = "managerId") int mangerId){
         return projectManagementService.getProjectByManagerId(mangerId);
+    }
+
+    @PostMapping(value = "/add")
+    public void addProject(@RequestBody Project project){
+        projectManagementService.addProject(project);
     }
 }

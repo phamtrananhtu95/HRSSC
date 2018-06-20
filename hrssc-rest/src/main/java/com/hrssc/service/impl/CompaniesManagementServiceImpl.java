@@ -13,7 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NonUniqueResultException;
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service("manageCompaniesService")
@@ -33,18 +35,20 @@ public class CompaniesManagementServiceImpl implements CompaniesManagementServic
        return tempInfoRepo.findAll();
     }
 
+    @Transactional
     public boolean acceptCompany(int tempInfoId){
-        if(saveCompany(tempInfoId)){
-            if(saveUser(tempInfoId)){
-                if(removeTempInfo(tempInfoId)){
-                    return true;
-                }
-            }
+        try {
+            saveCompany(tempInfoId);
+            saveUser(tempInfoId);
+            removeTempInfo(tempInfoId);
+            return true;
+        }catch (RuntimeException e){
+            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(Level.INFO,e.toString());
+            return false;
         }
-        return false;
     }
 
-    public boolean saveCompany(int tempInfoId){
+    public void saveCompany(int tempInfoId){
         TemporaryInfo temp = tempInfoRepo.findById(tempInfoId);
 
         Company company = new Company();
@@ -56,21 +60,15 @@ public class CompaniesManagementServiceImpl implements CompaniesManagementServic
         company.setTel(temp.getCompanyTel());
 
 
-        try{
+
             companyRepo.save(company);
-            return true;
-        }catch (Exception e){
-            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
-            return false;
-        }
 
     }
 
-    public boolean saveUser(int tempInfoId){
-        try {
+    public void saveUser(int tempInfoId){
             TemporaryInfo temp = tempInfoRepo.findById(tempInfoId);
 
-            Company company = companyRepo.findByName(temp.getCompanyName());
+            Company company = companyRepo.findByEmail(temp.getCompanyEmail());
             User user = new User();
             user.setUsername(temp.getCompanyEmail());
             user.setEmail(temp.getRepresenttativeEmail());
@@ -90,24 +88,11 @@ public class CompaniesManagementServiceImpl implements CompaniesManagementServic
             user.setTel(temp.getRepresentativeTel());
             user.setStatus(Constant.UserStatus.ACTIVATED);
             userRepo.save(user);
-            return true;
-        }catch(NonUniqueResultException e){
-            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
-            return false;
-        }
     }
-    public boolean removeTempInfo(int id){
-        try{
+    public void removeTempInfo(int id){
             TemporaryInfo temp = tempInfoRepo.findById(id);
-            if(temp != null){
                 tempInfoRepo.delete(temp);
-                return true;
-            }
-            return false;
-        }catch(Exception e){
-            Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(java.util.logging.Level.INFO, e.toString());
-            return false;
-        }
+
     }
 //    private static String randomPassword(){
 //        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

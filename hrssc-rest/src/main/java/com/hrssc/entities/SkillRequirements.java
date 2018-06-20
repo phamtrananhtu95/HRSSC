@@ -11,6 +11,7 @@ public class SkillRequirements {
     private int projectId;
     private Skill skillBySkillId;
     private Project projectByProjectId;
+    private double experience;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -76,5 +77,15 @@ public class SkillRequirements {
 
     public void setProjectByProjectId(Project projectByProjectId) {
         this.projectByProjectId = projectByProjectId;
+    }
+
+    @Basic
+    @Column(name = "experience")
+    public double getExperience() {
+        return experience;
+    }
+
+    public void setExperience(double experience) {
+        this.experience = experience;
     }
 }

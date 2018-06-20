@@ -7,8 +7,8 @@ import java.util.List;
 public interface CompaniesManagementService {
 
     List<TemporaryInfo> loadAllRequest();
-    boolean saveCompany(int tempInfoId);
+    void saveCompany(int tempInfoId);
     boolean acceptCompany(int tempInfoId);
-    boolean removeTempInfo(int id);
+    void removeTempInfo(int id);
 
 }
