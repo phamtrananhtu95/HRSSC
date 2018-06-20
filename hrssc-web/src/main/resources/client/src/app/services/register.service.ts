@@ -8,7 +8,7 @@ export class RegisterService {
   constructor(private restService: RestService, private register: Register) { }
   
   registerCompany(company) {
-    let url = 'company';
+    let url = 'register';
     return this.restService.post(url, company);
   }
 

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
 @Table(name = "temporary_info", schema = "hrssc", catalog = "")
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class TemporaryInfo {
     private int id;
     private String companyName;

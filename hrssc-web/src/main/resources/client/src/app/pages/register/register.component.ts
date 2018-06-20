@@ -47,9 +47,9 @@ export class RegisterComponent implements OnInit {
       .subscribe(result => {
         if (result) {
           // register success
-          this.router.navigate(['home']);
+          this.router.navigate(['/login']);
         } else {
-          // login failed
+          // register failed
           this.error = 'Something happend';
         }
       }, error => {

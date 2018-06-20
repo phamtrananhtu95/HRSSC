@@ -43,6 +43,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { RegisterService } from './services/register.service';
 import { HeaderService } from './components/header/header.component.service';
 import { Register } from './models/register.model';
+import { CompaniesService } from './services/companies.service';
 
 
 const appRoutes: Routes = [
@@ -177,7 +178,8 @@ const appRoutes: Routes = [
     User,
     HeaderService,
     RegisterService,
-    Register
+    Register,
+    CompaniesService
   ],
   bootstrap: [AppComponent]
 })

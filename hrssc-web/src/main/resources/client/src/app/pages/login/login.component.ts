@@ -51,7 +51,10 @@ export class LoginComponent implements OnInit {
           this.authenticate.setLogin(true);
           // Save user info authen
           this.authenticate.saveUserInfo(res);
-          this.router.navigate(['home']);
+          if (res.firstLogin == true) {
+            this.router.navigate(['chooseDomain']);
+          }
+          else { this.router.navigate(['home']); }
         } else {
           // login failed
           this.error = 'Username or password is incorrect';
