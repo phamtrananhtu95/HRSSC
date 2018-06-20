@@ -2,6 +2,9 @@ package com.hrssc.rest;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
+import com.hrssc.entities.HumanResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +33,11 @@ public class HumanResourceController {
 	public HumanResourceDto getHumanResourceById(@PathVariable int id) throws NotFoundException {
 		return humanResourceService.getHumanResourceById(id);
 	}
+
+	@JsonView(HumanResourceView.overview.class)
+	@GetMapping(value = "/get/{managerID}")
+	public List<HumanResource> getHumanResourceByManagerId(@PathVariable("managerID") int managerId){
+		return humanResourceService.getHumanResourceByManagerId(managerId);
+	}
+
 }

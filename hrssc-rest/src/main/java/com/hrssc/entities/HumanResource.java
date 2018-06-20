@@ -1,21 +1,35 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
-@Table(name = "human_resource", schema = "hrssc", catalog = "")
+@Data
+@Entity(name = "human_resource")
 public class HumanResource {
+    @JsonView(HumanResourceView.overview.class)
     private int id;
+    @JsonView(HumanResourceView.overview.class)
     private String fullname;
+    @JsonView(HumanResourceView.overview.class)
     private int status;
+    @JsonView(HumanResourceView.overview.class)
     private String email;
+    @JsonView(HumanResourceView.overview.class)
     private String tel;
+    @JsonView(HumanResourceView.overview.class)
     private Long availableDate;
+    @JsonView(HumanResourceView.overview.class)
     private Long availableDuration;
+    @JsonView(HumanResourceView.overview.class)
     private int companyId;
+    @JsonView(HumanResourceView.overview.class)
     private int positionId;
+    @JsonView(HumanResourceView.overview.class)
     private int userId;
     private Collection<Feedback> feedbacksById;
     private Company companyByCompanyId;

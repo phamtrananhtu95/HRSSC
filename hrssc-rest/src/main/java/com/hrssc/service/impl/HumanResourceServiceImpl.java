@@ -40,4 +40,9 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 		return new HumanResourceDto().getHumanResource(humanResource.get());
 	}
+
+	@Override
+	public List<HumanResource> getHumanResourceByManagerId(int managerId) {
+		return humanResourceRepository.getHumanResourcesByUserId(managerId);
+	}
 }

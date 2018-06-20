@@ -21,10 +21,11 @@ public class MyPrincipal implements UserDetails{
     private String tel;
     private int companyID;
     private boolean isFirstLogin;
+    private int roleID;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public MyPrincipal(int id, String fullname, String username, String email, String password, String tel, int companyId, boolean firstLogin, Collection<? extends GrantedAuthority> authorities) {
+    public MyPrincipal(int id, String fullname, String username, String email, String password, String tel, int companyId,int roleId, boolean firstLogin, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.fullname = fullname;
         this.username = username;
@@ -32,6 +33,7 @@ public class MyPrincipal implements UserDetails{
         this.password = password;
         this.tel = tel;
         this.companyID = companyId;
+        this.roleID = roleId;
         this.isFirstLogin = firstLogin;
         this.authorities = authorities;
 
@@ -47,6 +49,7 @@ public class MyPrincipal implements UserDetails{
                 user.getPassword(),
                 user.getTel(),
                 user.getCompanyId(),
+                user.getRoleId(),
                 user.isFirstLogin(),
                 authorities
         );
@@ -74,6 +77,10 @@ public class MyPrincipal implements UserDetails{
 
     public String getEmail() {
         return email;
+    }
+
+    public int getRoleID() {
+        return roleID;
     }
 
     @Override
