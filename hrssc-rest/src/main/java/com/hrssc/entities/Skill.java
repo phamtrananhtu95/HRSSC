@@ -1,12 +1,17 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.MiscView;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class Skill {
+    @JsonView(MiscView.FullView.class)
     private int id;
+    @JsonView(MiscView.FullView.class)
     private String title;
     private Collection<ResourceSkills> resourceSkillsById;
     private Collection<SkillRequirements> skillRequirementsById;

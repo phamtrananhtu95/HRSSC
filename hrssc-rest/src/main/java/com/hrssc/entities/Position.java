@@ -1,13 +1,19 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.MiscView;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class Position {
+    @JsonView(MiscView.FullView.class)
     private int id;
+    @JsonView(MiscView.FullView.class)
     private String title;
+    @JsonView(MiscView.FullView.class)
     private String level;
     private Collection<HumanResource> humanResourcesById;
     private Collection<PositionRequirements> positionRequirementsById;
