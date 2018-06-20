@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.hrssc.domain.dto.HumanResourceDto;
 
+import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Skill;
 import javassist.NotFoundException;
 
 
@@ -21,4 +23,6 @@ public interface HumanResourceService {
 	HumanResourceDto getHumanResourceById(int id) throws NotFoundException;
 
 	List<HumanResource> getHumanResourceByManagerId(int managerId);
+
+    void addHumanResource(HumanResource humanResource);
 }

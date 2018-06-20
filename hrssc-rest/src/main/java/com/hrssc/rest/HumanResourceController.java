@@ -3,14 +3,13 @@ package com.hrssc.rest;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.hrssc.domain.dto.HumanResourceDto;
 import com.hrssc.service.HumanResourceService;
@@ -38,6 +37,12 @@ public class HumanResourceController {
 	@GetMapping(value = "/get/{managerID}")
 	public List<HumanResource> getHumanResourceByManagerId(@PathVariable("managerID") int managerId){
 		return humanResourceService.getHumanResourceByManagerId(managerId);
+	}
+
+	@PostMapping(value = "/add")
+	public String addHumanResource(@RequestBody HumanResource humanresource){
+		humanResourceService.addHumanResource(humanresource);
+		return "OK";
 	}
 
 }

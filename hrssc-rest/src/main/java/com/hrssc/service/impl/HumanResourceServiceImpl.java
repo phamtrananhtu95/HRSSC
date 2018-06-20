@@ -1,9 +1,14 @@
 package com.hrssc.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import com.hrssc.domain.dto.HumanResourceSkillDTO;
+import com.hrssc.entities.ResourceSkills;
+import com.hrssc.entities.Skill;
+import com.hrssc.repository.ResourceSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +23,9 @@ import javassist.NotFoundException;
 public class HumanResourceServiceImpl implements HumanResourceService {
 	@Autowired
 	private HumanResourceRepository humanResourceRepository;
+
+	@Autowired
+	private ResourceSkillRepository resourceSkillRepository;
 
 	@Override
 	public List<HumanResourceDto> getHumanResources() {
@@ -44,5 +52,36 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	@Override
 	public List<HumanResource> getHumanResourceByManagerId(int managerId) {
 		return humanResourceRepository.getHumanResourcesByUserId(managerId);
+	}
+
+	@Override
+	public void addHumanResource(HumanResource humanResourceSkill) {
+
+		HumanResource humanResource = new HumanResource();
+		humanResource.setFullname(humanResourceSkill.getFullname());
+		humanResource.setStatus(humanResourceSkill.getStatus());
+		humanResource.setEmail(humanResourceSkill.getEmail());
+		humanResource.setTel(humanResourceSkill.getTel());
+		humanResource.setAvailableDate(humanResourceSkill.getAvailableDate());
+		humanResource.setAvailableDuration(humanResourceSkill.getAvailableDuration());
+		humanResource.setCompanyId(humanResourceSkill.getCompanyId());
+		humanResource.setPositionId(humanResourceSkill.getPositionId());
+		humanResource.setUserId(humanResourceSkill.getUserId());
+
+//
+		humanResourceRepository.save(humanResource);
+
+		HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
+
+		List<ResourceSkills> tmp2 = (List<ResourceSkills>) humanResourceSkill.getResourceSkillsById();
+		System.out.println("");
+		for ( ResourceSkills x: tmp2) {
+//			ResourceSkills resourceSkills = new ResourceSkills();
+//			resourceSkills.setHumanResourceId(hm.getId());
+//			resourceSkills.setSkillId(x.getSkillId());
+//			resourceSkills.setExperience(x.getExperience());
+			x.setHumanResourceId(hm.getId());
+			resourceSkillRepository.save(x);
+		}
 	}
 }
