@@ -45,4 +45,10 @@ public class HumanResourceController {
 		return "OK";
 	}
 
+	@PostMapping(value = "/update")
+	public String updateHumanResource(@RequestBody HumanResource humanResource){
+		humanResourceService.updateHumanResource(humanResource);
+		return "OK";
+	}
+
 }

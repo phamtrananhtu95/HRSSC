@@ -25,4 +25,6 @@ public interface HumanResourceService {
 	List<HumanResource> getHumanResourceByManagerId(int managerId);
 
     void addHumanResource(HumanResource humanResource);
+
+	void updateHumanResource(HumanResource humanResource);
 }

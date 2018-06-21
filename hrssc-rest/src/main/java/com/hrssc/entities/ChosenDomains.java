@@ -4,12 +4,14 @@ import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "chosen_domains", schema = "hrssc", catalog = "")
 public class ChosenDomains {
     private int id;
