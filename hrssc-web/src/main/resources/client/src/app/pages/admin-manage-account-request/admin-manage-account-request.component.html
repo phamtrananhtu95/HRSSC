@@ -12,6 +12,7 @@
         <!-- <li class="media-header">Team leaders</li> -->
 
         <li class="media" *ngFor="let company of companies">
+
           <div class="media-left">
             <img src="assets/images/placeholder.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
           </div>
@@ -24,14 +25,14 @@
           <div class="media-right media-middle">
             <ul class="icons-list text-nowrap">
               <li>
-                <button type="button" class="btn btn-info btn-xs">
+                <button type="submit" (click)="test()" class="btn btn-info btn-xs">
                   <i class="glyphicon glyphicon-ok position-left"></i>Accept</button>
               </li>
               <li>
                 <button type="button" class="btn btn-danger btn-xs">
                   <i class="glyphicon glyphicon-remove position-left"></i>Remove</button>
               </li>
-              <li>  </li>
+              <li> </li>
               <li>
                 <a data-toggle="collapse" [attr.data-target]="'#company' + company.id">
                   <i class="icon-menu7"></i>
@@ -40,7 +41,6 @@
 
             </ul>
           </div>
-
           <div class="collapse" id="company{{company.id}}">
             <div class="contact-details">
               <ul class="list-extended list-unstyled list-icons">
@@ -57,6 +57,8 @@
               </ul>
             </div>
           </div>
+
+
         </li>
       </ul>
     </div>

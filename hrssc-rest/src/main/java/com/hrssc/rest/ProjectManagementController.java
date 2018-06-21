@@ -22,7 +22,6 @@ public class ProjectManagementController {
     public List<Project> getProjectByManagerId(@PathVariable(value = "managerId") int mangerId){
         return projectManagementService.getProjectByManagerId(mangerId);
     }
-
     @PostMapping(value = "/add")
     public String addProject(@RequestBody Project project){
        return projectManagementService.addProject(project);

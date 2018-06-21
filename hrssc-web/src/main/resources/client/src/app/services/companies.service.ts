@@ -12,4 +12,7 @@ export class CompaniesService {
     let url = 'manage-companies/all-requests';
     return this.restService.get(url);
   }
+
+  
+
 }

@@ -36,7 +36,17 @@ export class HomeComponent implements OnInit {
         err=>{
           console.log(err);
         });
+
+        this.employeeService.test().subscribe(
+          res => {
+            alert("zo");
+          },
+          err=>{
+            alert("deo zo");
+          });
     }
+
+
   }
 
   viewResourceDetail(user: User) {

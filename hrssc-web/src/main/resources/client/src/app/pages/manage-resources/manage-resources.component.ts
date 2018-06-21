@@ -12,6 +12,7 @@ export class ManageResourcesComponent implements OnInit {
   public title = " - Manage resources";
   public subTitle = " - Resource";
   
+  
   constructor() { }
 
   ngOnInit() {

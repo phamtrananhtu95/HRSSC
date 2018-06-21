@@ -50,5 +50,4 @@ public class HumanResourceController {
 		humanResourceService.updateHumanResource(humanResource);
 		return "OK";
 	}
-
 }

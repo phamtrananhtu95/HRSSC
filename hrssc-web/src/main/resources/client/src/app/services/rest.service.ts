@@ -17,6 +17,11 @@ export class RestService {
     return this.http.post(`${environment.baseUrl}${path}`, body)
       .map((response: any) => response.json());
   }
+  posttest(path): Observable<any> {
+    return this.http.post(`${environment.baseUrl}${path}`, null)
+      .map((response: any) => response.json());
+  }
+
 
   authorize(path, body) {
     let headers = new Headers();

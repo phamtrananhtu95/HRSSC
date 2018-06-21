@@ -12,4 +12,10 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
+  test() {
+    let x = 3;
+    let url = 'manage-companies/accept-company/' + x;
+    return this.restService.posttest(url);
+  }
+
 }
