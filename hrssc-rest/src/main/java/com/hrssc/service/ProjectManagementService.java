@@ -11,7 +11,7 @@ public interface ProjectManagementService {
 
     List<Project> getProjectByManagerId(int managerId);
 
-    void addProject(Project project);
+    String addProject(Project project);
     void saveProject(Project project);
     void saveSkillRequirements(SkillRequirements skillRequirements);
     void savePositionRequirements(PositionRequirements positionRequirements);

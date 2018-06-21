@@ -14,6 +14,7 @@ public class SkillRequirements {
     private double experience;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

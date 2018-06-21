@@ -8,10 +8,13 @@ import com.hrssc.repository.ProjectRepository;
 import com.hrssc.repository.SkillRequirementsRepository;
 import com.hrssc.service.ProjectManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service("projectManagement")
 public class ProjectManagementServiceImpl implements ProjectManagementService {
@@ -32,36 +35,38 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Transactional
     @Override
-    public void addProject(Project project) {
-        Project prj = new Project();
-        prj.setTitle(project.getTitle());
-        prj.setDescription(project.getDescription());
-        prj.setCreateDate(project.getCreateDate());
-        prj.setEndDate(project.getEndDate());
-        prj.setDuration(project.getDuration());
-        prj.setType(project.getType());
-        prj.setDomain(project.getDomain());
-        prj.setProcessStatus(project.getProcessStatus());
-        prj.setRequestStatus(project.getRequestStatus());
-        prj.setUserId(project.getUserId());
-        prj.setCompanyId(project.getCompanyId());
-        prj.setPayment(project.getPayment());
-        saveProject(prj);
+    public String addProject(Project project) {
+        try {
+            Project prj = new Project();
+            prj.setTitle(project.getTitle());
+            prj.setDescription(project.getDescription());
+            prj.setCreateDate(project.getCreateDate());
+            prj.setEndDate(project.getEndDate());
+            prj.setDuration(project.getDuration());
+            prj.setType(project.getType());
+            prj.setDomain(project.getDomain());
+            prj.setProcessStatus(project.getProcessStatus());
+            prj.setRequestStatus(project.getRequestStatus());
+            prj.setUserId(project.getUserId());
+            prj.setCompanyId(project.getCompanyId());
+            prj.setPayment(project.getPayment());
+            saveProject(prj);
 
-        prj = projectRepository.findByTitleAndUserId(project.getTitle(),project.getUserId());
+            prj = projectRepository.findByTitleAndUserId(project.getTitle(), project.getUserId());
 
-        for(SkillRequirements skRequirement: project.getSkillRequirementsById()){
-            SkillRequirements skr = new SkillRequirements();
-            skr.setProjectId(prj.getId());
-            skr.setSkillId(skRequirement.getSkillId());
-            skr.setExperience(skRequirement.getExperience());
-            saveSkillRequirements(skr);
-        }
-        for(PositionRequirements posRequirement: project.getPositionRequirementsById()){
-            PositionRequirements pr = new PositionRequirements();
-            pr.setProjectId(prj.getId());
-            pr.setPositionId(posRequirement.getPositionId());
-            savePositionRequirements(pr);
+            for (SkillRequirements skRequirement : project.getSkillRequirementsById()) {
+                skRequirement.setProjectId(prj.getId());
+                saveSkillRequirements(skRequirement);
+
+            }
+            for (PositionRequirements posRequirement : project.getPositionRequirementsById()) {
+                posRequirement.setProjectId(prj.getId());
+                savePositionRequirements(posRequirement);
+            }
+            return "Successfully Added a Project.";
+        }catch (IncorrectResultSizeDataAccessException e){
+            Logger.getLogger(ProjectManagementServiceImpl.class.getName()).log(Level.INFO,e.toString());
+            return "Project has existed, add project failed.";
         }
     }
     @Override
