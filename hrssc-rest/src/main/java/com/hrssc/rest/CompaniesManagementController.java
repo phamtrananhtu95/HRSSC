@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController("/manage-companies")
 public class CompaniesManagementController {
 
@@ -22,8 +22,8 @@ public class CompaniesManagementController {
 
     }
 
-    @PostMapping(value = "**/accept-company")
-    private boolean acceptCompany(@RequestParam("tempId") String tempInfoId){
+    @PostMapping(value = "**/accept-company/{tempId}")
+    private boolean acceptCompany(@PathVariable("tempId") String tempInfoId){
         return companiesManagementService.acceptCompany(Integer.parseInt(tempInfoId));
     }
 

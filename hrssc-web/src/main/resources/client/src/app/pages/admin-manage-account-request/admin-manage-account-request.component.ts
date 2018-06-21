@@ -24,4 +24,8 @@ export class AdminManageAccountRequestComponent implements OnInit {
       });
   }
 
+  acceptCompany(companyId){
+    this.companiesService.acceptCompany(companyId)
+  }
+
 }

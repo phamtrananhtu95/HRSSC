@@ -12,4 +12,9 @@ export class CompaniesService {
     let url = 'manage-companies/all-requests';
     return this.restService.get(url);
   }
+
+  acceptCompany(companyId){
+    let url = 'manage-companies/accept-company/'+ companyId;
+    return this.restService.postParam(url);
+  }
 }

@@ -75,6 +75,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/humanResource/**",
                         "/manage-project/**",
                         "/manage-companies/**",
+                        "/manage-companies/**",
+                        
+                        
                         "/manage-manager/**",
                         "/load-form-info/**",
                         "/chooseDomain/create"
