@@ -44,7 +44,8 @@ import { RegisterService } from './services/register.service';
 import { HeaderService } from './components/header/header.component.service';
 import { Register } from './models/register.model';
 import { CompaniesService } from './services/companies.service';
-
+import { ChooseDomainService } from './services/choose-domain.service';
+import { ChooseDomain } from './models/chooseDomain.model';
 
 const appRoutes: Routes = [
 
@@ -179,7 +180,9 @@ const appRoutes: Routes = [
     HeaderService,
     RegisterService,
     Register,
-    CompaniesService
+    CompaniesService,
+    ChooseDomainService,
+    ChooseDomain
   ],
   bootstrap: [AppComponent]
 })

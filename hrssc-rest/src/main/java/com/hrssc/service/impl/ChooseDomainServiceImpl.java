@@ -48,8 +48,8 @@ public class ChooseDomainServiceImpl implements ChooseDomainService {
 		
 		final ChosenDomains chosenDomain = chooseDomainRepository.save(entity);
 
-		user.get().setFirstLogin(false);
-		userRepository.save(user.get());
+//		user.get().setFirstLogin(false);
+//		userRepository.save(user.get());
 		
 		return new ChooseDomainDto(chosenDomain);
 	}

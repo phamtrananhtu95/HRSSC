@@ -1,23 +1,23 @@
 <div class="panel panel-flat">
   <div class="panel-body">
     <div class="row">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input">
-              </div>
-            </div>
-            <input type="text" class="form-control" aria-label="Text input with checkbox">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input">
           </div>
-          
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-              <input type="radio" aria-label="Radio button for following text input">
-              </div>
-            </div>
-            <input type="text" class="form-control" aria-label="Text input with radio button">
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with checkbox">
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="radio" aria-label="Radio button for following text input">
           </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with radio button">
+      </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="text-semibold">Checkboxes</label>
@@ -44,7 +44,7 @@
   <div class="col-md-6">
 
     <!-- Hierarchical select -->
-    <form action="index.html" #registerForm="ngForm" (ngSubmit)="onFormSubmit(registerForm)">
+    <form action="index.html" #chooseDomainForm="ngForm" (ngSubmit)="onFormSubmit(chooseDomainForm)">
       <div class="panel panel-flat">
         <div class="panel-heading">
           <h6 class="panel-title">Choose domain
@@ -58,49 +58,55 @@
           <p class="mb-15">Click to choice domain that you interested!
             <!-- <kbd>space</kbd>.</p> -->
 
-            <div class="tree-checkbox-hierarchical well border-left-danger border-left-lg">
-              <ul class="ui-fancytree-source ui-helper-hidden">
-                <li class="folder expanded">Position technical skill
+            <div class="">
+              <ul class="">
+                <li class="">Position technical skill
                   <ul>
-                    <li class="expanded">Developer
-                      <ul>
+                    <li class="">
+                      <!-- <ul>
                         <li>Java</li>
                         <li class="selected">C#</li>
                         <li class="selected">SQL</li>
-                      </ul>
+                      </ul> -->
+                      <label>
+                        <input [(ngModel)]="chooseDomain.position" name="position" type="checkbox" checked="checked"> Developer
+                      </label>
                     </li>
-                    <li>Tester
-                      <ul>
-                        <li>Automation</li>
-                        <li>Test bla bla</li>
-                      </ul>
+                    <li>
+                      <label>
+                        <input [(ngModel)]="chooseDomain.position" name="position" type="checkbox" > Tester
+                      </label>
                     </li>
-                    <li>Project manager
-                      <ul>
-                        <li>...</li>
-                        <li>...</li>
-                      </ul>
+                    <li>
+                      <label>
+                        <input [(ngModel)]="chooseDomain.position" name="position" type="checkbox"> Project Manager
+                      </label>
                     </li>
                   </ul>
                 </li>
 
                 <li class="folder">Location
                   <ul>
-                    <li>Ho Chi Minh</li>
-                    <li>Ha Noi</li>
-                    <li>Da Nang</li>
-                    <li>Other</li>
-                  </ul>
-                </li>
-                <!-- <li>Basic
-              <i>menu item</i> with
-              <strong class="text-semibold">HTML support</strong>
-            </li> -->
-
-                <li class="expanded">Other
-                  <ul>
-                    <li class="selected">Other</li>
-                    <li class="selected">Other</li>
+                    <li>
+                      <label>
+                        <input [(ngModel)]="chooseDomain.location" name="location" type="checkbox" checked="checked"> Ho Chi Minh
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input [(ngModel)]="chooseDomain.location" name="location" type="checkbox" > Ha Noi
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input [(ngModel)]="chooseDomain.location" name="location" type="checkbox" > Da Nang
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox"> Other
+                      </label>
+                    </li>
                   </ul>
                 </li>
               </ul>
