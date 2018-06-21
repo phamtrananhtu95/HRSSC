@@ -13,6 +13,8 @@ export class CompaniesService {
     return this.restService.get(url);
   }
 
-  
-
+  acceptCompany(companyId){
+    let url = 'manage-companies/accept-company/'+ companyId;
+    return this.restService.postParam(url);
+  }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { environment } from '../../environments/environment';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class RestService {
@@ -22,6 +23,18 @@ export class RestService {
       .map((response: any) => response.json());
   }
 
+
+  postParam(path): Observable<any> {
+    return this.http.post(`${environment.baseUrl}${path}`, null)
+      .map((response: any) => response.json());
+  }
+
+  // postParam(path, companyId) {
+  //   const options = companyId ?
+  //     { params: new HttpParams().set('tempId', companyId) } : {};
+  //   return this.http.post(`${environment.baseUrl}${path}`, options)
+  //     .map((response: any) => response.json());
+  // }
 
   authorize(path, body) {
     let headers = new Headers();

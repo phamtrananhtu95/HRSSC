@@ -27,13 +27,9 @@ export class AdminManageAccountRequestComponent implements OnInit {
         console.log(err);
       });
   }
-  test(){
-    this.employeeService.test().subscribe(
-      res => {
-        alert("zo");
-      },
-      err=>{
-        alert("deo zo");
-      });
+
+  acceptCompany(companyId){
+    this.companiesService.acceptCompany(companyId)
   }
+
 }
