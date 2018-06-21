@@ -64,21 +64,69 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 savePositionRequirements(posRequirement);
             }
             return "Successfully Added a Project.";
-        }catch (IncorrectResultSizeDataAccessException e){
-            Logger.getLogger(ProjectManagementServiceImpl.class.getName()).log(Level.INFO,e.toString());
+        } catch (IncorrectResultSizeDataAccessException e) {
+            Logger.getLogger(ProjectManagementServiceImpl.class.getName()).log(Level.INFO, e.toString());
             return "Project has existed, add project failed.";
         }
     }
+
     @Override
-    public void saveProject(Project project){
+    public void saveProject(Project project) {
         projectRepository.save(project);
     }
+
     @Override
-    public void saveSkillRequirements(SkillRequirements skillRequirements){
+    public void saveSkillRequirements(SkillRequirements skillRequirements) {
         skillRequirementsRepository.save(skillRequirements);
     }
+
     @Override
-    public void savePositionRequirements(PositionRequirements positionRequirements){
+    public void savePositionRequirements(PositionRequirements positionRequirements) {
         positionRequirementsRepository.save(positionRequirements);
     }
+
+    @Transactional
+    @Override
+    public String updateProject(Project project) {
+        try {
+            Project prjEntity = projectRepository.findById(project.getId());
+            prjEntity.setTitle(project.getTitle());
+            prjEntity.setDescription(project.getDescription());
+            prjEntity.setCreateDate(project.getCreateDate());
+            prjEntity.setEndDate(project.getEndDate());
+            prjEntity.setDuration(project.getDuration());
+            prjEntity.setType(project.getType());
+            prjEntity.setDomain(project.getDomain());
+            prjEntity.setProcessStatus(project.getProcessStatus());
+            prjEntity.setRequestStatus(project.getRequestStatus());
+            prjEntity.setUserId(project.getUserId());
+            prjEntity.setCompanyId(project.getCompanyId());
+            prjEntity.setPayment(project.getPayment());
+            projectRepository.save(prjEntity);
+
+            for (SkillRequirements sr : skillRequirementsRepository.findByProjectId(project.getId())) {
+                skillRequirementsRepository.delete(sr);
+            }
+            for (SkillRequirements sr : project.getSkillRequirementsById()) {
+                sr.setProjectId(project.getId());
+                skillRequirementsRepository.save(sr);
+            }
+            for (PositionRequirements pr : positionRequirementsRepository.findByProjectId(project.getId())) {
+                positionRequirementsRepository.delete(pr);
+            }
+            for (PositionRequirements pr : project.getPositionRequirementsById()) {
+                pr.setProjectId(project.getId());
+                positionRequirementsRepository.save(pr);
+            }
+            return "Successfully Update Project";
+        }catch (RuntimeException e){
+            Logger.getLogger(ProjectManagementService.class.getName()).log(Level.INFO,e.toString());
+            return "Error Occured, Update Failed.";
+        }
+
+
+
+    }
+
 }
+

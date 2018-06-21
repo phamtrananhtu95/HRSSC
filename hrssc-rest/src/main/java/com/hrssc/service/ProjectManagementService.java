@@ -15,4 +15,7 @@ public interface ProjectManagementService {
     void saveProject(Project project);
     void saveSkillRequirements(SkillRequirements skillRequirements);
     void savePositionRequirements(PositionRequirements positionRequirements);
+
+
+    String updateProject(Project project);
 }

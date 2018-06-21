@@ -27,4 +27,9 @@ public class ProjectManagementController {
     public String addProject(@RequestBody Project project){
        return projectManagementService.addProject(project);
     }
+
+    @PostMapping(value = "/update")
+    public String updateProject(@RequestBody Project project){
+        return projectManagementService.updateProject(project);
+    }
 }
