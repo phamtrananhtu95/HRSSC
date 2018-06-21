@@ -18,9 +18,10 @@ import com.hrssc.repository.HumanResourceRepository;
 import com.hrssc.service.HumanResourceService;
 
 import javassist.NotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class HumanResourceServiceImpl implements HumanResourceService {
+public class HumanResourceServiceImpl implements HumanResourceService{
 	@Autowired
 	private HumanResourceRepository humanResourceRepository;
 
@@ -54,6 +55,7 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 		return humanResourceRepository.getHumanResourcesByUserId(managerId);
 	}
 
+	@Transactional
 	@Override
 	public void addHumanResource(HumanResource humanResourceSkill) {
 
@@ -73,15 +75,51 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 		HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
 
-		List<ResourceSkills> tmp2 = (List<ResourceSkills>) humanResourceSkill.getResourceSkillsById();
-		System.out.println("");
-		for ( ResourceSkills x: tmp2) {
+		List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResourceSkill.getResourceSkillsById();
+		for ( ResourceSkills tmp: resourceSkillsList) {
 //			ResourceSkills resourceSkills = new ResourceSkills();
 //			resourceSkills.setHumanResourceId(hm.getId());
 //			resourceSkills.setSkillId(x.getSkillId());
 //			resourceSkills.setExperience(x.getExperience());
-			x.setHumanResourceId(hm.getId());
-			resourceSkillRepository.save(x);
+			tmp.setHumanResourceId(hm.getId());
+			resourceSkillRepository.save(tmp);
+		}
+	}
+
+	@Transactional
+	@Override
+	public void updateHumanResource(HumanResource humanResource) {
+		Optional<HumanResource> hmResource = humanResourceRepository.findById(humanResource.getId());
+
+
+		if (hmResource.isPresent()){
+			System.out.println("");
+			HumanResource resourceUpdate = hmResource.get();
+			resourceUpdate.setFullname(humanResource.getFullname());
+			resourceUpdate.setStatus(humanResource.getStatus());
+			resourceUpdate.setEmail(humanResource.getEmail());
+			resourceUpdate.setTel(humanResource.getTel());
+			resourceUpdate.setAvailableDate(humanResource.getAvailableDate());
+			resourceUpdate.setAvailableDuration(humanResource.getAvailableDuration());
+			resourceUpdate.setPositionId(humanResource.getPositionId());
+//			resourceUpdate.setResourceSkillsById(humanResource.getResourceSkillsById());
+			humanResourceRepository.save(resourceUpdate);
+
+
+			List<ResourceSkills> list=  resourceSkillRepository.getResourceSkillsByHumanResourceId(hmResource.get().getId());
+
+			for (ResourceSkills x : list){
+				resourceSkillRepository.delete(x);
+			}
+			List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResource.getResourceSkillsById();
+			for ( ResourceSkills tmp: resourceSkillsList) {
+
+				tmp.setHumanResourceId(humanResource.getId());
+				resourceSkillRepository.save(tmp);
+			}
+
+			System.out.println("");
+
 		}
 	}
 }

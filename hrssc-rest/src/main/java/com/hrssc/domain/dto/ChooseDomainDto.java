@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class ChooseDomainDto {
 	private List<String> positions;
 	private List<String> locations;
