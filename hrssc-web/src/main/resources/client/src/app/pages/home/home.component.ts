@@ -33,19 +33,10 @@ export class HomeComponent implements OnInit {
         res => {
           this.employees = res;
         },
-        err=>{
+        err => {
           console.log(err);
         });
-
-        // this.employeeService.test().subscribe(
-        //   res => {
-        //     alert("zo");
-        //   },
-        //   err=>{
-        //     alert("deo zo");
-        //   });
     }
-
 
   }
 

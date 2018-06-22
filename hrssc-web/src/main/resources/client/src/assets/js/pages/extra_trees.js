@@ -161,20 +161,22 @@ $(function() {
     var initSelect = new Switchery(switcherySelect);
 
     // Change checkbox states
-    switcherySelect.onchange = function() {
-        if(switcherySelect.checked) {
-            $(".tree-checkbox-toggle").fancytree("getTree").visit(function(node){
-                node.setSelected(true);
-            });
-            return false;
-        }
-        else {
-            $(".tree-checkbox-toggle").fancytree("getTree").visit(function(node){
-                node.setSelected(false);
-            });
-            return false;
-        }
-    };
+    if(switcherySelect){
+        switcherySelect.onchange = function() {
+            if(switcherySelect.checked) {
+                $(".tree-checkbox-toggle").fancytree("getTree").visit(function(node){
+                    node.setSelected(true);
+                });
+                return false;
+            }
+            else {
+                $(".tree-checkbox-toggle").fancytree("getTree").visit(function(node){
+                    node.setSelected(false);
+                });
+                return false;
+            }
+        };
+    }
 
 
 
@@ -190,14 +192,16 @@ $(function() {
     var init = new Switchery(switchery);
 
     // Do something on state change
-    switchery.onchange = function() {
-        if(switchery.checked) {
-            $(".tree-toggle").fancytree("disable");
-        }
-        else {
-            $(".tree-toggle").fancytree("enable");
-        }
-    };
+    if(switchery){
+        switchery.onchange = function() {
+            if(switchery.checked) {
+                $(".tree-toggle").fancytree("disable");
+            }
+            else {
+                $(".tree-toggle").fancytree("enable");
+            }
+        };
+    }
 
     // Initialize
     $(".tree-toggle").fancytree({

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompaniesService } from '../../services/companies.service';
 import { Register } from '../../models/register.model';
-import { RestService } from '../../services/rest.service';
-import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-admin-manage-account-request',
@@ -10,26 +8,31 @@ import { EmployeeService } from '../../services/employee.service';
   styleUrls: ['./admin-manage-account-request.component.css']
 })
 export class AdminManageAccountRequestComponent implements OnInit {
-  companies : Register[] = [];
+  companies: Register[] = [];
   constructor(
-    private companiesService : CompaniesService,
-    private restService : RestService,
-    private employeeService: EmployeeService
+    private companiesService: CompaniesService
   ) { }
 
   ngOnInit() {
     this.companiesService.getCompanies()
-    .subscribe(
-      res => {
-        this.companies = res;
-      },
-      err=>{
-        console.log(err);
-      });
+      .subscribe(
+        res => {
+          this.companies = res;
+        },
+        err => {
+          console.log(err);
+        });
   }
 
-  acceptCompany(companyId){
+  acceptCompany(companyId) {
     this.companiesService.acceptCompany(companyId)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        });
   }
 
 }

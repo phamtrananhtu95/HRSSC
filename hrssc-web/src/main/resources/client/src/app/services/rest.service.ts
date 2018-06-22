@@ -18,23 +18,6 @@ export class RestService {
     return this.http.post(`${environment.baseUrl}${path}`, body)
       .map((response: any) => response.json());
   }
-  posttest(path): Observable<any> {
-    return this.http.post(`${environment.baseUrl}${path}`, null)
-      .map((response: any) => response.json());
-  }
-
-
-  postParam(path): Observable<any> {
-    return this.http.post(`${environment.baseUrl}${path}`, null)
-      .map((response: any) => response.json());
-  }
-
-  // postParam(path, companyId) {
-  //   const options = companyId ?
-  //     { params: new HttpParams().set('tempId', companyId) } : {};
-  //   return this.http.post(`${environment.baseUrl}${path}`, options)
-  //     .map((response: any) => response.json());
-  // }
 
   authorize(path, body) {
     let headers = new Headers();

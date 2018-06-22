@@ -47,10 +47,10 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res && res.username) {
           // login successful
-
+          
+          this.authenticate.saveUserInfo(res);
           this.authenticate.setLogin(true);
           // Save user info authen
-          this.authenticate.saveUserInfo(res);
           if (res.firstLogin == true) {
             this.router.navigate(['chooseDomain']);
           }

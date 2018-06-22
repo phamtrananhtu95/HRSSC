@@ -1,4 +1,4 @@
 export class ChooseDomain{
-    position: string[];
+    position: { value: string, checked: boolean}[];
     location: string[];
 }

@@ -62,24 +62,9 @@
               <ul class="">
                 <li class="">Position technical skill
                   <ul>
-                    <li class="">
-                      <!-- <ul>
-                        <li>Java</li>
-                        <li class="selected">C#</li>
-                        <li class="selected">SQL</li>
-                      </ul> -->
+                    <li class="" *ngFor="let position of chooseDomain.position">
                       <label>
-                        <input [(ngModel)]="chooseDomain.position" name="position" type="checkbox" checked="checked"> Developer
-                      </label>
-                    </li>
-                    <li>
-                      <label>
-                        <input [(ngModel)]="chooseDomain.position" name="position" type="checkbox" > Tester
-                      </label>
-                    </li>
-                    <li>
-                      <label>
-                        <input [(ngModel)]="chooseDomain.position" name="position" type="checkbox"> Project Manager
+                        <input [(ngModel)]="position.checked" name="position" type="checkbox"> {{position.value}}
                       </label>
                     </li>
                   </ul>

@@ -21,9 +21,23 @@ export class ChooseDomainComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.chooseDomain.position = [
+      { value: 'Developer', checked: false},
+      { value: 'Tester', checked: false },
+      { value: 'Project Manager', checked: false }
+      ];
+      
   }
 
   onFormSubmit(form: NgForm) {
+    let arr = this.chooseDomain.position.filter(function(position){
+      return position.checked;
+    });
+    let arrString = [];
+    arr.forEach(function(item){
+      arrString.push(item.value);
+    });
+    console.log(arrString);
     // this.isValidFormSubmitted = false;
     // if (form.invalid) {
     //   return;

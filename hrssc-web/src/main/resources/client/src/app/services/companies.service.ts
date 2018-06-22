@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
-
 @Injectable()
 export class CompaniesService {
 
@@ -13,8 +12,8 @@ export class CompaniesService {
     return this.restService.get(url);
   }
 
-  acceptCompany(companyId){
-    let url = 'manage-companies/accept-company/'+ companyId;
-    return this.restService.postParam(url);
+  acceptCompany(companyId) {
+    let url = 'manage-companies/accept-company/' + companyId;
+    return this.restService.post(url, null);
   }
 }
