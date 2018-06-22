@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project, projectList } from '../../models';
+import { AuthenticateService } from '../../services/authenticate.service';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-manage-projects',
@@ -11,12 +13,27 @@ export class ManageProjectsComponent implements OnInit {
   public parentTitle = "Home";
   public title = " - Manage projects";
   public subTitle = " - Project";
+  public projects: Project[];
 
-  projects:Project[];
-  constructor() { }
+  constructor(
+    private auth : AuthenticateService,
+    private prjService: ProjectService
+  ) { }
 
   ngOnInit() {
-    this.projects = new projectList().projects;
+    // this.projects = new projectList().projects;
+    if(this.auth.checkLogin()){
+      let userInfo = this.auth.getUsetInfo();
+      this.prjService.getProjectByManagerId(userInfo.id).subscribe(
+        res => {
+          this.projects = res;
+        },
+        err=>{
+          console.log(err);
+        }
+      );
+    }
+    
   }
 
 }

@@ -37,13 +37,13 @@ export class HomeComponent implements OnInit {
           console.log(err);
         });
 
-        this.employeeService.test().subscribe(
-          res => {
-            alert("zo");
-          },
-          err=>{
-            alert("deo zo");
-          });
+        // this.employeeService.test().subscribe(
+        //   res => {
+        //     alert("zo");
+        //   },
+        //   err=>{
+        //     alert("deo zo");
+        //   });
     }
 
 

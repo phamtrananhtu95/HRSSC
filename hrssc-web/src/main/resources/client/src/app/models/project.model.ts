@@ -9,6 +9,8 @@ export class Project {
     company: string;
     status: string;
     matched: number;
+
+    constructor(){};
 }
 
 export class projectList {

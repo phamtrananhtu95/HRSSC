@@ -42,4 +42,9 @@ export class AuthenticateService {
     return userInfo ? userInfo.username : null;
   }
 
+  getUserId(){
+    let userInfo = this.getUsetInfo();
+    return userInfo ? userInfo.id : null;
+  }
+
 }
