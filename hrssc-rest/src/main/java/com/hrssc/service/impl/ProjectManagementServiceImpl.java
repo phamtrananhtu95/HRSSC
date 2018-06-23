@@ -1,9 +1,7 @@
 package com.hrssc.service.impl;
 
-import com.hrssc.entities.PositionRequirements;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.SkillRequirements;
-import com.hrssc.repository.PositionRequirementsRepository;
 import com.hrssc.repository.ProjectRepository;
 import com.hrssc.repository.SkillRequirementsRepository;
 import com.hrssc.service.ProjectManagementService;
@@ -25,8 +23,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     @Autowired
     SkillRequirementsRepository skillRequirementsRepository;
 
-    @Autowired
-    PositionRequirementsRepository positionRequirementsRepository;
+
 
     @Override
     public List<Project> getProjectByManagerId(int managerId) {
@@ -49,20 +46,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             prj.setRequestStatus(project.getRequestStatus());
             prj.setUserId(project.getUserId());
             prj.setCompanyId(project.getCompanyId());
-            prj.setPayment(project.getPayment());
             saveProject(prj);
 
             prj = projectRepository.findByTitleAndUserId(project.getTitle(), project.getUserId());
 
-            for (SkillRequirements skRequirement : project.getSkillRequirementsById()) {
-                skRequirement.setProjectId(prj.getId());
-                saveSkillRequirements(skRequirement);
 
-            }
-            for (PositionRequirements posRequirement : project.getPositionRequirementsById()) {
-                posRequirement.setProjectId(prj.getId());
-                savePositionRequirements(posRequirement);
-            }
             return "Successfully Added a Project.";
         } catch (IncorrectResultSizeDataAccessException e) {
             Logger.getLogger(ProjectManagementServiceImpl.class.getName()).log(Level.INFO, e.toString());
@@ -80,10 +68,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         skillRequirementsRepository.save(skillRequirements);
     }
 
-    @Override
-    public void savePositionRequirements(PositionRequirements positionRequirements) {
-        positionRequirementsRepository.save(positionRequirements);
-    }
+
 
     @Transactional
     @Override
@@ -101,23 +86,10 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             prjEntity.setRequestStatus(project.getRequestStatus());
             prjEntity.setUserId(project.getUserId());
             prjEntity.setCompanyId(project.getCompanyId());
-            prjEntity.setPayment(project.getPayment());
             projectRepository.save(prjEntity);
 
-            for (SkillRequirements sr : skillRequirementsRepository.findByProjectId(project.getId())) {
-                skillRequirementsRepository.delete(sr);
-            }
-            for (SkillRequirements sr : project.getSkillRequirementsById()) {
-                sr.setProjectId(project.getId());
-                skillRequirementsRepository.save(sr);
-            }
-            for (PositionRequirements pr : positionRequirementsRepository.findByProjectId(project.getId())) {
-                positionRequirementsRepository.delete(pr);
-            }
-            for (PositionRequirements pr : project.getPositionRequirementsById()) {
-                pr.setProjectId(project.getId());
-                positionRequirementsRepository.save(pr);
-            }
+
+
             return "Successfully Update Project";
         }catch (RuntimeException e){
             Logger.getLogger(ProjectManagementService.class.getName()).log(Level.INFO,e.toString());

@@ -1,6 +1,5 @@
 package com.hrssc.service;
 
-import com.hrssc.entities.PositionRequirements;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.SkillRequirements;
 
@@ -14,7 +13,7 @@ public interface ProjectManagementService {
     String addProject(Project project);
     void saveProject(Project project);
     void saveSkillRequirements(SkillRequirements skillRequirements);
-    void savePositionRequirements(PositionRequirements positionRequirements);
+//    void savePositionRequirements(PositionRequirements positionRequirements);
 
 
     String updateProject(Project project);

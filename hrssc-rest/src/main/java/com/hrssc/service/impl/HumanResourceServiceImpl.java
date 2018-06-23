@@ -67,7 +67,6 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 		humanResource.setAvailableDate(humanResourceSkill.getAvailableDate());
 		humanResource.setAvailableDuration(humanResourceSkill.getAvailableDuration());
 		humanResource.setCompanyId(humanResourceSkill.getCompanyId());
-		humanResource.setPositionId(humanResourceSkill.getPositionId());
 		humanResource.setUserId(humanResourceSkill.getUserId());
 
 //
@@ -101,7 +100,6 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 			resourceUpdate.setTel(humanResource.getTel());
 			resourceUpdate.setAvailableDate(humanResource.getAvailableDate());
 			resourceUpdate.setAvailableDuration(humanResource.getAvailableDuration());
-			resourceUpdate.setPositionId(humanResource.getPositionId());
 //			resourceUpdate.setResourceSkillsById(humanResource.getResourceSkillsById());
 			humanResourceRepository.save(resourceUpdate);
 

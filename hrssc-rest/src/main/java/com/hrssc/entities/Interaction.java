@@ -7,10 +7,10 @@ import java.util.Objects;
 public class Interaction {
     private int id;
     private String type;
-    private int projectId;
     private int humanResourceId;
-    private Project projectByProjectId;
     private HumanResource humanResourceByHumanResourceId;
+    private int projectRequirementsId;
+    private ProjectRequirements projectRequirementsByProjectRequirementsId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -32,15 +32,7 @@ public class Interaction {
         this.type = type;
     }
 
-    @Basic
-    @Column(name = "project_id", nullable = false)
-    public int getProjectId() {
-        return projectId;
-    }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
-    }
 
     @Basic
     @Column(name = "human_resource_id", nullable = false)
@@ -58,7 +50,7 @@ public class Interaction {
         if (o == null || getClass() != o.getClass()) return false;
         Interaction that = (Interaction) o;
         return id == that.id &&
-                projectId == that.projectId &&
+
                 humanResourceId == that.humanResourceId &&
                 Objects.equals(type, that.type);
     }
@@ -66,18 +58,11 @@ public class Interaction {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, type, projectId, humanResourceId);
+        return Objects.hash(id, type,humanResourceId);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    public Project getProjectByProjectId() {
-        return projectByProjectId;
-    }
 
-    public void setProjectByProjectId(Project projectByProjectId) {
-        this.projectByProjectId = projectByProjectId;
-    }
+
 
     @ManyToOne
     @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
@@ -87,5 +72,25 @@ public class Interaction {
 
     public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
         this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+    }
+
+    @Basic
+    @Column(name = "project_requirements_id")
+    public int getProjectRequirementsId() {
+        return projectRequirementsId;
+    }
+
+    public void setProjectRequirementsId(int projectRequirementsId) {
+        this.projectRequirementsId = projectRequirementsId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    public ProjectRequirements getProjectRequirementsByProjectRequirementsId() {
+        return projectRequirementsByProjectRequirementsId;
+    }
+
+    public void setProjectRequirementsByProjectRequirementsId(ProjectRequirements projectRequirementsByProjectRequirementsId) {
+        this.projectRequirementsByProjectRequirementsId = projectRequirementsByProjectRequirementsId;
     }
 }

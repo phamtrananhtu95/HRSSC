@@ -9,7 +9,8 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Data
-@Entity(name = "human_resource")
+@Entity(name="human_resource")
+@Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
     @JsonView(HumanResourceView.overview.class)
     private int id;
@@ -27,13 +28,12 @@ public class HumanResource {
     private Long availableDuration;
     @JsonView(HumanResourceView.overview.class)
     private int companyId;
-    @JsonView(HumanResourceView.overview.class)
-    private int positionId;
+
     @JsonView(HumanResourceView.overview.class)
     private int userId;
     private Collection<Feedback> feedbacksById;
     private Company companyByCompanyId;
-    private Position positionByPositionId;
+
     private User userByUserId;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
@@ -121,15 +121,7 @@ public class HumanResource {
         this.companyId = companyId;
     }
 
-    @Basic
-    @Column(name = "position_id", nullable = false)
-    public int getPositionId() {
-        return positionId;
-    }
 
-    public void setPositionId(int positionId) {
-        this.positionId = positionId;
-    }
 
     @Basic
     @Column(name = "user_id", nullable = false)
@@ -149,7 +141,6 @@ public class HumanResource {
         return id == that.id &&
                 status == that.status &&
                 companyId == that.companyId &&
-                positionId == that.positionId &&
                 userId == that.userId &&
                 Objects.equals(fullname, that.fullname) &&
                 Objects.equals(email, that.email) &&
@@ -161,7 +152,7 @@ public class HumanResource {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration, companyId, positionId, userId);
+        return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration, companyId, userId);
     }
 
     @OneToMany(mappedBy = "humanResourceByHumanResourceId")
@@ -183,15 +174,7 @@ public class HumanResource {
         this.companyByCompanyId = companyByCompanyId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "position_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    public Position getPositionByPositionId() {
-        return positionByPositionId;
-    }
 
-    public void setPositionByPositionId(Position positionByPositionId) {
-        this.positionByPositionId = positionByPositionId;
-    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
