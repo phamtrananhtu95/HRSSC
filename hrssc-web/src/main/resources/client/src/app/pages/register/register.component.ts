@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() { 
+    
     this.menu.hideMenu(true);
     this.header.hideHeader(true);
   }

@@ -5,7 +5,7 @@ import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { User } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
-
+import {Observable} from 'rxjs/Rx';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

@@ -3,15 +3,18 @@ import { LoginService } from './login.service';
 import { SessionsService } from './sessions.service';
 import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
+import { HeaderService } from '../components/header/header.component.service';
 
 @Injectable()
 export class AuthenticateService {
 
   public USER_INFOR = "user-info";
   public HAS_LOGIN = "has-login";
+  public username = "";
   constructor(
     private session: SessionsService,
-    private router: Router
+    private router: Router,
+    public header: HeaderService
   ) { }
 
 
@@ -30,6 +33,8 @@ export class AuthenticateService {
   }
 
   saveUserInfo(userInfo: any){
+    let username = userInfo ? userInfo.username : null;
+    this.header.setUserNametoHead(username);
     this.session.saveInLocal(this.USER_INFOR, userInfo);
   }
 
@@ -38,7 +43,7 @@ export class AuthenticateService {
   }
 
   getUserName(){
-    let userInfo = this.getUsetInfo();
+    let userInfo = this.getUsetInfo();   
     return userInfo ? userInfo.username : null;
   }
 

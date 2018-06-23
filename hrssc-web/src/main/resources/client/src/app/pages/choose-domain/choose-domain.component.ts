@@ -21,6 +21,7 @@ export class ChooseDomainComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    (<any>window).flagReloadPage = true;
     this.chooseDomain.position = [
       { value: 'Developer', checked: false},
       { value: 'Tester', checked: false },
