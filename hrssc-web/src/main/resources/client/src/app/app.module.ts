@@ -47,6 +47,7 @@ import { CompaniesService } from './services/companies.service';
 import { ChooseDomainService } from './services/choose-domain.service';
 import { ChooseDomain } from './models/chooseDomain.model';
 import { ProjectService } from './services/project.service';
+import { ScriptLoadService } from './services/script-load.service';
 
 const appRoutes: Routes = [
 
@@ -184,7 +185,8 @@ const appRoutes: Routes = [
     CompaniesService,
     ChooseDomainService,
     ChooseDomain,
-    ProjectService
+    ProjectService,
+    ScriptLoadService
   ],
   bootstrap: [AppComponent]
 })

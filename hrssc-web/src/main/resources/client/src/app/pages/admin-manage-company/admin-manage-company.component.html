@@ -6,138 +6,134 @@
   <!-- Content area -->
   <div class="content">
 
-     <!-- resource-project -->
-      <div class="panel panel-flat">
-          <div class="panel-body">
-              <div class="tabbable">
-                  <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-                      <li class="active">
-                          <a href="#highlighted-justified-tab1" data-toggle="tab" aria-expanded="false">Resource</a>
-                      </li>
-                      <li class="">
-                          <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">Project</a>
-                      </li>
-                  </ul>
-                  <div class="tab-content">
-                      <div class="tab-pane active" id="highlighted-justified-tab1">
-                          <div class="row">
-                            <div class="panel-body">
-                              <div class="col-md-3">
-                                <div class="thumbnail no-padding">
-                                  <div class="thumb">
-                                    <img src="assets/images/avatar2.png" alt="">
-                                    <div class="caption-overflow">
-                                      <span>
-                                        <a href="assets/images/avatar.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox">
-                                          <i class="icon-plus2"></i>
-                                        </a>
-                                        <a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs">
-                                          <i class="icon-link"></i>
-                                        </a>
-                                      </span>
-                                    </div>
-                                  </div>
-                      
-                                  <div class="caption text-center">
-                                    <h6 class="text-semibold no-margin">ABC VietNam</h6>
-                                    <ul class="icons-list mt-15">
-                                      <li>
-                                        <a href="#" data-popup="tooltip" title="Google Drive" data-container="body">
-                                          <i class="icon-google-drive"></i>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="#" data-popup="tooltip" title="Twitter" data-container="body">
-                                          <i class="icon-twitter"></i>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="#" data-popup="tooltip" title="Github" data-container="body">
-                                          <i class="icon-github"></i>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <div>
-                                <div class="media-body">
-                                  <h1 class="media-heading">
-                                    <b>Title</b>
-                                  </h1>
-                                  <h4 class="text-semibold">
-                                    <b>Hồ Thái Thiện</b>
-                                  </h4>
-                                  <!-- rating -->
-                                  <div class="rating-block">
-                      
-                                    <!-- <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2> -->
-                                    <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    </button>
-                                  </div>
-                                  <h4>
-                                    <b>
-                                      <i class="icon-location4"></i>Location: Ho Chi Minh</b>
-                                  </h4>
-                                  <h4>
-                                    <b>Description: Lorem</b>
-                                  </h4>
-                                  <h4>
-                                    <b>Posted: 6/3/2018</b>
-                                  </h4>
-                      
-                                </div>
-                                <div class="media-right media-middle">
-                                  <button type="button" class="btn btn-danger btn-rounded btn-xlg" data-toggle="modal" data-target="#modal_form_inline">
-                                    Invite
-                                  </button>
-                                </div>
-                              </div>
+    <!-- resource-project -->
+    <div class="panel panel-flat">
+      <div class="panel-body">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+            <li class="active">
+              <a href="#AvailableTab" data-toggle="tab" aria-expanded="false">Available
+                <span class="badge bg-slate position-right">23</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="#InactiveTab" data-toggle="tab" aria-expanded="true">Inactive
+                <span class="badge bg-slate position-right">10</span>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="AvailableTab">
+              <!-- <div class="row"> -->
+              <div class="panel panel-flat">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-center">
+                      <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Account</th>
+                        <th>Project</th>
+                        <th>Resource</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="media-right">
+                            <img src="assets/images/FPT.jpg" alt="">
+                          </div>
+                        </td>
+                        <td><a href="">FPT Software</a></td>
+                        <td>Ho Chi Minh City</td>
+                        <td>tuhihi</td>
+                        <td>(5)</td>
+                        <td>(6)</td>
+                        <td>
+                          <button type="submit" class="btn btn-danger">Deactive</button>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>
+                            <div class="media-right">
+                              <img src="assets/images/FPT.jpg" alt="">
                             </div>
-                          </div>
-                      </div>
-                      <div class="tab-pane" id="highlighted-justified-tab2">
-                          <div class="row">
-                              <div class="col-lg-6 col-md-6" *ngFor="let project of projects">
-                                  <div class="panel panel-body" id="resource" (click)="viewProjectDetail(project)">
-                                      <div class="media">
-                                          <div class="media-left">
-                                              <a href="assets/images/evolable-asia-logo-170-151.png" data-popup="lightbox">
-                                                  <img src="assets/images/evolable-asia-logo-170-151.png" class="img-circle img-lg" alt="">
-                                              </a>
-                                          </div>
-                                          <div class="media-body">
-                                              <h6 class="media-heading">{{project.name}}</h6>
-                                              <span class="text-muted">{{project.company}}</span>
-                                          </div>
-                                          <div class="media-body">
-                                              <h6 class="media-heading">{{project.skill}}</h6>
-                                              <span class="text-muted">25-5-2018</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-    <div class="panel panel-success">
+                          </td>
+                          <td>FPT Software</td>
+                          <td>Ho Chi Minh City</td>
+                          <td>tuhihi</td>
+                          <td>(5)</td>
+                          <td>(6)</td>
+                          <td>
+                            <button type="submit" class="btn btn-danger">Deactive</button>
+                          </td>
+                        </tr>
 
+                        
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="tab-pane" id="InactiveTab">
+                <div class="panel panel-flat">
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead class="text-center">
+                          <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Account</th>
+                            <th>Project</th>
+                            <th>Resource</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="media-right">
+                                <img src="assets/images/FPT.jpg" alt="">
+                              </div>
+                            </td>
+                            <td><a href="">FPT Software</a></td>
+                            <td>Ho Chi Minh City</td>
+                            <td>tuhihi</td>
+                            <td>(5)</td>
+                            <td>(6)</td>
+                            <td>
+                              <button type="submit" class="btn btn-success">Activate</button>
+                            </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                <div class="media-right">
+                                  <img src="assets/images/FPT.jpg" alt="">
+                                </div>
+                              </td>
+                              <td>FPT Software</td>
+                              <td>Ho Chi Minh City</td>
+                              <td>tuhihi</td>
+                              <td>(5)</td>
+                              <td>(6)</td>
+                              <td>
+                                <button type="submit" class="btn btn-success">Activate</button>
+                              </td>
+                            </tr>
+    
+                            
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- End Content Area -->

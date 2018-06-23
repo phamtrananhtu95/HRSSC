@@ -10,6 +10,7 @@ export class AdminManageCompanyComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    (<any>window).flagReloadPage = true;
   }
 
 }

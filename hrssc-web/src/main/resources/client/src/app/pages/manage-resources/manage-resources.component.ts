@@ -13,12 +13,15 @@ export class ManageResourcesComponent implements OnInit {
   public subTitle = " - Resource";
   
   
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
+    
     // title:""
     // this.resources = new UserList().users;
     // this.titleService.setTile("Home","Manager resource","Resource");
   }
+
 
 }
