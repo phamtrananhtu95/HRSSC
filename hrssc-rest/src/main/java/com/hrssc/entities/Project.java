@@ -29,14 +29,10 @@ public class Project {
     @JsonView(ProjectView.ListView.class)
     private int userId;
     private int companyId;
-    private String payment;
-    private Collection<Interaction> interactionsById;
-    private Collection<Job> jobsById;
     private Collection<Notification> notificationsById;
-    private Collection<PositionRequirements> positionRequirementsById;
     private User userByUserId;
     private Company companyByCompanyId;
-    private Collection<SkillRequirements> skillRequirementsById;
+    private Collection<ProjectRequirements> projectRequirementsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -158,15 +154,6 @@ public class Project {
         this.companyId = companyId;
     }
 
-    @Basic
-    @Column(name = "payment", nullable = false, length = 45)
-    public String getPayment() {
-        return payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -184,33 +171,18 @@ public class Project {
                 Objects.equals(title, project.title) &&
                 Objects.equals(description, project.description) &&
                 Objects.equals(type, project.type) &&
-                Objects.equals(domain, project.domain) &&
-                Objects.equals(payment, project.payment);
+                Objects.equals(domain, project.domain);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, userId, companyId, payment);
+        return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, userId, companyId);
     }
 
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<Interaction> getInteractionsById() {
-        return interactionsById;
-    }
 
-    public void setInteractionsById(Collection<Interaction> interactionsById) {
-        this.interactionsById = interactionsById;
-    }
 
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<Job> getJobsById() {
-        return jobsById;
-    }
 
-    public void setJobsById(Collection<Job> jobsById) {
-        this.jobsById = jobsById;
-    }
 
     @OneToMany(mappedBy = "projectByProjectId")
     public Collection<Notification> getNotificationsById() {
@@ -221,14 +193,6 @@ public class Project {
         this.notificationsById = notificationsById;
     }
 
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<PositionRequirements> getPositionRequirementsById() {
-        return positionRequirementsById;
-    }
-
-    public void setPositionRequirementsById(Collection<PositionRequirements> positionRequirementsById) {
-        this.positionRequirementsById = positionRequirementsById;
-    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
@@ -250,12 +214,14 @@ public class Project {
         this.companyByCompanyId = companyByCompanyId;
     }
 
+
+
     @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<SkillRequirements> getSkillRequirementsById() {
-        return skillRequirementsById;
+    public Collection<ProjectRequirements> getProjectRequirementsById() {
+        return projectRequirementsById;
     }
 
-    public void setSkillRequirementsById(Collection<SkillRequirements> skillRequirementsById) {
-        this.skillRequirementsById = skillRequirementsById;
+    public void setProjectRequirementsById(Collection<ProjectRequirements> projectRequirementsById) {
+        this.projectRequirementsById = projectRequirementsById;
     }
 }

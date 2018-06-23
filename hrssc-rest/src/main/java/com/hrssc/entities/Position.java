@@ -13,10 +13,9 @@ public class Position {
     private int id;
     @JsonView(MiscView.FullView.class)
     private String title;
-    @JsonView(MiscView.FullView.class)
-    private String level;
-    private Collection<HumanResource> humanResourcesById;
-    private Collection<PositionRequirements> positionRequirementsById;
+
+    private Collection<ProjectRequirements> projectRequirementsById;
+    private Collection<Skill> skillsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -38,15 +37,7 @@ public class Position {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "level", nullable = false, length = 45)
-    public String getLevel() {
-        return level;
-    }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,31 +45,31 @@ public class Position {
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return id == position.id &&
-                Objects.equals(title, position.title) &&
-                Objects.equals(level, position.level);
+                Objects.equals(title, position.title);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, level);
+        return Objects.hash(id, title);
+    }
+
+
+    @OneToMany(mappedBy = "positionByPositionId")
+    public Collection<ProjectRequirements> getProjectRequirementsById() {
+        return projectRequirementsById;
+    }
+
+    public void setProjectRequirementsById(Collection<ProjectRequirements> projectRequirementsById) {
+        this.projectRequirementsById = projectRequirementsById;
     }
 
     @OneToMany(mappedBy = "positionByPositionId")
-    public Collection<HumanResource> getHumanResourcesById() {
-        return humanResourcesById;
+    public Collection<Skill> getSkillsById() {
+        return skillsById;
     }
 
-    public void setHumanResourcesById(Collection<HumanResource> humanResourcesById) {
-        this.humanResourcesById = humanResourcesById;
-    }
-
-    @OneToMany(mappedBy = "positionByPositionId")
-    public Collection<PositionRequirements> getPositionRequirementsById() {
-        return positionRequirementsById;
-    }
-
-    public void setPositionRequirementsById(Collection<PositionRequirements> positionRequirementsById) {
-        this.positionRequirementsById = positionRequirementsById;
+    public void setSkillsById(Collection<Skill> skillsById) {
+        this.skillsById = skillsById;
     }
 }

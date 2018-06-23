@@ -15,6 +15,8 @@ public class Skill {
     private String title;
     private Collection<ResourceSkills> resourceSkillsById;
     private Collection<SkillRequirements> skillRequirementsById;
+    private int positionId;
+    private Position positionByPositionId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -67,5 +69,25 @@ public class Skill {
 
     public void setSkillRequirementsById(Collection<SkillRequirements> skillRequirementsById) {
         this.skillRequirementsById = skillRequirementsById;
+    }
+
+    @Basic
+    @Column(name = "position_id")
+    public int getPositionId() {
+        return positionId;
+    }
+
+    public void setPositionId(int positionId) {
+        this.positionId = positionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "position_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Position getPositionByPositionId() {
+        return positionByPositionId;
+    }
+
+    public void setPositionByPositionId(Position positionByPositionId) {
+        this.positionByPositionId = positionByPositionId;
     }
 }

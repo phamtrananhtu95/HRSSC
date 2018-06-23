@@ -8,10 +8,10 @@ import java.util.Objects;
 public class SkillRequirements {
     private int id;
     private int skillId;
-    private int projectId;
     private Skill skillBySkillId;
-    private Project projectByProjectId;
     private double experience;
+    private int projectRequirementsId;
+    private ProjectRequirements projectRequirementsByProjectRequirementsId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,15 +34,9 @@ public class SkillRequirements {
         this.skillId = skillId;
     }
 
-    @Basic
-    @Column(name = "project_id", nullable = false)
-    public int getProjectId() {
-        return projectId;
-    }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
-    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -50,14 +44,13 @@ public class SkillRequirements {
         if (o == null || getClass() != o.getClass()) return false;
         SkillRequirements that = (SkillRequirements) o;
         return id == that.id &&
-                skillId == that.skillId &&
-                projectId == that.projectId;
+                skillId == that.skillId;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, skillId, projectId);
+        return Objects.hash(id, skillId);
     }
 
     @ManyToOne
@@ -70,15 +63,6 @@ public class SkillRequirements {
         this.skillBySkillId = skillBySkillId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    public Project getProjectByProjectId() {
-        return projectByProjectId;
-    }
-
-    public void setProjectByProjectId(Project projectByProjectId) {
-        this.projectByProjectId = projectByProjectId;
-    }
 
     @Basic
     @Column(name = "experience")
@@ -88,5 +72,17 @@ public class SkillRequirements {
 
     public void setExperience(double experience) {
         this.experience = experience;
+    }
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false)
+    public ProjectRequirements getProjectRequirementsByProjectRequirementsId() {
+        return projectRequirementsByProjectRequirementsId;
+    }
+
+    public void setProjectRequirementsByProjectRequirementsId(ProjectRequirements projectRequirementsByProjectRequirementsId) {
+        this.projectRequirementsByProjectRequirementsId = projectRequirementsByProjectRequirementsId;
     }
 }

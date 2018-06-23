@@ -6,11 +6,14 @@ import java.util.Objects;
 @Entity
 public class Job {
     private int id;
-    private Long timestamp;
-    private int projectId;
+
     private int humanResourceId;
-    private Project projectByProjectId;
+
     private HumanResource humanResourceByHumanResourceId;
+    private long joinedate;
+    private long leaveDate;
+    private int projectRequirementsId;
+    private ProjectRequirements projectRequirementsByProjectRequirementsId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -22,25 +25,8 @@ public class Job {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "timestamp", nullable = true)
-    public Long getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
 
-    @Basic
-    @Column(name = "project_id", nullable = false)
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
-    }
 
     @Basic
     @Column(name = "human_resource_id", nullable = false)
@@ -58,26 +44,16 @@ public class Job {
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
         return id == job.id &&
-                projectId == job.projectId &&
-                humanResourceId == job.humanResourceId &&
-                Objects.equals(timestamp, job.timestamp);
+
+                humanResourceId == job.humanResourceId;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, timestamp, projectId, humanResourceId);
+        return Objects.hash(id, humanResourceId);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    public Project getProjectByProjectId() {
-        return projectByProjectId;
-    }
-
-    public void setProjectByProjectId(Project projectByProjectId) {
-        this.projectByProjectId = projectByProjectId;
-    }
 
     @ManyToOne
     @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
@@ -87,5 +63,45 @@ public class Job {
 
     public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
         this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+    }
+
+    @Basic
+    @Column(name = "joined_date")
+    public long getJoinedate() {
+        return joinedate;
+    }
+
+    public void setJoinedate(long joinedate) {
+        this.joinedate = joinedate;
+    }
+
+    @Basic
+    @Column(name = "leave_date")
+    public long getLeaveDate() {
+        return leaveDate;
+    }
+
+    public void setLeaveDate(long leaveDate) {
+        this.leaveDate = leaveDate;
+    }
+
+    @Basic
+    @Column(name = "project_requirements_id")
+    public int getProjectRequirementsId() {
+        return projectRequirementsId;
+    }
+
+    public void setProjectRequirementsId(int projectRequirementsId) {
+        this.projectRequirementsId = projectRequirementsId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    public ProjectRequirements getProjectRequirementsByProjectRequirementsId() {
+        return projectRequirementsByProjectRequirementsId;
+    }
+
+    public void setProjectRequirementsByProjectRequirementsId(ProjectRequirements projectRequirementsByProjectRequirementsId) {
+        this.projectRequirementsByProjectRequirementsId = projectRequirementsByProjectRequirementsId;
     }
 }
