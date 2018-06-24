@@ -19,6 +19,7 @@ public class ProjectRequirements {
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -59,7 +60,7 @@ public class ProjectRequirements {
     }
 
     @Basic
-    @Column(name = "isAssigned")
+    @Column(name = "is_assigned")
     public boolean isAssigned() {
         return isAssigned;
     }

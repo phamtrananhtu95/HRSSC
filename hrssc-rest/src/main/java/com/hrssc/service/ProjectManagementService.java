@@ -13,7 +13,6 @@ public interface ProjectManagementService {
     String addProject(Project project);
     void saveProject(Project project);
     void saveSkillRequirements(SkillRequirements skillRequirements);
-//    void savePositionRequirements(PositionRequirements positionRequirements);
 
 
     String updateProject(Project project);

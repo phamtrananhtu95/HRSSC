@@ -11,7 +11,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="com:hrssc:persistence.xml" value="c17af46a-ad78-423f-a76e-c4f1e1179112" />
+          <unit-entry name="com:hrssc:persistence.xml" value="28dd7de8-544e-4f4e-aecb-bfbf4326ed00" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/java/com/hrssc/persistence.xml" />

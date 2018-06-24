@@ -35,7 +35,15 @@ public class SkillRequirements {
     }
 
 
+    @Basic
+    @Column(name = "project_requirements_id", nullable = false)
+    public int getProjectRequirementsId() {
+        return projectRequirementsId;
+    }
 
+    public void setProjectRequirementsId(int skillId) {
+        this.projectRequirementsId = skillId;
+    }
 
 
     @Override
@@ -77,7 +85,7 @@ public class SkillRequirements {
 
 
     @ManyToOne
-    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
     public ProjectRequirements getProjectRequirementsByProjectRequirementsId() {
         return projectRequirementsByProjectRequirementsId;
     }
