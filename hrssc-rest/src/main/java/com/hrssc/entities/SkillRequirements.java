@@ -18,6 +18,8 @@ public class SkillRequirements {
     private Skill skillBySkillId;
     @JsonView(ProjectView.ListView.class)
     private double experience;
+
+    private int quantity;
     private int projectRequirementsId;
     private ProjectRequirements projectRequirementsByProjectRequirementsId;
 
@@ -53,6 +55,15 @@ public class SkillRequirements {
         this.projectRequirementsId = skillId;
     }
 
+    @Basic
+    @Column(name = "quantity", nullable = false)
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     @Override
     public boolean equals(Object o) {

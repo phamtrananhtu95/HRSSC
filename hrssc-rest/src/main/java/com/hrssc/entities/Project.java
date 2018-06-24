@@ -20,6 +20,7 @@ public class Project {
     private long endDate;
     @JsonView(ProjectView.ListView.class)
     private long duration;
+    @JsonView(ProjectView.ListView.class)
     private String type;
     private String domain;
     @JsonView(ProjectView.ListView.class)

@@ -138,6 +138,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                     skillReqEntity.setProjectRequirementsId(requirementsEntity.getId());
                     skillReqEntity.setExperience(skillReq.getExperience());
                     skillReqEntity.setSkillId(skillReq.getSkillId());
+                    skillReqEntity.setQuantity(skillReq.getQuantity());
                     skillRequirementsRepository.save(skillReqEntity);
                     //Xóa skill đã được update khỏi skillList.
                     for(SkillRequirements skr: skillList){
