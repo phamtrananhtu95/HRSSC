@@ -1,14 +1,22 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ProjectView;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "skill_requirements", schema = "hrssc", catalog = "")
 public class SkillRequirements {
+    @JsonView(ProjectView.ListView.class)
     private int id;
+
     private int skillId;
+
+    @JsonView(ProjectView.ListView.class)
     private Skill skillBySkillId;
+    @JsonView(ProjectView.ListView.class)
     private double experience;
     private int projectRequirementsId;
     private ProjectRequirements projectRequirementsByProjectRequirementsId;

@@ -2,6 +2,7 @@ package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.MiscView;
+import com.hrssc.domain.jacksonview.ProjectView;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -9,9 +10,9 @@ import java.util.Objects;
 
 @Entity
 public class Position {
-    @JsonView(MiscView.FullView.class)
+    @JsonView({MiscView.FullView.class, ProjectView.ListView.class})
     private int id;
-    @JsonView(MiscView.FullView.class)
+    @JsonView({MiscView.FullView.class, ProjectView.ListView.class})
     private String title;
 
     private Collection<ProjectRequirements> projectRequirementsById;

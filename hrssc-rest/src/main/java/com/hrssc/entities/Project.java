@@ -28,10 +28,13 @@ public class Project {
     private int requestStatus;
     @JsonView(ProjectView.ListView.class)
     private int userId;
+    @JsonView(ProjectView.ListView.class)
     private int companyId;
     private Collection<Notification> notificationsById;
     private User userByUserId;
     private Company companyByCompanyId;
+
+    @JsonView(ProjectView.ListView.class)
     private Collection<ProjectRequirements> projectRequirementsById;
 
     @Id

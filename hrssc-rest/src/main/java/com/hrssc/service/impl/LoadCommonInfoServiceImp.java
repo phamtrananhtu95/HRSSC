@@ -27,4 +27,9 @@ public class LoadCommonInfoServiceImp implements LoadCommonInfoService {
     public List<Position> loadAllPosition() {
         return positionRepository.findAll();
     }
+
+    @Override
+    public List<Skill> loadSkillByPosition(int positionId){
+        return skillRepository.findByPositionId(positionId);
+    }
 }

@@ -1,5 +1,8 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ProjectView;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -7,15 +10,21 @@ import java.util.Objects;
 @Entity
 @Table(name = "project_requirements", schema = "hrssc", catalog = "")
 public class ProjectRequirements {
+    @JsonView(ProjectView.ListView.class)
     private int id;
+    @JsonView(ProjectView.ListView.class)
     private int payment;
+
     private int positionId;
     private int projectId;
     private boolean isAssigned;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
+    @JsonView(ProjectView.ListView.class)
     private Position positionByPositionId;
     private Project projectByProjectId;
+
+    @JsonView(ProjectView.ListView.class)
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id

@@ -9,5 +9,6 @@ public interface LoadCommonInfoService {
 
     List<Skill> loadAllSkill();
 
+    List<Skill> loadSkillByPosition(int positionId);
     List<Position> loadAllPosition();
 }

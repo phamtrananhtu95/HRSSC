@@ -9,4 +9,5 @@ public interface ProjectRequirementRepository extends JpaRepository<ProjectRequi
     ProjectRequirements  findByProjectIdAndPositionIdAndPayment(int prjId, int positionId, int payment);
     List<ProjectRequirements> findByProjectId(int id);
     ProjectRequirements findById(int id);
+
 }

@@ -31,7 +31,8 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Override
     public List<Project> getProjectByManagerId(int managerId) {
-        return projectRepository.getProjectByUserId(managerId);
+        List<Project> a = projectRepository.getProjectByUserId(managerId);
+        return a;
     }
 
     @Transactional
