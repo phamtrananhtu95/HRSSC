@@ -10,13 +10,13 @@ import java.util.Objects;
 
 @Entity
 public class Skill {
-    @JsonView({MiscView.FullView.class, ProjectView.ListView.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class})
     private int id;
-    @JsonView({MiscView.FullView.class, ProjectView.ListView.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class})
     private String title;
     private Collection<ResourceSkills> resourceSkillsById;
     private Collection<SkillRequirements> skillRequirementsById;
-    @JsonView(MiscView.FullView.class)
+    @JsonView(MiscView.ShortView.class)
     private int positionId;
     private Position positionByPositionId;
 

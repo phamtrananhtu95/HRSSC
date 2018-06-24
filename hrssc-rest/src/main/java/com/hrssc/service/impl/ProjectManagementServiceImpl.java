@@ -1,5 +1,6 @@
 package com.hrssc.service.impl;
 
+import com.hrssc.domain.Constant;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.ProjectRequirements;
 import com.hrssc.entities.SkillRequirements;
@@ -87,7 +88,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     public String updateProject(Project project) {
         try {
             Project prjEntity = projectRepository.findById(project.getId());
-            if(prjEntity == null){
+            if (prjEntity == null) {
                 return "Error Occured, Update Failed.";
             }
             prjEntity.setTitle(project.getTitle());
@@ -124,7 +125,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 projectRequirementRepository.save(requirementsEntity);
                 requirementsEntity = projectRequirementRepository.findByProjectIdAndPositionIdAndPayment
                         (requirementsEntity.getProjectId()
-                                ,requirementsEntity.getPositionId()
+                                , requirementsEntity.getPositionId()
                                 , requirementsEntity.getPayment());
 
                 //Update Skill của requirement
@@ -138,10 +139,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                     skillReqEntity.setProjectRequirementsId(requirementsEntity.getId());
                     skillReqEntity.setExperience(skillReq.getExperience());
                     skillReqEntity.setSkillId(skillReq.getSkillId());
+                    skillReqEntity.setQuantity(skillReq.getQuantity());
                     skillRequirementsRepository.save(skillReqEntity);
                     //Xóa skill đã được update khỏi skillList.
-                    for(SkillRequirements skr: skillList){
-                        if(skr.getId() == skillReqEntity.getId()){
+                    for (SkillRequirements skr : skillList) {
+                        if (skr.getId() == skillReqEntity.getId()) {
                             skillList.remove(skr);
                             break;
                         }
@@ -149,15 +151,14 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 }
                 //Nếu toàn bộ skill đã được update, nhưng skillList vẫn còn skill thì có nghĩa là đó là những skill đã bị xóa trên FE nhưng vẫn còn dưới DB
                 //Tiến hành xóa những skill đó khỏi DB
-                for(SkillRequirements deleteSKR: skillList){
+                for (SkillRequirements deleteSKR : skillList) {
                     skillRequirementsRepository.delete(deleteSKR);
                 }
 
 
-
                 //Xóa requirement đã được khỏi requirementList
-                for(ProjectRequirements pr:requirementList ){
-                    if(pr.getId() == requirementsEntity.getId()){
+                for (ProjectRequirements pr : requirementList) {
+                    if (pr.getId() == requirementsEntity.getId()) {
                         requirementList.remove(pr);
                         break;
                     }
@@ -166,7 +167,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
             //Nếu toàn bộ requirement đã được update, nhưng requirementList vẫn còn requirement thì có nghĩa là đó là những requirement đã bị xóa trên FE nhưng vẫn còn dưới DB
             //Tiến hành xóa những requirement đó khỏi DB
-            for(ProjectRequirements deletePR: requirementList){
+            for (ProjectRequirements deletePR : requirementList) {
                 skillRequirementsRepository.deleteByProjectRequirementsId(deletePR.getId());
                 projectRequirementRepository.delete(deletePR);
             }
@@ -180,5 +181,40 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     }
 
+    @Transactional
+    @Override
+    public String updateStatus(Project project) {
+        Project prjEntity = projectRepository.findById(project.getId());
+
+        if (prjEntity != null) {
+            int requestStatus = project.getRequestStatus();
+            if (requestStatus == Constant.RequestStatus.REMOVED) {
+                prjEntity.setRequestStatus(Constant.RequestStatus.REMOVED);
+            }
+            if (requestStatus == Constant.RequestStatus.OPENNING) {
+                prjEntity.setRequestStatus(Constant.RequestStatus.OPENNING);
+            }
+            if (requestStatus == Constant.RequestStatus.CLOSED) {
+                prjEntity.setRequestStatus(Constant.RequestStatus.CLOSED);
+            }
+
+            int proccessStatus = project.getProcessStatus();
+            if (proccessStatus == Constant.ProjectProcess.PENDING) {
+                prjEntity.setProcessStatus(Constant.ProjectProcess.PENDING);
+            }
+            if (proccessStatus == Constant.ProjectProcess.FINISHED) {
+                prjEntity.setProcessStatus(Constant.ProjectProcess.FINISHED);
+            }
+            if (proccessStatus == Constant.ProjectProcess.ON_GOING) {
+                prjEntity.setProcessStatus(Constant.ProjectProcess.ON_GOING);
+            }
+
+            projectRepository.save(prjEntity);
+            return "Successfully Update Project Status.";
+        }
+        return "Error Occured, Update has failed.";
+
+
+    }
 }
 

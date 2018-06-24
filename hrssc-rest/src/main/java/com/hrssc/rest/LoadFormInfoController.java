@@ -6,7 +6,6 @@ import com.hrssc.entities.Position;
 import com.hrssc.entities.Skill;
 import com.hrssc.service.LoadCommonInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,20 +20,22 @@ public class LoadFormInfoController {
     @Autowired
     LoadCommonInfoService loadCommonInfoService;
 
-    @JsonView(MiscView.FullView.class)
+    @JsonView(MiscView.ShortView.class)
     @GetMapping("/skills")
     public List<Skill> getAllSkills(){
        return loadCommonInfoService.loadAllSkill();
     }
 
-    @JsonView(MiscView.FullView.class)
+    @JsonView(MiscView.FormInfo.class)
     @GetMapping("/positions")
     public List<Position> getAllPositions(){
         return loadCommonInfoService.loadAllPosition();
     }
 
-    @GetMapping("/get-skill-by-position-{positionId}")
+    @JsonView(MiscView.ShortView.class)
+    @GetMapping("/get-skill-by-position/{positionId}")
     public List<Skill> getSkillByPosition(@PathVariable(value = "positionId") int positionId){
        return loadCommonInfoService.loadSkillByPosition(positionId);
     }
+
 }

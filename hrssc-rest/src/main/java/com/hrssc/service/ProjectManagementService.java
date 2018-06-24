@@ -16,4 +16,5 @@ public interface ProjectManagementService {
 
 
     String updateProject(Project project);
+    String updateStatus(Project project);
 }
