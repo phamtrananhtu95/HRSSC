@@ -11,4 +11,5 @@ public interface LoadCommonInfoService {
 
     List<Skill> loadSkillByPosition(int positionId);
     List<Position> loadAllPosition();
+
 }

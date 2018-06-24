@@ -10,12 +10,14 @@ import java.util.Objects;
 
 @Entity
 public class Position {
-    @JsonView({MiscView.FullView.class, ProjectView.ListView.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class})
     private int id;
-    @JsonView({MiscView.FullView.class, ProjectView.ListView.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class})
     private String title;
 
     private Collection<ProjectRequirements> projectRequirementsById;
+
+    @JsonView(MiscView.FormInfo.class)
     private Collection<Skill> skillsById;
 
     @Id
