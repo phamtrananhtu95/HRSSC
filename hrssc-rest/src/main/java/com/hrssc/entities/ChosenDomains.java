@@ -22,6 +22,7 @@ public class ChosenDomains {
     private User userByUserId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

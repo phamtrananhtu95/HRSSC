@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,10 +31,12 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     @Autowired
     ProjectRequirementRepository projectRequirementRepository;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Override
     public List<Project> getProjectByManagerId(int managerId) {
-        List<Project> a = projectRepository.getProjectByUserId(managerId);
-        return a;
+        return projectRepository.getProjectByUserId(managerId);
     }
 
     @Transactional
@@ -52,8 +55,9 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             prj.setRequestStatus(project.getRequestStatus());
             prj.setUserId(project.getUserId());
             prj.setCompanyId(project.getCompanyId());
-            saveProject(prj);
-            prj = projectRepository.findByTitleAndUserId(project.getTitle(), project.getUserId());
+            prj = projectRepository.save(prj);
+//            prj = projectRepository.findByTitleAndUserId(prj.getTitle(), prj.getUserId());
+
 
             for (ProjectRequirements prjReq : project.getProjectRequirementsById()) {
                 prjReq.setProjectId(prj.getId());
@@ -100,7 +104,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             prjEntity.setDomain(project.getDomain());
             prjEntity.setProcessStatus(project.getProcessStatus());
             prjEntity.setRequestStatus(project.getRequestStatus());
-            projectRepository.save(prjEntity);
+            prjEntity = projectRepository.save(prjEntity);
 
             List<ProjectRequirements> requirementList = projectRequirementRepository.findByProjectId(project.getId());
 
@@ -122,13 +126,13 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 requirementsEntity.setProjectId(project.getId());
                 requirementsEntity.setPayment(requirement.getPayment());
                 requirementsEntity.setPositionId(requirement.getPositionId());
-                projectRequirementRepository.save(requirementsEntity);
-                requirementsEntity = projectRequirementRepository.findByProjectIdAndPositionIdAndPayment
-                        (requirementsEntity.getProjectId()
-                                , requirementsEntity.getPositionId()
-                                , requirementsEntity.getPayment());
+                requirementsEntity.setQuantity(requirement.getQuantity());
+                requirementsEntity = projectRequirementRepository.save(requirementsEntity);
+//                requirementsEntity = projectRequirementRepository.findByProjectIdAndPositionIdAndPayment(
+//                        requirementsEntity.getProjectId(),requirementsEntity.getPositionId(),requirementsEntity.getPayment()
+//                );
 
-                //Update Skill của requirement
+                        //Update Skill của requirement
                 List<SkillRequirements> skillList = skillRequirementsRepository.findByProjectRequirementsId(requirementsEntity.getId());
                 for (SkillRequirements skillReq : requirement.getSkillRequirementsById()) {
                     SkillRequirements skillReqEntity = skillRequirementsRepository.findById(skillReq.getId());
@@ -139,7 +143,6 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                     skillReqEntity.setProjectRequirementsId(requirementsEntity.getId());
                     skillReqEntity.setExperience(skillReq.getExperience());
                     skillReqEntity.setSkillId(skillReq.getSkillId());
-                    skillReqEntity.setQuantity(skillReq.getQuantity());
                     skillRequirementsRepository.save(skillReqEntity);
                     //Xóa skill đã được update khỏi skillList.
                     for (SkillRequirements skr : skillList) {

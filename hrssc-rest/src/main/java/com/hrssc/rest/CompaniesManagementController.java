@@ -14,7 +14,7 @@ public class CompaniesManagementController {
     @Autowired
     CompaniesManagementService companiesManagementService;
 
-    @GetMapping(value = "**/all-requests")
+    @GetMapping(value = "/all-requests")
     private List<TemporaryInfo> loadAllRequest(){
         List<TemporaryInfo> requestList = companiesManagementService.loadAllRequest();
 
@@ -22,9 +22,14 @@ public class CompaniesManagementController {
 
     }
 
-    @PostMapping(value = "**/accept-company/{tempId}")
-    private boolean acceptCompany(@PathVariable("tempId") String tempInfoId){
-        return companiesManagementService.acceptCompany(Integer.parseInt(tempInfoId));
+
+    @PostMapping(value = "/accept-company/{tempId}")
+    private boolean acceptCompany(@PathVariable("tempId") int tempInfoId){
+        return companiesManagementService.acceptCompany(tempInfoId);
     }
 
+    @PostMapping(value = "/reject-company/{tempId}")
+    private void rejectCompany(@PathVariable(value ="tempId") int tempId){
+        companiesManagementService.removeTempInfo(tempId);
+    }
 }

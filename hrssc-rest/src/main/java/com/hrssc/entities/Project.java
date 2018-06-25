@@ -39,6 +39,7 @@ public class Project {
     private Collection<ProjectRequirements> projectRequirementsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -2,13 +2,17 @@ package com.hrssc.domain.ranking;
 
 import com.hrssc.entities.*;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScoreRanker {
     private double baseSkillScore;
     private double baseDomainScore;
     private double baseTypeScore;
+    private double baseSalaryScore;
+
     private double similarityMultipler;
     private double ratingMultipler;
 
@@ -99,10 +103,29 @@ public class ScoreRanker {
         }
         return this.getBaseSkillScore() * multipler;
     }
-    private double calculateDomainScore(){
+    private double calculateDomainScore(HumanResource resource, Project project){
+        if(resource.getJobsById() == null){
+            return 0;
+        }
+        for(Job job: resource.getJobsById()){
+           String rscDomain = job.getProjectRequirementsByProjectRequirementsId().getProjectByProjectId().getDomain();
+           if(rscDomain.equals(project.getDomain())){
+               return baseDomainScore;
+           }
+        }
         return 0;
+
     }
-    private double calculateTypeScore(){
+    private double calculateTypeScore(HumanResource resource, Project project){
+        if(resource.getJobsById() == null){
+            return 0;
+        }
+        for(Job job: resource.getJobsById()){
+            String rscDomain = job.getProjectRequirementsByProjectRequirementsId().getProjectByProjectId().getType();
+            if(rscDomain.equals(project.getType())){
+                return baseTypeScore;
+            }
+        }
         return 0;
     }
     private double calculateSalaryScore(){
@@ -110,8 +133,8 @@ public class ScoreRanker {
     }
     private double calculateSimilarityScore(HumanResource resource, Project project){
         double skill = calculateSkillScore(findSimilarSkills(resource,project));
-        double type = calculateTypeScore();
-        double domain = calculateDomainScore();
+        double type = calculateTypeScore(resource,project);
+        double domain = calculateDomainScore(resource,project);
         double salary = calculateSalaryScore();
         return skill + type + domain + salary;
     }

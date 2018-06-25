@@ -16,6 +16,7 @@ public class Notification {
     private Project projectByProjectId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -40,6 +40,7 @@ public class User {
     private Company companyByCompanyId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

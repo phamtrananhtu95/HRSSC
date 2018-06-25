@@ -15,6 +15,7 @@ public class Feedback {
     private HumanResource humanResourceByHumanResourceId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

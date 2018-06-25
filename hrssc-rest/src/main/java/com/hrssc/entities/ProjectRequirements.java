@@ -14,7 +14,7 @@ public class ProjectRequirements {
     private int id;
     @JsonView(ProjectView.ListView.class)
     private int payment;
-
+    private int quantity;
     private int positionId;
     private int projectId;
     private boolean isAssigned;
@@ -28,7 +28,7 @@ public class ProjectRequirements {
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -68,6 +68,15 @@ public class ProjectRequirements {
         this.projectId = projectId;
     }
 
+    @Basic
+    @Column(name = "quantity", nullable = false)
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
     @Basic
     @Column(name = "is_assigned")
     public boolean isAssigned() {

@@ -89,6 +89,8 @@ public class CompaniesManagementServiceImpl implements CompaniesManagementServic
             user.setStatus(Constant.UserStatus.ACTIVATED);
             userRepo.save(user);
     }
+
+    @Override
     public void removeTempInfo(int id){
             TemporaryInfo temp = tempInfoRepo.findById(id);
                 tempInfoRepo.delete(temp);

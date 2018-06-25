@@ -21,6 +21,7 @@ public class Position {
     private Collection<Skill> skillsById;
 
     @Id
+
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
