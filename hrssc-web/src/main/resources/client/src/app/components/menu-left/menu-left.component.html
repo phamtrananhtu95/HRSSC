@@ -15,12 +15,16 @@
       </li>
       <li>
         <a href="#">
-          <i class="icon-stack2"></i>
+          <i class="icon-users"></i>
           <span>Manage resources</span>
         </a>
         <ul>
           <li>
-            <a [routerLink]="['manager/resource']">Resource</a>
+            <a [routerLink]="['manager/resource']">
+              <span>Resource
+                <span class="label bg-blue-400">2</span>
+              </span>
+            </a>
           </li>
           <li class="navigation-divider"></li>
           <li>
@@ -34,7 +38,7 @@
       </li>
       <li>
         <a href="#">
-          <i class="icon-copy"></i>
+          <i class="icon-stack2"></i>
           <span>Manage project</span>
         </a>
         <ul>
@@ -51,9 +55,10 @@
           </li>
         </ul>
       </li>
+
       <li>
         <a href="#">
-          <i class="icon-copy"></i>
+          <i class="icon-home7"></i>
           <span>Manage company</span>
         </a>
         <ul>
@@ -67,6 +72,19 @@
                 <span class="label bg-blue-400">2</span>
               </span>
             </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Chef -->
+      <li>
+        <a href="#">
+          <i class="icon-users4"></i>
+          <span>Manage vice manager</span>
+        </a>
+        <ul>
+          <li>
+            <a [routerLink]="['cheft/manage/account']">Vice manager account</a>
           </li>
         </ul>
       </li>

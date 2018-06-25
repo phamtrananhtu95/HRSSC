@@ -48,6 +48,7 @@ import { ChooseDomainService } from './services/choose-domain.service';
 import { ChooseDomain } from './models/chooseDomain.model';
 import { ProjectService } from './services/project.service';
 import { ScriptLoadService } from './services/script-load.service';
+import { ManagementService } from './services/management.service';
 
 const appRoutes: Routes = [
 
@@ -107,6 +108,11 @@ const appRoutes: Routes = [
   {
     path: 'manager/resource/info',
     component: ResourceInfoComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
+    path: 'cheft/manage/account',
+    component: ChefManageAccountManagerComponent,
     data: { title: 'Resource info for nomal user watch' }
   },
   {
@@ -186,7 +192,8 @@ const appRoutes: Routes = [
     ChooseDomainService,
     ChooseDomain,
     ProjectService,
-    ScriptLoadService
+    ScriptLoadService,
+    ManagementService
   ],
   bootstrap: [AppComponent]
 })

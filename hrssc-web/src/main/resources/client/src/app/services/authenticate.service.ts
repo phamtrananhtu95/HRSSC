@@ -38,18 +38,24 @@ export class AuthenticateService {
     this.session.saveInLocal(this.USER_INFOR, userInfo);
   }
 
-  getUsetInfo(){
+  getUserInfo(){
     return this.session.getFromLocal(this.USER_INFOR);
   }
 
   getUserName(){
-    let userInfo = this.getUsetInfo();   
+    let userInfo = this.getUserInfo();   
     return userInfo ? userInfo.username : null;
   }
 
   getUserId(){
-    let userInfo = this.getUsetInfo();
+    let userInfo = this.getUserInfo();
     return userInfo ? userInfo.id : null;
   }
+
+  getCompanyId(){
+    let userInfo = this.getUserInfo();
+    return userInfo ? userInfo.companyID : null;
+  }
+  
 
 }
