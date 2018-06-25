@@ -8,7 +8,7 @@
 *  Latest update: Aug 1, 2015
 *
 * ---------------------------------fix bug------------------------------------------- */
-let timerId = setTimeout(function runAgain() {
+let timerFormCheckboxesRadio = setTimeout(function runAgain() {
     if (window.flagReloadPage) {
         window.flagReloadPage = false;
         console.log('-----------------run again-----------');

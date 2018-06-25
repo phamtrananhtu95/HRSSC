@@ -17,7 +17,12 @@ export class ManageResourcesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+    (<any>window).datatables = true;
+    (<any>window).select2 = true;
+    (<any>window).datatablesBasic = true;
+
+    // (<any>window).formSelect2 = true;
+    // (<any>window).interactionsMin = true;
     // title:""
     // this.resources = new UserList().users;
     // this.titleService.setTile("Home","Manager resource","Resource");

@@ -9,9 +9,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.hrssc.domain.Constant;
+import com.hrssc.domain.dto.ManagerDto;
 import com.hrssc.domain.dto.UserDto;
 import com.hrssc.service.ManagerManagementService;
 
@@ -87,4 +92,20 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 		Optional<com.hrssc.entities.User> user = userRepository.findByUsername(username);
 		return user.isPresent() ? user.get() : new com.hrssc.entities.User();
 	}
+
+	@Override
+	public List<ManagerDto> getManagersByCompanyId(int companyId) {
+		List<User> users = userRepository.getByCompanyIdAndRoleId(companyId, Constant.MANAGER_ROLE_ID);
+		List<ManagerDto> managers = new ArrayList<>();
+		if(users.isEmpty()) {
+			return Collections.emptyList();
+		}
+		
+		users.stream().forEach(user -> {
+			managers.add(new ManagerDto(user));
+		});
+		
+		return managers;
+	}
+
 }

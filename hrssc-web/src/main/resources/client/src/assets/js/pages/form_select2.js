@@ -9,6 +9,14 @@
 *
 * ---------------------------------------------------------------------------- */
 
+/* ---------------------------------fix bug------------------------------------------- */
+let timerFormSelect2 = setTimeout(function runAgain() {
+    if (window.formSelect2) {
+        window.formSelect2 = false;
+        console.log('-----------------run againcccccccccc-----------');
+/* ---------------------------------end bug------------------------------------------- */
+
+
 $(function() {
 
 
@@ -391,3 +399,8 @@ $(function() {
     $(".access-multiple-clear").on("click", function () { $(".select-access-multiple-clear").val(null).trigger("change"); });
     
 });
+
+
+}
+timerId = setTimeout(runAgain, 1000);
+}, 1000);

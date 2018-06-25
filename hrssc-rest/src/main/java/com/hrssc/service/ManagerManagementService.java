@@ -1,5 +1,8 @@
 package com.hrssc.service;
 
+import java.util.List;
+
+import com.hrssc.domain.dto.ManagerDto;
 import com.hrssc.domain.dto.UserDto;
 import com.hrssc.entities.User;
 
@@ -35,4 +38,6 @@ public interface ManagerManagementService {
 
 	boolean checkExistingEmail(String email);
 	boolean addManager(com.hrssc.entities.User user);
+
+	List<ManagerDto> getManagersByCompanyId(int companyId);
 }

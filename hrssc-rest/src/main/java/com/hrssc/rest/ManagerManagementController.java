@@ -3,6 +3,9 @@ package com.hrssc.rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.UserView;
 import com.hrssc.entities.User;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hrssc.domain.dto.ManagerDto;
 import com.hrssc.domain.dto.UserDto;
 import com.hrssc.service.ManagerManagementService;
 
@@ -49,5 +53,15 @@ public class ManagerManagementController {
             return "OK";
         }
         return "Email Existed.";
+	}
+	
+	/**
+	 * Return list manager by chefId
+	 * @param userId
+	 * @return
+	 */
+	@GetMapping(value = "/{companyId}")
+	public List<ManagerDto> getManagersByCompanyId(@PathVariable("companyId") int companyId) {
+		return userService.getManagersByCompanyId(companyId);
 	}
 }
