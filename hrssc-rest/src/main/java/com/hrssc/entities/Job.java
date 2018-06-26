@@ -13,7 +13,9 @@ public class Job {
     private long joinedate;
     private long leaveDate;
     private int projectRequirementsId;
-    private ProjectRequirements projectRequirementsByProjectRequirementsId;
+
+    private int projectId;
+    private Project projectByProjectId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +27,6 @@ public class Job {
     public void setId(int id) {
         this.id = id;
     }
-
-
-
 
     @Basic
     @Column(name = "human_resource_id", nullable = false)
@@ -56,15 +55,6 @@ public class Job {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    public HumanResource getHumanResourceByHumanResourceId() {
-        return humanResourceByHumanResourceId;
-    }
-
-    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
-        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
-    }
 
     @Basic
     @Column(name = "joined_date")
@@ -86,23 +76,37 @@ public class Job {
         this.leaveDate = leaveDate;
     }
 
+
+
     @Basic
-    @Column(name = "project_requirements_id")
-    public int getProjectRequirementsId() {
-        return projectRequirementsId;
+    @Column(name = "project_id")
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setProjectRequirementsId(int projectRequirementsId) {
-        this.projectRequirementsId = projectRequirementsId;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
-    public ProjectRequirements getProjectRequirementsByProjectRequirementsId() {
-        return projectRequirementsByProjectRequirementsId;
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Project getProjectByProjectId() {
+        return projectByProjectId;
     }
 
-    public void setProjectRequirementsByProjectRequirementsId(ProjectRequirements projectRequirementsByProjectRequirementsId) {
-        this.projectRequirementsByProjectRequirementsId = projectRequirementsByProjectRequirementsId;
+    public void setProjectByProjectId(Project projectByProjectId) {
+        this.projectByProjectId = projectByProjectId;
     }
+
+
+    @ManyToOne
+    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public HumanResource getHumanResourceByHumanResourceId() {
+        return humanResourceByHumanResourceId;
+    }
+
+    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
+        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+    }
+
 }

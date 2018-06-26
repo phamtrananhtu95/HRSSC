@@ -108,7 +108,7 @@ public class ScoreRanker {
             return 0;
         }
         for(Job job: resource.getJobsById()){
-           String rscDomain = job.getProjectRequirementsByProjectRequirementsId().getProjectByProjectId().getDomain();
+           String rscDomain = job.getProjectByProjectId().getDomain();
            if(rscDomain.equals(project.getDomain())){
                return baseDomainScore;
            }
@@ -121,7 +121,7 @@ public class ScoreRanker {
             return 0;
         }
         for(Job job: resource.getJobsById()){
-            String rscDomain = job.getProjectRequirementsByProjectRequirementsId().getProjectByProjectId().getType();
+            String rscDomain = job.getProjectByProjectId().getType();
             if(rscDomain.equals(project.getType())){
                 return baseTypeScore;
             }

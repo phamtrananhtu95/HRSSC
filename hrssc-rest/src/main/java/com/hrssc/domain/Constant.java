@@ -30,7 +30,31 @@ public class Constant {
 		public static final int DEACTIVATED = 2;
 		public static final int REMOVED = 3;
 	}
+	public class ManagerStatus {
+		public static final int ACTIVATED = 1;
+		public static final int DEACTIVATED = 2;
+	}
 
+	public class Time{
+		public static final int SECOND = 1;        // no. of ms in a second
+		public static final int MINUTE = SECOND * 60; // no. of ms in a minute
+		public static final int HOUR = MINUTE * 60;   // no. of ms in an hour
+		public static final int DAY = HOUR * 24;      // no. of ms in a day
+		public static final int WEEK = DAY * 7;
+		public static final int MONTH = DAY * 30;
+	}
+
+	public class InteractionType{
+		public static final String MATCH = "Match";
+		public static final String APPLY = "Apply";
+		public static final String INVITE = "Invite";
+	}
+	public class UserRole{
+		public static final int ADMIN = 1;
+		public static final int CHIEF = 2;
+		public static final int MANAGER = 3;
+	}
 	public static final int MANAGER_ROLE_ID = 3;
+	public static final String COMMA = ",";
 
 }

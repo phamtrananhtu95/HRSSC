@@ -20,6 +20,6 @@ public interface HumanResourceRepository extends JpaRepository<HumanResource, In
     @Query(value = "select u from human_resource u where u.email=:email")
     HumanResource findByEmail(@Param(value = "email") String email);
 
-    List<HumanResource> findByCompanyByCompanyIdNot(int companyId);
+    List<HumanResource> findByStatusAndCompanyIdNot(int status,int companyId);
 
 }

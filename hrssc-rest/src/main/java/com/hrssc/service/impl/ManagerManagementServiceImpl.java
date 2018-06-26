@@ -37,11 +37,9 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 	public boolean updateUser(final com.hrssc.entities.User userInfo) {
 		final Optional<com.hrssc.entities.User> userEntity = userRepository.findByUsername(userInfo.getUsername());
 
-		if (!userEntity.isPresent()) {
+		if (userEntity.isPresent()) {
 			final com.hrssc.entities.User updatedUser = userEntity.get();
-			updatedUser.setId(userInfo.getId());
 			updatedUser.setEmail(userInfo.getEmail());
-			updatedUser.setFirstLogin(userInfo.isFirstLogin());
 			updatedUser.setFullname(userInfo.getFullname());
 			updatedUser.setTel(userInfo.getTel());
 			updatedUser.setStatus(userInfo.getStatus());
@@ -79,6 +77,9 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		if (!this.checkExistingEmail(user.getEmail())) {
+			user.setStatus(Constant.ManagerStatus.ACTIVATED);
+			user.setFirstLogin(true);
+			user.setRoleId(Constant.UserRole.MANAGER);
 			userRepository.save(user);
 			return true;
 		}

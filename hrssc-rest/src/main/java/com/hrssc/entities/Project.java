@@ -37,6 +37,8 @@ public class Project {
 
     @JsonView(ProjectView.ListView.class)
     private Collection<ProjectRequirements> projectRequirementsById;
+    private Collection<Interaction> interactionsById;
+    private Collection<Job> jobsById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -159,7 +161,6 @@ public class Project {
         this.companyId = companyId;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -185,10 +186,6 @@ public class Project {
         return Objects.hash(id, title, description, createDate, endDate, duration, type, domain, processStatus, requestStatus, userId, companyId);
     }
 
-
-
-
-
     @OneToMany(mappedBy = "projectByProjectId")
     public Collection<Notification> getNotificationsById() {
         return notificationsById;
@@ -197,7 +194,6 @@ public class Project {
     public void setNotificationsById(Collection<Notification> notificationsById) {
         this.notificationsById = notificationsById;
     }
-
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
@@ -219,8 +215,6 @@ public class Project {
         this.companyByCompanyId = companyByCompanyId;
     }
 
-
-
     @OneToMany(mappedBy = "projectByProjectId")
     public Collection<ProjectRequirements> getProjectRequirementsById() {
         return projectRequirementsById;
@@ -228,5 +222,23 @@ public class Project {
 
     public void setProjectRequirementsById(Collection<ProjectRequirements> projectRequirementsById) {
         this.projectRequirementsById = projectRequirementsById;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<Interaction> getInteractionsById() {
+        return interactionsById;
+    }
+
+    public void setInteractionsById(Collection<Interaction> interactionsById) {
+        this.interactionsById = interactionsById;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<Job> getJobsById() {
+        return jobsById;
+    }
+
+    public void setJobsById(Collection<Job> jobsById) {
+        this.jobsById = jobsById;
     }
 }

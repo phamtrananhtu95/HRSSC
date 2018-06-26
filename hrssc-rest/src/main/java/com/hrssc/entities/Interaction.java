@@ -1,16 +1,26 @@
 package com.hrssc.entities;
 
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor
 public class Interaction {
     private int id;
     private String type;
     private int humanResourceId;
     private HumanResource humanResourceByHumanResourceId;
-    private int projectRequirementsId;
-    private ProjectRequirements projectRequirementsByProjectRequirementsId;
+
+    private Double rankingScore;
+    private int projectId;
+    private Project projectByProjectId;
+
+    public Interaction(String type){
+        this.type = type;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,8 +42,6 @@ public class Interaction {
     public void setType(String type) {
         this.type = type;
     }
-
-
 
     @Basic
     @Column(name = "human_resource_id", nullable = false)
@@ -64,6 +72,35 @@ public class Interaction {
 
 
 
+    @Basic
+    @Column(name = "rankingScore")
+    public Double getRankingScore() {
+        return rankingScore;
+    }
+
+    public void setRankingScore(Double rankingScore) {
+        this.rankingScore = rankingScore;
+    }
+
+    @Basic
+    @Column(name = "project_id")
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    public Project getProjectByProjectId() {
+        return projectByProjectId;
+    }
+
+    public void setProjectByProjectId(Project projectByProjectId) {
+        this.projectByProjectId = projectByProjectId;
+    }
 
     @ManyToOne
     @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
@@ -73,25 +110,5 @@ public class Interaction {
 
     public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
         this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
-    }
-
-    @Basic
-    @Column(name = "project_requirements_id")
-    public int getProjectRequirementsId() {
-        return projectRequirementsId;
-    }
-
-    public void setProjectRequirementsId(int projectRequirementsId) {
-        this.projectRequirementsId = projectRequirementsId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "project_requirements_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
-    public ProjectRequirements getProjectRequirementsByProjectRequirementsId() {
-        return projectRequirementsByProjectRequirementsId;
-    }
-
-    public void setProjectRequirementsByProjectRequirementsId(ProjectRequirements projectRequirementsByProjectRequirementsId) {
-        this.projectRequirementsByProjectRequirementsId = projectRequirementsByProjectRequirementsId;
     }
 }

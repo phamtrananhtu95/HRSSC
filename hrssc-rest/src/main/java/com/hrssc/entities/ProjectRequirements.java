@@ -18,8 +18,7 @@ public class ProjectRequirements {
     private int positionId;
     private int projectId;
     private boolean isAssigned;
-    private Collection<Interaction> interactionsById;
-    private Collection<Job> jobsById;
+
     @JsonView(ProjectView.ListView.class)
     private Position positionByPositionId;
     private Project projectByProjectId;
@@ -105,23 +104,6 @@ public class ProjectRequirements {
         return Objects.hash(id, payment, positionId, projectId, isAssigned);
     }
 
-    @OneToMany(mappedBy = "projectRequirementsByProjectRequirementsId")
-    public Collection<Interaction> getInteractionsById() {
-        return interactionsById;
-    }
-
-    public void setInteractionsById(Collection<Interaction> interactionsById) {
-        this.interactionsById = interactionsById;
-    }
-
-    @OneToMany(mappedBy = "projectRequirementsByProjectRequirementsId")
-    public Collection<Job> getJobsById() {
-        return jobsById;
-    }
-
-    public void setJobsById(Collection<Job> jobsById) {
-        this.jobsById = jobsById;
-    }
 
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
