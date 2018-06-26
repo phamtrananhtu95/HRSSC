@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hrssc.domain.dto.ManagerDto;
+import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.dto.UserDto;
 import com.hrssc.service.ManagerManagementService;
 
@@ -38,7 +39,7 @@ public class ManagerManagementController {
 		return userService.getManagerById(userId);
 	}
 	@PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean updateUser(@RequestBody User user) {
+	public boolean updateUser(@RequestBody ManagerDto user) {
 		return userService.updateUser(user);
 	}
 
@@ -48,11 +49,11 @@ public class ManagerManagementController {
 	}
 
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String addManager(@RequestBody User user){
+	public ResponseStatus addManager(@RequestBody ManagerDto user){
         if(userService.addManager(user)){
-            return "OK";
+            return new ResponseStatus("OK");
         }
-        return "Email Existed.";
+        return new ResponseStatus("Email Existed.");
 	}
 	
 	/**

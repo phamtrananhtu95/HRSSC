@@ -49,6 +49,7 @@ import { ChooseDomain } from './models/chooseDomain.model';
 import { ProjectService } from './services/project.service';
 import { ScriptLoadService } from './services/script-load.service';
 import { ManagementService } from './services/management.service';
+import { AccountManagerPopoverComponent } from './pages/chef-manage-account-manager/account-manager-popover.component';
 
 const appRoutes: Routes = [
 
@@ -158,6 +159,7 @@ const appRoutes: Routes = [
     AdminManageCompanyComponent,
     AdminManageAccountRequestComponent,
     ChefManageAccountManagerComponent,
+    AccountManagerPopoverComponent,
     FeedbackComponent,
     RegisterComponent,
     PageHeaderComponent,

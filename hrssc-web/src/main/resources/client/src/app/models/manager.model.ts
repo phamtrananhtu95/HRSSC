@@ -1,11 +1,13 @@
 export class Manager {
+    username: string;
     fullname: string;
     email: string;
     tel: string;
-    project: number;
-    resource: number;
+    projectNum: number;
+    resourceNum: number;
     status: string;
+    companyId: number;
     constructor() {
+        this.status = "1";
     }
 }
-

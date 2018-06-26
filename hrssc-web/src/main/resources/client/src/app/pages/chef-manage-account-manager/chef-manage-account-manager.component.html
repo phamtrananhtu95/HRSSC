@@ -7,7 +7,7 @@
   <div class="content">
 
     <div id="button-add-emp">
-      <button type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_small">
+      <button type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_small" (click)="addManager()">
         <b>
           <i class="icon-user-plus"></i>
         </b> Add new manager
@@ -35,93 +35,29 @@
             <tr *ngFor="let manager of managers">
               <td>
                 <!-- <a href="">FPT Software</a> -->
-                {{manager.name}}
+                {{manager.fullname}}
               </td>
               <td>{{manager.email}}</td>
               <td>{{manager.tel}}</td>
               <td>{{manager.projectNum}}</td>
               <td>{{manager.resourceNum}}</td>
               <td>
-                <span class="label bg-blue-400">
-                  {{manager.status == 1 ?"Inactive": "Active"}}
+                <span class="label" [ngClass]="manager.status == 1 ? 'bg-blue-400' : 'btn-danger'">
+                  {{manager.status == 1 ? "Active" : "Inactive" }}
                 </span>
               </td>
               <td>
-                <button type="submit" class="btn btn-danger">Edit</button>
+                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal_small" (click)="editManager(manager)">Edit</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
-
-    <!-- Popup add new -->
-    <div class="modal-content">
-      <div id="modal_small" class="modal fade" style="display: none;">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">×</button>
-              <h5 class="modal-title">Manager resource</h5>
-            </div>
-
-            <div class="modal-body">
-              <fieldset class="content-group">
-                <legend class="text-bold">Add new a manager</legend>
-
-                <div class="form-group">
-                  <div class="col-lg-12">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group has-feedback has-feedback-left">
-                          <label>Name</label>
-                          <input type="text" class="form-control input-xlg" placeholder="Manager name">
-                          <div class="form-control-feedback">
-                            <i class="icon-user"></i>
-                          </div>
-                        </div>
-
-                        <div class="form-group has-feedback has-feedback-left">
-                          <label>Email</label>
-                          <input type="text" class="form-control input-xlg" placeholder="manager@gmail.com">
-                          <div class="form-control-feedback">
-                            <i class="icon-envelop5"></i>
-                          </div>
-                        </div>
-
-                        <div class="form-group has-feedback has-feedback-left">
-                          <label>Password</label>
-                          <input type="password" class="form-control input-sm" placeholder="???">
-                          <div class="form-control-feedback">
-                            <i class="icon-file-locked2"></i>
-                          </div>
-                        </div>
-
-                        <div class="form-group has-feedback has-feedback-left">
-                          <label>Phone</label>
-                          <input type="text" class="form-control input-sm" placeholder="01649407777">
-                          <div class="form-control-feedback">
-                            <i class="icon-phone2"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </fieldset>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Add new</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- </div>
-    </div> -->
   </div>
   <!-- End Content Area -->
+
+  <!-- Popup add new -->
+  <app-account-manager-popover [isEditForm]="isEditForm" [editManagerModel]="editManagerModel"
+    (reloadManagerList)="getManagersByCompanyId()">
+  </app-account-manager-popover>
