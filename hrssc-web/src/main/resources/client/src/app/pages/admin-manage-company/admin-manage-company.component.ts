@@ -10,7 +10,10 @@ export class AdminManageCompanyComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    (<any>window).flagReloadPage = true;
+    // (<any>window).flagReloadPage = true;
+    (<any>window).datatables = true;
+    (<any>window).select2 = true;
+    (<any>window).datatablesBasic = true;
   }
 
 }

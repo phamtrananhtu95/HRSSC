@@ -12,4 +12,13 @@ export class ManagementService {
     return this.restService.get(url);
   }
 
+  addManager(manager) {
+    let url = 'manage-manager/add';
+    return this.restService.post(url, manager);
+  }
+
+  editManager(manager) {
+    let url = 'manage-manager/update';
+    return this.restService.post(url, manager);
+  }
 }

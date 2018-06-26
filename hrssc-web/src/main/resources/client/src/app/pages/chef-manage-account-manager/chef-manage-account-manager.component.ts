@@ -1,8 +1,8 @@
+import { Manager } from './../../models/manager.model';
 import { Component, OnInit } from '@angular/core';
 import { ManagementService } from '../../services/management.service';
 import { User } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
-import { Manager } from '../../models/manager.model';
 
 @Component({
   selector: 'app-chef-manage-account-manager',
@@ -13,6 +13,9 @@ export class ChefManageAccountManagerComponent implements OnInit {
 
   public managers: Manager[];
   public companyId;
+  public isEditForm: boolean;
+  public editManagerModel = new Manager();
+
   constructor(
     private managementService: ManagementService,
     private authenticateService: AuthenticateService
@@ -20,6 +23,19 @@ export class ChefManageAccountManagerComponent implements OnInit {
 
   ngOnInit() {
     this.companyId = this.authenticateService.getCompanyId();
+
+    // this.companyId = 10;
+    // this.managers = [];
+    // let manager = new Manager();
+    // manager.username = "tuhihi@gmail.com";
+    // manager.fullname = "Tu hihi";
+    // manager.email = "tuhihi@gmail.com";
+    // manager.tel = "123456789";
+    // manager.status = "2";
+    // manager.projectNum = 6;
+    // manager.resourceNum = 2;
+    // this.managers.push(manager);
+
     this.getManagersByCompanyId();
   }
 
@@ -27,7 +43,7 @@ export class ChefManageAccountManagerComponent implements OnInit {
     this.managementService.getManagersByCompanyId(this.companyId).subscribe(
       res => {
         this.managers = res;
-        console.log(this.managers);        
+        console.log(this.managers);
       },
       err => {
         console.log(err);
@@ -35,4 +51,15 @@ export class ChefManageAccountManagerComponent implements OnInit {
     )
   }
 
+  addManager() {
+    this.isEditForm = false;
+    this.editManagerModel = new Manager();
+    this.editManagerModel.companyId = this.companyId;
+  }
+
+  editManager(manager: Manager) {
+    this.isEditForm = true;
+    this.editManagerModel = manager;
+    this.editManagerModel.companyId = this.companyId;
+  }
 }

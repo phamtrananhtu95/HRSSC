@@ -22,7 +22,7 @@ public interface ManagerManagementService {
 	 * @param user
 	 * @return updated user
 	 */
-	boolean updateUser(com.hrssc.entities.User user);
+	boolean updateUser(ManagerDto user);
 
 	/**
 	 * Deletes user by user id
@@ -37,7 +37,7 @@ public interface ManagerManagementService {
 	com.hrssc.entities.User getAuthenticatedUser();
 
 	boolean checkExistingEmail(String email);
-	boolean addManager(com.hrssc.entities.User user);
+	boolean addManager(ManagerDto user);
 
 	List<ManagerDto> getManagersByCompanyId(int companyId);
 }

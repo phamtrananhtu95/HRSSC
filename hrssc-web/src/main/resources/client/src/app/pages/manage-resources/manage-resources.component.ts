@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models';
+import { User, Employee } from '../../models';
+import { EmployeeService } from '../../services/employee.service';
+import { AuthenticateService } from '../../services/authenticate.service';
 
 @Component({
   selector: 'app-manage-resources',
@@ -12,14 +14,21 @@ export class ManageResourcesComponent implements OnInit {
   public title = " - Manage resources";
   public subTitle = " - Resource";
   
+  public humanResource: Employee[];
+  public managerId;
   
   constructor(
+    private employeeService: EmployeeService,
+    private authenticateService: AuthenticateService
   ) { }
-
+  
   ngOnInit() {
     (<any>window).datatables = true;
     (<any>window).select2 = true;
     (<any>window).datatablesBasic = true;
+
+    this.managerId = this.authenticateService.getUserId();
+    this.getHumanResourceByManagerId();
 
     // (<any>window).formSelect2 = true;
     // (<any>window).interactionsMin = true;
@@ -28,5 +37,16 @@ export class ManageResourcesComponent implements OnInit {
     // this.titleService.setTile("Home","Manager resource","Resource");
   }
 
+  getHumanResourceByManagerId(){
+    this.employeeService.getHumanResourceByManagerId(this.managerId).subscribe(
+      res => {
+        this.humanResource = res;
+        console.log(this.humanResource);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 
 }

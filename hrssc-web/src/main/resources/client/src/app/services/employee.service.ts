@@ -12,4 +12,9 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
+  getHumanResourceByManagerId(managerID){
+    let url = 'humanResource/get/' + managerID;
+    return this.restService.get(url);
+  }
+
 }

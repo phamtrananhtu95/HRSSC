@@ -15,7 +15,7 @@
   <div class="panel panel-flat">
     <div class="panel-body">
 
-        <table class="table datatable-basic">
+        <table class="table datatable-basic table-hover">
             <thead>
 
 
@@ -36,17 +36,20 @@
             </thead>
             <tbody>
             
-              <tr>
-                <td>Pham Tran Anh Tu</td>
+              <tr *ngFor="let humanResources of humanResource">
+                <td>{{humanResources.fullname}}</td>
                 <td>Java, C#, PHP</td>
                 <td>01649407777</td>
                 <td>0</td>
-                <td><span class="label label-danger">Pusy</span></td>
+                <td><span class="label label-danger">Busy</span></td>
                 <td class="text-center">
+                    <button type="button" class="btn">
+                        <i class="icon-pencil"></i>
+                      </button>
                   ABC project
                 </td>
               </tr>
-             
+<!--              
               <tr>
                   <td>Nguyen Thai Thien</td>
                   <td>Java, Javascript</td>
@@ -68,7 +71,7 @@
                       
                     </td>
                   </tr>
-             
+              -->
              
             </tbody>
           </table>
