@@ -13,4 +13,9 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  loadAllPosition(){
+    let url = 'load-form-info/positions';
+    return this.restService.get(url);
+  }
+
 }

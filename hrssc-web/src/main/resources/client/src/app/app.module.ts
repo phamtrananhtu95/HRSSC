@@ -49,6 +49,10 @@ import { ChooseDomain } from './models/chooseDomain.model';
 import { ProjectService } from './services/project.service';
 import { ScriptLoadService } from './services/script-load.service';
 import { ManagementService } from './services/management.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
 
 const appRoutes: Routes = [
 
@@ -171,6 +175,10 @@ const appRoutes: Routes = [
     CustomFormsModule,
     ReactiveFormsModule,
     MomentModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

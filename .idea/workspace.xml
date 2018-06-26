@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="28a314dd-7e7c-4ab5-8ae6-e03c194e5fd1" name="Default" comment="" />
-    <ignored path="$PROJECT_DIR$/hrssc-rest/target/" />
+    <list default="true" id="db9a46c5-764a-405b-9ed9-c9c1fdf164e6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/hrssc-web/target/" />
+    <ignored path="$PROJECT_DIR$/hrssc-rest/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,77 +22,42 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
               <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChosenDomains.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/ChosenDomains.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/Role.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourceSkills.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/ResourceSkills.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
-                <marker date="1529754009049" expanded="false" signature="571:582" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="592:598" ph=" }" />
-                <marker date="1529754009049" expanded="false" signature="629:640" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="653:659" ph=" }" />
-                <marker date="1529754009049" expanded="true" signature="665:722" ph="@{...}" />
-                <marker date="1529754009049" expanded="false" signature="756:767" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="785:791" ph=" }" />
-                <marker date="1529754009049" expanded="false" signature="840:851" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="880:886" ph=" }" />
-                <marker date="1529754009049" expanded="true" signature="894:949" ph="@{...}" />
-                <marker date="1529754009049" expanded="false" signature="977:988" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="1003:1009" ph=" }" />
-                <marker date="1529754009049" expanded="false" signature="1050:1061" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="1084:1090" ph=" }" />
-                <marker date="1529754009049" expanded="true" signature="1096:1160" ph="@{...}" />
-                <marker date="1529754009049" expanded="false" signature="1196:1207" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="1230:1236" ph=" }" />
-                <marker date="1529754009049" expanded="false" signature="1293:1304" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="1343:1349" ph=" }" />
-                <marker date="1529754009049" expanded="true" signature="1401:1693" ph="{...}" />
-                <marker date="1529754009049" expanded="true" signature="1735:1802" ph="{...}" />
-                <marker date="1529754009049" expanded="true" signature="1808:1939" ph="@{...}" />
-                <marker date="1529754009049" expanded="false" signature="1976:1987" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="2009:2015" ph=" }" />
-                <marker date="1529754009049" expanded="false" signature="2072:2083" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="2120:2126" ph=" }" />
-                <marker date="1529754009049" expanded="true" signature="2132:2272" ph="@{...}" />
-                <marker date="1529754009049" expanded="false" signature="2333:2344" ph=" { " />
-                <marker date="1529754009049" expanded="false" signature="2382:2388" ph=" }" />
-                <marker date="1529754009049" expanded="true" signature="2486:2571" ph="{...}" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#340#341#0" expanded="false" />
+                <element signature="e#404#405#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RolePermissions.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/RolePermissions.java">
+      <file leaf-file-name="ChooseDomainDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/dto/ChooseDomainDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="289">
+              <caret line="31" column="42" lean-forward="false" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChooseDomainServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/ChooseDomainServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -125,9 +90,6 @@
         <option name="lookForNested" value="true" />
       </MavenImportingSettings>
     </option>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/hrssc-web/src/main/resources/client/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
@@ -233,7 +195,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HRSSC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hrssc-rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hrssc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dto" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -345,13 +341,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="HrsscParentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.hrssc.HrsscParentApplication" />
-      <module name="hrssc-rest" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="HrsscWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.hrssc.hrsscweb.HrsscWebApplication" />
@@ -359,9 +348,16 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="HrsscParentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.hrssc.HrsscParentApplication" />
+      <module name="hrssc-rest" />
+      <envs />
+      <method />
+    </configuration>
     <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Spring Boot.HrsscParentApplication" />
-      <item index="1" class="java.lang.String" itemvalue="Spring Boot.HrsscWebApplication" />
+      <item index="0" class="java.lang.String" itemvalue="Spring Boot.HrsscWebApplication" />
+      <item index="1" class="java.lang.String" itemvalue="Spring Boot.HrsscParentApplication" />
     </list>
   </component>
   <component name="SbtLocalSettings">
@@ -398,17 +394,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="28a314dd-7e7c-4ab5-8ae6-e03c194e5fd1" name="Default" comment="" />
-      <created>1529741039587</created>
+      <changelist id="db9a46c5-764a-405b-9ed9-c9c1fdf164e6" name="Default" comment="" />
+      <created>1530005490296</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1529741039587</updated>
-      <workItem from="1529741041144" duration="1905000" />
+      <updated>1530005490296</updated>
+      <workItem from="1530005492550" duration="7382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1905000" />
+    <option name="totallyTimeSpent" value="7382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -432,8 +428,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -468,69 +464,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/ChosenDomains.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/ResourceSkills.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <marker date="1529754009049" expanded="false" signature="571:582" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="592:598" ph=" }" />
-            <marker date="1529754009049" expanded="false" signature="629:640" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="653:659" ph=" }" />
-            <marker date="1529754009049" expanded="true" signature="665:722" ph="@{...}" />
-            <marker date="1529754009049" expanded="false" signature="756:767" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="785:791" ph=" }" />
-            <marker date="1529754009049" expanded="false" signature="840:851" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="880:886" ph=" }" />
-            <marker date="1529754009049" expanded="true" signature="894:949" ph="@{...}" />
-            <marker date="1529754009049" expanded="false" signature="977:988" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="1003:1009" ph=" }" />
-            <marker date="1529754009049" expanded="false" signature="1050:1061" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="1084:1090" ph=" }" />
-            <marker date="1529754009049" expanded="true" signature="1096:1160" ph="@{...}" />
-            <marker date="1529754009049" expanded="false" signature="1196:1207" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="1230:1236" ph=" }" />
-            <marker date="1529754009049" expanded="false" signature="1293:1304" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="1343:1349" ph=" }" />
-            <marker date="1529754009049" expanded="true" signature="1401:1693" ph="{...}" />
-            <marker date="1529754009049" expanded="true" signature="1735:1802" ph="{...}" />
-            <marker date="1529754009049" expanded="true" signature="1808:1939" ph="@{...}" />
-            <marker date="1529754009049" expanded="false" signature="1976:1987" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="2009:2015" ph=" }" />
-            <marker date="1529754009049" expanded="false" signature="2072:2083" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="2120:2126" ph=" }" />
-            <marker date="1529754009049" expanded="true" signature="2132:2272" ph="@{...}" />
-            <marker date="1529754009049" expanded="false" signature="2333:2344" ph=" { " />
-            <marker date="1529754009049" expanded="false" signature="2382:2388" ph=" }" />
-            <marker date="1529754009049" expanded="true" signature="2486:2571" ph="{...}" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#340#341#0" expanded="false" />
+            <element signature="e#404#405#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/RolePermissions.java">
+    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/dto/ChooseDomainDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="31" column="42" lean-forward="false" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/ChooseDomainServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding />
         </state>
       </provider>
