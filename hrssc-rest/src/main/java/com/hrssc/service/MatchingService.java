@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface MatchingService {
 
-    public List<HumanResource> matchResource(Project project);
-    public List<Project> matchProject(HumanResource resource);
+    public List<HumanResource> matchResource(int projectId);
+    public List<Project> matchProject(int resourceId);
 }

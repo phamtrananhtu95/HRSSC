@@ -1,5 +1,7 @@
 package com.hrssc.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Project;
 import com.hrssc.service.MatchingService;
@@ -18,15 +20,16 @@ public class MatchingController {
     @Autowired
     MatchingService matchingService;
 
+    @JsonView(MatchingView.Resource.class)
     @PostMapping(value = "/resource")
     public List<HumanResource> matchResource(@RequestBody Project project) {
-        return matchingService.matchResource(project);
+        return matchingService.matchResource(project.getId());
     }
 
-
+    @JsonView(MatchingView.Project.class)
     @PostMapping(value = "/project")
     public List<Project> matchProject(@RequestBody HumanResource resource) {
-        return matchingService.matchProject(resource);
+        return matchingService.matchProject(resource.getId());
     }
 
 }

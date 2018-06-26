@@ -1,5 +1,8 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.MatchingView;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,7 +13,9 @@ public class ResourceSkills implements Serializable{
     private int id;
     private int skillId;
     private int humanResourceId;
+    @JsonView(MatchingView.Resource.class)
     private Double experience;
+    @JsonView(MatchingView.Resource.class)
     private Skill skillBySkillId;
     private HumanResource humanResourceByHumanResourceId;
 

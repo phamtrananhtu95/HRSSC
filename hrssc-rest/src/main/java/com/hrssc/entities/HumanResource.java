@@ -2,6 +2,7 @@ package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
+import com.hrssc.domain.jacksonview.MatchingView;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,15 +13,15 @@ import java.util.Objects;
 @Entity(name="human_resource")
 @Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class, MatchingView.Resource.class})
     private int id;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class, MatchingView.Resource.class})
     private String fullname;
     @JsonView(HumanResourceView.overview.class)
     private int status;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class,MatchingView.Resource.class})
     private String email;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class,MatchingView.Resource.class})
     private String tel;
     @JsonView(HumanResourceView.overview.class)
     private Long availableDate;
@@ -32,12 +33,16 @@ public class HumanResource {
     @JsonView(HumanResourceView.overview.class)
     private int userId;
     private Collection<Feedback> feedbacksById;
+
+    @JsonView(MatchingView.Resource.class)
     private Company companyByCompanyId;
+
 
     private User userByUserId;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
     private Collection<Notification> notificationsById;
+    @JsonView(MatchingView.Resource.class)
     private Collection<ResourceSkills> resourceSkillsById;
 
     @Id

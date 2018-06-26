@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.ProjectView;
 
 import javax.persistence.*;
@@ -9,19 +10,20 @@ import java.util.Objects;
 
 @Entity
 public class Project {
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class, MatchingView.Project.class})
     private int id;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private String title;
     private String description;
     @JsonView(ProjectView.ListView.class)
     private long createDate;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private long endDate;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private long duration;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private String type;
+    @JsonView(MatchingView.Project.class)
     private String domain;
     @JsonView(ProjectView.ListView.class)
     private int processStatus;
@@ -33,6 +35,7 @@ public class Project {
     private int companyId;
     private Collection<Notification> notificationsById;
     private User userByUserId;
+    @JsonView(MatchingView.Project.class)
     private Company companyByCompanyId;
 
     @JsonView(ProjectView.ListView.class)
