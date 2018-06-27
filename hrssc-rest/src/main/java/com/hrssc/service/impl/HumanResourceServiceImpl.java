@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.entities.ResourceSkills;
@@ -57,67 +59,73 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 
 	@Transactional
 	@Override
-	public void addHumanResource(HumanResource humanResourceSkill) {
+	public String addHumanResource(HumanResource humanResourceSkill) {
+		try {
+			HumanResource humanResource = new HumanResource();
+			humanResource.setFullname(humanResourceSkill.getFullname());
+			humanResource.setStatus(humanResourceSkill.getStatus());
+			humanResource.setEmail(humanResourceSkill.getEmail());
+			humanResource.setTel(humanResourceSkill.getTel());
+			humanResource.setAvailableDate(humanResourceSkill.getAvailableDate());
+			humanResource.setAvailableDuration(humanResourceSkill.getAvailableDuration());
+			humanResource.setCompanyId(humanResourceSkill.getCompanyId());
+			humanResource.setUserId(humanResourceSkill.getUserId());
 
-		HumanResource humanResource = new HumanResource();
-		humanResource.setFullname(humanResourceSkill.getFullname());
-		humanResource.setStatus(humanResourceSkill.getStatus());
-		humanResource.setEmail(humanResourceSkill.getEmail());
-		humanResource.setTel(humanResourceSkill.getTel());
-		humanResource.setAvailableDate(humanResourceSkill.getAvailableDate());
-		humanResource.setAvailableDuration(humanResourceSkill.getAvailableDuration());
-		humanResource.setCompanyId(humanResourceSkill.getCompanyId());
-		humanResource.setUserId(humanResourceSkill.getUserId());
+			humanResourceRepository.save(humanResource);
 
-//
-		humanResourceRepository.save(humanResource);
+			HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
 
-		HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
-
-		List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResourceSkill.getResourceSkillsById();
-		for ( ResourceSkills tmp: resourceSkillsList) {
+			List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResourceSkill.getResourceSkillsById();
+			for (ResourceSkills tmp : resourceSkillsList) {
 //			ResourceSkills resourceSkills = new ResourceSkills();
 //			resourceSkills.setHumanResourceId(hm.getId());
 //			resourceSkills.setSkillId(x.getSkillId());
 //			resourceSkills.setExperience(x.getExperience());
-			tmp.setHumanResourceId(hm.getId());
-			resourceSkillRepository.save(tmp);
+				tmp.setHumanResourceId(hm.getId());
+				resourceSkillRepository.save(tmp);
+			}
+			return "Successfully update resource.";
+		}catch (RuntimeException e){
+			Logger.getLogger(HumanResourceService.class.getName()).log(Level.INFO,e.toString());
+			return "Error Occurred, Update has failed.";
 		}
 	}
 
 	@Transactional
 	@Override
-	public void updateHumanResource(HumanResource humanResource) {
+	public String updateHumanResource(HumanResource humanResource) {
 		Optional<HumanResource> hmResource = humanResourceRepository.findById(humanResource.getId());
 
-
-		if (hmResource.isPresent()){
-			System.out.println("");
-			HumanResource resourceUpdate = hmResource.get();
-			resourceUpdate.setFullname(humanResource.getFullname());
-			resourceUpdate.setStatus(humanResource.getStatus());
-			resourceUpdate.setEmail(humanResource.getEmail());
-			resourceUpdate.setTel(humanResource.getTel());
-			resourceUpdate.setAvailableDate(humanResource.getAvailableDate());
-			resourceUpdate.setAvailableDuration(humanResource.getAvailableDuration());
+		try {
+			if (hmResource.isPresent()) {
+				HumanResource resourceUpdate = hmResource.get();
+				resourceUpdate.setFullname(humanResource.getFullname());
+				resourceUpdate.setStatus(humanResource.getStatus());
+				resourceUpdate.setEmail(humanResource.getEmail());
+				resourceUpdate.setTel(humanResource.getTel());
+				resourceUpdate.setAvailableDate(humanResource.getAvailableDate());
+				resourceUpdate.setAvailableDuration(humanResource.getAvailableDuration());
 //			resourceUpdate.setResourceSkillsById(humanResource.getResourceSkillsById());
-			humanResourceRepository.save(resourceUpdate);
+				humanResourceRepository.save(resourceUpdate);
 
 
-			List<ResourceSkills> list=  resourceSkillRepository.getResourceSkillsByHumanResourceId(hmResource.get().getId());
+				List<ResourceSkills> list = resourceSkillRepository.getResourceSkillsByHumanResourceId(hmResource.get().getId());
 
-			for (ResourceSkills x : list){
-				resourceSkillRepository.delete(x);
+				for (ResourceSkills x : list) {
+					resourceSkillRepository.delete(x);
+				}
+				List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResource.getResourceSkillsById();
+				for (ResourceSkills tmp : resourceSkillsList) {
+
+					tmp.setHumanResourceId(humanResource.getId());
+					resourceSkillRepository.save(tmp);
+				}
+				return "Successfully update resource.";
 			}
-			List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResource.getResourceSkillsById();
-			for ( ResourceSkills tmp: resourceSkillsList) {
-
-				tmp.setHumanResourceId(humanResource.getId());
-				resourceSkillRepository.save(tmp);
-			}
-
-			System.out.println("");
-
+			return "Resource not existed.";
+		}catch (RuntimeException e){
+			Logger.getLogger(HumanResourceService.class.getName()).log(Level.INFO,e.toString());
+			return "Error Occurred, Update has failed.";
 		}
 	}
 }

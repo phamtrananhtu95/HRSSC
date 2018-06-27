@@ -72,24 +72,18 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 	}
 
 	@Override
-	public boolean addManager(ManagerDto managerDto) {
-		User user = new User();
-		user.setUsername(managerDto.getEmail());
-		user.setCompanyId(managerDto.getCompanyId());
-		user.setFullname(managerDto.getFullname());
-		user.setEmail(managerDto.getEmail());
-		user.setTel(managerDto.getTel());
-
+	public String addManager(User user){
+		user.setUsername(user.getEmail());
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		user.setPassword(bCryptPasswordEncoder.encode(managerDto.getPassword()));
-		if (!this.checkExistingEmail(managerDto.getEmail())) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		if (!this.checkExistingEmail(user.getEmail())) {
 			user.setStatus(Constant.ManagerStatus.ACTIVATED);
 			user.setFirstLogin(true);
 			user.setRoleId(Constant.UserRole.MANAGER);
 			userRepository.save(user);
-			return true;
+			return "OK";
 		}
-		return false;
+		return "Email Existed.";
 	}
 
 	@Override

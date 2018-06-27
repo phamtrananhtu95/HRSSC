@@ -37,7 +37,7 @@ public interface ManagerManagementService {
 	com.hrssc.entities.User getAuthenticatedUser();
 
 	boolean checkExistingEmail(String email);
-	boolean addManager(ManagerDto user);
+	String addManager(User user);
 
 	List<ManagerDto> getManagersByCompanyId(int companyId);
 }

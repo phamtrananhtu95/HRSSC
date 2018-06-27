@@ -1,10 +1,12 @@
 package com.hrssc.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Project;
 import com.hrssc.service.ProjectManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,17 +25,17 @@ public class ProjectManagementController {
         return projectManagementService.getProjectByManagerId(mangerId);
     }
     @PostMapping(value = "/add")
-    public String addProject(@RequestBody Project project){
-       return projectManagementService.addProject(project);
+    public ResponseStatus addProject(@RequestBody Project project){
+       return new ResponseStatus(projectManagementService.addProject(project));
     }
 
     @PostMapping(value = "/update")
-    public String updateProject(@RequestBody Project project){
-        return projectManagementService.updateProject(project);
+    public ResponseStatus updateProject(@RequestBody Project project){
+        return new ResponseStatus(projectManagementService.updateProject(project));
     }
 
     @PostMapping(value="/change-status/")
-    public String updateProjectStatus(@RequestBody Project project){
-        return projectManagementService.updateStatus(project);
+    public ResponseStatus updateProjectStatus(@RequestBody Project project){
+        return new ResponseStatus(projectManagementService.updateStatus(project));
     }
 }

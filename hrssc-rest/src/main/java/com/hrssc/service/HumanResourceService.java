@@ -24,7 +24,7 @@ public interface HumanResourceService {
 
 	List<HumanResource> getHumanResourceByManagerId(int managerId);
 
-    void addHumanResource(HumanResource humanResource);
+    String addHumanResource(HumanResource humanResource);
 
-	void updateHumanResource(HumanResource humanResource);
+	String updateHumanResource(HumanResource humanResource);
 }

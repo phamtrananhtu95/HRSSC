@@ -49,16 +49,13 @@ public class ManagerManagementController {
 	}
 
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseStatus addManager(@RequestBody ManagerDto user){
-        if(userService.addManager(user)){
-            return new ResponseStatus("OK");
-        }
-        return new ResponseStatus("Email Existed.");
+	public ResponseStatus addManager(@RequestBody User user){
+        return new ResponseStatus(userService.addManager(user));
 	}
 	
 	/**
 	 * Return list manager by chefId
-	 * @param userId
+	 * @param companyId
 	 * @return
 	 */
 	@GetMapping(value = "/{companyId}")

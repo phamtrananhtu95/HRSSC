@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
+import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Skill;
@@ -40,14 +41,12 @@ public class HumanResourceController {
 	}
 
 	@PostMapping(value = "/add")
-	public String addHumanResource(@RequestBody HumanResource humanresource){
-		humanResourceService.addHumanResource(humanresource);
-		return "OK";
+	public ResponseStatus addHumanResource(@RequestBody HumanResource humanresource){
+		return new ResponseStatus(humanResourceService.addHumanResource(humanresource));
 	}
 
 	@PostMapping(value = "/update")
-	public String updateHumanResource(@RequestBody HumanResource humanResource){
-		humanResourceService.updateHumanResource(humanResource);
-		return "OK";
+	public ResponseStatus updateHumanResource(@RequestBody HumanResource humanResource){
+		return new ResponseStatus(humanResourceService.updateHumanResource(humanResource));
 	}
 }
