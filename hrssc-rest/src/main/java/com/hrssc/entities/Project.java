@@ -14,6 +14,7 @@ public class Project {
     private int id;
     @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private String title;
+    @JsonView(ProjectView.ListView.class)
     private String description;
     @JsonView(ProjectView.ListView.class)
     private long createDate;
@@ -23,7 +24,7 @@ public class Project {
     private long duration;
     @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private String type;
-    @JsonView(MatchingView.Project.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
     private String domain;
     @JsonView(ProjectView.ListView.class)
     private int processStatus;
