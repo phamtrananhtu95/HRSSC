@@ -10,21 +10,21 @@ import java.util.Objects;
 
 @Entity
 public class Project {
-    @JsonView({ProjectView.ListView.class, MatchingView.Project.class})
+    @JsonView({ProjectView.ListView.class, MatchingView.Resource.class})
     private int id;
-    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private String title;
     @JsonView(ProjectView.ListView.class)
     private String description;
     @JsonView(ProjectView.ListView.class)
     private long createDate;
-    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private long endDate;
-    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private long duration;
-    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private String type;
-    @JsonView({ProjectView.ListView.class,MatchingView.Project.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private String domain;
     @JsonView(ProjectView.ListView.class)
     private int processStatus;
@@ -39,7 +39,7 @@ public class Project {
     @JsonView(MatchingView.Project.class)
     private Company companyByCompanyId;
 
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private Collection<ProjectRequirements> projectRequirementsById;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;

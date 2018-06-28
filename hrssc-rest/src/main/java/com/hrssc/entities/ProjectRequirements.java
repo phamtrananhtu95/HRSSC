@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.ProjectView;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class ProjectRequirements {
     private Position positionByPositionId;
     private Project projectByProjectId;
 
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id

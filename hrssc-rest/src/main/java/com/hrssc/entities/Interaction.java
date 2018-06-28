@@ -1,5 +1,8 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
+import com.hrssc.domain.jacksonview.MatchingView;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
@@ -9,13 +12,19 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 public class Interaction {
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
     private int id;
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
     private String type;
+    @JsonView(MatchingView.Project.class)
     private int humanResourceId;
+    @JsonView({MatchingView.Project.class})
     private HumanResource humanResourceByHumanResourceId;
-
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
     private Double rankingScore;
+    @JsonView(MatchingView.Resource.class)
     private int projectId;
+    @JsonView(MatchingView.Resource.class)
     private Project projectByProjectId;
 
     public Interaction(String type){

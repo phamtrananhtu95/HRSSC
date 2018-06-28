@@ -11,13 +11,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "resource_skills", schema = "hrssc", catalog = "")
 public class ResourceSkills implements Serializable{
-    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
+    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class})
     private int id;
     private int skillId;
     private int humanResourceId;
-    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
+    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class})
     private Double experience;
-    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
+    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class})
     private Skill skillBySkillId;
     private HumanResource humanResourceByHumanResourceId;
 

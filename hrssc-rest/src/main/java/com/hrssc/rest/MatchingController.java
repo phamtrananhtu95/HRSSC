@@ -3,6 +3,7 @@ package com.hrssc.rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Interaction;
 import com.hrssc.entities.Project;
 import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,16 @@ public class MatchingController {
     @Autowired
     MatchingService matchingService;
 
-    @JsonView(MatchingView.Resource.class)
-    @PostMapping(value = "/resource")
-    public List<HumanResource> matchResource(@RequestBody Project project) {
-        return matchingService.matchResource(project.getId());
-    }
-
     @JsonView(MatchingView.Project.class)
     @PostMapping(value = "/project")
-    public List<Project> matchProject(@RequestBody HumanResource resource) {
-        return matchingService.matchProject(resource.getId());
+    public List<Interaction> matchProject(@RequestBody Project project) {
+        return matchingService.matchProject(project.getId());
+    }
+
+    @JsonView(MatchingView.Resource.class)
+    @PostMapping(value = "/resource")
+    public List<Interaction> matchResource(@RequestBody HumanResource resource) {
+        return matchingService.matchResource(resource.getId());
     }
 
 }

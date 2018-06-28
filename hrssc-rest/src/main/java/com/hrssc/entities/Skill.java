@@ -18,8 +18,9 @@ public class Skill {
     @JsonView({MiscView.ShortView.class,
             MiscView.FormInfo.class,
             ProjectView.ListView.class,
-            MatchingView.Resource.class,
-            HumanResourceView.overview.class})
+            MatchingView.Project.class,
+            HumanResourceView.overview.class,
+            MatchingView.Resource.class})
     private String title;
 
     private Collection<ResourceSkills> resourceSkillsById;

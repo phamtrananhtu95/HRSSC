@@ -13,15 +13,15 @@ import java.util.Objects;
 @Entity(name="human_resource")
 @Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
-    @JsonView({HumanResourceView.overview.class, MatchingView.Resource.class})
+    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class})
     private int id;
-    @JsonView({HumanResourceView.overview.class, MatchingView.Resource.class})
+    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class})
     private String fullname;
     @JsonView(HumanResourceView.overview.class)
     private int status;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Resource.class})
+    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class})
     private String email;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Resource.class})
+    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class})
     private String tel;
     @JsonView(HumanResourceView.overview.class)
     private Long availableDate;
@@ -34,7 +34,7 @@ public class HumanResource {
     private int userId;
     private Collection<Feedback> feedbacksById;
 
-    @JsonView(MatchingView.Resource.class)
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
     private Company companyByCompanyId;
 
 
@@ -42,7 +42,7 @@ public class HumanResource {
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
     private Collection<Notification> notificationsById;
-    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
+    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class})
     private Collection<ResourceSkills> resourceSkillsById;
 
     @Id
