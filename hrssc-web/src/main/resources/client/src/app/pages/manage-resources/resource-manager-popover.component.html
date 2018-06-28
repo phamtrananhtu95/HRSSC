@@ -18,13 +18,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-feedback-left">
                                             <label>Name</label>
-                                            <input type="text" class="form-control input-xlg" placeholder="Pham Tran Anh Tu">
+                                            <input type="text" class="form-control input-xlg" placeholder="Name of resource">
                                             <div class="form-control-feedback">
                                                 <i class="icon-office"></i>
                                             </div>
                                         </div>
 
-                                        <div class="form-group has-feedback has-feedback-left">
+                                        <!-- <div class="form-group has-feedback has-feedback-left">
                                             <label>DOB</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -32,41 +32,43 @@
                                                 </span>
                                                 <input type="text" class="form-control pickadate" placeholder="23/10/1996&hellip;">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group has-feedback has-feedback-left">
-                                            <select multiple="multiple" data-placeholder="Select Skill..." class="select">
-                                                <option></option>
-                                                <optgroup label="Language">
-                                                    <option>Java</option>
-                                                    <option>C#</option>
-                                                    <option>PHP</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group has-feedback has-feedback-left">
-                                            <label>Phone</label>
-                                            <input type="text" class="form-control input-sm" placeholder="01649407777">
-                                            <div class="form-control-feedback">
-                                                <i class="icon-pin-alt"></i>
-                                            </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group has-feedback has-feedback-left">
                                             <label>Email</label>
-                                            <input type="text" class="form-control input-xs" placeholder="phamtrananhtu@gmail.com">
+                                            <input type="text" class="form-control input-xlg" placeholder="resource@gmail.com">
                                             <div class="form-control-feedback">
-                                                <i class="icon-help"></i>
+                                                <i class="icon-office"></i>
                                             </div>
                                         </div>
+
                                         <div class="form-group has-feedback has-feedback-left">
-                                            <label>Position</label>
-                                            <input type="text" class="form-control input-xs" placeholder="???">
+                                            <label>Tel</label>
+                                            <input type="text" class="form-control input-xlg" placeholder="01663173399">
                                             <div class="form-control-feedback">
-                                                <i class="icon-help"></i>
+                                                <i class="icon-office"></i>
                                             </div>
                                         </div>
+
+                                        <div class="form-group has-feedback has-feedback-left">
+                                            <label>Skill</label>
+                                            <input type="text" class="form-control input-xlg" placeholder="java, bla bla">
+                                            <div class="form-control-feedback">
+                                                <i class="icon-office"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group has-feedback has-feedback-left">
+                                            <label>Status</label>
+                                            <select name="select" class="form-control" name="status" (change)="formModel.status=$event.target.value">
+                                                <option value="1" [selected]="formModel?.status==1">Available</option>
+                                                <option value="2" [selected]="formModel?.status!=1">Inactive</option>
+                                            </select>
+                                            <div class="form-control-feedback">
+                                                <i class="icon-bell3"></i>
+                                            </div>
+                                        </div>
+
                                     </div>
 
 

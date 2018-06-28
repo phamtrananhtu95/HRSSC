@@ -36,7 +36,7 @@
             </thead>
             <tbody>
             
-              <tr *ngFor="let humanResources of humanResource">
+              <tr *ngFor="let humanResources of humanResource" (click)="viewHumanResourceDetail(humanResources.id)">
                 <td>{{humanResources.fullname}}</td>
                 <td>Java, C#, PHP</td>
                 <td>{{humanResources.tel}}</td>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Employee } from '../../models';
+import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 
@@ -16,10 +17,12 @@ export class ManageResourcesComponent implements OnInit {
   
   public humanResource: Employee[];
   public managerId;
+  public resourceId;
   
   constructor(
     private employeeService: EmployeeService,
-    private authenticateService: AuthenticateService
+    private authenticateService: AuthenticateService,
+    private router: Router
   ) { }
   
   ngOnInit() {
@@ -32,9 +35,8 @@ export class ManageResourcesComponent implements OnInit {
 
     // (<any>window).formSelect2 = true;
     // (<any>window).interactionsMin = true;
-    // title:""
-    // this.resources = new UserList().users;
-    // this.titleService.setTile("Home","Manager resource","Resource");
+    
+
   }
 
   getHumanResourceByManagerId(){
@@ -49,4 +51,8 @@ export class ManageResourcesComponent implements OnInit {
     )
   }
 
+  viewHumanResourceDetail(humanResourceId) {
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});
+    
+  }
 }

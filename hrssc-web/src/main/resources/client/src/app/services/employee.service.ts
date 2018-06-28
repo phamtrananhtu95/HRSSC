@@ -17,4 +17,9 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
+  getHumanResourceById(humanResourceId) {
+    let url = 'humanResource/' + humanResourceId;
+    return this.restService.get(url);
+  }
+
 }
