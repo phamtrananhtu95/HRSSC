@@ -7,11 +7,13 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.entities.ResourceSkills;
 import com.hrssc.entities.Skill;
 import com.hrssc.repository.ResourceSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.hrssc.domain.dto.HumanResourceDto;
@@ -63,7 +65,7 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 		try {
 			HumanResource humanResource = new HumanResource();
 			humanResource.setFullname(humanResourceSkill.getFullname());
-			humanResource.setStatus(humanResourceSkill.getStatus());
+			humanResource.setStatus(Constant.ResourceStatus.INACTIVE);
 			humanResource.setEmail(humanResourceSkill.getEmail());
 			humanResource.setTel(humanResourceSkill.getTel());
 			humanResource.setAvailableDate(humanResourceSkill.getAvailableDate());
@@ -84,10 +86,13 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 				tmp.setHumanResourceId(hm.getId());
 				resourceSkillRepository.save(tmp);
 			}
-			return "Successfully update resource.";
-		}catch (RuntimeException e){
+			return "Successfully add resource.";
+		}catch (IncorrectResultSizeDataAccessException e){
 			Logger.getLogger(HumanResourceService.class.getName()).log(Level.INFO,e.toString());
-			return "Error Occurred, Update has failed.";
+			return "Email existed.";
+		}catch(RuntimeException e){
+			Logger.getLogger(HumanResourceService.class.getName()).log(Level.INFO,e.toString());
+			return "Error Occurred, Failed to add resource.";
 		}
 	}
 

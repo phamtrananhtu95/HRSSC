@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.MiscView;
 import com.hrssc.domain.jacksonview.ProjectView;
@@ -11,13 +12,14 @@ import java.util.Objects;
 
 @Entity
 public class Skill {
-    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,HumanResourceView.overview.class})
     private int id;
 
     @JsonView({MiscView.ShortView.class,
             MiscView.FormInfo.class,
             ProjectView.ListView.class,
-            MatchingView.Resource.class})
+            MatchingView.Resource.class,
+            HumanResourceView.overview.class})
     private String title;
 
     private Collection<ResourceSkills> resourceSkillsById;

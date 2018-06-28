@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.MatchingView;
 
 import javax.persistence.*;
@@ -10,12 +11,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "resource_skills", schema = "hrssc", catalog = "")
 public class ResourceSkills implements Serializable{
+    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
     private int id;
     private int skillId;
     private int humanResourceId;
-    @JsonView(MatchingView.Resource.class)
+    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
     private Double experience;
-    @JsonView(MatchingView.Resource.class)
+    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
     private Skill skillBySkillId;
     private HumanResource humanResourceByHumanResourceId;
 

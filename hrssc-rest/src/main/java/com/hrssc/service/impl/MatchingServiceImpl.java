@@ -6,7 +6,6 @@ import com.hrssc.entities.*;
 import com.hrssc.repository.HumanResourceRepository;
 import com.hrssc.repository.ProjectRepository;
 import com.hrssc.service.MatchingService;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +40,7 @@ public class MatchingServiceImpl implements MatchingService {
         Project project = projectRepository.findById(projectId);
         //Find all the available resource that is not in the same company
         List<HumanResource> resourceList =
-                humanResourceRepo.findByStatusAndCompanyIdNot(Constant.ResourceStatus.ACTIVATED,project.getCompanyId());
+                humanResourceRepo.findByStatusAndCompanyIdNot(Constant.ResourceStatus.AVAILABLE,project.getCompanyId());
         if(resourceList != null){
             ScoreRanker sr = new ScoreRanker(5.0,2.0,2.0,0.7,0.3);
             List<Interaction> matchedList =  new ArrayList<>();

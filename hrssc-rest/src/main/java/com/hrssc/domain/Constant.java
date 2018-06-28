@@ -26,9 +26,9 @@ public class Constant {
 	}
 
 	public class ResourceStatus {
-		public static final int ACTIVATED = 1;
-		public static final int DEACTIVATED = 2;
-		public static final int REMOVED = 3;
+		public static final int AVAILABLE = 1;
+		public static final int INACTIVE = 2;
+		public static final int BUSY = 3;
 	}
 	public class ManagerStatus {
 		public static final int ACTIVATED = 1;

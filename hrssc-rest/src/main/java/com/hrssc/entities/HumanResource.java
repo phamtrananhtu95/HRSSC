@@ -42,7 +42,7 @@ public class HumanResource {
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
     private Collection<Notification> notificationsById;
-    @JsonView(MatchingView.Resource.class)
+    @JsonView({MatchingView.Resource.class,HumanResourceView.overview.class})
     private Collection<ResourceSkills> resourceSkillsById;
 
     @Id
