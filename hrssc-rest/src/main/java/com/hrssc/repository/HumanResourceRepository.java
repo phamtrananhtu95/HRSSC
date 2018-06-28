@@ -17,8 +17,8 @@ public interface HumanResourceRepository extends JpaRepository<HumanResource, In
 
     List<HumanResource> getHumanResourcesByUserId(int user_id);
 
-    @Query(value = "select u from human_resource u where u.email=:email")
-    HumanResource findByEmail(@Param(value = "email") String email);
+
+    HumanResource findByEmail(String email);
 
     List<HumanResource> findByStatusAndCompanyIdNot(int status,int companyId);
 

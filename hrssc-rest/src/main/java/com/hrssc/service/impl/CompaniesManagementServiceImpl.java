@@ -36,11 +36,12 @@ public class CompaniesManagementServiceImpl implements CompaniesManagementServic
     }
 
     @Transactional
+    @Override
     public boolean acceptCompany(int tempInfoId){
         try {
             saveCompany(tempInfoId);
             saveUser(tempInfoId);
-            removeTempInfo(tempInfoId);
+            tempInfoRepo.deleteById(tempInfoId);
             return true;
         }catch (RuntimeException e){
             Logger.getLogger(CompaniesManagementServiceImpl.class.toString()).log(Level.INFO,e.toString());

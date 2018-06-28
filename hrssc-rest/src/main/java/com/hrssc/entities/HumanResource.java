@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Data
-@Entity(name="human_resource")
+@Entity
 @Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
     @JsonView({HumanResourceView.overview.class, MatchingView.Project.class})
@@ -29,6 +29,8 @@ public class HumanResource {
     private Long availableDuration;
     @JsonView(HumanResourceView.overview.class)
     private int companyId;
+    @JsonView(MatchingView.Project.class)
+    private double salary;
 
     @JsonView(HumanResourceView.overview.class)
     private int userId;
@@ -126,8 +128,6 @@ public class HumanResource {
         this.companyId = companyId;
     }
 
-
-
     @Basic
     @Column(name = "user_id", nullable = false)
     public int getUserId() {
@@ -179,8 +179,6 @@ public class HumanResource {
         this.companyByCompanyId = companyByCompanyId;
     }
 
-
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
     public User getUserByUserId() {
@@ -225,5 +223,15 @@ public class HumanResource {
 
     public void setResourceSkillsById(Collection<ResourceSkills> resourceSkillsById) {
         this.resourceSkillsById = resourceSkillsById;
+    }
+
+    @Basic
+    @Column(name = "salary", nullable = false, precision = 0)
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 }
