@@ -5,6 +5,7 @@ import { AuthenticateService } from '../../services/authenticate.service';
 import { Manager } from '../../models/manager.model';
 import * as jQuery from 'jquery';
 
+declare var $: any;
 @Component({
     selector: 'app-resource-manager-popover',
     templateUrl: './resource-manager-popover.component.html'

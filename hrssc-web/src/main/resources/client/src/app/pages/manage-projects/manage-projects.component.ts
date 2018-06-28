@@ -79,6 +79,8 @@ export class ManageProjectsComponent implements OnInit {
     return dateParse;
   }
 
+  
+
   onPositionSelected(val: any) {
     this.skills = [];
     $('.item').empty();
@@ -102,7 +104,7 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   addNewPosition() {
-    var skillExp = new Array<SkillRequirement>();
+    var skillExp = new Array<any>();
 
     var positionId = $('#positionAdd :selected').attr("id");
     $('input[name^=skilExp]').each(function () {
@@ -158,10 +160,13 @@ export class ManageProjectsComponent implements OnInit {
   updateProject(project: Project) {
     this.isUpdateForm = true;
     this.isUpdatePositionForm = true;
+    this.formModel =  Object.assign({}, project);
     this.positionList = project.projectRequirementsById;
-    this.formModel = project;
+    
+    // this.formModel = project;
     console.log(this.formModel);
   }
+
 
   updatePrj(){
     this.prjService.updateProject(this.formModel).subscribe(

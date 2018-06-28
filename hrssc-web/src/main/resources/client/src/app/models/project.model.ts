@@ -20,7 +20,7 @@ export class Project {
 export class ProjectRequirement {
     payment: number;
     positionId: number;
-    skillRequirementsById: Array<SkillRequirement>
+    skillRequirementsById: Array<any>
     quantity: number;
 }
 
