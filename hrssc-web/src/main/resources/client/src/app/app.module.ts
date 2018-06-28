@@ -50,6 +50,7 @@ import { ProjectService } from './services/project.service';
 import { ScriptLoadService } from './services/script-load.service';
 import { ManagementService } from './services/management.service';
 import { AccountManagerPopoverComponent } from './pages/chef-manage-account-manager/account-manager-popover.component';
+import { ResourceManagerPopoverComponent } from './pages/manage-resources/resource-manager-popover.component';
 
 const appRoutes: Routes = [
 
@@ -154,6 +155,7 @@ const appRoutes: Routes = [
     ProjectOverviewComponent,
     ManageInvitationsComponent,
     ManageResourcesComponent,
+    ResourceManagerPopoverComponent,
     ManageProjectsComponent,
     ManageAppliancesComponent,
     AdminManageCompanyComponent,
