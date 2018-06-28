@@ -50,7 +50,7 @@ public class ManagerManagementController {
 
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseStatus addManager(@RequestBody User user){
-        return new ResponseStatus(userService.addManager(user));
+		return new ResponseStatus(userService.addManager(user));
 	}
 	
 	/**

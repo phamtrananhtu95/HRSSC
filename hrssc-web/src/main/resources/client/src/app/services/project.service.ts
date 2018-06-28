@@ -18,4 +18,14 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  addProject(project) {
+    let url = 'manage-project/add';
+    return this.restService.post(url,project);
+  }
+
+  updateProject(project){
+    let url = 'manage-project/update';
+    return this.restService.post(url,project);
+  }
+
 }

@@ -6,9 +6,14 @@ export class Employee {
     tel: string;
     availableDate: number;
     availableDuration: number;
-    skills: string[];
+    resourceSkillsById: Skill[];
     company: string;
 
     constructor() {
     }
+}
+
+export class Skill {
+    skillId: number;
+    experience: number;
 }

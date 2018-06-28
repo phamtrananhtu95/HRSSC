@@ -4,13 +4,12 @@ import { User } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Manager } from '../../models/manager.model';
 import * as jQuery from 'jquery';
-declare var $: any;
 
 @Component({
-    selector: 'app-account-manager-popover',
-    templateUrl: './account-manager-popover.component.html'
+    selector: 'app-resource-manager-popover',
+    templateUrl: './resource-manager-popover.component.html'
 })
-export class AccountManagerPopoverComponent implements OnInit {
+export class ResourceManagerPopoverComponent implements OnInit {
 
     @Input() editManagerModel: any;
     @Input() isEditForm: boolean;
