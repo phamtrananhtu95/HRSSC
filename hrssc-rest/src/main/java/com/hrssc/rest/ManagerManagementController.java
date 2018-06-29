@@ -67,6 +67,6 @@ public class ManagerManagementController {
 	@JsonView(UserView.details.class)
 	@GetMapping(value = "/details/{UserId}")
 	public User viewManagerDetails(@PathVariable("UserId") int userId) throws NotFoundException {
-			return userService.viewUserDetails(userId);
+			return userService.viewManagerDetails(userId);
 	}
 }

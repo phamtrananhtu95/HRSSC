@@ -30,7 +30,7 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 	private UserRepository userRepository;
 
 	public User getManagerById(int id) {
-        User user = userRepository.findManagerById(id);
+        User user = userRepository.findByIdAndRoleId(id,Constant.UserRole.MANAGER);
 	    return user;
 	}
 
@@ -110,8 +110,9 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 		return managers;
 	}
 
-	public User viewUserDetails(int id) throws NotFoundException {
-			User userDetails = userRepository.findById(id);
+	@Override
+	public User viewManagerDetails(int id) throws NotFoundException {
+			User userDetails =  userRepository.findByIdAndRoleId(id,Constant.UserRole.MANAGER);;
 			if(userDetails == null){
 				throw new NotFoundException("not found Manager with id ...");
 

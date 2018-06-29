@@ -40,7 +40,7 @@ public interface ManagerManagementService {
 	boolean checkExistingEmail(String email);
 	String addManager(User user);
 
-	User viewUserDetails(int id) throws NotFoundException;
+	User viewManagerDetails(int id) throws NotFoundException;
 
 	List<ManagerDto> getManagersByCompanyId(int companyId);
 }
