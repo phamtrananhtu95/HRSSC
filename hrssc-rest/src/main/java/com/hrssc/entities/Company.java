@@ -21,6 +21,7 @@ public class Company {
     private String name;
 
     private String address;
+    @JsonView({MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String city;
     private String tel;
 
