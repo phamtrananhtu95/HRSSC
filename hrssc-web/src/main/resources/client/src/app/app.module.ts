@@ -51,6 +51,10 @@ import { ScriptLoadService } from './services/script-load.service';
 import { ManagementService } from './services/management.service';
 import { AccountManagerPopoverComponent } from './pages/chef-manage-account-manager/account-manager-popover.component';
 import { ResourceManagerPopoverComponent } from './pages/manage-resources/resource-manager-popover.component';
+import { ResourceSimilarComponent } from './pages/resource-info/resource-similar/resource-similar.component';
+import { ProjectMatchingComponent } from './pages/resource-info/project-matching/project-matching.component';
+import { InfoResourceViewComponent } from './pages/resource-info/info-resource-view/info-resource-view.component';
+import { InfoResourceManagerComponent } from './pages/resource-info/info-resource-manager/info-resource-manager.component';
 import { SelectModule } from 'ng-select';
 
 const appRoutes: Routes = [
@@ -160,6 +164,10 @@ const appRoutes: Routes = [
     AdminManageAccountRequestComponent,
     ChefManageAccountManagerComponent,
     AccountManagerPopoverComponent,
+    ResourceSimilarComponent,
+    ProjectMatchingComponent,
+    InfoResourceViewComponent,
+    InfoResourceManagerComponent,
     FeedbackComponent,
     RegisterComponent,
     PageHeaderComponent,

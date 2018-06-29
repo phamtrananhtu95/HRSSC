@@ -1,0 +1,47 @@
+<div class="panel-body">
+
+
+    <div class="form-group has-feedback">
+        <b>Name</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <b>Email</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <b>Tel</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <b>Skill</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <b>Available date</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <b>Available duration</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <b>Salary</b>
+        <input type="text" class="form-control">
+    </div>
+    <div class="form-group has-feedback">
+        <label>Status</label>
+        <select name="select" class="form-control" name="status" (change)="formModel.status=$event.target.value">
+            <option value="1" [selected]="formModel?.status==1">Available</option>
+            <option value="2" [selected]="formModel?.status!=1">Inactive</option>
+        </select>
+        <div class="form-control-feedback">
+            <i class="icon-bell3"></i>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-success btn-rounded btn-xlg" data-toggle="modal">
+        Update
+    </button>
+
+</div>
