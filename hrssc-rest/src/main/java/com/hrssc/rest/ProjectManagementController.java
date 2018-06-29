@@ -38,4 +38,10 @@ public class ProjectManagementController {
     public ResponseStatus updateProjectStatus(@RequestBody Project project){
         return new ResponseStatus(projectManagementService.updateStatus(project));
     }
+
+    @JsonView(ProjectView.Summary.class)
+    @GetMapping(value = "get-summary/{projectId}")
+    public Project getProjectSummaryById(@PathVariable(value = "projectId") int id){
+        return projectManagementService.getProjectById(id);
+    }
 }

@@ -13,9 +13,9 @@ import java.util.Objects;
 public class ProjectRequirements {
     @JsonView(ProjectView.ListView.class)
     private int id;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class})
     private int payment;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class})
     private int quantity;
     @JsonView(ProjectView.ListView.class)
     private int positionId;
@@ -26,7 +26,7 @@ public class ProjectRequirements {
     private Position positionByPositionId;
     private Project projectByProjectId;
 
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id

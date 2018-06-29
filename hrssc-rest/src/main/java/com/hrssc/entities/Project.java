@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Project {
     @JsonView({ProjectView.ListView.class, MatchingView.Resource.class})
     private int id;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
     private String title;
     @JsonView(ProjectView.ListView.class)
     private String description;
@@ -22,9 +22,9 @@ public class Project {
     private long endDate;
     @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
     private long duration;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
     private String type;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
     private String domain;
     @JsonView(ProjectView.ListView.class)
     private int processStatus;
@@ -39,7 +39,7 @@ public class Project {
     @JsonView(MatchingView.Project.class)
     private Company companyByCompanyId;
 
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
     private Collection<ProjectRequirements> projectRequirementsById;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;

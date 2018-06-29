@@ -20,7 +20,8 @@ public class Skill {
             ProjectView.ListView.class,
             MatchingView.Project.class,
             HumanResourceView.overview.class,
-            MatchingView.Resource.class})
+            MatchingView.Resource.class,
+            ProjectView.Summary.class})
     private String title;
 
     private Collection<ResourceSkills> resourceSkillsById;

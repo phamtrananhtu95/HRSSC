@@ -86,15 +86,21 @@ public class ScoreRanker {
 
     private double calculateSkillScore(Map<ResourceSkills,SkillRequirements> skillMap){
         double multipler = 1;
+        if(skillMap.size() == 0){
+            return 0;
+        }
         for(Map.Entry similarEntry: skillMap.entrySet()){
             ResourceSkills resourceSkill = (ResourceSkills) similarEntry.getKey();
             SkillRequirements requirementSkill = (SkillRequirements) similarEntry.getValue();
             double temp = resourceSkill.getExperience() / requirementSkill.getExperience();
             if(temp == 1){
-                multipler *=2.5;
+                multipler *=2.2;
             }
-            if(temp > 1 && temp <= 1.5){
-                multipler *= 1.5;
+            if(temp > 1 && temp <= 1.3){
+                multipler *= 1.7;
+            }
+            if(temp > 1.3 && temp <= 1.6){
+                multipler *= 1.4;
             }
             if(temp < 1){
                 multipler *= temp;
@@ -133,6 +139,9 @@ public class ScoreRanker {
     }
     private double calculateSimilarityScore(HumanResource resource, Project project){
         double skill = calculateSkillScore(findSimilarSkills(resource,project));
+        if(skill == 0){
+            return 0;
+        }
         double type = calculateTypeScore(resource,project);
         double domain = calculateDomainScore(resource,project);
         double salary = calculateSalaryScore();
@@ -140,6 +149,9 @@ public class ScoreRanker {
     }
     public double rankingScore(HumanResource resource, Project project){
         double similarity = calculateSimilarityScore(resource,project);
+        if(similarity == 0){
+            return 0;
+        }
         double rating = 0;
         return similarity * similarityMultipler + rating * ratingMultipler;
     }

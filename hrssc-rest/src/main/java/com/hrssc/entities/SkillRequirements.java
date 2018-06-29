@@ -16,9 +16,9 @@ public class SkillRequirements {
     @JsonView(ProjectView.ListView.class)
     private int skillId;
 
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
     private Skill skillBySkillId;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class})
     private double experience;
 
     private int projectRequirementsId;

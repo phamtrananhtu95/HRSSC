@@ -61,10 +61,9 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
             for (ProjectRequirements prjReq : project.getProjectRequirementsById()) {
                 prjReq.setProjectId(prj.getId());
-                projectRequirementRepository.save(prjReq);
-                ProjectRequirements foundPrjReq = projectRequirementRepository.findByProjectIdAndPositionIdAndPayment(prjReq.getProjectId(), prjReq.getPositionId(), prjReq.getPayment());
+                prjReq = projectRequirementRepository.save(prjReq);
                 for (SkillRequirements skr : prjReq.getSkillRequirementsById()) {
-                    skr.setProjectRequirementsId(foundPrjReq.getId());
+                    skr.setProjectRequirementsId(prjReq.getId());
                     saveSkillRequirements(skr);
                 }
             }
@@ -127,6 +126,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 requirementsEntity.setPayment(requirement.getPayment());
                 requirementsEntity.setPositionId(requirement.getPositionId());
                 requirementsEntity.setQuantity(requirement.getQuantity());
+                if(requirement.getQuantity() == 0){
+                    requirementsEntity.setQuantity(1);
+                }else{
+                    requirementsEntity.setQuantity(requirement.getQuantity());
+                }
                 requirementsEntity = projectRequirementRepository.save(requirementsEntity);
 //                requirementsEntity = projectRequirementRepository.findByProjectIdAndPositionIdAndPayment(
 //                        requirementsEntity.getProjectId(),requirementsEntity.getPositionId(),requirementsEntity.getPayment()
@@ -218,6 +222,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         return "Error Occured, Update has failed.";
 
 
+    }
+
+    @Override
+    public Project getProjectById(int id) {
+        return projectRepository.findById(id);
     }
 }
 
