@@ -18,7 +18,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-feedback-left">
                                             <label>Name</label>
-                                            <input type="text" class="form-control input-xlg" placeholder="Name of resource">
+                                            <input type="text" [(ngModel)]="formModel.fullname" class="form-control input-xlg" placeholder="Name of resource">
                                             <div class="form-control-feedback">
                                                 <i class="icon-office"></i>
                                             </div>
@@ -36,7 +36,7 @@
 
                                         <div class="form-group has-feedback has-feedback-left">
                                             <label>Email</label>
-                                            <input type="text" class="form-control input-xlg" placeholder="resource@gmail.com">
+                                            <input type="text" [(ngModel)]="formModel.email" class="form-control input-xlg" placeholder="resource@gmail.com">
                                             <div class="form-control-feedback">
                                                 <i class="icon-office"></i>
                                             </div>
@@ -44,19 +44,36 @@
 
                                         <div class="form-group has-feedback has-feedback-left">
                                             <label>Tel</label>
-                                            <input type="text" class="form-control input-xlg" placeholder="01663173399">
+                                            <input type="text" [(ngModel)]="formModel.tel" class="form-control input-xlg" placeholder="01663173399">
                                             <div class="form-control-feedback">
                                                 <i class="icon-office"></i>
                                             </div>
                                         </div>
 
                                         <div class="form-group has-feedback has-feedback-left">
-                                            <label>Skill</label>
-                                            <input type="text" class="form-control input-xlg" placeholder="java, bla bla">
+                                            <label style="float: left;">Skill</label>
+                                            <div class="col-md-6" style="float: right;">
+                                                <div class="form-group" style="float: right;">
+                                                    <button type="button" class="btn bg-teal-400" (click)="createNewSkill()">
+                                                        <b><i class="icon-plus3"></i></b>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div *ngFor="let skill of skills">
+                                                <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId"></ng-select>
+                                                <input type="number" [(ngModel)]="skill.experience" class="form-control input-xlg">
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-group has-feedback has-feedback-left">
+                                            <label>Skills</label>
+                                            <label class="checkbox-inline" *ngFor="let skill of skills">
+                                                <input type="checkbox" #cb value="{{skill.title}}" [ngModel]="TestBinding" (change)="selectSkill(cb)" id="{{skill.id}}" class="styled"> {{skill.title}}
+                                            </label>
                                             <div class="form-control-feedback">
                                                 <i class="icon-office"></i>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group has-feedback has-feedback-left">
                                             <label>Status</label>
@@ -81,7 +98,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add new</button>
+                    <button type="button" class="btn btn-primary" (click)="addNewResource()">Add new</button>
                 </div>
             </div>
         </div>

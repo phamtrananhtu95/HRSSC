@@ -22,4 +22,14 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
+  getSkills(){
+    let url = 'load-form-info/skills';
+    return this.restService.get(url);
+  }
+
+  addHumanResource(humanResource){
+    let url = 'humanResource/add';
+    return this.restService.post(url, humanResource);
+  }
+
 }
