@@ -5,6 +5,7 @@ import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Project;
 import com.hrssc.service.ProjectManagementService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +44,11 @@ public class ProjectManagementController {
     @GetMapping(value = "get-summary/{projectId}")
     public Project getProjectSummaryById(@PathVariable(value = "projectId") int id){
         return projectManagementService.getProjectById(id);
+    }
+
+    @JsonView(ProjectView.details.class)
+    @GetMapping(value = "/details/{projectId}")
+    public Project viewProjectDetails(@PathVariable(value = "projectId") int id) {
+        return projectManagementService.viewProjectDetails(id);
     }
 }

@@ -20,33 +20,44 @@ import javassist.NotFoundException;
 @RestController
 @RequestMapping("/humanResource")
 public class HumanResourceController {
-	
+
 	@Autowired
 	private HumanResourceService humanResourceService;
-	
+
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HumanResourceDto> getHumanResource() {
 		return humanResourceService.getHumanResources();
 	}
-	
-	@GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public HumanResourceDto getHumanResourceById(@PathVariable int id) throws NotFoundException {
 		return humanResourceService.getHumanResourceById(id);
 	}
 
 	@JsonView(HumanResourceView.overview.class)
 	@GetMapping(value = "/get/{managerID}")
-	public List<HumanResource> getHumanResourceByManagerId(@PathVariable("managerID") int managerId){
+	public List<HumanResource> getHumanResourceByManagerId(@PathVariable("managerID") int managerId) {
 		return humanResourceService.getHumanResourceByManagerId(managerId);
 	}
 
 	@PostMapping(value = "/add")
-	public ResponseStatus addHumanResource(@RequestBody HumanResource humanresource){
+	public ResponseStatus addHumanResource(@RequestBody HumanResource humanresource) {
 		return new ResponseStatus(humanResourceService.addHumanResource(humanresource));
 	}
 
 	@PostMapping(value = "/update")
-	public ResponseStatus updateHumanResource(@RequestBody HumanResource humanResource){
+	public ResponseStatus updateHumanResource(@RequestBody HumanResource humanResource) {
 		return new ResponseStatus(humanResourceService.updateHumanResource(humanResource));
 	}
+	@PostMapping(value = "/change-status")
+	public ResponseStatus changeResourceStatus(@RequestBody HumanResource humanResource){
+		return new ResponseStatus(humanResourceService.changeResourceStatus(humanResource));
+	}
+	@JsonView(HumanResourceView.details.class)
+	@GetMapping(value = "/details/{id}")
+	public HumanResource viewHumanResourceDetails(@PathVariable("id") int id) throws NotFoundException {
+		return humanResourceService.viewHumanResourceDetails(id);
+	}
 }
+
+

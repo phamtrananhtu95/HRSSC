@@ -228,5 +228,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     public Project getProjectById(int id) {
         return projectRepository.findById(id);
     }
+
+    @Override
+    public Project viewProjectDetails(int id){
+        return projectRepository.findById(id);
+
+    }
 }
 

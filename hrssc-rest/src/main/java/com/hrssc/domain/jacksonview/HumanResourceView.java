@@ -5,4 +5,5 @@ package com.hrssc.domain.jacksonview;
  */
 public class HumanResourceView {
     public static class overview{}
+    public static class details{}
 }

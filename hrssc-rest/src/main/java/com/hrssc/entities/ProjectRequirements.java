@@ -11,22 +11,22 @@ import java.util.Objects;
 @Entity
 @Table(name = "project_requirements", schema = "hrssc", catalog = "")
 public class ProjectRequirements {
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private int id;
-    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class})
+    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class,ProjectView.details.class})
     private int payment;
-    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class})
+    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class,ProjectView.details.class})
     private int quantity;
     @JsonView(ProjectView.ListView.class)
     private int positionId;
     private int projectId;
     private boolean isAssigned;
 
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private Position positionByPositionId;
     private Project projectByProjectId;
 
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id

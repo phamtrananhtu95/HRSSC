@@ -3,6 +3,7 @@ package com.hrssc.entities;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.MatchingView;
+import com.hrssc.domain.jacksonview.ProjectView;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,38 +14,43 @@ import java.util.Objects;
 @Entity
 @Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
-    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class})
+    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class, HumanResourceView.details.class,ProjectView.details.class})
     private int id;
-    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class})
+    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class, HumanResourceView.details.class,ProjectView.details.class})
     private String fullname;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private int status;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class})
+    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String email;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class})
+    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String tel;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDate;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDuration;
-    @JsonView(HumanResourceView.overview.class)
+    @JsonView({HumanResourceView.overview.class,ProjectView.details.class})
     private int companyId;
-    @JsonView(MatchingView.Project.class)
+    @JsonView({MatchingView.Project.class,HumanResourceView.details.class})
     private double salary;
 
-    @JsonView(HumanResourceView.overview.class)
+
     private int userId;
+    @JsonView(HumanResourceView.details.class)
     private Collection<Feedback> feedbacksById;
 
-    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
 
-
+    @JsonView(HumanResourceView.details.class)
     private User userByUserId;
+
     private Collection<Interaction> interactionsById;
+
+    @JsonView(HumanResourceView.details.class)
     private Collection<Job> jobsById;
+
     private Collection<Notification> notificationsById;
-    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class})
+    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class, HumanResourceView.details.class})
     private Collection<ResourceSkills> resourceSkillsById;
 
     @Id

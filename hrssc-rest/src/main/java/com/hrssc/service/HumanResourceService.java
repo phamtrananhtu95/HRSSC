@@ -27,4 +27,7 @@ public interface HumanResourceService {
     String addHumanResource(HumanResource humanResource);
 
 	String updateHumanResource(HumanResource humanResource);
+
+	HumanResource viewHumanResourceDetails(int id);
+	String changeResourceStatus(HumanResource humanResource);
 }

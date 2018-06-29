@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity(name = "skill")
 public class Skill {
-    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,HumanResourceView.overview.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,HumanResourceView.overview.class,HumanResourceView.details.class,ProjectView.details.class})
     private int id;
 
     @JsonView({MiscView.ShortView.class,
@@ -21,7 +21,9 @@ public class Skill {
             MatchingView.Project.class,
             HumanResourceView.overview.class,
             MatchingView.Resource.class,
-            ProjectView.Summary.class})
+            ProjectView.Summary.class,
+            HumanResourceView.details.class,
+            ProjectView.details.class})
     private String title;
 
     private Collection<ResourceSkills> resourceSkillsById;

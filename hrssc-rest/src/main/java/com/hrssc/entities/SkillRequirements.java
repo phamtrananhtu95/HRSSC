@@ -10,15 +10,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "skill_requirements", schema = "hrssc", catalog = "")
 public class SkillRequirements {
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private int id;
 
     @JsonView(ProjectView.ListView.class)
     private int skillId;
 
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class})
+    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
     private Skill skillBySkillId;
-    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class})
+    @JsonView({ProjectView.ListView.class,ProjectView.Summary.class,ProjectView.details.class})
     private double experience;
 
     private int projectRequirementsId;

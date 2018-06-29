@@ -1,7 +1,9 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.MatchingView;
+import com.hrssc.domain.jacksonview.ProjectView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
@@ -13,13 +15,15 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 public class Company {
-    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
     private int id;
-    @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String name;
+
     private String address;
     private String city;
     private String tel;
+
     private String email;
     private int status;
     private String logo;

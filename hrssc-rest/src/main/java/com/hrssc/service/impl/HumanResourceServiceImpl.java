@@ -135,4 +135,32 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 			return "Error Occurred, Update has failed.";
 		}
 	}
+
+	@Override
+	public  HumanResource viewHumanResourceDetails(int id){
+		Optional<HumanResource> humanResource = humanResourceRepository.findById(id);
+		if (humanResource.isPresent()) {
+			return humanResource.get();
+		}
+		return null;
+	}
+
+	@Override
+	public String changeResourceStatus(HumanResource humanResource){
+		Optional<HumanResource> resourceOpt = humanResourceRepository.findById(humanResource.getId());
+		if(resourceOpt.isPresent()){
+			HumanResource resource = resourceOpt.get();
+			if(humanResource.getStatus() == Constant.ResourceStatus.AVAILABLE){
+				resource.setStatus(Constant.ResourceStatus.AVAILABLE);
+			}
+			if(humanResource.getStatus() == Constant.ResourceStatus.INACTIVE){
+				resource.setStatus(Constant.ResourceStatus.INACTIVE);
+			}
+			if(humanResource.getStatus() == Constant.ResourceStatus.BUSY){
+				resource.setStatus(Constant.ResourceStatus.BUSY);
+			}
+			return "OK";
+		}
+		return "Resource not found";
+	}
 }
