@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "skill")
 public class Skill {
     @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,HumanResourceView.overview.class})
     private int id;

@@ -5,9 +5,12 @@ import com.hrssc.entities.Skill;
 import com.hrssc.repository.PositionRepository;
 import com.hrssc.repository.SkillRepository;
 import com.hrssc.service.LoadCommonInfoService;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 @Service("loadCommonInfoService")
@@ -17,19 +20,40 @@ public class LoadCommonInfoServiceImp implements LoadCommonInfoService {
 
     @Autowired
     SkillRepository skillRepository;
-
+    Comparator<Skill> skillComparator = new Comparator<Skill>() {
+        @Override
+        public int compare(Skill o1, Skill o2) {
+            if(o1.getTitle().compareTo(o2.getTitle()) > 0){
+                return 1;
+            }
+            if(o1.getTitle().compareTo(o2.getTitle()) < 0){
+                return -1;
+            }
+            return 0;
+        }
+    };
     @Override
     public List<Skill> loadAllSkill() {
-       return skillRepository.findAll();
+        List<Skill> skillList = skillRepository.findDistinctSkill();
+        skillList.sort(skillComparator);
+
+       return skillList;
     }
 
     @Override
     public List<Position> loadAllPosition() {
-        return positionRepository.findAll();
+        List<Position> positionList = positionRepository.findAll();
+        for(Position position: positionList){
+            List<Skill> skillList = (List<Skill>)position.getSkillsById();
+            skillList.sort(skillComparator);
+        }
+        return positionList;
     }
 
     @Override
     public List<Skill> loadSkillByPosition(int positionId){
-        return skillRepository.findByPositionId(positionId);
+        List<Skill> skillList = skillRepository.findByPositionId(positionId);
+        skillList.sort(skillComparator);
+        return skillList;
     }
 }
