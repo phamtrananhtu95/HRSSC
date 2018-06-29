@@ -5,6 +5,7 @@ import java.util.List;
 import com.hrssc.domain.dto.ManagerDto;
 import com.hrssc.domain.dto.UserDto;
 import com.hrssc.entities.User;
+import javassist.NotFoundException;
 
 public interface ManagerManagementService {
 
@@ -38,6 +39,8 @@ public interface ManagerManagementService {
 
 	boolean checkExistingEmail(String email);
 	String addManager(User user);
+
+	User viewUserDetails(int id) throws NotFoundException;
 
 	List<ManagerDto> getManagersByCompanyId(int companyId);
 }

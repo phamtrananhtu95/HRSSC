@@ -3,6 +3,7 @@ package com.hrssc.service.impl;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.entities.User;
 import com.hrssc.repository.UserRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -107,6 +108,16 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 		});
 		
 		return managers;
+	}
+
+	public User viewUserDetails(int id) throws NotFoundException {
+			User userDetails = userRepository.findById(id);
+			if(userDetails == null){
+				throw new NotFoundException("not found Manager with id ...");
+
+			}
+			return userDetails;
+
 	}
 
 }

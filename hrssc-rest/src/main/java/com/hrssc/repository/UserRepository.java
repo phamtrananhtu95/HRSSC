@@ -22,6 +22,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	List<User> findByFullname(String fullname);
 
+	User findById(int id);
+
 	@Query(value = "SELECT u FROM user u WHERE u.id=:id AND u.roleId='3'")
 	User findManagerById(@Param(value = "id") int id);
 

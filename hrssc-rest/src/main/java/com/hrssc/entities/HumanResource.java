@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.ProjectView;
+import com.hrssc.domain.jacksonview.UserView;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,15 +15,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
-    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class, HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private int id;
-    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class, HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private String fullname;
-    @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
     private int status;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String email;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String tel;
     @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDate;

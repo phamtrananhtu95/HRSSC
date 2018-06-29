@@ -6,6 +6,7 @@ import com.hrssc.entities.User;
 
 import java.util.List;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -61,5 +62,11 @@ public class ManagerManagementController {
 	@GetMapping(value = "/{companyId}")
 	public List<ManagerDto> getManagersByCompanyId(@PathVariable("companyId") int companyId) {
 		return userService.getManagersByCompanyId(companyId);
+	}
+
+	@JsonView(UserView.details.class)
+	@GetMapping(value = "/details/{UserId}")
+	public User viewManagerDetails(@PathVariable("UserId") int userId) throws NotFoundException {
+			return userService.viewUserDetails(userId);
 	}
 }

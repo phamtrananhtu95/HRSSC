@@ -14,29 +14,31 @@ import java.util.Objects;
 @Data
 @Entity(name = "user")
 public class User {
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class})
     private int id;
-    @JsonView({UserView.overview.class})
+    @JsonView({UserView.overview.class,UserView.details.class})
     private String username;
     private String password;
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class})
     private String fullname;
-    @JsonView({UserView.overview.class})
+    @JsonView({UserView.overview.class,UserView.details.class})
     private String email;
-    @JsonView(UserView.overview.class)
+    @JsonView({UserView.overview.class,UserView.details.class})
     private String tel;
-    @JsonView(UserView.overview.class)
+    @JsonView({UserView.overview.class,UserView.details.class})
     private Integer status;
     @JsonView(UserView.overview.class)
     private boolean isFirstLogin;
-    @JsonView(UserView.overview.class)
+    @JsonView({UserView.overview.class,UserView.details.class})
     private int roleId;
     @JsonView({UserView.overview.class})
     private int companyId;
     private Collection<ChosenDomains> chosenDomainsById;
     private Collection<Feedback> feedbacksById;
+    @JsonView(UserView.details.class)
     private Collection<HumanResource> humanResourcesById;
     private Collection<Notification> notificationsById;
+    @JsonView(UserView.details.class)
     private Collection<Project> projectsById;
     private Role roleByRoleId;
     private Company companyByCompanyId;
