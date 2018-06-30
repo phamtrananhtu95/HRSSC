@@ -7,10 +7,7 @@ import com.hrssc.entities.Interaction;
 import com.hrssc.entities.Project;
 import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,4 +30,16 @@ public class MatchingController {
         return matchingService.matchResource(resource.getId());
     }
 
+    @JsonView(MatchingView.Project.class)
+    @GetMapping(value = "/get-matched-resource/{projectId}")
+    public List<Interaction> getMatchedResourceList(@PathVariable(value = "projectId") int id){
+        return matchingService.getMatchedResourceListByProjectId(id);
+    }
+
+
+    @JsonView(MatchingView.Resource.class)
+    @GetMapping(value = "/get-matched-project/{resourceId}")
+    public List<Interaction> getMatchedProjectList(@PathVariable(value = "resourceId") int id){
+        return matchingService.getMatchedProjectListByResourceId(id);
+    }
 }

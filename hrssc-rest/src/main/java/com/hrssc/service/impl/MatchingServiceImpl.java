@@ -124,5 +124,17 @@ public class MatchingServiceImpl implements MatchingService {
         return resultList;
     }
 
+    @Override
+    public List<Interaction> getMatchedResourceListByProjectId(int projectId){
+       List<Interaction> resourceList = interactionRepo.findByProjectIdAndType(projectId,Constant.InteractionType.MATCH);
+       resourceList.sort(comparator);
+       return  resourceList;
+    }
 
+    @Override
+    public List<Interaction> getMatchedProjectListByResourceId(int resourceId){
+        List<Interaction> projectList = interactionRepo.findByHumanResourceIdAndType(resourceId, Constant.InteractionType.MATCH);
+        projectList.sort(comparator);
+        return  projectList;
+    }
 }

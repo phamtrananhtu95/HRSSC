@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface MatchingService {
 
-    public List<Interaction> matchProject(int projectId);
-    public List<Interaction> matchResource(int resourceId);
+    List<Interaction> matchProject(int projectId);
+    List<Interaction> matchResource(int resourceId);
+    List<Interaction> getMatchedResourceListByProjectId(int projectId);
+    List<Interaction> getMatchedProjectListByResourceId(int resourceId);
 }
