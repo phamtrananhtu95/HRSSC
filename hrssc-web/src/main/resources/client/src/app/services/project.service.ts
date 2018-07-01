@@ -17,6 +17,10 @@ export class ProjectService {
     let url = 'load-form-info/positions';
     return this.restService.get(url);
   }
+  loadSkillByPositionId(id){
+      let url  = 'load-form-info/get-skill-by-position/' + id;
+      return this.restService.get(url);
+  }
 
   addProject(project) {
     let url = 'manage-project/add';

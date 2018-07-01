@@ -91,6 +91,7 @@
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
                                   <label>Project name</label>
+                                  <!-- Web application, mobile , desktop -->
                                   <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="Abc application">
                                   <div class="form-control-feedback">
                                     <i class="icon-office"></i>
@@ -153,15 +154,15 @@
 
                             <div class="row">
                               <div class="col-md-6">
-                                  <label for="">Status</label>
-                                  <select name="select" class="form-control" [(ngModel)]="formModel.processStatus" name="processStatus">
-                                    <option value="1" [selected]="formModel?.status==1">Open</option>
-                                    <option value="2" [selected]="formModel?.status!=1">In process</option>
-                                  </select>
+                                <label for="">Status</label>
+                                <select name="select" class="form-control" [(ngModel)]="formModel.processStatus" name="processStatus">
+                                  <option value="1" [selected]="formModel?.status==1">Pending</option>
+                                  <option value="2" [selected]="formModel?.status!=1">On going</option>
+                                </select>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group" style="float: right;">
-                                  <button type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_position">
+                                  <button type="submit" class="btn bg-teal-400 btn-labeled" (click)="addPosition()" data-toggle="modal" data-target="#modal_position">
                                     Add position
                                     <b>
                                       <i class="icon-plus3"></i>
@@ -172,7 +173,7 @@
 
                             </div>
 
-                            <!-- add position form -->
+                            <!-- add project position form -->
                             <div *ngIf="!isUpdatePositionForm" class="table-responsive" style="height: 150px; overflow: auto;">
                               <table class="table table-hover">
                                 <thead class="text-center">
@@ -180,21 +181,23 @@
                                     <th>Position</th>
                                     <th>Skill | Experience(years)</th>
                                     <th>Quantity</th>
+                                    <th>Payment</th>
                                     <th></th>
                                     <th></th>
                                   </tr>
                                 </thead>
                                 <tbody *ngFor="let x of positionList">
                                   <tr>
-                                    <td>{{x.positionId}}</td>
+                                    <td>{{x.value.positionId}}</td>
                                     <td>
-                                      <p *ngFor="let c of x.skillRequirementsById">
-                                        {{c.skillId}}|{{c.experience}}
+                                      <p *ngFor="let c of x.value.skillRequirementsById">
+                                        {{c.title}}|{{c.experience}}
                                       </p>
                                     </td>
-                                    <td>{{x.quantity}}</td>
+                                    <td>{{x.value.quantity}}</td>
+                                    <td>{{x.value.payment}}</td>
                                     <td>
-                                      <button type="button" class="btn btn-xs">
+                                      <button (click)="editPosition(x)" data-toggle="modal" data-target="#modal_position" type="button" class="btn btn-xs">
                                         <i class="icon-pencil"></i>
                                       </button>
                                     </td>
@@ -208,7 +211,7 @@
                               </table>
                             </div>
 
-                            <!-- update position form -->
+                            <!-- update project position form -->
                             <div *ngIf="isUpdatePositionForm" class="table-responsive" style="height: 150px; overflow: auto;">
                               <table class="table table-hover">
                                 <thead class="text-center">
@@ -220,7 +223,7 @@
                                     <th></th>
                                   </tr>
                                 </thead>
-                                <tbody *ngFor="let x of positionList">
+                                <tbody *ngFor="let x of positionList.value">
                                   <tr>
                                     <td>{{x.positionByPositionId.title}}</td>
                                     <td>
@@ -287,31 +290,47 @@
                         <div class="row">
                           <div class="form-group has-feedback has-feedback-left">
                             <label class="text-bold">Position</label>
-                            <select [(ngModel)]="positionSelected" id="positionAdd" (ngModelChange)='onPositionSelected($event)'>
-                              <option *ngFor="let position of positions" id="{{position.id}}" [ngValue]="position.skillsById">
-                                {{position.title}}
-                              </option>
-                            </select>
+                            
+                            <ng-select [options]="positionOpt" [(ngModel)]="formPositionModel.positionId" (ngModelChange)="onPositionSelected($event)">
+                            </ng-select>
+                            <!-- position select:{{formPositionModel.positionId}} -->
                           </div>
+                          
+                          <!-- test Skill -->
                           <div class="form-group has-feedback has-feedback-left">
-                            <label class="text-bold" for="">Skill</label>
-                            <div class="form-group">
-                              <label class="checkbox-inline" *ngFor="let skill of skills">
-                                <input type="checkbox" #cb value="{{skill.title}}" [ngModel]="TestBinding" (change)="selectSkill(cb)" id="{{skill.id}}" class="styled"> {{skill.title}}
-                              </label>
-                            </div>
-                            <div class="item">
+                            <label class="text-bold">Skill</label>
+                            <ng-select [options]="skillOpt" [multiple]=true [(ngModel)]="formPositionModel.skillSelect" (ngModelChange)="onSkillSelected($event)"></ng-select>
+                            <!-- skill select: {{formPositionModel.skillSelect}} -->
+                          </div>
+                          <div class="" style="height: 150px; overflow: auto;">
+                            <div *ngFor="let skill of formPositionModel.skillRequirementsById" >
+                              <label (ngModel)="skill.skillId">{{skill.title}}</label>
+                              <input type="number" [(ngModel)]="skill.experience" placeholder="Enter experience.." class="form-control input-xlg">
+                              {{skill.experience}}
                             </div>
                           </div>
+                          
+
+                         
+                         
                           <div class="form-group has-feedback has-feedback-left">
                             <label class="text-bold" for="">Quantity</label>
                             <div class="form-group">
-                              <input type="text" id="quantityAdd">
+                              <!-- <input type="text" id="quantityAdd"> -->
+                              <input type="number" [(ngModel)]="formPositionModel.quantity" id="quantityAdd" class="form-control input-xlg">
+                            </div>
+                          </div>
+                          <div class="form-group has-feedback has-feedback-left">
+                            <label class="text-bold" for="">Payment</label>
+                            <div class="form-group">
+                              <!-- <input type="text" id="quantityAdd"> -->
+                              <input type="number" [(ngModel)]="formPositionModel.payment" id="paymentAdd" class="form-control input-xlg">
                             </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                            <button type="submit" data-dismiss="modal" (click)="addNewPosition()" class="btn btn-primary">Save</button>
+                            <button type="submit" *ngIf="!isPositionUpdate" data-dismiss="modal" (click)="addNewPosition()" class="btn btn-primary">Save</button>
+                            <button type="submit" *ngIf="isPositionUpdate" data-dismiss="modal" class="btn btn-primary" (click)="updateNewPosition()">Update</button>
                           </div>
                         </div>
                       </div>

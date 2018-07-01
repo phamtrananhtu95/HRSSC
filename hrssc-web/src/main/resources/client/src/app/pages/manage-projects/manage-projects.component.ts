@@ -3,6 +3,7 @@ import { Project, SkillRequirement, ProjectRequirement } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
 import { skill } from '../../models/skill.model';
+import { IOption } from 'ng-select';
 
 declare var $: any;
 
@@ -22,16 +23,25 @@ export class ManageProjectsComponent implements OnInit {
   skills: skill[];
   isChecked = false;
 
-  public positionList = new Array<ProjectRequirement>();
+  public positionList = [];
   public userId;
   public companyId;
   public isUpdateForm: boolean;
   public isUpdatePositionForm: boolean;
   public formModel = new Project();
+  public formPositionModel = new ProjectRequirement();
+
+  // add something
+  public positionOpt;
+  public skillOpt;
+  public listSkillExp;
+  public isPositionUpdate: boolean;
+  
+  public countId = 0;
 
   constructor(
     private auth: AuthenticateService,
-    private prjService: ProjectService,
+    private prjService: ProjectService
   ) { }
 
   ngOnInit() {
@@ -42,9 +52,26 @@ export class ManageProjectsComponent implements OnInit {
       this.companyId = this.auth.getCompanyId();
       this.getProjectsByCompanyId();
       this.loadAllPosition();
-    }
-  }
+      this.formPositionModel.positionId = '1';
+      if (this.formPositionModel.positionId) {
+        this.loadSkillByPositionId(this.formPositionModel.positionId);
 
+        this.formPositionModel.skillSelect = [
+            15, 2
+        ]
+        
+        
+          
+      }
+      this.formPositionModel.quantity = 1;
+      this.formPositionModel.payment = 1;
+
+      
+    }
+
+
+  }
+  
   getProjectsByCompanyId() {
     this.prjService.getProjectByManagerId(this.userId).subscribe(
       res => {
@@ -63,8 +90,12 @@ export class ManageProjectsComponent implements OnInit {
   loadAllPosition() {
     this.prjService.loadAllPosition().subscribe(
       res => {
-        this.positions = res;
-        this.positionSelected = 3;
+        // this.positions = res;
+        // this.positionSelected = 3;
+        this.positionOpt = [];
+        res.forEach(position => {
+          this.positionOpt.push({ value: position.id.toString(), label: position.title })
+        });
       },
       err => {
         console.log(err);
@@ -78,18 +109,49 @@ export class ManageProjectsComponent implements OnInit {
     var dateParse = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
     return dateParse;
   }
+  loadSkillByPositionId(id) {
+    this.prjService.loadSkillByPositionId(id).subscribe(
+      res => {
+        // this.positions = res;
+        // this.positionSelected = 3;
+        this.skillOpt = [];
+        this.listSkillExp = [];
+        res.forEach(skill => {
+          this.skillOpt.push({ value: skill.id, label: skill.title })
+          this.listSkillExp.push(skill);
 
-  
-
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
   onPositionSelected(val: any) {
-    this.skills = [];
-    $('.item').empty();
-    for (let index = 0; index < val.length; index++) {
-      const element = val[index];
-      this.skills.push(new skill());
-      this.skills[index].id = element.id;
-      this.skills[index].title = element.title;
-    }
+    this.loadSkillByPositionId(val);
+    this.listSkillExp = [];
+    this.formPositionModel.skillRequirementsById = [];
+  }
+
+  onSkillSelected(val: any) {
+    // this.listSkillExp = [];
+    
+    // this.listSkillExp = val;
+    this.formPositionModel.skillRequirementsById = [];
+    val.forEach(val => {
+      this.listSkillExp.forEach(el => {
+        if(el.id === val){
+          var tmp = {
+            skillId: el.id,
+            title: el.title,
+            positionId: el.positionId
+            
+          }
+          this.formPositionModel.skillRequirementsById.push(tmp);
+        }
+      });
+    });
+    // console.log(this.formPositionModel.skillRequirementsById);
 
   }
 
@@ -115,35 +177,76 @@ export class ManageProjectsComponent implements OnInit {
     })
     var quantity = $('#quantityAdd').val();
 
-    var projectRequirement = new ProjectRequirement();
-    projectRequirement.positionId = positionId;
-    projectRequirement.quantity = quantity;
-    projectRequirement.skillRequirementsById = skillExp;
-    projectRequirement.payment = 0;
+    
 
-    this.positionList.push(projectRequirement)
-
+    // var projectRequirement = new ProjectRequirement();
+    // projectRequirement.positionId = positionId;
+    // projectRequirement.quantity = quantity;
+    // projectRequirement.skillRequirementsById = skillExp;
+    // projectRequirement.payment = 0;
+    console.log(this.formPositionModel);
+    var projectRequirement = this.formPositionModel;
+    this.positionList.push({
+      id: this.countId,
+      value: projectRequirement
+    })
     console.log(this.positionList);
-  }
+    this.countId = this.countId + 1;
 
+
+    // ver 2
+
+  }
+  updateNewPosition() {
+    this.positionList.forEach(el => {
+        if(el === this.formPositionModel){
+          
+        }
+    });
+  }
+  addPosition(){
+    this.isPositionUpdate = false;
+    this.formPositionModel = new ProjectRequirement();
+  }
+  editPosition(val: any) {
+    console.log(val);
+    this.isPositionUpdate = true;
+    this.formPositionModel = Object.assign({}, val.value);
+
+    this.positionList.forEach(el => {
+      if(el.id === val.id){
+        el.value = this.formPositionModel;
+      }
+    });
+    // console.log(this.positionList);
+    // $("#positionAdd option[id='" + projectRequirement.positionId + "']").prop('selected', true);
+
+  }
   deletePostion(val: any) {
     this.positionList = this.positionList.filter(function (el) {
       return el !== val;
     })
   }
   // add project
-  addProject(){
+  addProject() {
     this.isUpdateForm = false;
     this.isUpdatePositionForm = false;
     this.formModel = new Project();
-    this.positionList = new Array<ProjectRequirement>();
+    this.positionList = [];
   }
 
   addNewProject() {
+    
+
     this.formModel.userId = this.userId;
     this.formModel.companyId = this.companyId;
-    this.formModel.projectRequirementsById = this.positionList;
 
+    // load list
+    let tmp = new Array<ProjectRequirement>();
+    this.positionList.forEach(el => {
+      tmp.push(el.value);
+    });
+    this.formModel.projectRequirementsById = tmp;
     this.prjService.addProject(this.formModel).subscribe(
       res => {
         this.getProjectsByCompanyId();
@@ -153,22 +256,21 @@ export class ManageProjectsComponent implements OnInit {
         console.log(err);
       }
     );
-    // console.log(this.formModel);
+    console.log(this.formModel);
   }
 
   // update project
   updateProject(project: Project) {
     this.isUpdateForm = true;
     this.isUpdatePositionForm = true;
-    this.formModel =  Object.assign({}, project);
+    this.formModel = Object.assign({}, project);
     this.positionList = project.projectRequirementsById;
-    
+
     // this.formModel = project;
-    console.log(this.formModel);
   }
 
 
-  updatePrj(){
+  updatePrj() {
     this.prjService.updateProject(this.formModel).subscribe(
       res => {
         this.getProjectsByCompanyId();

@@ -19,9 +19,14 @@ export class Project {
 
 export class ProjectRequirement {
     payment: number;
-    positionId: number;
-    skillRequirementsById: Array<any>
+    positionId: string;
+    skillSelect;
+    skillRequirementsById;
     quantity: number;
+    constructor(){
+        this.skillSelect = [],
+        this.skillRequirementsById = [];
+    }
 }
 
 export class SkillRequirement {
