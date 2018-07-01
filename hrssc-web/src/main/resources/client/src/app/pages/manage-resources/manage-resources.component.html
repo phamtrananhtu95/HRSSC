@@ -3,7 +3,7 @@
   <!-- Page header -->
 
   <div id="button-add-emp">
-    <button type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_small">
+    <button type="button" class="btn bg-teal-400 btn-labeled" data-toggle="modal" data-target="#modal_default">
       <b>
         <i class="icon-user-plus"></i>
       </b> Add new resource
@@ -141,7 +141,7 @@
       </div> -->
 
        <app-resource-manager-popover [isEditForm]="isEditForm" [editManagerModel]="editManagerModel"
-       (reloadManagerList)="getManagersByCompanyId()">
+       (reloadManagerList)="getHumanResourceByManagerId()">
        </app-resource-manager-popover>
     </div>
   </div>

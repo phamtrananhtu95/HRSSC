@@ -18,7 +18,7 @@ export class EmployeeService {
   }
 
   getHumanResourceById(humanResourceId) {
-    let url = 'humanResource/' + humanResourceId;
+    let url = 'humanResource/details/' + humanResourceId;
     return this.restService.get(url);
   }
 
@@ -29,6 +29,11 @@ export class EmployeeService {
 
   addHumanResource(humanResource){
     let url = 'humanResource/add';
+    return this.restService.post(url, humanResource);
+  }
+
+  updateHumanResource(humanResource){
+    let url = 'humanResource/update';
     return this.restService.post(url, humanResource);
   }
 

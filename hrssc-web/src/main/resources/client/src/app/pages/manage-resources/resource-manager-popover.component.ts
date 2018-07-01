@@ -47,7 +47,8 @@ export class ResourceManagerPopoverComponent implements OnInit {
         this.formModel.resourceSkillsById = this.skills;
         this.employeeService.addHumanResource(this.formModel).subscribe(
             res => {
-                
+                this.reloadManagerList.emit();
+                (<any>$("#modal_default")).modal("hide");
             },
             err => {
                 console.log(err);

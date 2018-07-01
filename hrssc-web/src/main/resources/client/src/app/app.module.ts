@@ -55,6 +55,8 @@ import { ResourceSimilarComponent } from './pages/resource-info/resource-similar
 import { ProjectMatchingComponent } from './pages/resource-info/project-matching/project-matching.component';
 import { InfoResourceViewComponent } from './pages/resource-info/info-resource-view/info-resource-view.component';
 import { InfoResourceManagerComponent } from './pages/resource-info/info-resource-manager/info-resource-manager.component';
+import { RatingResourceComponent } from './pages/resource-info/rating-resource/rating-resource.component';
+
 import { SelectModule } from 'ng-select';
 import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
 
@@ -169,6 +171,7 @@ const appRoutes: Routes = [
     ProjectMatchingComponent,
     InfoResourceViewComponent,
     InfoResourceManagerComponent,
+    RatingResourceComponent,
     FeedbackComponent,
     RegisterComponent,
     PageHeaderComponent,

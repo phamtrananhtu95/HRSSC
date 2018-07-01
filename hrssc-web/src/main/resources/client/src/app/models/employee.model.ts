@@ -8,7 +8,8 @@ export class Employee {
     availableDuration: number;
     resourceSkillsById: Skill[];
     company: string;
-    companyId
+    companyId: string;
+    salary: number;
 
     constructor() {
         this.resourceSkillsById = [];
@@ -26,6 +27,7 @@ export class EmployeeRequest {
     resourceSkillsById: Skill[];
     companyId: number;
     userId: number;
+    salary: number;
 
     constructor() {
         this.resourceSkillsById = [];

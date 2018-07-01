@@ -14,6 +14,7 @@ public class ResourceSkills implements Serializable{
     @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private int id;
 
+    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private int skillId;
     private int humanResourceId;
     @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
