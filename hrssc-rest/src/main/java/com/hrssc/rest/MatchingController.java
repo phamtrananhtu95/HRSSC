@@ -5,6 +5,7 @@ import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Interaction;
 import com.hrssc.entities.Project;
+import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class MatchingController {
 
     @Autowired
     MatchingService matchingService;
+
+    @Autowired
+    AuthorizationService authorizationService;
 
     @JsonView(MatchingView.Project.class)
     @PostMapping(value = "/project")
@@ -31,15 +35,23 @@ public class MatchingController {
     }
 
     @JsonView(MatchingView.Project.class)
-    @GetMapping(value = "/get-matched-resource/{projectId}")
-    public List<Interaction> getMatchedResourceList(@PathVariable(value = "projectId") int id){
-        return matchingService.getMatchedResourceListByProjectId(id);
+    @GetMapping(value = "/get-matched-resource/{userId}/{projectId}")
+    public List<Interaction> getMatchedResourceList(@PathVariable(value = "projectId") int projectId,
+                                                    @PathVariable(value = "userId") int userId){
+        if(!authorizationService.checkProject(projectId,userId)){
+            return null;
+        }
+        return matchingService.getMatchedResourceListByProjectId(projectId,userId);
     }
 
 
     @JsonView(MatchingView.Resource.class)
-    @GetMapping(value = "/get-matched-project/{resourceId}")
-    public List<Interaction> getMatchedProjectList(@PathVariable(value = "resourceId") int id){
-        return matchingService.getMatchedProjectListByResourceId(id);
+    @GetMapping(value = "/get-matched-project/{userId}/{resourceId}")
+    public List<Interaction> getMatchedProjectList(@PathVariable(value = "resourceId") int resourceId,
+                                                   @PathVariable(value = "userId") int userId){
+        if(!authorizationService.checkResource(resourceId,userId)){
+            return null;
+        }
+        return matchingService.getMatchedProjectListByResourceId(resourceId,userId);
     }
 }

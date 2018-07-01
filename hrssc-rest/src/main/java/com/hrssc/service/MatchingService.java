@@ -10,6 +10,6 @@ public interface MatchingService {
 
     List<Interaction> matchProject(int projectId);
     List<Interaction> matchResource(int resourceId);
-    List<Interaction> getMatchedResourceListByProjectId(int projectId);
-    List<Interaction> getMatchedProjectListByResourceId(int resourceId);
+    List<Interaction> getMatchedResourceListByProjectId(int projectId, int userId);
+    List<Interaction> getMatchedProjectListByResourceId(int resourceId, int userId);
 }

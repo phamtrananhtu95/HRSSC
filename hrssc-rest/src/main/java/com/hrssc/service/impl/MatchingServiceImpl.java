@@ -6,6 +6,7 @@ import com.hrssc.entities.*;
 import com.hrssc.repository.HumanResourceRepository;
 import com.hrssc.repository.InteractionRepository;
 import com.hrssc.repository.ProjectRepository;
+import com.hrssc.repository.UserRepository;
 import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ import java.util.*;
 
 @Service("matchingService")
 public class MatchingServiceImpl implements MatchingService {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     ProjectRepository projectRepository;
@@ -125,14 +129,16 @@ public class MatchingServiceImpl implements MatchingService {
     }
 
     @Override
-    public List<Interaction> getMatchedResourceListByProjectId(int projectId){
+    public List<Interaction> getMatchedResourceListByProjectId(int projectId,int userId){
+
+
        List<Interaction> resourceList = interactionRepo.findByProjectIdAndType(projectId,Constant.InteractionType.MATCH);
        resourceList.sort(comparator);
        return  resourceList;
     }
 
     @Override
-    public List<Interaction> getMatchedProjectListByResourceId(int resourceId){
+    public List<Interaction> getMatchedProjectListByResourceId(int resourceId,int userId){
         List<Interaction> projectList = interactionRepo.findByHumanResourceIdAndType(resourceId, Constant.InteractionType.MATCH);
         projectList.sort(comparator);
         return  projectList;
