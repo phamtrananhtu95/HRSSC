@@ -5,8 +5,8 @@ export class Project {
     type: string;
     domain: string;
     duration: number;
-    createDate: number;
-    endDate: number;
+    createDate: any;
+    endDate: any;
     processStatus: number;
     companyId: number;
     userId: number;

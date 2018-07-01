@@ -101,6 +101,7 @@
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
                                   <label>Domain</label>
+                                  <!-- security,  -->
                                   <input type="text" [(ngModel)]="formModel.domain" class="form-control input-xlg" placeholder="Testing...">
                                   <div class="form-control-feedback">
                                     <i class="icon-office"></i>
@@ -135,17 +136,27 @@
                               <div class="row">
                                 <div class="col-md-6">
                                   <label>Start date</label>
-                                  <input type="text" [(ngModel)]="formModel.createDate" class="form-control" placeholder="25-10-2018">
+                                  <!-- <input type="text" [(ngModel)]="formModel.createDate" class="form-control" placeholder="25-10-2018">
                                   <div class="form-control-feedback">
                                     <i class="icon-droplets"></i>
-                                  </div>
+                                  </div> -->
+                                  <form #myForm="ngForm" novalidate>
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                                    [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
+                                  </form>
+                                  {{formModel.createDate}}
                                 </div>
                                 <div class="col-md-6">
                                   <label>End date</label>
-                                  <input type="text" [(ngModel)]="formModel.endDate" class="form-control" placeholder="25-10-2018">
+                                  <!-- <input type="text" [(ngModel)]="formModel.endDate" class="form-control" placeholder="25-10-2018">
                                   <div class="form-control-feedback">
                                     <i class="icon-droplets"></i>
-                                  </div>
+                                  </div> -->
+                                  <form #myForm="ngForm" novalidate>
+                                    <my-date-picker name="mydate2" [options]="myDatePickerOptions"
+                                                    [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
+                                  </form>
+                                  {{formModel.endDate}}
                                 </div>
                               </div>
 

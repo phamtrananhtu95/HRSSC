@@ -3,7 +3,7 @@ import { Project, SkillRequirement, ProjectRequirement } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
 import { skill } from '../../models/skill.model';
-import { IOption } from 'ng-select';
+import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 
 declare var $: any;
 
@@ -13,7 +13,12 @@ declare var $: any;
   styleUrls: ['./manage-projects.component.css']
 })
 export class ManageProjectsComponent implements OnInit {
-
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'dd/mm/yyyy',
+  };
+  createDate: any = { date: { year: 2018, month: 10, day: 9 } };
+  endDate:any = { date: { year: 2018, month: 10, day: 9 } };
   public parentTitle = "Home";
   public title = " - Manage projects";
   public subTitle = " - Project";
@@ -36,7 +41,7 @@ export class ManageProjectsComponent implements OnInit {
   public skillOpt;
   public listSkillExp;
   public isPositionUpdate: boolean;
-  
+
   public countId = 0;
 
   constructor(
@@ -57,21 +62,21 @@ export class ManageProjectsComponent implements OnInit {
         this.loadSkillByPositionId(this.formPositionModel.positionId);
 
         this.formPositionModel.skillSelect = [
-            15, 2
+          15, 2
         ]
-        
-        
-          
       }
       this.formPositionModel.quantity = 1;
       this.formPositionModel.payment = 1;
 
-      
     }
-
-
   }
-  
+  onDateChangedCreate(event: IMyDateModel) {
+    this.formModel.createDate = this.createDate.epoc;
+  }
+  onDateChangedEnd(event: IMyDateModel) {
+    this.formModel.endDate = this.endDate.epoc;
+  }
+
   getProjectsByCompanyId() {
     this.prjService.getProjectByManagerId(this.userId).subscribe(
       res => {
@@ -112,8 +117,6 @@ export class ManageProjectsComponent implements OnInit {
   loadSkillByPositionId(id) {
     this.prjService.loadSkillByPositionId(id).subscribe(
       res => {
-        // this.positions = res;
-        // this.positionSelected = 3;
         this.skillOpt = [];
         this.listSkillExp = [];
         res.forEach(skill => {
@@ -134,18 +137,15 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   onSkillSelected(val: any) {
-    // this.listSkillExp = [];
-    
-    // this.listSkillExp = val;
     this.formPositionModel.skillRequirementsById = [];
     val.forEach(val => {
       this.listSkillExp.forEach(el => {
-        if(el.id === val){
+        if (el.id === val) {
           var tmp = {
             skillId: el.id,
             title: el.title,
             positionId: el.positionId
-            
+
           }
           this.formPositionModel.skillRequirementsById.push(tmp);
         }
@@ -166,24 +166,7 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   addNewPosition() {
-    var skillExp = new Array<any>();
 
-    var positionId = $('#positionAdd :selected').attr("id");
-    $('input[name^=skilExp]').each(function () {
-      skillExp.push({
-        "skillId": $(this).attr('id'),
-        "experience": $(this).val()
-      });
-    })
-    var quantity = $('#quantityAdd').val();
-
-    
-
-    // var projectRequirement = new ProjectRequirement();
-    // projectRequirement.positionId = positionId;
-    // projectRequirement.quantity = quantity;
-    // projectRequirement.skillRequirementsById = skillExp;
-    // projectRequirement.payment = 0;
     console.log(this.formPositionModel);
     var projectRequirement = this.formPositionModel;
     this.positionList.push({
@@ -199,12 +182,12 @@ export class ManageProjectsComponent implements OnInit {
   }
   updateNewPosition() {
     this.positionList.forEach(el => {
-        if(el === this.formPositionModel){
-          
-        }
+      if (el === this.formPositionModel) {
+
+      }
     });
   }
-  addPosition(){
+  addPosition() {
     this.isPositionUpdate = false;
     this.formPositionModel = new ProjectRequirement();
   }
@@ -214,7 +197,7 @@ export class ManageProjectsComponent implements OnInit {
     this.formPositionModel = Object.assign({}, val.value);
 
     this.positionList.forEach(el => {
-      if(el.id === val.id){
+      if (el.id === val.id) {
         el.value = this.formPositionModel;
       }
     });
@@ -236,7 +219,7 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   addNewProject() {
-    
+
 
     this.formModel.userId = this.userId;
     this.formModel.companyId = this.companyId;

@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.2.4",
+    "@angular/animations": "^4.4.7",
     "@angular/cdk": "^2.0.0-beta.12",
     "@angular/common": "^4.2.4",
     "@angular/compiler": "^4.2.4",
@@ -26,6 +26,7 @@
     "@types/jquery": "^3.3.4",
     "angular-webstorage-service": "^1.0.2",
     "angular2-moment": "^1.9.0",
+    "angular4-datepicker": "^1.0.1",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "bootstrap": "^4.1.1",
     "core-js": "^2.4.1",

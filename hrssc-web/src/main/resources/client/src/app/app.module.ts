@@ -56,6 +56,7 @@ import { ProjectMatchingComponent } from './pages/resource-info/project-matching
 import { InfoResourceViewComponent } from './pages/resource-info/info-resource-view/info-resource-view.component';
 import { InfoResourceManagerComponent } from './pages/resource-info/info-resource-manager/info-resource-manager.component';
 import { SelectModule } from 'ng-select';
+import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
 
 const appRoutes: Routes = [
 
@@ -182,6 +183,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MomentModule,
     SelectModule,
+    MyDatePickerModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
