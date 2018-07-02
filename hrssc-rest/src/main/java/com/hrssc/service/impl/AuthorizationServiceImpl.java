@@ -39,11 +39,24 @@ public class AuthorizationServiceImpl implements AuthorizationService {
             return false;
         }
 
-        if(roleId == Constant.UserRole.CHIEF){
-            return project.getCompanyId() == user.getCompanyId();
-        }else if(roleId == Constant.UserRole.MANAGER){
-            return project.getUserId() == userId;
+        //Only check on closed projects
+        if(project.getRequestStatus() == Constant.RequestStatus.CLOSED) {
+            //Update later: Stranger Manager can still see this project, as long as they have the connection.
 
+            if (roleId == Constant.UserRole.CHIEF) {
+                return project.getCompanyId() == user.getCompanyId();
+            } else if (roleId == Constant.UserRole.MANAGER) {
+                return project.getUserId() == userId;
+
+            }
+        }else if(project.getRequestStatus() == Constant.RequestStatus.OPENNING){
+            //Nếu là project cùng công ty thì chỉ có Chief hoặc Manager của project đó mới có quyền xem thông tin
+            //Manager của công ty B được phép thấy bất kì OPENNING project nào của cty A.
+            if(project.getCompanyId() == user.getCompanyId()){
+                if(roleId == Constant.UserRole.MANAGER){
+                    return project.getUserId() == userId;
+                }
+            }
         }
         return true;
     }
@@ -61,11 +74,23 @@ public class AuthorizationServiceImpl implements AuthorizationService {
             return false;
         }
         HumanResource resource  = resourceOptional.get();
-        if(roleId == Constant.UserRole.CHIEF){
-           return resource.getCompanyId() == user.getCompanyId();
 
-        }else if(roleId == Constant.UserRole.MANAGER){
-            return resource.getUserId() == userId;
+        if(resource.getStatus() == Constant.ResourceStatus.INACTIVE) {
+            //Trường hợp Resource trong trạng thái inactive thì chỉ có Chief hoặc Manager của resource đó mới có quyền xem thông tin.
+            if (roleId == Constant.UserRole.CHIEF) {
+                return resource.getCompanyId() == user.getCompanyId();
+
+            } else if (roleId == Constant.UserRole.MANAGER) {
+                return resource.getUserId() == userId;
+            }
+        }else if(resource.getStatus() == Constant.ResourceStatus.AVAILABLE){
+            //Nếu là resource cùng công ty thì chỉ có Chief hoặc Manager của resource đó mới có quyền xem thông tin
+            //Manager của công ty B được phép thấy bất kì Available resource nào của cty A.
+            if(resource.getCompanyId() == user.getCompanyId()){
+                if(roleId == Constant.UserRole.MANAGER){
+                    return resource.getUserId() == userId;
+                }
+            }
         }
         return true;
     }
