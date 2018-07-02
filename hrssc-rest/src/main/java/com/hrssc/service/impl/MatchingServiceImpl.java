@@ -54,7 +54,7 @@ public class MatchingServiceImpl implements MatchingService {
         List<Interaction> resultList = null;
         List<HumanResource> resourceList =
                 humanResourceRepo.findByStatusAndCompanyIdNot(Constant.ResourceStatus.AVAILABLE, project.getCompanyId());
-        interactionRepo.deleteByProjectId(projectId);
+        interactionRepo.deleteByProjectIdAndType(projectId,Constant.InteractionType.MATCH);
         if (resourceList != null) {
             ScoreRanker sr = new ScoreRanker(5.0, 2.0, 2.0, 0.7, 0.3);
             List<Interaction> matchedList = new ArrayList<>();
@@ -90,14 +90,27 @@ public class MatchingServiceImpl implements MatchingService {
     public List<Interaction> matchResource(int resourceId) {
         Optional<HumanResource> resourceOptional = humanResourceRepo.findById(resourceId);
         HumanResource resource = resourceOptional.get();
+
+        //Truyền sai resourceId
         if (resource == null) {
             return null;
         }
+
+        //Không match resource Inactive
+        if(resource.getStatus()== Constant.ResourceStatus.INACTIVE){
+            return null;
+        }
+
+        //Không match resource Busy
+        if(resource.getStatus()== Constant.ResourceStatus.BUSY){
+            return null;
+        }
+
         List<Interaction> resultList = null;
         //Find all the project that is not int the same company
         List<Project> projectList = projectRepository.findByRequestStatusAndCompanyIdNot(
                 Constant.RequestStatus.OPENNING, resource.getCompanyId());
-        interactionRepo.deleteByHumanResourceId(resourceId);
+        interactionRepo.deleteByHumanResourceIdAndType(resourceId,Constant.InteractionType.MATCH);
         if (projectList != null) {
             ScoreRanker sr = new ScoreRanker(5.0, 2.0, 2.0, 0.7, 0.3);
             List<Interaction> matchedList = new ArrayList<>();

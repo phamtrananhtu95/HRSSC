@@ -8,6 +8,7 @@ import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Skill;
+import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,9 @@ public class HumanResourceController {
 
 	@Autowired
 	private HumanResourceService humanResourceService;
+
+	@Autowired
+	private MatchingService matchingService;
 
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HumanResourceDto> getHumanResource() {
@@ -47,12 +51,15 @@ public class HumanResourceController {
 
 	@PostMapping(value = "/update")
 	public ResponseStatus updateHumanResource(@RequestBody HumanResource humanResource) {
-		return new ResponseStatus(humanResourceService.updateHumanResource(humanResource));
+		ResponseStatus response = new ResponseStatus(humanResourceService.updateHumanResource(humanResource));
+		matchingService.matchResource(humanResource.getId());
+		return  response;
 	}
 	@PostMapping(value = "/change-status")
 	public ResponseStatus changeResourceStatus(@RequestBody HumanResource humanResource){
 		return new ResponseStatus(humanResourceService.changeResourceStatus(humanResource));
 	}
+
 	@JsonView(HumanResourceView.details.class)
 	@GetMapping(value = "/details/{id}")
 	public HumanResource viewHumanResourceDetails(@PathVariable("id") int id) throws NotFoundException {

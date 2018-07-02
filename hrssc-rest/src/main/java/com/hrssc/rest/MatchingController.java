@@ -29,6 +29,20 @@ public class MatchingController {
     }
 
     @JsonView(MatchingView.Resource.class)
+    @GetMapping(value = "/get-matched-project/{userId}/{resourceId}")
+    public List<Interaction> getMatchedProjectList(@PathVariable(value = "resourceId") int resourceId,
+                                                   @PathVariable(value = "userId") int userId){
+        if(!authorizationService.checkResource(resourceId,userId)){
+            return null;
+        }
+        return matchingService.getMatchedProjectListByResourceId(resourceId,userId);
+    }
+
+
+
+
+
+    @JsonView(MatchingView.Resource.class)
     @PostMapping(value = "/resource")
     public List<Interaction> matchResource(@RequestBody HumanResource resource) {
         return matchingService.matchResource(resource.getId());
@@ -45,13 +59,5 @@ public class MatchingController {
     }
 
 
-    @JsonView(MatchingView.Resource.class)
-    @GetMapping(value = "/get-matched-project/{userId}/{resourceId}")
-    public List<Interaction> getMatchedProjectList(@PathVariable(value = "resourceId") int resourceId,
-                                                   @PathVariable(value = "userId") int userId){
-        if(!authorizationService.checkResource(resourceId,userId)){
-            return null;
-        }
-        return matchingService.getMatchedProjectListByResourceId(resourceId,userId);
-    }
+
 }

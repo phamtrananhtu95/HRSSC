@@ -11,6 +11,7 @@ import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.entities.ResourceSkills;
 import com.hrssc.entities.Skill;
+import com.hrssc.repository.InteractionRepository;
 import com.hrssc.repository.ResourceSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -31,6 +32,9 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 
 	@Autowired
 	private ResourceSkillRepository resourceSkillRepository;
+
+	@Autowired
+	InteractionRepository interactionRepository;
 
 	@Override
 	public List<HumanResourceDto> getHumanResources() {
@@ -113,7 +117,7 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 				resourceUpdate.setAvailableDuration(humanResource.getAvailableDuration());
 				resourceUpdate.setSalary(humanResource.getSalary());
 //			resourceUpdate.setResourceSkillsById(humanResource.getResourceSkillsById());
-				humanResourceRepository.save(resourceUpdate);
+				resourceUpdate = humanResourceRepository.save(resourceUpdate);
 
 
 				List<ResourceSkills> list = resourceSkillRepository.getResourceSkillsByHumanResourceId(hmResource.get().getId());
@@ -127,6 +131,13 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 					tmp.setHumanResourceId(humanResource.getId());
 					resourceSkillRepository.save(tmp);
 				}
+
+				//Nếu chuyển trạng thái từ Available sang INACTIVE hoặc BUSY thì phải xóa hết các MATCHING thuộc resource này
+				if(resourceUpdate.getStatus() == Constant.ResourceStatus.INACTIVE ||
+						resourceUpdate.getStatus() == Constant.ResourceStatus.BUSY){
+					interactionRepository.deleteByHumanResourceIdAndType(humanResource.getId(),Constant.InteractionType.MATCH);
+				}
+
 				return "Successfully update resource.";
 			}
 			return "Resource not existed.";
@@ -159,6 +170,7 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 			if(humanResource.getStatus() == Constant.ResourceStatus.BUSY){
 				resource.setStatus(Constant.ResourceStatus.BUSY);
 			}
+			humanResourceRepository.save(resource);
 			return "OK";
 		}
 		return "Resource not found";

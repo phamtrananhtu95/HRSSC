@@ -4,6 +4,7 @@ import com.hrssc.domain.Constant;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.ProjectRequirements;
 import com.hrssc.entities.SkillRequirements;
+import com.hrssc.repository.InteractionRepository;
 import com.hrssc.repository.ProjectRepository;
 import com.hrssc.repository.ProjectRequirementRepository;
 import com.hrssc.repository.SkillRequirementsRepository;
@@ -31,8 +32,9 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     @Autowired
     ProjectRequirementRepository projectRequirementRepository;
 
-    @PersistenceContext
-    EntityManager entityManager;
+    @Autowired
+    InteractionRepository interactionRepository;
+
 
     @Override
     public List<Project> getProjectByManagerId(int managerId) {
@@ -209,14 +211,17 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             if (proccessStatus == Constant.ProjectProcess.PENDING) {
                 prjEntity.setProcessStatus(Constant.ProjectProcess.PENDING);
             }
-            if (proccessStatus == Constant.ProjectProcess.FINISHED) {
-                prjEntity.setProcessStatus(Constant.ProjectProcess.FINISHED);
-            }
             if (proccessStatus == Constant.ProjectProcess.ON_GOING) {
                 prjEntity.setProcessStatus(Constant.ProjectProcess.ON_GOING);
             }
-
+            if (proccessStatus == Constant.ProjectProcess.FINISHED) {
+                prjEntity.setProcessStatus(Constant.ProjectProcess.FINISHED);
+            }
             projectRepository.save(prjEntity);
+
+            if(requestStatus == Constant.RequestStatus.CLOSED){
+                interactionRepository.deleteByProjectIdAndType(project.getId(),Constant.InteractionType.MATCH);
+            }
             return "Successfully Update Project Status.";
         }
         return "Error Occured, Update has failed.";
