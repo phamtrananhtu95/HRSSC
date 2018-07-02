@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Project;
+import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.ProjectManagementService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class ProjectManagementController {
     @Autowired
     ProjectManagementService projectManagementService;
 
+    @Autowired
+    AuthorizationService authorizationService;
 
     @JsonView(ProjectView.ListView.class)
     @GetMapping(value = "/load-project/{managerId}")
@@ -47,8 +50,12 @@ public class ProjectManagementController {
     }
 
     @JsonView(ProjectView.details.class)
-    @GetMapping(value = "/details/{projectId}")
-    public Project viewProjectDetails(@PathVariable(value = "projectId") int id) {
-        return projectManagementService.viewProjectDetails(id);
+    @GetMapping(value = "/details/{userId}/{projectId}")
+    public Project viewProjectDetails(@PathVariable(value = "projectId") int projectId,
+                                      @PathVariable(value = "userId" )int userId) {
+        if(!authorizationService.checkProject(projectId,userId)){
+            return null;
+        }
+        return projectManagementService.viewProjectDetails(projectId);
     }
 }
