@@ -59,6 +59,7 @@ import { RatingResourceComponent } from './pages/resource-info/rating-resource/r
 
 import { SelectModule } from 'ng-select';
 import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
 
@@ -178,6 +179,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     HttpModule,
     StorageServiceModule,

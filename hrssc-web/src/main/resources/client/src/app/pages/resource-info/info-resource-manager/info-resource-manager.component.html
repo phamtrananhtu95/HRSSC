@@ -34,7 +34,12 @@
         <div class="col-sm-6">
             <div class="form-group has-feedback">
                 <b>Available date</b>
-                <input type="text" [(ngModel)]="resourceInfo.availableDate" class="form-control">
+                <!-- <input type="text" [(ngModel)]="resourceInfo.availableDate" class="form-control"> -->
+
+                <form #myForm="ngForm" novalidate>
+                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
+                        required></my-date-picker>
+                </form>
             </div>
         </div>
         <div class="col-sm-6">
@@ -116,12 +121,11 @@
     <div class="row">
         <div class="col-sm-5"></div>
         <div class="col-sm-5">
-            <button type="button" class="btn btn-primary" (click)="updateResource()">
+            <button type="button" class="btn btn-primary" (click)="updateResource()" id="sweet_success">
                 Update
             </button>
         </div>
         <div class="col-sm-5"></div>
     </div>
-
 
 </div>

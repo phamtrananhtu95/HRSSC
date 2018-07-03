@@ -7,7 +7,7 @@ export class Employee {
     availableDate: number;
     availableDuration: number;
     resourceSkillsById: Skill[];
-    company: string;
+    companyByCompanyId: CompanyEmp;
     companyId: string;
     salary: number;
 
@@ -37,7 +37,19 @@ export class EmployeeRequest {
 export class Skill {
     skillId: number;
     experience: number;
-
-    constructor(){
+    skillBySkillId: SkillBySkillId;
+    constructor() {
     }
+}
+
+export class SkillBySkillId {
+    title: string;
+    constructor() {
+    }
+}
+
+export class CompanyEmp {
+    city: string;
+    id: number;
+    name: string;
 }

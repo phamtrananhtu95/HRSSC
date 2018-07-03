@@ -9,7 +9,6 @@
 
     <div class="heading-elements">
       <div class="heading-btn-group">
-        <!-- <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a> -->
         <form action="#" class="main-search">
           <div class="input-group content-group btn-float has-text">
             <input type="text" class="form-control input-lg" placeholder="Search">
@@ -67,7 +66,7 @@
               </div>
 
               <div class="caption text-center">
-                <h6 class="text-semibold no-margin">Company name</h6>
+                <h6 class="text-semibold no-margin">{{humanResource?.companyByCompanyId?.name}}</h6>
                 <ul class="icons-list mt-15">
                   <li>
                     <a href="#" data-popup="tooltip" title="Google Drive" data-container="body">
@@ -91,26 +90,24 @@
           <div class="col-md-9">
             <div class="media-body">
               <h1 class="media-heading">
-                <b>Name</b>
+                <b>{{humanResource.fullname}}</b>
               </h1>
               <h4 class="text-semibold">
-                <b>Skills: </b>
+                <b>Skills: {{skillList}}</b>
               </h4>
 
               <h4>
                 <b>
-                  <i class="icon-location4"></i>Location: Ho Chi Minh</b>
+                  <i class="icon-location4"></i>{{humanResource?.companyByCompanyId?.city}}</b>
               </h4>
               <h4>
-                <b>Salary: </b>
+                <b>{{humanResource.salary}}</b>
               </h4>
               <h4>
-                <b>Available date: 6/3/2018</b>
+                <b>Available date: {{avaliableDate}}</b>
               </h4>
               <!-- rating -->
               <div class="rating-block">
-
-                <!-- <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2> -->
                 <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
@@ -123,15 +120,20 @@
                 <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" data-toggle="modal" data-target="#rating">
+                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" 
+                data-popup="tooltip" title ="click to see detail rating"
+                  data-toggle="modal" data-target="#rating">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
               </div>
             </div>
             <div class="media-right media-middle">
-              <button type="button" class="btn btn-danger btn-rounded btn-xlg" data-toggle="modal" data-target="#modal_form_inline">
+              <!-- <button type="button" class="btn btn-danger btn-rounded btn-xlg" data-toggle="modal" data-target="#modal_form_inline">
                 Invite
-              </button>
+              </button> -->
+              <span style="font-size: 12px;" [ngClass] = "humanResource.status == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'" 
+              class="label label-flat">
+                {{humanResource.status == 1 ? "Activated" : "Inactive"}}</span>
             </div>
           </div>
         </div>
@@ -144,7 +146,8 @@
             <div class="text-center">
               <h5 class="text-semibold no-margin">Information</h5>
             </div>
-            <app-info-resource-manager-view [humanResource]="humanResource"></app-info-resource-manager-view>
+            <app-info-resource-manager-view [humanResource]="humanResource"
+            (reloadManagerList)="getHumanResourceById()"></app-info-resource-manager-view>
           </div>
           <!-- <div class="col-md-6">
             <div class="text-center">
@@ -164,6 +167,8 @@
       <app-project-matching (reloadManagerList)="reloadManagerList">
 
       </app-project-matching>
+
+
     </div>
   </div>
 
