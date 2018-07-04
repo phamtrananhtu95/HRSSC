@@ -38,7 +38,7 @@ public class Project {
     private int companyId;
     private Collection<Notification> notificationsById;
     private User userByUserId;
-    @JsonView({MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class})
+    @JsonView({InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class})
     private Company companyByCompanyId;
 
     @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})

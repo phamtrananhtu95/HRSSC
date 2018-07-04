@@ -42,7 +42,7 @@ public class InvitationServiceImpl implements InvitationService {
         for(HumanResource resource: resourceList){
             List<Interaction> interactionList = new ArrayList<>();
             for(Interaction interaction: resource.getInteractionsById()){
-                if(interaction.getType() == Constant.InteractionType.INVITE){
+                if(interaction.getType().equals(Constant.InteractionType.INVITE)){
                     interactionList.add(interaction);
                 }
             }
