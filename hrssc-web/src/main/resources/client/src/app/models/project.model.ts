@@ -27,6 +27,7 @@ export class ProjectRequirement {
         this.skillSelect = [],
         this.skillRequirementsById = [];
     }
+    
 }
 
 export class SkillRequirement {

@@ -53,6 +53,5 @@ export class ManageResourcesComponent implements OnInit {
 
   viewHumanResourceDetail(humanResourceId) {
     this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});
-    
   }
 }

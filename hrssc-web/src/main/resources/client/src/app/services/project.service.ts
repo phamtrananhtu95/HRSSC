@@ -13,6 +13,10 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  getProjectByProjectId(userId, projectId){
+    let url = 'manage-project/details/'+ userId+'/'+projectId;
+    return this.restService.get(url);
+  }
   loadAllPosition(){
     let url = 'load-form-info/positions';
     return this.restService.get(url);

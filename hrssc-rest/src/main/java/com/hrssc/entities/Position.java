@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 public class Position {
-    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class})
+    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,ProjectView.details.class})
     private int id;
     @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,ProjectView.details.class})
     private String title;

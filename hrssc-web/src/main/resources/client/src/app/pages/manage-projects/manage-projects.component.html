@@ -36,7 +36,7 @@
                       <th>Matched</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let project of projects">
+                  <tbody *ngFor="let project of projects" (click)="viewProjectDetail(project.id)">
                     <tr>
                       <td>{{project.id}}</td>
                       <td>{{project.title}}</td>
