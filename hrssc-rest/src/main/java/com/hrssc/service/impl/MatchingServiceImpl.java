@@ -1,6 +1,8 @@
 package com.hrssc.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.Constant;
+import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.ranking.ScoreRanker;
 import com.hrssc.entities.*;
 import com.hrssc.repository.HumanResourceRepository;
@@ -11,6 +13,8 @@ import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -29,6 +33,9 @@ public class MatchingServiceImpl implements MatchingService {
     @Autowired
     InteractionRepository interactionRepo;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     //Sort Ascending
     private Comparator<Interaction> comparator = new Comparator<Interaction>() {
         @Override
@@ -46,6 +53,7 @@ public class MatchingServiceImpl implements MatchingService {
     @Transactional
     @Override
     public List<Interaction> matchProject(int projectId) {
+        entityManager.clear();
         Project project = projectRepository.findById(projectId);
         //Find all the available resource that is not in the same company
         if (project == null) {
@@ -85,11 +93,14 @@ public class MatchingServiceImpl implements MatchingService {
         resultList.sort(comparator);
         return resultList;
     }
+
+
     @Transactional
     @Override
     public List<Interaction> matchResource(int resourceId) {
-        Optional<HumanResource> resourceOptional = humanResourceRepo.findById(resourceId);
-        HumanResource resource = resourceOptional.get();
+        entityManager.clear();
+        HumanResource resource = humanResourceRepo.getById(resourceId);
+        //HumanResource resource = resourceOptional.get();
 
         //Truyền sai resourceId
         if (resource == null) {

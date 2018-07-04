@@ -3,6 +3,7 @@ package com.hrssc.rest;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.HumanResourceView;
@@ -18,6 +19,9 @@ import com.hrssc.service.HumanResourceService;
 
 import javassist.NotFoundException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @RestController
 @RequestMapping("/humanResource")
 public class HumanResourceController {
@@ -27,6 +31,8 @@ public class HumanResourceController {
 
 	@Autowired
 	private MatchingService matchingService;
+
+
 
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HumanResourceDto> getHumanResource() {
@@ -52,7 +58,13 @@ public class HumanResourceController {
 	@PostMapping(value = "/update")
 	public ResponseStatus updateHumanResource(@RequestBody HumanResource humanResource) {
 		ResponseStatus response = new ResponseStatus(humanResourceService.updateHumanResource(humanResource));
-		matchingService.matchResource(humanResource.getId());
+
+
+		if(humanResource.getStatus() == Constant.ResourceStatus.AVAILABLE){
+
+			matchingService.matchResource(humanResource.getId());
+		}
+
 		return  response;
 	}
 	@PostMapping(value = "/change-status")
