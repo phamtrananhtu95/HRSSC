@@ -38,7 +38,7 @@
             
               <tr *ngFor="let humanResources of humanResource" (click)="viewHumanResourceDetail(humanResources.id)">
                 <td>{{humanResources.fullname}}</td>
-                <td>Java, C#, PHP</td>
+                <td>{{humanResources.skill}}</td>
                 <td>{{humanResources.tel}}</td>
                 <td>0</td>
                 <td><span class="label" [ngClass]="humanResources.status == 1 ? 'bg-blue-400' : 'btn-danger'">

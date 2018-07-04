@@ -16,6 +16,7 @@ export class InfoResourceManagerComponent implements OnInit {
 
     @Input() humanResource: Employee;
     @Output() reloadManagerList: EventEmitter<any> = new EventEmitter();
+    @Output() reloadMatchingProject: EventEmitter<any> = new EventEmitter();
 
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -23,7 +24,7 @@ export class InfoResourceManagerComponent implements OnInit {
     };
     createDate: any = null;
 
-    public resourceInfo: Employee;
+    public resourceInfo = new Employee();
     public skills = [];
     public skillOpts;
     public options = {
@@ -41,8 +42,8 @@ export class InfoResourceManagerComponent implements OnInit {
             this.resourceInfo = Object.assign({}, this.humanResource);
             this.createDate = this.ConvertToDatetime(this.resourceInfo.availableDate);
             if (this.resourceInfo.resourceSkillsById && this.resourceInfo.resourceSkillsById.length != 0) {
+                this.skills = [];
                 for (let i = 0; i < this.resourceInfo.resourceSkillsById.length; i++) {
-                    this.skills = [];
                     let skill = this.resourceInfo.resourceSkillsById[i];
                     this.skills.push({
                         skillId: skill.skillId.toString(),
@@ -59,7 +60,6 @@ export class InfoResourceManagerComponent implements OnInit {
         (<any>window).componentModalsJs = true;
 
         this.getSkillOpts();
-        this.resourceInfo = new Employee();
     }
 
     onDateChangedCreate(event: IMyDateModel) {
@@ -87,6 +87,7 @@ export class InfoResourceManagerComponent implements OnInit {
         this.employeeService.updateHumanResource(this.resourceInfo).subscribe(
             res => {
                 this.reloadManagerList.emit();
+                this.reloadMatchingProject.emit();
                 setTimeout(function () {
                     vm.onScroll();
                 }, 1500);
