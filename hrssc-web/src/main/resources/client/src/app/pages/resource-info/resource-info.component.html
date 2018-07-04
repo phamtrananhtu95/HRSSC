@@ -163,8 +163,8 @@
                       (reloadMatchingProject)="reloadMatchingProject">
                     </app-info-resource-manager-view>
                   </div>
-                  <div *ngIf="!isOwnManager">
-                    <app-info-resource-view></app-info-resource-view>
+                  <div >
+                    <app-info-resource-view *ngIf="!isOwnManager" [humanResource]="humanResource"></app-info-resource-view>
                   </div>
                 </div>
 

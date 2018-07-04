@@ -3,6 +3,7 @@ import { Project, SkillRequirement, ProjectRequirement } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
 import { skill } from '../../models/skill.model';
+import { Router } from '@angular/router';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 
 declare var $: any;
@@ -46,7 +47,8 @@ export class ManageProjectsComponent implements OnInit {
 
   constructor(
     private auth: AuthenticateService,
-    private prjService: ProjectService
+    private prjService: ProjectService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -60,7 +62,6 @@ export class ManageProjectsComponent implements OnInit {
       this.formPositionModel.positionId = '1';
       if (this.formPositionModel.positionId) {
         this.loadSkillByPositionId(this.formPositionModel.positionId);
-
         this.formPositionModel.skillSelect = [
           15, 2
         ]
@@ -70,6 +71,7 @@ export class ManageProjectsComponent implements OnInit {
 
     }
   }
+
   onDateChangedCreate(event: IMyDateModel) {
     this.formModel.createDate = this.createDate.epoc;
   }
@@ -90,6 +92,9 @@ export class ManageProjectsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  viewProjectDetail(id:any){
+    this.router.navigate(['manager/project/info'], {queryParams:{"id": id}});
   }
 
   loadAllPosition() {
@@ -138,6 +143,7 @@ export class ManageProjectsComponent implements OnInit {
 
   onSkillSelected(val: any) {
     this.formPositionModel.skillRequirementsById = [];
+    console.log(this.listSkillExp);
     val.forEach(val => {
       this.listSkillExp.forEach(el => {
         if (el.id === val) {
@@ -148,6 +154,7 @@ export class ManageProjectsComponent implements OnInit {
 
           }
           this.formPositionModel.skillRequirementsById.push(tmp);
+          console.log(this.formPositionModel.skillRequirementsById);
         }
       });
     });

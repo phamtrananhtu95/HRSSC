@@ -1,0 +1,194 @@
+<div class="text-center">
+  <h5 class="text-semibold no-margin">Information</h5>
+</div>
+<div class="panel-body">
+  <!-- <p> <b>Name project</b>: Ruby on Rails Application</p>
+  <p><b>Skill</b>: MySQL, Linux, Ruby on Rails</p>
+  <p><b>Time</b>: 3 months</p>
+  <p><b>Status</b>: pending</p>
+  <p><b>Description</b>: Application for saling...</p>
+  <p><b><i class="icon-location4"></i> Location</b>: Ho Chi Minh, District 1, Nguyen Dinh Chieu</p> -->
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>Project Name</b>
+        <input type="text" [(ngModel)]="projectInfo.title" class="form-control">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>Domain</b>
+        <input type="text" [(ngModel)]="projectInfo.domain" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>Duration</b>
+        <input type="text" [(ngModel)]="projectInfo.duration" class="form-control">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>Type</b>
+        <input type="text" [(ngModel)]="projectInfo.type" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>Start date</b>
+        <form #myForm="ngForm" novalidate>
+          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
+            required></my-date-picker>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>End date</b>
+        <form #myForm="ngForm" novalidate>
+          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+            required></my-date-picker>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive" style="height: 150px; overflow: auto;">
+        <table class="table table-hover">
+          <thead class="text-center">
+            <tr>
+              <th>Position</th>
+              <th>Skill | Experience(years)</th>
+              <th>Quantity</th>
+              <th>Payment</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let x of positionList">
+            <tr>
+              <td>
+                {{x.value.positionByPositionId.title}}
+              </td>
+              <td>
+                <p *ngFor="let c of x.value.skillRequirementsById">
+                  {{c.skillBySkillId.title}}|{{c.experience}}
+                </p>
+              </td>
+              <td>{{x.value.quantity}}</td>
+              <td>{{x.value.payment}}</td>
+              <td>
+                <button (click)="editPosition(x)" data-toggle="modal" data-target="#modal_position" type="button" class="btn btn-xs">
+                  <i class="icon-pencil"></i>
+                </button>
+              </td>
+              <td>
+                <button (click)="deletePostion(x)" type="submit" class="btn btn-xs">
+                  <i class="icon-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group has-feedback">
+        <b>Description</b>
+        <textarea rows="5" cols="5" [(ngModel)]="projectInfo.description" class="form-control" placeholder="Default textarea"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group has-feedback">
+        <b>Status</b>
+        <select name="select" class="form-control" name="status" (change)="projectInfo.processStatus=$event.target.value">
+          <option value="1" [selected]="projectInfo?.processStatus==1">Pending</option>
+          <option value="2" [selected]="projectInfo?.processStatus!=1">On going</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <button type="submit" class="btn btn-primary" (click)="updatePrj()">update</button>
+    </div>
+  </div>
+
+</div>
+<!-- POPUP POSITION -->
+<div class="modal-content">
+  <div id="modal_position" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h5 class="modal-title text-center text-bold">update position</h5>
+        </div>
+        <div class="modal-body">
+          <fieldset class="content-group">
+            <div class="form-group">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label class="text-bold">Position</label>
+
+                    <ng-select [options]="positionOpt" [(ngModel)]="formPositionModel.positionId" (ngModelChange)="onPositionSelected($event)">
+                      </ng-select>
+                    <!-- position select:{{formPositionModel.positionId}} -->
+                  </div>
+
+                  <!-- test Skill -->
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label class="text-bold">Skill</label>
+                    <ng-select [options]="skillOpt" [multiple]=true [(ngModel)]="formPositionModel.skillSelect" (ngModelChange)="onSkillSelected($event)"></ng-select>
+                    <!-- skill select: {{formPositionModel.skillSelect}} -->
+                  </div>
+                  <div class="" style="height: 150px; overflow: auto;">
+                    <div *ngFor="let skill of formPositionModel.skillRequirementsById" >
+                        <label (ngModel)="skill.skillBySkillId.id">{{skill.skillBySkillId.title}}</label>
+                        <input type="number" [(ngModel)]="skill.experience" placeholder="Enter experience.." class="form-control input-xlg">
+                        {{skill.experience}}
+                      </div>
+                  </div>
+
+
+
+
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label class="text-bold" for="">Quantity</label>
+                    <div class="form-group">
+                      <input type="number" [(ngModel)]="formPositionModel.quantity" id="quantityAdd" class="form-control input-xlg">
+                    </div>
+                  </div>
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label class="text-bold" for="">Payment</label>
+                    <div class="form-group">
+                      <input type="number" [(ngModel)]="formPositionModel.payment" id="paymentAdd" class="form-control input-xlg">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+          <button type="submit" *ngIf="!isPositionUpdate" data-dismiss="modal" (click)="addNewPosition()" class="btn btn-primary">Save</button>
+          <button type="submit" *ngIf="isPositionUpdate" data-dismiss="modal" class="btn btn-primary" (click)="updateNewPosition()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
