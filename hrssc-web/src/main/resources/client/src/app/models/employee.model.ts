@@ -10,7 +10,8 @@ export class Employee {
     companyByCompanyId: CompanyEmp;
     companyId: string;
     salary: number;
-
+    userByUserId: UserByUserId;
+    skill: string;
     constructor() {
         this.resourceSkillsById = [];
     }
@@ -52,4 +53,9 @@ export class CompanyEmp {
     city: string;
     id: number;
     name: string;
+}
+
+export class UserByUserId {
+    fullname: string;
+    id: number;
 }

@@ -68,33 +68,42 @@
                                                 <input type="number" [(ngModel)]="skill.experience" class="form-control input-xlg">
                                             </div>
                                         </div> -->
+
                     <div class="row">
-                        <div *ngFor="let skill of skills">
-                            <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                    <label>Skill</label>
-                                    <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
-                                    <div class="form-control-feedback">
-                                        <i class=" icon-chess text-muted"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="form-group has-feedback">
-                                    <label>Experience</label>
-                                    <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
-                                    <div class="form-control-feedback">
-                                        <i class="icon-calendar text-muted"></i>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-sm-6">
+                            <b>Skill</b>
                         </div>
-                        <div class="col-sm-1">
-                            <label>&ensp;</label>
-                            <div class="btn-group bootstrap-select" style="width: 100%;">
-                                <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
-                                    <i class="icon-plus22 text-muted"></i>
-                                </button>
+                        <div class="col-sm-6">
+                            <b>Experience</b>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 110px; overflow: hidden; position: relative;">
+                        <div style="position: absolute; top: 0; bottom: 0; left: 0; right: -17px; overflow-y: scroll;  overflow-x: hidden;">
+                            <div *ngFor="let skill of skills">
+                                <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                        <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
+                                        <div class="form-control-feedback">
+                                            <i class=" icon-chess text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group has-feedback">
+                                        <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-calendar text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <label>&ensp;</label>
+                                <div class="btn-group bootstrap-select" style="width: 100%;">
+                                    <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
+                                        <i class="icon-plus22 text-muted"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
