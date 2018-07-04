@@ -16,6 +16,7 @@ public class Job {
 
     private int projectId;
     private Project projectByProjectId;
+    private int status;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,8 +55,6 @@ public class Job {
         return Objects.hash(id, humanResourceId);
     }
 
-
-
     @Basic
     @Column(name = "joined_date")
     public long getJoinedate() {
@@ -75,8 +74,6 @@ public class Job {
     public void setLeaveDate(long leaveDate) {
         this.leaveDate = leaveDate;
     }
-
-
 
     @Basic
     @Column(name = "project_id")
@@ -98,7 +95,6 @@ public class Job {
         this.projectByProjectId = projectByProjectId;
     }
 
-
     @ManyToOne
     @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
     public HumanResource getHumanResourceByHumanResourceId() {
@@ -109,4 +105,13 @@ public class Job {
         this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
     }
 
+    @Basic
+    @Column(name = "status", nullable = false)
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

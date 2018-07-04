@@ -54,6 +54,13 @@ public class Constant {
 		public static final int CHIEF = 2;
 		public static final int MANAGER = 3;
 	}
+
+	public class JobStatus{
+		public static final int PENDING = 1;
+		public static final int ON_GOING = 2;
+		public static final int FINISHED = 3;
+	}
+
 	public static final int MANAGER_ROLE_ID = 3;
 	public static final String COMMA = ",";
 

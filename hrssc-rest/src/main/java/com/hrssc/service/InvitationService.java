@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface InvitationService {
 
-    void inviteResource(Interaction interaction);
+    String inviteResource(Interaction interaction);
     List<HumanResource> loadAllInvitationByManager(int managerId);
+
+    String acceptInvitation(Interaction invitation);
+    String rejectInvitation(Interaction invitation);
 }
