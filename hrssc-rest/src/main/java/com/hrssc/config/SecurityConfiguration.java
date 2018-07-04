@@ -79,7 +79,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/manage-manager/**",
                         "/load-form-info/**",
                         "/chooseDomain/create",
-                        "/matching/**"
+                        "/matching/**",
+                        "/invitation/**"
                 ).permitAll()
 //                .mvcMatchers("/manage-companies/**").hasAuthority("MANAGE_COMPANIES")
 //                .mvcMatchers("/manage-manager/**").access("hasAuthority('MANAGE_MANAGER')")

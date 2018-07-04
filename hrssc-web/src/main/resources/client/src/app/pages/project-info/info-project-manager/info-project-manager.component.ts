@@ -20,6 +20,10 @@ export class InfoProjectManagerComponent implements OnInit {
   public positionOpt;
   public skillOpt;
   public listSkillExp;
+  public isPositionUpdate: boolean;
+
+
+public listSkill = [];
 
   constructor(
     private prjService: ProjectService
@@ -28,6 +32,8 @@ export class InfoProjectManagerComponent implements OnInit {
   ngOnInit() {
     this.loadAllPosition();
     // this.formPositionModel.positionId = '1';
+    
+    
   }
 
   ngOnChanges() {
@@ -36,17 +42,27 @@ export class InfoProjectManagerComponent implements OnInit {
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
       if (this.projectInfo.projectRequirementsById) {
+        this.listSkill = [];
         this.projectInfo.projectRequirementsById.forEach(el => {
+          
           this.positionList.push({
             id: this.countId,
             value: el
           });
+          this.positionList.forEach(val => {
+            el.positionId = val.value.positionByPositionId.id;
+            el.skillRequirementsById.forEach(element => {
+              element.skillId = element.skillBySkillId.id;
+            });
+          });
+          this.listSkill.push(el.skillRequirementsById);
           this.countId = this.countId + 1;
         });
       }
 
     }
   }
+
   loadAllPosition() {
     this.prjService.loadAllPosition().subscribe(
       res => {
@@ -83,16 +99,23 @@ export class InfoProjectManagerComponent implements OnInit {
     );
   }
   onSkillSelected(val: any) {
-    // this.formPositionModel.skillRequirementsById = [];
+
+    this.formPositionModel.skillRequirementsById = [];
     console.log(val);
     console.log(this.listSkillExp);
     console.log( this.formPositionModel.skillRequirementsById);
     val.forEach(val => {
       this.listSkillExp.forEach(el => {
-          if(el.id === val){
+          if(el.id.toString() === val){
             // this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
             // console.log(this.formPositionModel.skillRequirementsById);
-            this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
+            this.formPositionModel.skillRequirementsById.push({
+              skillId: el.id,
+              skillBySkillId: {
+                id: el.id,
+                title: el.title
+              },
+            });
           }
       });
     });
@@ -132,8 +155,7 @@ export class InfoProjectManagerComponent implements OnInit {
     return dateParse;
   }
   editPosition(val: any) {
-    // this.isPositionUpdate = true;
-
+    this.isPositionUpdate = true;
     this.formPositionModel = Object.assign({}, val.value);
     this.positionList.forEach(el => {
       if (el.id === val.id) {
@@ -144,7 +166,7 @@ export class InfoProjectManagerComponent implements OnInit {
         let skills = el.value.skillRequirementsById;
         skills.forEach(el => {
           this.formPositionModel.skillSelect.push(el.skillBySkillId.id.toString());
-          this.formPositionModel.skillRequirementsById.push(el);
+          // this.formPositionModel.skillRequirementsById.push(el);
         });
       }
     });
@@ -152,10 +174,43 @@ export class InfoProjectManagerComponent implements OnInit {
     // $("#positionAdd option[id='" + projectRequirement.positionId + "']").prop('selected', true);
 
   }
+  addNewPosition() {
+
+    console.log(this.formPositionModel);
+    var projectRequirement = this.formPositionModel;
+    this.positionList.push({
+      id: this.countId,
+      value: projectRequirement
+    })
+    console.log(this.positionList);
+    this.countId = this.countId + 1;
+
+
+    // ver 2
+
+  }
+
+  updateNewPosition() {
+    this.positionList.forEach(el => {
+      if (el === this.formPositionModel) {
+
+      }
+    });
+  }
   deletePostion(val: any) {
     this.positionList = this.positionList.filter(function (el) {
       return el !== val;
     })
   }
-
+  updatePrj() {
+    console.log(this.projectInfo);
+    this.prjService.updateProject(this.projectInfo).subscribe(
+      res => {
+        (<any>$("#modal_small")).modal("hide");
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

@@ -15,11 +15,13 @@ public interface HumanResourceRepository extends JpaRepository<HumanResource, In
 	List<HumanResource> findAll();
 
 
-    List<HumanResource> getHumanResourcesByUserId(int user_id);
+    List<HumanResource> getHumanResourcesByUserId(int userId);
 
 
     HumanResource findByEmail(String email);
 
     List<HumanResource> findByStatusAndCompanyIdNot(int status,int companyId);
+
+    HumanResource getById(int id);
 
 }

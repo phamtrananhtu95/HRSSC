@@ -98,13 +98,13 @@
 
               <h4>
                 <b>
-                  <i class="icon-location4"></i>{{humanResource?.companyByCompanyId?.city}}</b>
+                  Location: {{humanResource?.companyByCompanyId?.city}}</b>
               </h4>
               <h4>
-                <b>{{humanResource.salary}}</b>
+                <b>Salary: {{humanResource.salary}}</b>
               </h4>
               <h4>
-                <b>Available date: {{avaliableDate}}</b>
+                <b>Available date: {{humanResource.availableDate | date:'dd/MM/yyyy'}}</b>
               </h4>
               <!-- rating -->
               <div class="rating-block">
@@ -120,44 +120,75 @@
                 <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" 
-                data-popup="tooltip" title ="click to see detail rating"
+                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" data-popup="tooltip" title="click to see detail rating"
                   data-toggle="modal" data-target="#rating">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
               </div>
             </div>
             <div class="media-right media-middle">
-              <!-- <button type="button" class="btn btn-danger btn-rounded btn-xlg" data-toggle="modal" data-target="#modal_form_inline">
-                Invite
-              </button> -->
-              <span style="font-size: 12px;" [ngClass] = "humanResource.status == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'" 
-              class="label label-flat">
+
+              <span *ngIf="isOwnManager" style="font-size: 12px;" [ngClass]="humanResource.status == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'"
+                class="label label-flat">
                 {{humanResource.status == 1 ? "Activated" : "Inactive"}}</span>
+              <button *ngIf="!isOwnManager" type="button" class="btn btn-danger btn-rounded btn-xlg" data-toggle="modal" data-target="#modal_form_inline">
+                Invite
+              </button>
             </div>
           </div>
         </div>
 
       </div>
 
-      <div class="panel panel-flat">
-        <div class="panel-body">
-          <div class="col-md-12">
-            <div class="text-center">
-              <h5 class="text-semibold no-margin">Information</h5>
+
+            <!-- Tabbed form -->
+            <div class="tabbable panel login-form width-400">
+              <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                <li class="active">
+                  <a href="#basic-tab1" data-toggle="tab">
+                    <h6>Info</h6>
+                  </a>
+                </li>
+                <li>
+                  <a href="#basic-tab2" data-toggle="tab">
+                    <h6>Reviews</h6>
+                  </a>
+                </li>
+              </ul>
+
+              <div class="tab-content panel-body">
+                <div class="tab-pane fade in active" id="basic-tab1">
+                  <div>
+                    <app-info-resource-manager-view *ngIf="isOwnManager" [humanResource]="humanResource" (reloadManagerList)="getHumanResourceById()"
+                      (reloadMatchingProject)="reloadMatchingProject">
+                    </app-info-resource-manager-view>
+                  </div>
+                  <div >
+                    <app-info-resource-view *ngIf="!isOwnManager" [humanResource]="humanResource"></app-info-resource-view>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="basic-tab2">
+                  <h1>tab 2</h1>
+                  <app-rating-resource></app-rating-resource>
+                </div>
+              </div>
             </div>
-            <app-info-resource-manager-view [humanResource]="humanResource"
-            (reloadManagerList)="getHumanResourceById()"></app-info-resource-manager-view>
-          </div>
-          <!-- <div class="col-md-6">
-            <div class="text-center">
-              <h5 class="text-semibold no-margin">Rating</h5>
-              
+            <!-- /tabbed form -->
+            <!-- <div class="text-center">
+              <h5 *ngIf="isOwnManager" class="text-semibold no-margin">Information</h5>
+              <h5 *ngIf="!isOwnManager" class="text-semibold no-margin">Information - History</h5>
             </div>
-          </div> -->
-        </div>
-      </div>
-      <app-rating-resource></app-rating-resource>
+            <div>
+              <app-info-resource-manager-view *ngIf="isOwnManager" [humanResource]="humanResource" (reloadManagerList)="getHumanResourceById()"
+                (reloadMatchingProject)="reloadMatchingProject">
+              </app-info-resource-manager-view>
+            </div>
+            <div *ngIf="!isOwnManager">
+              <app-info-resource-view></app-info-resource-view>
+            </div> -->
+
+      
 
     </div>
 

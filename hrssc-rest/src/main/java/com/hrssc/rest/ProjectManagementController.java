@@ -1,10 +1,12 @@
 package com.hrssc.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Project;
 import com.hrssc.service.AuthorizationService;
+import com.hrssc.service.MatchingService;
 import com.hrssc.service.ProjectManagementService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class ProjectManagementController {
     @Autowired
     AuthorizationService authorizationService;
 
+    @Autowired
+    MatchingService matchingService;
+
     @JsonView(ProjectView.ListView.class)
     @GetMapping(value = "/load-project/{managerId}")
     public List<Project> getProjectByManagerId(@PathVariable(value = "managerId") int mangerId){
@@ -30,17 +35,25 @@ public class ProjectManagementController {
     }
     @PostMapping(value = "/add")
     public ResponseStatus addProject(@RequestBody Project project){
-       return new ResponseStatus(projectManagementService.addProject(project));
+        ResponseStatus response = new ResponseStatus(projectManagementService.addProject(project));
+        matchingService.matchProject(project.getId());
+       return response;
     }
 
     @PostMapping(value = "/update")
     public ResponseStatus updateProject(@RequestBody Project project){
-        return new ResponseStatus(projectManagementService.updateProject(project));
+        ResponseStatus response = new ResponseStatus(projectManagementService.updateProject(project));
+        matchingService.matchProject(project.getId());
+        return response;
     }
 
     @PostMapping(value="/change-status/")
     public ResponseStatus updateProjectStatus(@RequestBody Project project){
-        return new ResponseStatus(projectManagementService.updateStatus(project));
+        ResponseStatus response = new ResponseStatus(projectManagementService.updateStatus(project));
+        if(project.getRequestStatus() == Constant.RequestStatus.OPENNING){
+            matchingService.matchProject(project.getId());
+        }
+        return response;
     }
 
     @JsonView(ProjectView.Summary.class)

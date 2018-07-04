@@ -62,6 +62,7 @@ import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoProjectManagerComponent } from './pages/project-info/info-project-manager/info-project-manager.component';
 import { InfoProjectViewComponent } from './pages/project-info/info-project-view/info-project-view.component';
+import { ResourceMatchingComponent } from './pages/project-info/resource-matching/resource-matching.component';
 
 const appRoutes: Routes = [
 
@@ -180,6 +181,7 @@ const appRoutes: Routes = [
     PageHeaderComponent,
     InfoProjectManagerComponent,
     InfoProjectViewComponent,
+    ResourceMatchingComponent,
   ],
   imports: [
     BrowserModule,

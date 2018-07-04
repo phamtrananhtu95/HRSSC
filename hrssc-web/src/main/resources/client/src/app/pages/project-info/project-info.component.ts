@@ -11,6 +11,7 @@ import { Project } from '../../models';
 })
 export class ProjectInfoComponent implements OnInit {
   public project = new Project();
+  public skillList= "";
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +31,14 @@ export class ProjectInfoComponent implements OnInit {
     this.prjService.getProjectByProjectId(userId, projectId).subscribe(
       res => {
         this.project = res;
+        console.log(this.project);
+        this.project.projectRequirementsById.forEach(el => {
+          el.skillRequirementsById.forEach(el2 => {
+            this.skillList  = this.skillList + el2.skillBySkillId.title+ ", ";
+          });
+        });
+        var lastIndex = this.skillList.lastIndexOf(", ");
+        this.skillList =this.skillList.substring(0, lastIndex);
       },
       err => {
 
