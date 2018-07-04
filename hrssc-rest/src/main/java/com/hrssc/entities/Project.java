@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.InvitationView;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.domain.jacksonview.UserView;
@@ -11,17 +12,17 @@ import java.util.Objects;
 
 @Entity
 public class Project {
-    @JsonView({ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private int id;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String title;
     @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private String description;
-    @JsonView({ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private long createDate;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private long endDate;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
+    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
     private long duration;
     @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String type;
@@ -37,7 +38,7 @@ public class Project {
     private int companyId;
     private Collection<Notification> notificationsById;
     private User userByUserId;
-    @JsonView({MatchingView.Project.class,ProjectView.details.class})
+    @JsonView({MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class})
     private Company companyByCompanyId;
 
     @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
