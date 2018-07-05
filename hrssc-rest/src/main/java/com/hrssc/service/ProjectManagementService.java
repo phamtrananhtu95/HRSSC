@@ -19,4 +19,6 @@ public interface ProjectManagementService {
     String updateStatus(Project project);
     Project getProjectById(int id);
     Project viewProjectDetails(int id);
+    boolean isProjectFull(int projectId);
+    String closeProject(int projectId);
 }

@@ -239,5 +239,42 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         return projectRepository.findById(id);
 
     }
+
+    @Override
+    public boolean isProjectFull(int projectId){
+        Project project = projectRepository.findById(projectId);
+        if(project != null){
+            int capacity = 0;
+            List<ProjectRequirements> requirementList = (List)project.getProjectRequirementsById();
+            for(ProjectRequirements requirement: requirementList){
+                capacity += requirement.getQuantity();
+            }
+            if(capacity == 0){
+                return  false;
+            }
+            int joinedCount = project.getJobsById().size();
+
+            if(joinedCount == capacity){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Transactional
+    public String closeProject(int projectId){
+        Project project = projectRepository.findById(projectId);
+        if(project == null){
+            return "Project not existed.";
+        }
+        //1. Chuyển status sang CLOSED.
+        project.setRequestStatus(Constant.RequestStatus.CLOSED);
+        projectRepository.save(project);
+        //2. Xóa tất cả các Interaction với các resource khác
+        interactionRepository.deleteByProjectId(projectId);
+        return "Project is Closed.";
+    }
+
 }
 

@@ -13,4 +13,7 @@ public interface InteractionRepository extends JpaRepository<Interaction, Intege
 
     void deleteByProjectIdAndType(int id, String type);
     void deleteByHumanResourceIdAndType(int id, String type);
+    void deleteByHumanResourceIdAndTypeNot(int id, String type);
+    void deleteByHumanResourceId(int id);
+    void deleteByProjectId(int id);
 }
