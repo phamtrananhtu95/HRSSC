@@ -33,13 +33,13 @@ public class CompanyController {
 	}
 
 	@JsonView(ProjectView.ListView.class)
-	@GetMapping(value = "/details/{companyId}/project")
+	@GetMapping(value = "/project-list/{companyId}")
 	public List<Project> viewCompanyProject(@PathVariable("companyId") int companyId){
 		return companyService.viewCompanyProject(companyId);
 	}
 
 	@JsonView(HumanResourceView.overview.class)
-	@GetMapping(value = "/details/{companyId}/resource")
+	@GetMapping(value = "/resource-list/{companyId}")
 	public List<HumanResource> viewCompanyResource(@PathVariable("companyId") int companyId) {
 		return companyService.viewCompanyResource(companyId);
 	}

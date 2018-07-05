@@ -47,6 +47,9 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Project> viewCompanyProject(int companyId){
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final Optional<User> user = userRepository.findByUsername(authentication.getName());
+        if(!user.isPresent()){
+            return null;
+        }
         User checkUser = user.get();
         List<Project> resultList;
         if(checkUser.getCompanyId() == companyId && checkUser.getRoleId() == Constant.UserRole.CHIEF){
