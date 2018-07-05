@@ -58,6 +58,19 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+      <div class="form-group" style="float: right;">
+        <button type="submit" class="btn bg-teal-400 btn-labeled" (click)="addPosition()" data-toggle="modal" data-target="#modal_position">
+          Add position
+          <b>
+            <i class="icon-plus3"></i>
+          </b>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-sm-12">
       <div class="table-responsive" style="height: 150px; overflow: auto;">
         <table class="table table-hover">
@@ -74,7 +87,7 @@
           <tbody *ngFor="let x of positionList">
             <tr>
               <td>
-                {{x.value.positionByPositionId.title}}
+                {{x.value.positionId}}
               </td>
               <td>
                 <p *ngFor="let c of x.value.skillRequirementsById">
@@ -133,7 +146,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h5 class="modal-title text-center text-bold">update position</h5>
+          <h5 *ngIf="!isPositionUpdate" class="modal-title text-center text-bold">add new position</h5>
+          <h5 *ngIf="isPositionUpdate" class="modal-title text-center text-bold">update position</h5>
         </div>
         <div class="modal-body">
           <fieldset class="content-group">

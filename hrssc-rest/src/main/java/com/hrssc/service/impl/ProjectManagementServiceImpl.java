@@ -104,7 +104,6 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             prjEntity.setType(project.getType());
             prjEntity.setDomain(project.getDomain());
             prjEntity.setProcessStatus(project.getProcessStatus());
-            prjEntity.setRequestStatus(project.getRequestStatus());
             projectRepository.save(prjEntity);
 
             List<ProjectRequirements> requirementList = projectRequirementRepository.findByProjectId(project.getId());

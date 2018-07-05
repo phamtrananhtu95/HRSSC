@@ -60,6 +60,7 @@ export class InfoProjectManagerComponent implements OnInit {
           });
           this.listSkill.push(el.skillRequirementsById);
           this.countId = this.countId + 1;
+
         });
       }
 
@@ -103,13 +104,17 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   onSkillSelected(val: any) {
 
-    this.formPositionModel.skillRequirementsById = [];
 
+    this.formPositionModel.skillRequirementsById = [];
+    // console.log(val);
+
+    // if (val.includes(lastItem)) {
     val.forEach(val => {
       this.listSkillExp.forEach(el => {
         if (el.id.toString() === val) {
           // this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
           // console.log(this.formPositionModel.skillRequirementsById);
+
           this.formPositionModel.skillRequirementsById.push({
             skillId: el.id,
             skillBySkillId: {
@@ -120,6 +125,9 @@ export class InfoProjectManagerComponent implements OnInit {
         }
       });
     });
+    // }
+
+
     // val.forEach(val => {
     //   this.listSkillExp.forEach(el => {
     //     this.formPositionModel.skillRequirementsById.push(el);
@@ -161,7 +169,7 @@ export class InfoProjectManagerComponent implements OnInit {
     this.positionList.forEach(el => {
       if (el.id === val.id) {
         this.formPositionModel = el.value;
-        this.formPositionModel.positionId = el.value.positionByPositionId.id.toString();
+        this.formPositionModel.positionId = el.value.positionId.toString();
         this.loadSkillByPositionId(this.formPositionModel.positionId);
         this.formPositionModel.skillSelect = [];
         let skills = el.value.skillRequirementsById;
@@ -175,19 +183,19 @@ export class InfoProjectManagerComponent implements OnInit {
     // $("#positionAdd option[id='" + projectRequirement.positionId + "']").prop('selected', true);
 
   }
+  addPosition() {
+    this.isPositionUpdate = false;
+    this.formPositionModel = new ProjectRequirement();
+  }
   addNewPosition() {
-
-    console.log(this.formPositionModel);
-    var projectRequirement = this.formPositionModel;
+    // console.log(this.formPositionModel);
+    // var projectRequirement = this.formPositionModel;
     this.positionList.push({
       id: this.countId,
-      value: projectRequirement
+      value: this.formPositionModel
     })
     console.log(this.positionList);
     this.countId = this.countId + 1;
-
-
-    // ver 2
 
   }
 
@@ -205,6 +213,14 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   updatePrj() {
     let vm = this;
+
+    var listPosition = [];
+    this.positionList.forEach(el => {
+      listPosition.push(el.value);
+    });
+    this.projectInfo.projectRequirementsById = listPosition;
+    console.log(this.projectInfo);
+
     this.prjService.updateProject(this.projectInfo).subscribe(
       res => {
         (<any>$("#modal_small")).modal("hide");
