@@ -6,6 +6,7 @@ import com.hrssc.domain.dto.HumanResourceDto;
 
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Job;
 import com.hrssc.entities.Skill;
 import javassist.NotFoundException;
 
@@ -30,4 +31,5 @@ public interface HumanResourceService {
 
 	HumanResource viewHumanResourceDetails(int id);
 	String changeResourceStatus(HumanResource humanResource);
+	List<Job> viewHumanresourceHistory(int id);
 }

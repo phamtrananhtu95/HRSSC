@@ -2,6 +2,7 @@ package com.hrssc.rest;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.ApplianceView;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Interaction;
@@ -20,8 +21,10 @@ public class ApplianceController {
     private ApplianceService applianceService;
 
     @PostMapping("/apply")
-    public String applyToProject(@RequestBody Interaction interaction){
-        return applianceService.applyToProject(interaction);
+    public ResponseStatus applyToProject(@RequestBody Interaction interaction){
+        ResponseStatus reponse = new ResponseStatus(applianceService.applyToProject(interaction));
+
+        return reponse;
     }
 
     @JsonView(ApplianceView.Listview.class)
@@ -31,9 +34,10 @@ public class ApplianceController {
     }
 
     @PostMapping("/accept")
-    public String acceptAppliance(@RequestBody Interaction interaction){
+    public ResponseStatus acceptAppliance(@RequestBody Interaction interaction){
+        ResponseStatus reponse = new ResponseStatus(applianceService.acceptAppliance(interaction));
 
-        return applianceService.acceptAppliance(interaction);
+        return reponse;
     }
 
     @PostMapping("/reject")

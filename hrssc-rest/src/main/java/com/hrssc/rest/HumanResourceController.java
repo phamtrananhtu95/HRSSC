@@ -9,6 +9,7 @@ import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Job;
 import com.hrssc.entities.Skill;
 import com.hrssc.entities.User;
 import com.hrssc.service.AuthorizationService;
@@ -85,6 +86,12 @@ public class HumanResourceController {
 			return null;
 		}
 		return humanResourceService.viewHumanResourceDetails(id);
+	}
+
+	@JsonView(HumanResourceView.history.class)
+	@GetMapping(value = "/viewHistory/{id}")
+	public List<Job> viewHumanresourceHistory(@PathVariable("id") int id){
+		return humanResourceService.viewHumanresourceHistory(id);
 	}
 }
 
