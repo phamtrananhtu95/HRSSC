@@ -8,6 +8,7 @@ import com.hrssc.service.HumanResourceService;
 import com.hrssc.service.ProjectManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,11 @@ public class ApplianceServiceImpl implements ApplianceService {
             return "This resource has already joined this project";
         }
         Interaction applyInteraction = interactionRepository.findByProjectIdAndHumanResourceId(interaction.getProjectId(), interaction.getHumanResourceId());
+        if(applyInteraction == null){
+            applyInteraction = new Interaction();
+            applyInteraction.setHumanResourceId(interaction.getHumanResourceId());
+            applyInteraction.setProjectId(interaction.getProjectId());
+        }
         if (applyInteraction.getType() == Constant.InteractionType.INVITE){
             return null;
         }
@@ -68,6 +74,7 @@ public class ApplianceServiceImpl implements ApplianceService {
 
     }
 
+    @Transactional
     public String acceptAppliance(Interaction interaction){
         Interaction acceptInterAction = interactionRepository.findById(interaction.getId());
         Optional<HumanResource> humanResourceOptional = humanResourceRepository.findById(interaction.getHumanResourceId());
@@ -108,8 +115,9 @@ public class ApplianceServiceImpl implements ApplianceService {
 
     public String rejectAppliance(Interaction interaction){
         Interaction rejectInteraction = interactionRepository.findById(interaction.getId());
-
-        interactionRepository.delete(rejectInteraction);
+        if(rejectInteraction != null) {
+            interactionRepository.delete(rejectInteraction);
+        }
         return "Success";
     }
 
