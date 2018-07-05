@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/project.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Project } from '../../models';
+import { ResourceMatchingComponent } from './resource-matching/resource-matching.component';
 
 @Component({
   selector: 'app-project-info',
@@ -11,7 +12,12 @@ import { Project } from '../../models';
 })
 export class ProjectInfoComponent implements OnInit {
   public project = new Project();
-  public skillList= "";
+  public skillList = "";
+  public isManager: boolean;
+  public userId: number;
+  public projectId: number;
+  public userIdByProjectId: number;
+  @ViewChild(ResourceMatchingComponent) resourceMatchingComponent: ResourceMatchingComponent
 
   constructor(
     private route: ActivatedRoute,
@@ -20,31 +26,38 @@ export class ProjectInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.auth.checkLogin()){
+    if (this.auth.checkLogin()) {
+      this.projectId = this.route.snapshot.queryParams['id'];
+      this.userId = this.auth.getUserId();
       this.getProjectById();
     }
   }
 
-  getProjectById(){
-    let projectId = this.route.snapshot.queryParams['id'];
-    let userId = this.auth.getUserId();
-    this.prjService.getProjectByProjectId(userId, projectId).subscribe(
+  getProjectById() {
+
+
+    this.prjService.getProjectByProjectId(this.userId, this.projectId).subscribe(
       res => {
         this.project = res;
-        console.log(this.project);
-        this.project.projectRequirementsById.forEach(el => {
-          el.skillRequirementsById.forEach(el2 => {
-            this.skillList  = this.skillList + el2.skillBySkillId.title+ ", ";
+        this.userIdByProjectId = this.project.userId;
+        this.isManager = this.userId === this.userId;
+        console.log(this.isManager);
+          this.project.projectRequirementsById.forEach(el => {
+            el.skillRequirementsById.forEach(el2 => {
+              this.skillList = this.skillList + el2.skillBySkillId.title + ", ";
+            });
           });
-        });
         var lastIndex = this.skillList.lastIndexOf(", ");
-        this.skillList =this.skillList.substring(0, lastIndex);
+        this.skillList = this.skillList.substring(0, lastIndex);
       },
       err => {
 
       }
     );
 
+  }
+  reloadMatchingResource() {
+    this.resourceMatchingComponent.getResourceMatching();
   }
 
 }

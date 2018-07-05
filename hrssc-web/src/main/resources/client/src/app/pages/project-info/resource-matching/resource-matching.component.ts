@@ -39,7 +39,6 @@ export class ResourceMatchingComponent implements OnInit {
               element.listSkill = element.listSkill + el.skillBySkillId.title + ", ";
           });
         });
-        console.log(this.listResourceMatch);
       },
       err => {
       }

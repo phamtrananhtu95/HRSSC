@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Project, ProjectRequirement } from '../../../models';
 import { ProjectService } from '../../../services/project.service';
 import { IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
@@ -10,6 +10,7 @@ import { IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 })
 export class InfoProjectManagerComponent implements OnInit {
   @Input() project: Project
+  @Output() reloadMatchingResource: EventEmitter<any> = new EventEmitter();
 
   public projectInfo: Project;
   createDate: any = null;
@@ -23,7 +24,9 @@ export class InfoProjectManagerComponent implements OnInit {
   public isPositionUpdate: boolean;
 
 
-public listSkill = [];
+  public listSkill = [];
+
+
 
   constructor(
     private prjService: ProjectService
@@ -32,8 +35,8 @@ public listSkill = [];
   ngOnInit() {
     this.loadAllPosition();
     // this.formPositionModel.positionId = '1';
-    
-    
+
+
   }
 
   ngOnChanges() {
@@ -44,7 +47,7 @@ public listSkill = [];
       if (this.projectInfo.projectRequirementsById) {
         this.listSkill = [];
         this.projectInfo.projectRequirementsById.forEach(el => {
-          
+
           this.positionList.push({
             id: this.countId,
             value: el
@@ -90,7 +93,7 @@ public listSkill = [];
         res.forEach(skill => {
           this.skillOpt.push({ value: skill.id.toString(), label: skill.title })
           this.listSkillExp.push(skill);
-          
+
         });
       },
       err => {
@@ -101,22 +104,20 @@ public listSkill = [];
   onSkillSelected(val: any) {
 
     this.formPositionModel.skillRequirementsById = [];
-    console.log(val);
-    console.log(this.listSkillExp);
-    console.log( this.formPositionModel.skillRequirementsById);
+
     val.forEach(val => {
       this.listSkillExp.forEach(el => {
-          if(el.id.toString() === val){
-            // this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
-            // console.log(this.formPositionModel.skillRequirementsById);
-            this.formPositionModel.skillRequirementsById.push({
-              skillId: el.id,
-              skillBySkillId: {
-                id: el.id,
-                title: el.title
-              },
-            });
-          }
+        if (el.id.toString() === val) {
+          // this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
+          // console.log(this.formPositionModel.skillRequirementsById);
+          this.formPositionModel.skillRequirementsById.push({
+            skillId: el.id,
+            skillBySkillId: {
+              id: el.id,
+              title: el.title
+            },
+          });
+        }
       });
     });
     // val.forEach(val => {
@@ -203,14 +204,29 @@ public listSkill = [];
     })
   }
   updatePrj() {
-    console.log(this.projectInfo);
+    let vm = this;
     this.prjService.updateProject(this.projectInfo).subscribe(
       res => {
         (<any>$("#modal_small")).modal("hide");
+        this.reloadMatchingResource.emit();
+        setTimeout(function () {
+          vm.onScroll();
+        }, 1500);
       },
       err => {
         console.log(err);
       }
     );
+  }
+
+  onScroll() {
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
   }
 }

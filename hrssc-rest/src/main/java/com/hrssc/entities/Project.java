@@ -29,7 +29,7 @@ public class Project {
     private int processStatus;
     @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,UserView.details.class})
     private int requestStatus;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.details.class,ProjectView.ListView.class})
     private int userId;
     @JsonView(ProjectView.ListView.class)
     private int companyId;
