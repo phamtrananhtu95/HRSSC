@@ -17,7 +17,7 @@ public class ProjectRequirements {
     private int payment;
     @JsonView({MatchingView.Resource.class,ProjectView.ListView.class,ProjectView.Summary.class,ProjectView.details.class})
     private int quantity;
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private int positionId;
     private int projectId;
     private boolean isAssigned;

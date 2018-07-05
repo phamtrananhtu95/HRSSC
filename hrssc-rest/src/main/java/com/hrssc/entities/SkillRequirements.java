@@ -13,7 +13,7 @@ public class SkillRequirements {
     @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private int id;
 
-    @JsonView(ProjectView.ListView.class)
+    @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private int skillId;
 
     @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
