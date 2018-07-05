@@ -41,4 +41,9 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  loadMatchingProject(userId, resourceId){
+    let url = 'matching/get-matched-project/' + userId + '/' + resourceId;
+    return this.restService.get(url);
+  }
+
 }

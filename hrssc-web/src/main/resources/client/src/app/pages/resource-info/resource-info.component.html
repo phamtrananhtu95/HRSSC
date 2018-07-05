@@ -120,8 +120,7 @@
                 <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" data-popup="tooltip" title="click to see detail rating"
-                  data-toggle="modal" data-target="#rating">
+                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
               </div>
@@ -131,9 +130,15 @@
               <span *ngIf="isOwnManager" style="font-size: 12px;" [ngClass]="humanResource.status == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'"
                 class="label label-flat">
                 {{humanResource.status == 1 ? "Activated" : "Inactive"}}</span>
-              <button *ngIf="!isOwnManager" type="button" class="btn btn-danger btn-rounded btn-xlg" data-toggle="modal" data-target="#modal_form_inline">
+
+              <button *ngIf="!isOwnManager" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info">
                 Invite
+                <i class="icon-play3 position-right"></i>
               </button>
+              <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info">Launch
+                  <i class="icon-play3 position-right"></i>
+                </button> -->
+
             </div>
           </div>
         </div>
@@ -141,41 +146,41 @@
       </div>
 
 
-            <!-- Tabbed form -->
-            <div class="tabbable panel login-form width-400">
-              <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-                <li class="active">
-                  <a href="#basic-tab1" data-toggle="tab">
-                    <h6>Info</h6>
-                  </a>
-                </li>
-                <li>
-                  <a href="#basic-tab2" data-toggle="tab">
-                    <h6>Reviews</h6>
-                  </a>
-                </li>
-              </ul>
+      <!-- Tabbed form -->
+      <div class="tabbable panel login-form width-400">
+        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+          <li class="active">
+            <a href="#basic-tab1" data-toggle="tab">
+              <h6>Info</h6>
+            </a>
+          </li>
+          <li>
+            <a href="#basic-tab2" data-toggle="tab">
+              <h6>Reviews</h6>
+            </a>
+          </li>
+        </ul>
 
-              <div class="tab-content panel-body">
-                <div class="tab-pane fade in active" id="basic-tab1">
-                  <div>
-                    <app-info-resource-manager-view *ngIf="isOwnManager" [humanResource]="humanResource" (reloadManagerList)="getHumanResourceById()"
-                      (reloadMatchingProject)="reloadMatchingProject">
-                    </app-info-resource-manager-view>
-                  </div>
-                  <div >
-                    <app-info-resource-view *ngIf="!isOwnManager" [humanResource]="humanResource"></app-info-resource-view>
-                  </div>
-                </div>
-
-                <div class="tab-pane fade" id="basic-tab2">
-                  <h1>tab 2</h1>
-                  <app-rating-resource></app-rating-resource>
-                </div>
-              </div>
+        <div class="tab-content panel-body">
+          <div class="tab-pane fade in active" id="basic-tab1">
+            <div>
+              <app-info-resource-manager-view *ngIf="isOwnManager" [humanResource]="humanResource" (reloadManagerList)="getHumanResourceById()"
+                (reloadMatchingProject)="reloadMatchingProject()">
+              </app-info-resource-manager-view>
             </div>
-            <!-- /tabbed form -->
-            <!-- <div class="text-center">
+            <div>
+              <app-info-resource-view *ngIf="!isOwnManager" [humanResource]="humanResource" [skillList]="skillList"></app-info-resource-view>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="basic-tab2">
+            <h1>tab 2</h1>
+            <app-rating-resource></app-rating-resource>
+          </div>
+        </div>
+      </div>
+      <!-- /tabbed form -->
+      <!-- <div class="text-center">
               <h5 *ngIf="isOwnManager" class="text-semibold no-margin">Information</h5>
               <h5 *ngIf="!isOwnManager" class="text-semibold no-margin">Information - History</h5>
             </div>
@@ -188,23 +193,20 @@
               <app-info-resource-view></app-info-resource-view>
             </div> -->
 
-      
+
 
     </div>
 
     <!-- right content -->
     <div class="col-md-4">
-      <!-- <app-resource-similar></app-resource-similar> -->
-      <app-project-matching (reloadManagerList)="reloadManagerList">
+      <app-project-matching *ngIf="isOwnManager" [userId]="userId" [resourceId]="resourceId"></app-project-matching>
 
-      </app-project-matching>
-
-
+      <app-resource-similar *ngIf="!isOwnManager"></app-resource-similar>
     </div>
   </div>
 
   <!-- Inline form modal popup -->
-  <div id="modal_form_inline" class="modal fade">
+  <!-- <div id="modal_form_inline" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content text-center">
         <div class="modal-header">
@@ -237,6 +239,44 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div> -->
+  <div id="modal_theme_info" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content text-center">
+        <div class="modal-header bg-info">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h6 class="modal-title">Invitation</h6>
+        </div>
+        <form action="#" class="form-inline">
+          <div class="modal-body">
+            <!-- <h6 class="text-semibold">Invite .....</h6> to -->
+            <div class="form-group has-feedback">
+              <h6 class="text-semibold">Invite ... to :</h6>
+
+            </div>
+
+            <div class="form-group">
+              <select data-placeholder="Select a project..." class="select">
+                <option></option>
+                <option value="CT">Project 1</option>
+                <option value="FL">Project 2</option>
+                <option value="MA">Project 3</option>
+                <option value="WV">Project 4</option>
+              </select>
+            </div>
+            <div class="form-group has-feedback">
+              <h6>project</h6>
+
+            </div>
+            <hr>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Save changes</button>
+        </div>
       </div>
     </div>
   </div>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee, CompanyEmp, SkillBySkillId, UserByUserId } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
+import { ProjectMatchingComponent } from './project-matching/project-matching.component';
 
 @Component({
   selector: 'app-resource-info',
@@ -13,9 +14,12 @@ export class ResourceInfoComponent implements OnInit {
   public humanResource = new Employee();
   public skillList: string;
   // public avaliableDate: any;
-  public userId: number;
   public userByUserId: number;
   public isOwnManager: boolean;
+  
+  public userId: number;
+  public resourceId: number;
+  @ViewChild(ProjectMatchingComponent) projectMatchingComponent: ProjectMatchingComponent;  //call event child
 
   constructor(
     private router: Router,
@@ -26,9 +30,9 @@ export class ResourceInfoComponent implements OnInit {
 
   ngOnInit() {
     (<any>window).componentPopup = true;
-    this.getHumanResourceById();
-
+    this.resourceId = this.route.snapshot.queryParams['id'];
     this.userId = this.authenticateService.getUserId();
+    this.getHumanResourceById();
 
     // let humanResourceId = this.route.snapshot.queryParams['id'];
     // this.skillList = "";
@@ -48,28 +52,24 @@ export class ResourceInfoComponent implements OnInit {
   }
 
   getHumanResourceById() {
-    let humanResourceId = this.route.snapshot.queryParams['id'];
     this.skillList = "";
-    this.employeeService.getHumanResourceById(humanResourceId).subscribe(
+    this.employeeService.getHumanResourceById(this.resourceId).subscribe(
       res => {
         // this.avaliableDate = this.ConvertToDatetime(this.humanResource.availableDate);
-        
+
         this.humanResource = res;
         this.userByUserId = this.humanResource.userByUserId.id;
 
         this.isOwnManager = this.userId === this.userByUserId;
-        // console.log(this.isOwnManager);
+        console.log(this.isOwnManager);
         console.log(this.humanResource.availableDate);
-        
+
         // console.log("----------" + JSON.stringify(this.humanResource));
-        let skills = this.humanResource.resourceSkillsById;
-        if (!skills || skills.length < 1) {
-          return;
-        }
-        for (let i = 0; i < skills.length - 1; i++) {
-          this.skillList = this.skillList + skills[i].skillBySkillId.title + ", ";
-        }
-        this.skillList = this.skillList + skills[skills.length - 1].skillBySkillId.title;
+        let skills = [];
+        this.humanResource.resourceSkillsById.forEach(skill => {
+          skills.push(skill.skillBySkillId.title);
+        })
+        this.skillList = skills.join(", ");
         // console.log("iiiiiiiii" + this.userByUserId);
       },
       err => {
@@ -78,12 +78,7 @@ export class ResourceInfoComponent implements OnInit {
     )
   }
 
-  ConvertToDatetime(dateValue): String {
-    if (!dateValue) {
-      return null;
-    }
-    var date = new Date(parseFloat(dateValue));
-    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-    return dateParse;
+  reloadMatchingProject() {
+    this.projectMatchingComponent.getProjectMatching();
   }
 }

@@ -1,3 +1,4 @@
+import { Company } from './company.model';
 export class ProjectMatch {
     id: number;
     type: string;
@@ -16,11 +17,18 @@ export class ProjectByProjectId {
     duration: number;
     type: string;
     domain: string;
-    skillRequirementsById: SkillRequirementsById[];
+    projectRequirementsById: ProjectRequirementsById[];
+    companyByCompanyId: Company;
+    combinedSkill: string;
     constructor() {
-        this.skillRequirementsById = [];
+        this.projectRequirementsById = [];
     }
 }
+
+export class ProjectRequirementsById {
+    skillRequirementsById: SkillRequirementsById[]
+}
+
 export class SkillRequirementsById {
     skillBySkillId: SkillBySkillId;
     experience: number;

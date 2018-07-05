@@ -1,4 +1,4 @@
-<div class="panel panel-flat">
+<!-- <div class="panel panel-flat">
     <div class="panel-heading">
         <h6 class="panel-title text-center text-semibold">Matching project</h6>
     </div>
@@ -73,4 +73,30 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="panel panel-flat">
+        <div class="panel-heading">
+            <h6 class="panel-title text-center text-semibold">Matching project</h6>
+        </div>
+    
+        <div class="panel-body">
+            <div class="media" *ngFor="let project of projectsMatched">
+                <div class="media-left ">
+                    <div class="thumb">
+                        <a href="#">
+                            <img src="assets/images/coinected-io-logo-65-65.jpg" class="media-preview" alt="">
+                        </a>
+                    </div>
+    
+                </div>
+                <div class="media-body">
+                    <a href="#">{{project?.projectByProjectId?.title}}
+                        <span class="media-annotation pull-right">3:03</span>
+                    </a>
+                    <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>
+                    <p>{{project?.projectByProjectId?.combinedSkill}}</p>
+                </div>
+            </div>
+        </div>
+    </div>

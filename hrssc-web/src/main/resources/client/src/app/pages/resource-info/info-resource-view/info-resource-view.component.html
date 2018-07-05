@@ -123,28 +123,28 @@
                         <h6 class="text-semibold no-margin-top">Full name: {{humanResource.fullname}}</h6>
                         <ul class="list list-unstyled">
                             <li>Company:
-                                <span class="text-semibold">aaa</span>
+                                <span class="text-semibold">{{humanResource?.companyByCompanyId?.name}}</span>
                             </li>
                             <li>Location:
-                                <span class="text-semibold">aaa</span>
+                                <span class="text-semibold">{{humanResource?.companyByCompanyId?.city}}</span>
                             </li>
                             <li>Tel:
-                                <span class="text-semibold">aaa</span>
+                                <span class="text-semibold">{{humanResource.tel}}</span>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-sm-6">
-                        <h6 class="text-semibold text-right no-margin-top">$5,100</h6>
+                        <h6 class="text-semibold text-right no-margin-top">${{humanResource.salary}} vnd</h6>
                         <ul class="list list-unstyled text-right">
                             <li>Skill:
-                                <span class="text-semibold">aaaaa</span>
+                                <span class="text-semibold">{{skillList}}</span>
                             </li>
                             <li>Available date:
-                                <span class="text-semibold">aaaaaa</span>
+                                <span class="text-semibold">{{humanResource.availableDate | date:'dd/MM/yyyy'}}</span>
                             </li>
                             <li>Duration available:
-                                <span class="text-semibold">aaaaaa</span>
+                                <span class="text-semibold">{{humanResource.availableDuration}}</span>
                             </li>
                             <!-- <li class="dropdown">
                                 Status: &nbsp;
