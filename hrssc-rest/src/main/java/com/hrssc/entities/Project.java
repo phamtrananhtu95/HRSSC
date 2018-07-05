@@ -1,10 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.hrssc.domain.jacksonview.InvitationView;
-import com.hrssc.domain.jacksonview.MatchingView;
-import com.hrssc.domain.jacksonview.ProjectView;
-import com.hrssc.domain.jacksonview.UserView;
+import com.hrssc.domain.jacksonview.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,25 +9,25 @@ import java.util.Objects;
 
 @Entity
 public class Project {
-    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private int id;
-    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String title;
-    @JsonView({ProjectView.ListView.class,ProjectView.details.class})
+    @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class})
     private String description;
-    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private long createDate;
-    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private long endDate;
-    @JsonView({InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
     private long duration;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String type;
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String domain;
-    @JsonView({ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private int processStatus;
-    @JsonView({ProjectView.ListView.class,UserView.details.class})
+    @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,UserView.details.class})
     private int requestStatus;
     @JsonView(ProjectView.ListView.class)
     private int userId;
@@ -43,6 +40,7 @@ public class Project {
 
     @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
     private Collection<ProjectRequirements> projectRequirementsById;
+    @JsonView(ApplianceView.Listview.class)
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
 

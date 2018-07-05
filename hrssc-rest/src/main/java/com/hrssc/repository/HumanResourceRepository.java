@@ -24,4 +24,7 @@ public interface HumanResourceRepository extends JpaRepository<HumanResource, In
 
     HumanResource getById(int id);
 
+    List<HumanResource> findByCompanyId(int companyId);
+    List<HumanResource> findByCompanyIdAndStatus(int companyId, int status);
+
 }

@@ -7,9 +7,14 @@ import java.util.List;
 
 public interface InteractionRepository extends JpaRepository<Interaction, Integer> {
 
+    List<Interaction> findByProjectId(int projectid);
+    List<Interaction> findByHumanResourceId(int resourceId);
     List<Interaction> findByProjectIdAndType(int id, String type);
     List<Interaction> findByHumanResourceIdAndType(int id, String type);
     Interaction findByHumanResourceIdAndProjectId(int resourceId,int projectId);
+    Interaction findByProjectIdAndHumanResourceId(int projectId, int resourceId);
+    Interaction findById(int id);
+
 
     void deleteByProjectIdAndType(int id, String type);
     void deleteByHumanResourceIdAndType(int id, String type);

@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ApplianceView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.InvitationView;
 import com.hrssc.domain.jacksonview.MatchingView;
@@ -13,13 +14,13 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 public class Interaction {
-    @JsonView({InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
     private int id;
-    @JsonView({InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
     private String type;
-    @JsonView(MatchingView.Project.class)
+    @JsonView({ApplianceView.Listview.class,MatchingView.Project.class})
     private int humanResourceId;
-    @JsonView({MatchingView.Project.class})
+    @JsonView({ApplianceView.Listview.class,MatchingView.Project.class})
     private HumanResource humanResourceByHumanResourceId;
     @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
     private Double rankingScore;
