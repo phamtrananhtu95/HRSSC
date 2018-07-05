@@ -139,7 +139,7 @@ public class MatchingServiceImpl implements MatchingService {
             }
             matchedList.sort(comparator);
             for (int i = 0; ; i++) {
-                if (i >= 10 || i >= matchedList.size()) {
+                if (i >= 5 || i >= matchedList.size()) {
                     break;
                 }
                 Interaction sortedMatch = matchedList.get(i);
