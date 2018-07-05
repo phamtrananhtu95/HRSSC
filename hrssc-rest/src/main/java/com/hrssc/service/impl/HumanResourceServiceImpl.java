@@ -9,9 +9,11 @@ import java.util.logging.Logger;
 
 import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
+import com.hrssc.entities.Job;
 import com.hrssc.entities.ResourceSkills;
 import com.hrssc.entities.Skill;
 import com.hrssc.repository.InteractionRepository;
+import com.hrssc.repository.JobRepository;
 import com.hrssc.repository.ResourceSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -35,6 +37,9 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 
 	@Autowired
 	InteractionRepository interactionRepository;
+
+	@Autowired
+	JobRepository jobRepository;
 
 	@Override
 	public List<HumanResourceDto> getHumanResources() {
@@ -174,5 +179,10 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 			return "OK";
 		}
 		return "Resource not found";
+	}
+
+	public List<Job> viewHumanresourceHistory(int id){
+		List<Job> resultJob = jobRepository.findByHumanResourceIdAndStatus(id, Constant.JobStatus.FINISHED);
+		return resultJob;
 	}
 }

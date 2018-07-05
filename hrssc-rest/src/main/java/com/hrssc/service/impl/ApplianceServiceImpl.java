@@ -38,6 +38,10 @@ public class ApplianceServiceImpl implements ApplianceService {
     ProjectRequirementRepository projectRequirementRepository;
 
     public String applyToProject(Interaction interaction){
+        Job checkJob = jobRepository.findByProjectIdAndHumanResourceId(interaction.getProjectId(), interaction.getHumanResourceId());
+        if(checkJob != null){
+            return "This resource has already joined this project";
+        }
         Interaction applyInteraction = interactionRepository.findByProjectIdAndHumanResourceId(interaction.getProjectId(), interaction.getHumanResourceId());
         if (applyInteraction.getType() == Constant.InteractionType.INVITE){
             return null;
@@ -66,6 +70,8 @@ public class ApplianceServiceImpl implements ApplianceService {
 
     public String acceptAppliance(Interaction interaction){
         Interaction acceptInterAction = interactionRepository.findById(interaction.getId());
+        Optional<HumanResource> humanResourceOptional = humanResourceRepository.findById(interaction.getHumanResourceId());
+        Project project = projectRepository.findById(interaction.getProjectId());
         if(acceptInterAction == null){
             return "Not found";
         }
@@ -76,18 +82,15 @@ public class ApplianceServiceImpl implements ApplianceService {
         newJob.setHumanResourceId(interaction.getHumanResourceId());
         newJob.setProjectId(interaction.getProjectId());
         newJob.setJoinedate(joindate);
+        newJob.setStatus(project.getProcessStatus());
         jobRepository.save(newJob);
 
-        Optional<HumanResource> humanResourceOptional = humanResourceRepository.findById(interaction.getHumanResourceId());
+
         HumanResource humanResource = humanResourceOptional.get();
         humanResource.setStatus(Constant.ResourceStatus.BUSY);
         humanResourceService.changeResourceStatus(humanResource);
-        List<Interaction> interactionList = interactionRepository.findByHumanResourceId(humanResource.getId());
-        for (Interaction tmp: interactionList) {
-            interactionRepository.delete(tmp);
-        }
+        interactionRepository.deleteByHumanResourceId(humanResource.getId());
 
-        Project project = projectRepository.findById(interaction.getProjectId());
         List<ProjectRequirements> listProjectRequirement = projectRequirementRepository.findByProjectId(project.getId());
         int countSlot = 0;
         for (ProjectRequirements projectRequirement: listProjectRequirement) {
@@ -98,10 +101,7 @@ public class ApplianceServiceImpl implements ApplianceService {
         if(countSlot == listJob.size()){
             project.setRequestStatus(Constant.RequestStatus.CLOSED);
             projectManagementService.updateStatus(project);
-            List<Interaction> interlist = interactionRepository.findByProjectId(project.getId());
-            for (Interaction tmp: interlist) {
-                interactionRepository.delete(tmp);
-            }
+            interactionRepository.deleteByProjectId(project.getId());
         }
         return "Success!!";
     }

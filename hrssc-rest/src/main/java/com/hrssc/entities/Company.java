@@ -13,9 +13,9 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 public class Company {
-    @JsonView({CompanyView.info.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
+    @JsonView({HumanResourceView.history.class,CompanyView.info.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
     private int id;
-    @JsonView({CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String name;
     @JsonView(CompanyView.info.class)
     private String address;
