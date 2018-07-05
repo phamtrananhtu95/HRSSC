@@ -59,6 +59,7 @@ public class InvitationServiceImpl implements InvitationService {
     @Override
     public List<HumanResource> loadAllInvitationByManager(int managerId){
         List<HumanResource> resourceList = humanResourceRepository.getHumanResourcesByUserId(managerId);
+        List<HumanResource> resultList = new ArrayList<>();
         for(HumanResource resource: resourceList){
             List<Interaction> interactionList = new ArrayList<>();
             for(Interaction interaction: resource.getInteractionsById()){
@@ -66,9 +67,15 @@ public class InvitationServiceImpl implements InvitationService {
                     interactionList.add(interaction);
                 }
             }
-            resource.setInteractionsById(interactionList);
+            if(interactionList.size() > 0){
+                resource.setInteractionsById(interactionList);
+                resultList.add(resource);
+                interactionList = new ArrayList<>();
+            }
+
+
         }
-        return resourceList;
+        return resultList;
     }
 
     @Transactional

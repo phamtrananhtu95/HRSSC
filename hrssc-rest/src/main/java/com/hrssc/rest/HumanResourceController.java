@@ -1,6 +1,7 @@
 package com.hrssc.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.Constant;
@@ -10,9 +11,13 @@ import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Job;
 import com.hrssc.entities.Skill;
+import com.hrssc.entities.User;
+import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.MatchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.hrssc.domain.dto.HumanResourceDto;
@@ -33,7 +38,8 @@ public class HumanResourceController {
 	@Autowired
 	private MatchingService matchingService;
 
-
+	@Autowired
+	AuthorizationService authorizationService;
 
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HumanResourceDto> getHumanResource() {
@@ -75,7 +81,10 @@ public class HumanResourceController {
 
 	@JsonView(HumanResourceView.details.class)
 	@GetMapping(value = "/details/{id}")
-	public HumanResource viewHumanResourceDetails(@PathVariable("id") int id) throws NotFoundException {
+	public HumanResource viewHumanResourceDetails(@PathVariable("id") int id){
+		if(!authorizationService.checkResource(id)){
+			return null;
+		}
 		return humanResourceService.viewHumanResourceDetails(id);
 	}
 
