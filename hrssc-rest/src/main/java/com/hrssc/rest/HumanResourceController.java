@@ -58,9 +58,10 @@ public class HumanResourceController {
 	}
 
 	@JsonView(HumanResourceView.overview.class)
-	@GetMapping(value = "/get-appliable/{projectId}")
-	public List<HumanResource> getAvailableResourceByManagerId(@PathVariable("projectId") int projectId){
-		return humanResourceService.getAppliableResourceById(projectId);
+	@GetMapping(value = "/get-appliable/{userId}/{projectId}")
+	public List<HumanResource> getAvailableResourceByManagerId(@PathVariable("projectId") int projectId,
+															   @PathVariable("userId") int userId){
+		return humanResourceService.getAppliableResourceById(projectId,userId);
 	}
 
 	@PostMapping(value = "/add")
@@ -86,12 +87,13 @@ public class HumanResourceController {
 	}
 
 	@JsonView(HumanResourceView.details.class)
-	@GetMapping(value = "/details/{id}")
-	public HumanResource viewHumanResourceDetails(@PathVariable("id") int id){
-		if(!authorizationService.checkResource(id)){
+	@GetMapping(value = "/details/{userId}/{resourceId}")
+	public HumanResource viewHumanResourceDetails(@PathVariable("resourceId") int resourceId,
+												  @PathVariable("userId") int userId){
+		if(!authorizationService.checkResource(resourceId,userId)){
 			return null;
 		}
-		return humanResourceService.viewHumanResourceDetails(id);
+		return humanResourceService.viewHumanResourceDetails(resourceId);
 	}
 
 	@JsonView(HumanResourceView.history.class)

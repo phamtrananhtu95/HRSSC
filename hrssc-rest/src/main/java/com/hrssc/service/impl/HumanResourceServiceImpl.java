@@ -68,13 +68,12 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 	}
 
 	@Override
-	public List<HumanResource> getAppliableResourceById(int projectId) {
-		Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
-		Optional<User> userOptional = userRepository.findByUsername(authenticatedUser.getName());
-		if(!userOptional.isPresent()){
+	public List<HumanResource> getAppliableResourceById(int projectId,int userId) {
+
+		User user = userRepository.findById(userId);
+		if(user == null){
 			return null;
 		}
-		User user = userOptional.get();
 		List<HumanResource> resourceList = humanResourceRepository.findByUserIdAndStatus(user.getId(),Constant.ResourceStatus.AVAILABLE);
 		if(resourceList == null){
 			return null;
