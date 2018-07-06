@@ -79,29 +79,31 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 		if(resourceList == null){
 			return null;
 		}
-		List<HumanResource> resultList = resourceList;
+		List<HumanResource> resultList = new ArrayList<>();
 		for(HumanResource resource:resourceList){
 			//Nếu interaction list null thì có nghĩa là resource này chưa tương tác với bất kì project nào
 			//kể cả project này, Thêm resource này vào resultList
 			if(resource.getInteractionsById() == null){
-				return resultList;
-			}
-			boolean addable =true;
-			for(Interaction interaction: resource.getInteractionsById()){
-				if(interaction.getProjectId() == projectId){
-					if(interaction.getType().equals(Constant.InteractionType.INVITE)||
-							interaction.getType().equals(Constant.InteractionType.APPLY)){
+				resultList.add(resource);
+
+			}else {
+				boolean addable = true;
+				for (Interaction interaction : resource.getInteractionsById()) {
+					if (interaction.getProjectId() == projectId) {
+						if (interaction.getType().equals(Constant.InteractionType.INVITE) ||
+								interaction.getType().equals(Constant.InteractionType.APPLY)) {
 							resultList.remove(resource);
-							addable =false;
+							addable = false;
 							break;
+						}
+
 					}
 
 				}
+				if (addable) {
+					resultList.add(resource);
 
-			}
-			if(addable){
-				resultList.add(resource);
-				addable = true;
+				}
 			}
 		}
 		return resultList;

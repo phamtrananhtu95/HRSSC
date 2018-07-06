@@ -309,7 +309,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 }
                 if(addable){
                     resultList.add(project);
-                    addable =true;
+
                 }
 
             }
