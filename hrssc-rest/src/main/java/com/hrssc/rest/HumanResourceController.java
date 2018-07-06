@@ -59,8 +59,9 @@ public class HumanResourceController {
 
 	@JsonView(HumanResourceView.overview.class)
 	@GetMapping(value = "/get-appliable/{projectId}")
-	public List<HumanResource> getAvailableResourceByManagerId(@PathVariable("projectId") int projectId){
-		return humanResourceService.getAppliableResourceById(projectId);
+	public List<HumanResource> getAvailableResourceByManagerId(@PathVariable("projectId") int projectId,
+															   @PathVariable("userId") int userId){
+		return humanResourceService.getAppliableResourceById(projectId,userId);
 	}
 
 	@PostMapping(value = "/add")

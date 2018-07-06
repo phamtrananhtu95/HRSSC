@@ -36,9 +36,10 @@ public class ProjectManagementController {
     }
 
     @JsonView(ProjectView.ListView.class)
-    @GetMapping(value = "/get-invitable-project/{resourceId}")
-    public List<Project> getInvitableProjectByManager(@PathVariable(value = "resourceId") int resourceId){
-        return projectManagementService.getInvitableProjectByManagerId(resourceId);
+    @GetMapping(value = "/get-invitable-project/{userId}/{resourceId}")
+    public List<Project> getInvitableProjectByManager(@PathVariable(value = "resourceId") int resourceId,
+                                                      @PathVariable(value = "userId") int userId){
+        return projectManagementService.getInvitableProjectByManagerId(resourceId,userId);
     }
 
     @PostMapping(value = "/add")

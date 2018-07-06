@@ -281,13 +281,12 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     }
 
     @Override
-    public List<Project> getInvitableProjectByManagerId(int resourceId){
-        Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
-        Optional<User> userOptional = userRepository.findByUsername(authenticatedUser.getName());
-        if(!userOptional.isPresent()){
+    public List<Project> getInvitableProjectByManagerId(int resourceId,int userId){
+
+        User user = userRepository.findById(userId);
+        if(user == null){
             return null;
         }
-        User user = userOptional.get();
         List<Project> projectList = projectRepository.findByUserIdAndRequestStatus(user.getId(),Constant.RequestStatus.OPENNING);
         if(projectList == null){
             return null;
