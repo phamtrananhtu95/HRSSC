@@ -12,4 +12,5 @@ public interface InvitationService {
 
     String acceptInvitation(Interaction invitation);
     String rejectInvitation(Interaction invitation);
+    boolean checkInvited(int resourceId);
 }

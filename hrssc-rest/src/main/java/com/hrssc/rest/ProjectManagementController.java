@@ -12,6 +12,7 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import sun.plugin.perf.PluginRollup;
 
 import java.util.List;
 
@@ -33,6 +34,13 @@ public class ProjectManagementController {
     public List<Project> getProjectByManagerId(@PathVariable(value = "managerId") int mangerId){
         return projectManagementService.getProjectByManagerId(mangerId);
     }
+
+    @JsonView(ProjectView.ListView.class)
+    @GetMapping(value = "/get-invitable-project/{resourceId}")
+    public List<Project> getInvitableProjectByManager(@PathVariable(value = "resourceId") int resourceId){
+        return projectManagementService.getInvitableProjectByManagerId(resourceId);
+    }
+
     @PostMapping(value = "/add")
     public ResponseStatus addProject(@RequestBody Project project){
         ResponseStatus response = new ResponseStatus(projectManagementService.addProject(project));

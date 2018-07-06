@@ -1,22 +1,21 @@
 package com.hrssc.service.impl;
 
 import com.hrssc.domain.Constant;
-import com.hrssc.entities.Project;
-import com.hrssc.entities.ProjectRequirements;
-import com.hrssc.entities.SkillRequirements;
-import com.hrssc.repository.InteractionRepository;
-import com.hrssc.repository.ProjectRepository;
-import com.hrssc.repository.ProjectRequirementRepository;
-import com.hrssc.repository.SkillRequirementsRepository;
+import com.hrssc.entities.*;
+import com.hrssc.repository.*;
 import com.hrssc.service.ProjectManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,6 +33,12 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Autowired
     InteractionRepository interactionRepository;
+
+    @Autowired
+    HumanResourceRepository humanResourceRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     @Override
@@ -275,5 +280,41 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         return "Project is Closed.";
     }
 
+    @Override
+    public List<Project> getInvitableProjectByManagerId(int resourceId){
+        Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> userOptional = userRepository.findByUsername(authenticatedUser.getName());
+        if(!userOptional.isPresent()){
+            return null;
+        }
+        User user = userOptional.get();
+        List<Project> projectList = projectRepository.findByUserIdAndRequestStatus(user.getId(),Constant.RequestStatus.OPENNING);
+        if(projectList == null){
+            return null;
+        }
+        List<Project> resultList = new ArrayList<>();
+        for(Project project: projectList){
+            if(project.getInteractionsById() == null){
+                resultList.add(project);
+            }else {
+                boolean addable = false;
+                for (Interaction interaction : project.getInteractionsById()) {
+                    if (interaction.getHumanResourceId() == resourceId) {
+                        if (interaction.getType().equals(Constant.InteractionType.INVITE) ||
+                                interaction.getType().equals(Constant.InteractionType.APPLY)) {
+                            addable =true;
+                                break;
+                        }
+                    }
+                }
+                if(addable){
+                    resultList.add(project);
+                    addable =true;
+                }
+
+            }
+        }
+        return resultList;
+    }
 }
 

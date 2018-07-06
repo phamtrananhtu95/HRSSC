@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProjectManagementService {
 
-
+    List<Project> getInvitableProjectByManagerId(int resourceId);
     List<Project> getProjectByManagerId(int managerId);
 
     String addProject(Project project);

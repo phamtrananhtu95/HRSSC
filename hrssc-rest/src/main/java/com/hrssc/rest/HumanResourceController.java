@@ -57,6 +57,12 @@ public class HumanResourceController {
 		return humanResourceService.getHumanResourceByManagerId(managerId);
 	}
 
+	@JsonView(HumanResourceView.overview.class)
+	@GetMapping(value = "/get-appliable/{projectId}")
+	public List<HumanResource> getAvailableResourceByManagerId(@PathVariable("projectId") int projectId){
+		return humanResourceService.getAppliableResourceById(projectId);
+	}
+
 	@PostMapping(value = "/add")
 	public ResponseStatus addHumanResource(@RequestBody HumanResource humanresource) {
 		return new ResponseStatus(humanResourceService.addHumanResource(humanresource));

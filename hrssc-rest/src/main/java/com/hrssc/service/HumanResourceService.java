@@ -24,6 +24,7 @@ public interface HumanResourceService {
 	HumanResourceDto getHumanResourceById(int id) throws NotFoundException;
 
 	List<HumanResource> getHumanResourceByManagerId(int managerId);
+	List<HumanResource> getAppliableResourceById(int projectId);
 
     String addHumanResource(HumanResource humanResource);
 

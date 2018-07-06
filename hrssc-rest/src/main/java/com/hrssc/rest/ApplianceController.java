@@ -44,4 +44,6 @@ public class ApplianceController {
     public String rejectAppliance(@RequestBody Interaction interaction){
         return applianceService.rejectAppliance(interaction);
     }
+
+
 }

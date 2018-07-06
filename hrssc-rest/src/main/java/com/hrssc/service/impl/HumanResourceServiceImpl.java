@@ -9,19 +9,15 @@ import java.util.logging.Logger;
 
 import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
-import com.hrssc.entities.Job;
-import com.hrssc.entities.ResourceSkills;
-import com.hrssc.entities.Skill;
-import com.hrssc.repository.InteractionRepository;
-import com.hrssc.repository.JobRepository;
-import com.hrssc.repository.ResourceSkillRepository;
+import com.hrssc.entities.*;
+import com.hrssc.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.hrssc.domain.dto.HumanResourceDto;
-import com.hrssc.entities.HumanResource;
-import com.hrssc.repository.HumanResourceRepository;
 import com.hrssc.service.HumanResourceService;
 
 import javassist.NotFoundException;
@@ -40,6 +36,9 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 
 	@Autowired
 	JobRepository jobRepository;
+
+	@Autowired
+	UserRepository userRepository;
 
 	@Override
 	public List<HumanResourceDto> getHumanResources() {
@@ -66,6 +65,46 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 	@Override
 	public List<HumanResource> getHumanResourceByManagerId(int managerId) {
 		return humanResourceRepository.getHumanResourcesByUserId(managerId);
+	}
+
+	@Override
+	public List<HumanResource> getAppliableResourceById(int projectId) {
+		Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
+		Optional<User> userOptional = userRepository.findByUsername(authenticatedUser.getName());
+		if(!userOptional.isPresent()){
+			return null;
+		}
+		User user = userOptional.get();
+		List<HumanResource> resourceList = humanResourceRepository.findByUserIdAndStatus(user.getId(),Constant.ResourceStatus.AVAILABLE);
+		if(resourceList == null){
+			return null;
+		}
+		List<HumanResource> resultList = resourceList;
+		for(HumanResource resource:resourceList){
+			//Nếu interaction list null thì có nghĩa là resource này chưa tương tác với bất kì project nào
+			//kể cả project này, Thêm resource này vào resultList
+			if(resource.getInteractionsById() == null){
+				return resultList;
+			}
+			boolean addable =true;
+			for(Interaction interaction: resource.getInteractionsById()){
+				if(interaction.getProjectId() == projectId){
+					if(interaction.getType().equals(Constant.InteractionType.INVITE)||
+							interaction.getType().equals(Constant.InteractionType.APPLY)){
+							resultList.remove(resource);
+							addable =false;
+							break;
+					}
+
+				}
+
+			}
+			if(addable){
+				resultList.add(resource);
+				addable = true;
+			}
+		}
+		return resultList;
 	}
 
 	@Transactional

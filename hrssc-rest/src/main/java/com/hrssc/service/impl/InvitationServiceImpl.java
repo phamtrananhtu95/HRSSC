@@ -1,22 +1,19 @@
 package com.hrssc.service.impl;
 
 import com.hrssc.domain.Constant;
-import com.hrssc.entities.HumanResource;
-import com.hrssc.entities.Interaction;
-import com.hrssc.entities.Job;
-import com.hrssc.entities.Project;
-import com.hrssc.repository.HumanResourceRepository;
-import com.hrssc.repository.InteractionRepository;
-import com.hrssc.repository.JobRepository;
-import com.hrssc.repository.ProjectRepository;
+import com.hrssc.entities.*;
+import com.hrssc.repository.*;
 import com.hrssc.service.InvitationService;
 import com.hrssc.service.ProjectManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("invitationService")
 public class InvitationServiceImpl implements InvitationService {
@@ -32,6 +29,9 @@ public class InvitationServiceImpl implements InvitationService {
 
     @Autowired
     ProjectRepository projectRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     ProjectManagementService projectManagementService;
@@ -123,4 +123,14 @@ public class InvitationServiceImpl implements InvitationService {
         return "";
     }
 
+    @Override
+    public boolean checkInvited(int resourceId){
+        Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> userOptional = userRepository.findByUsername(authenticatedUser.getName());
+        if(!userOptional.isPresent()){
+            return false;
+        }
+        User user = userOptional.get();
+        return  true;
+    }
 }

@@ -51,4 +51,9 @@ public class InvitationController {
         ResponseStatus response = new ResponseStatus(invitationService.rejectInvitation(invitation));
         return response;
     }
+
+    @GetMapping(value = "/is-invited/{resourceId}")
+    public boolean checkInvited(@PathVariable(value = "resourceId")int resourceId){
+        return invitationService.checkInvited(resourceId);
+    }
 }
