@@ -64,6 +64,8 @@ import { InfoProjectManagerComponent } from './pages/project-info/info-project-m
 import { InfoProjectViewComponent } from './pages/project-info/info-project-view/info-project-view.component';
 import { ResourceMatchingComponent } from './pages/project-info/resource-matching/resource-matching.component';
 import { ProjectInfoPopupComponent } from './pages/project-info/project-info-popup/project-info-popup.component';
+import { InviteResourcePopover } from './pages/resource-info/invite-resource-popover/invite-resource-popover.component';
+import { InvitationService } from './services/invitation.service';
 
 const appRoutes: Routes = [
 
@@ -184,6 +186,7 @@ const appRoutes: Routes = [
     InfoProjectViewComponent,
     ResourceMatchingComponent,
     ProjectInfoPopupComponent,
+    InviteResourcePopover
   ],
   imports: [
     BrowserModule,
@@ -219,7 +222,8 @@ const appRoutes: Routes = [
     ChooseDomain,
     ProjectService,
     ScriptLoadService,
-    ManagementService
+    ManagementService,
+    InvitationService
   ],
   bootstrap: [AppComponent]
 })
