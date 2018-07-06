@@ -63,6 +63,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoProjectManagerComponent } from './pages/project-info/info-project-manager/info-project-manager.component';
 import { InfoProjectViewComponent } from './pages/project-info/info-project-view/info-project-view.component';
 import { ResourceMatchingComponent } from './pages/project-info/resource-matching/resource-matching.component';
+import { InviteResourcePopover } from './pages/resource-info/invite-resource-popover/invite-resource-popover.component';
+import { InvitationService } from './services/invitation.service';
 
 const appRoutes: Routes = [
 
@@ -182,6 +184,7 @@ const appRoutes: Routes = [
     InfoProjectManagerComponent,
     InfoProjectViewComponent,
     ResourceMatchingComponent,
+    InviteResourcePopover
   ],
   imports: [
     BrowserModule,
@@ -217,7 +220,8 @@ const appRoutes: Routes = [
     ChooseDomain,
     ProjectService,
     ScriptLoadService,
-    ManagementService
+    ManagementService,
+    InvitationService
   ],
   bootstrap: [AppComponent]
 })

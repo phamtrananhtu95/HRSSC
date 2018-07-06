@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
+// import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 @Injectable()
 export class EmployeeService {
@@ -35,6 +36,11 @@ export class EmployeeService {
   updateHumanResource(humanResource){
     let url = 'humanResource/update';
     return this.restService.post(url, humanResource);
+  }
+
+  inviteHumanResource(invite){
+    let url ="invitation/invite";
+    return this.restService.post(url, invite);
   }
 
 }
