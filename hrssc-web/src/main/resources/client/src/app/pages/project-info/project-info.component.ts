@@ -4,6 +4,7 @@ import { ProjectService } from '../../services/project.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Project } from '../../models';
 import { ResourceMatchingComponent } from './resource-matching/resource-matching.component';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-project-info',
@@ -18,11 +19,13 @@ export class ProjectInfoComponent implements OnInit {
   public projectId: number;
   public userIdByProjectId: number;
   @ViewChild(ResourceMatchingComponent) resourceMatchingComponent: ResourceMatchingComponent
+  public listAvailableResource= [];
 
   constructor(
     private route: ActivatedRoute,
     private auth: AuthenticateService,
-    private prjService: ProjectService
+    private prjService: ProjectService,
+    private empService: EmployeeService
   ) { }
 
   ngOnInit() {
@@ -59,5 +62,15 @@ export class ProjectInfoComponent implements OnInit {
   reloadMatchingResource() {
     this.resourceMatchingComponent.getResourceMatching();
   }
+  getAvailableResource() {
+    this.empService.getHumanResourceByManagerId(this.userId).subscribe(
+      res => {
+          this.listAvailableResource = res;
+      },
+      err => {
+
+      }
+    );
+}
 
 }

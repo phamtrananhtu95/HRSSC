@@ -63,6 +63,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoProjectManagerComponent } from './pages/project-info/info-project-manager/info-project-manager.component';
 import { InfoProjectViewComponent } from './pages/project-info/info-project-view/info-project-view.component';
 import { ResourceMatchingComponent } from './pages/project-info/resource-matching/resource-matching.component';
+import { ProjectInfoPopupComponent } from './pages/project-info/project-info-popup/project-info-popup.component';
 
 const appRoutes: Routes = [
 
@@ -182,6 +183,7 @@ const appRoutes: Routes = [
     InfoProjectManagerComponent,
     InfoProjectViewComponent,
     ResourceMatchingComponent,
+    ProjectInfoPopupComponent,
   ],
   imports: [
     BrowserModule,
