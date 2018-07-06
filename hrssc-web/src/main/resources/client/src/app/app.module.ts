@@ -66,6 +66,7 @@ import { ResourceMatchingComponent } from './pages/project-info/resource-matchin
 import { ProjectInfoPopupComponent } from './pages/project-info/project-info-popup/project-info-popup.component';
 import { InviteResourcePopover } from './pages/resource-info/invite-resource-popover/invite-resource-popover.component';
 import { InvitationService } from './services/invitation.service';
+import { ApplianceService } from './services/appliance.service';
 
 const appRoutes: Routes = [
 
@@ -223,7 +224,8 @@ const appRoutes: Routes = [
     ProjectService,
     ScriptLoadService,
     ManagementService,
-    InvitationService
+    InvitationService,
+    ApplianceService
   ],
   bootstrap: [AppComponent]
 })

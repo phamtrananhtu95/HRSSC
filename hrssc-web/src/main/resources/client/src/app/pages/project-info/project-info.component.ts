@@ -19,7 +19,7 @@ export class ProjectInfoComponent implements OnInit {
   public projectId: number;
   public userIdByProjectId: number;
   @ViewChild(ResourceMatchingComponent) resourceMatchingComponent: ResourceMatchingComponent
-  public listAvailableResource= [];
+  public listAvailableResource = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -45,11 +45,11 @@ export class ProjectInfoComponent implements OnInit {
         this.userIdByProjectId = this.project.userId;
         this.isManager = this.userId === this.userId;
         console.log(this.isManager);
-          this.project.projectRequirementsById.forEach(el => {
-            el.skillRequirementsById.forEach(el2 => {
-              this.skillList = this.skillList + el2.skillBySkillId.title + ", ";
-            });
+        this.project.projectRequirementsById.forEach(el => {
+          el.skillRequirementsById.forEach(el2 => {
+            this.skillList = this.skillList + el2.skillBySkillId.title + ", ";
           });
+        });
         var lastIndex = this.skillList.lastIndexOf(", ");
         this.skillList = this.skillList.substring(0, lastIndex);
       },
@@ -63,14 +63,20 @@ export class ProjectInfoComponent implements OnInit {
     this.resourceMatchingComponent.getResourceMatching();
   }
   getAvailableResource() {
-    this.empService.getHumanResourceByManagerId(this.userId).subscribe(
+    this.empService.getAppliableByManagerId(this.userId, this.projectId).subscribe(
       res => {
-          this.listAvailableResource = res;
+        this.listAvailableResource = [];
+        res.forEach(el => {
+          this.listAvailableResource.push({
+            project: this.project,
+            resource: el
+          })
+        });
       },
       err => {
 
       }
     );
-}
+  }
 
 }

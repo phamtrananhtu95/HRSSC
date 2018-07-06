@@ -23,7 +23,6 @@ public class ApplianceController {
     @PostMapping("/apply")
     public ResponseStatus applyToProject(@RequestBody Interaction interaction){
         ResponseStatus reponse = new ResponseStatus(applianceService.applyToProject(interaction));
-
         return reponse;
     }
 

@@ -8,46 +8,25 @@
 
       <div class="modal-body">
         <!-- List  -->
+        <div class="media" *ngFor="let x of listAvailableResource">
           <div class="media-left">
-              <img src="assets/images/avatar.png" style="width: 50px;height: 50px;" alt="">
+            <img src="assets/images/avatar.png" style="width: 50px;height: 50px;" alt="">
           </div>
           <div class="media-body">
-           <h6 style="margin-top: 0px"><b>Nguyen Van A</b></h6>
-           <i class="text-muted">Join to</i> <a href="#"><b>ABC Application</b></a> <i class="text-muted">project</i>
+            <h6 style="margin-top: 0px">
+              <b>{{x.resource.fullname}}</b>
+            </h6>
+            <i class="text-muted">Join to</i>
+            <a href="#">
+              <b>{{x.project.title}}</b>
+            </a>
+            <i class="text-muted">project</i>
           </div>
           <div class="media-right">
-            <button class="btn btn-success">Apply</button>
+            <button type="submit" class="btn btn-success" (click)="appliable(x)">Apply</button>
           </div>
-         <!-- list -->
-        <hr>
-
-        <!-- List  -->
-        <div class="media-left">
-            <img src="assets/images/avatar.png" style="width: 50px;height: 50px;" alt="">
+          <hr>
         </div>
-        <div class="media-body">
-         <h6 style="margin-top: 0px"><b>Nguyen Van A</b></h6>
-         <i class="text-muted">Join to</i> <a href="#"><b>ABC Application</b></a> <i class="text-muted">project</i>
-        </div>
-        <div class="media-right">
-          <button class="btn btn-success">Apply</button>
-        </div>
-       <!-- list -->
-<hr>
-       <!-- List  -->
-       <div class="media-left">
-          <img src="assets/images/avatar.png" style="width: 50px;height: 50px;" alt="">
-      </div>
-      <div class="media-body">
-       <h6 style="margin-top: 0px"><b>Nguyen Van A</b></h6>
-       <i class="text-muted">Join to</i> <a href="#"><b>ABC Application</b></a> <i class="text-muted">project</i>
-      </div>
-      <div class="media-right">
-        <button class="btn btn-success">Apply</button>
-      </div>
-     <!-- list -->
-
-     <hr>
       </div>
 
       <div class="modal-footer">

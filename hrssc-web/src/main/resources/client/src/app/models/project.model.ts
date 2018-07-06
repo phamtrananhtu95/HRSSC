@@ -35,3 +35,8 @@ export class SkillRequirement {
     experience: number;
 }
 
+export class Appliable {
+    projectId: number;
+    humanResourceId: number;
+}
+

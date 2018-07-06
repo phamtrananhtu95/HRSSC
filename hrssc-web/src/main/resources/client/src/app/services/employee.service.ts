@@ -18,6 +18,11 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
+  getAppliableByManagerId(userId, projectId){
+    let url = 'humanResource/get-appliable/'+ userId +'/'+projectId;
+    return this.restService.get(url);
+  }
+
   getHumanResourceById(humanResourceId) {
     let url = 'humanResource/details/' + humanResourceId;
     return this.restService.get(url);

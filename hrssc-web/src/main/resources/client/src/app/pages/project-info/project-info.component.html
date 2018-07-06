@@ -90,7 +90,7 @@
                     
                 </div>
                 <div class="media-right media-middle">
-                    <button type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource($event)" data-toggle="modal" data-target="#modal_theme_info">
+                    <button type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()" data-toggle="modal" data-target="#modal_theme_info">
                       Apply
                     </button>
                 </div>
@@ -121,7 +121,7 @@
   </div>
 
   <!-- Info modal -->
-  <app-project-info-popup [AvailableResource]="listAvailableResource"></app-project-info-popup>
+  <app-project-info-popup [listAvailableResource]="listAvailableResource"></app-project-info-popup>
   <!-- /info modal -->
 </div>
 <!-- End Content Area -->
