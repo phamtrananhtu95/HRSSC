@@ -109,7 +109,7 @@ public class InvitationServiceImpl implements InvitationService {
         }else if (job.getJoinedate() >= project.getCreateDate()) {
             job.setStatus(Constant.JobStatus.ON_GOING);
         }
-        jobRepository.save(job);
+        jobRepository.saveAndFlush(job);
 
         //2. Chuyển trạng thái của resource sang BUSY
         resource.setStatus(Constant.ResourceStatus.BUSY);

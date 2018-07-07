@@ -40,6 +40,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    JobRepository jobRepository;
+
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public List<Project> getProjectByManagerId(int managerId) {
@@ -246,7 +251,9 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Override
     public boolean isProjectFull(int projectId){
+
         Project project = projectRepository.findById(projectId);
+
         if(project != null){
             int capacity = 0;
             List<ProjectRequirements> requirementList = (List)project.getProjectRequirementsById();
@@ -256,7 +263,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             if(capacity == 0){
                 return  false;
             }
-            int joinedCount = project.getJobsById().size();
+            int joinedCount = jobRepository.findByProjectId(projectId).size();
 
             if(joinedCount == capacity){
                 return true;
