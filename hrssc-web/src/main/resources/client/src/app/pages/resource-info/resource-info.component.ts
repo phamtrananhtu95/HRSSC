@@ -64,7 +64,7 @@ export class ResourceInfoComponent implements OnInit {
 
   getHumanResourceById() {
     this.skillList = "";
-    this.employeeService.getHumanResourceById(this.resourceId).subscribe(
+    this.employeeService.getHumanResourceById(this.userId, this.resourceId).subscribe(
       res => {
 
         this.humanResource = res;
