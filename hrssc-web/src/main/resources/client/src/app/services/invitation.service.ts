@@ -12,4 +12,11 @@ export class InvitationService {
     let url = "invitation/get-all-invitation/" + managerId;
     return this.restService.get(url);
   }
+
+  // getInvites(useId, managerId){
+  //   let url = "manage-project/get-invitable-project/" + managerId;
+  //   return this.restService.get(url);
+
+    
+  // }
 }
