@@ -296,12 +296,12 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             if(project.getInteractionsById() == null){
                 resultList.add(project);
             }else {
-                boolean addable = false;
+                boolean addable = true;
                 for (Interaction interaction : project.getInteractionsById()) {
                     if (interaction.getHumanResourceId() == resourceId) {
                         if (interaction.getType().equals(Constant.InteractionType.INVITE) ||
                                 interaction.getType().equals(Constant.InteractionType.APPLY)) {
-                            addable =true;
+                            addable =false;
                                 break;
                         }
                     }
