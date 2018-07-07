@@ -2,6 +2,7 @@ package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
+import com.hrssc.domain.jacksonview.JobView;
 import com.hrssc.domain.jacksonview.MatchingView;
 
 import javax.persistence.*;
@@ -11,15 +12,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "resource_skills", schema = "hrssc", catalog = "")
 public class ResourceSkills implements Serializable{
-    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private int id;
 
-    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private int skillId;
     private int humanResourceId;
-    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private Double experience;
-    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private Skill skillBySkillId;
     private HumanResource humanResourceByHumanResourceId;
 

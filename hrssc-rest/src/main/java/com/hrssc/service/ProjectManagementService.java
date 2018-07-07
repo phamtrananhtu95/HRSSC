@@ -1,5 +1,6 @@
 package com.hrssc.service;
 
+import com.hrssc.entities.Job;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.SkillRequirements;
 
@@ -9,6 +10,7 @@ public interface ProjectManagementService {
 
     List<Project> getInvitableProjectByManagerId(int resourceId, int userId);
     List<Project> getProjectByManagerId(int managerId);
+    List<Job> getJoinedResource(int projectId);
 
     String addProject(Project project);
     void saveProject(Project project);
@@ -21,4 +23,5 @@ public interface ProjectManagementService {
     Project viewProjectDetails(int id);
     boolean isProjectFull(int projectId);
     String closeProject(int projectId);
+
 }

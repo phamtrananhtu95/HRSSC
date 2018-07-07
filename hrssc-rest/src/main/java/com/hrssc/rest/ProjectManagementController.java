@@ -3,7 +3,10 @@ package com.hrssc.rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.ResponseStatus;
+import com.hrssc.domain.jacksonview.JobView;
 import com.hrssc.domain.jacksonview.ProjectView;
+import com.hrssc.entities.Interaction;
+import com.hrssc.entities.Job;
 import com.hrssc.entities.Project;
 import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.MatchingService;
@@ -40,6 +43,13 @@ public class ProjectManagementController {
                                                       @PathVariable(value = "userId") int userId){
         return projectManagementService.getInvitableProjectByManagerId(resourceId,userId);
     }
+
+    @JsonView(JobView.JoinedResource.class)
+    @GetMapping(value = "/get-joined-resource/{projectId}")
+    public List<Job> getJoinedList(@PathVariable(value = "projectId") int projectId){
+        return projectManagementService.getJoinedResource(projectId);
+    }
+
 
     @PostMapping(value = "/add")
     public ResponseStatus addProject(@RequestBody Project project){

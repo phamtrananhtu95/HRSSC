@@ -2,24 +2,26 @@ package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
+import com.hrssc.domain.jacksonview.JobView;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Job {
-    @JsonView(HumanResourceView.history.class)
+    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
     private int id;
-    @JsonView(HumanResourceView.history.class)
+    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
     private int humanResourceId;
 
+    @JsonView(JobView.JoinedResource.class)
     private HumanResource humanResourceByHumanResourceId;
     @JsonView(HumanResourceView.history.class)
     private long joinedate;
     @JsonView(HumanResourceView.history.class)
     private long leaveDate;
-    private int projectRequirementsId;
-    @JsonView(HumanResourceView.history.class)
+
+    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
     private int projectId;
     @JsonView(HumanResourceView.history.class)
     private Project projectByProjectId;

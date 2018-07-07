@@ -14,11 +14,11 @@ import java.util.Objects;
 public class HumanResource {
     @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private int id;
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private String fullname;
     @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
     private int status;
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String email;
     @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String tel;
@@ -26,7 +26,7 @@ public class HumanResource {
     private Long availableDate;
     @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDuration;
-    @JsonView({ApplianceView.Listview.class,HumanResourceView.overview.class,ProjectView.details.class})
+    @JsonView({JobView.JoinedResource.class,ApplianceView.Listview.class,HumanResourceView.overview.class,ProjectView.details.class})
     private int companyId;
     @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class})
     private double salary;
@@ -36,7 +36,7 @@ public class HumanResource {
     @JsonView(HumanResourceView.details.class)
     private Collection<Feedback> feedbacksById;
 
-    @JsonView({MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
+    @JsonView({JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
 
     @JsonView(HumanResourceView.details.class)
@@ -49,7 +49,7 @@ public class HumanResource {
     private Collection<Job> jobsById;
 
     private Collection<Notification> notificationsById;
-    @JsonView({MatchingView.Project.class,HumanResourceView.overview.class, HumanResourceView.details.class})
+    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class, HumanResourceView.details.class})
     private Collection<ResourceSkills> resourceSkillsById;
 
     @Id

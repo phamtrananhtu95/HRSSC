@@ -1,10 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.hrssc.domain.jacksonview.HumanResourceView;
-import com.hrssc.domain.jacksonview.MatchingView;
-import com.hrssc.domain.jacksonview.MiscView;
-import com.hrssc.domain.jacksonview.ProjectView;
+import com.hrssc.domain.jacksonview.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,7 +9,12 @@ import java.util.Objects;
 
 @Entity(name = "skill")
 public class Skill {
-    @JsonView({MiscView.ShortView.class,MiscView.FormInfo.class, ProjectView.ListView.class,HumanResourceView.overview.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({MiscView.ShortView.class,
+            MiscView.FormInfo.class,
+            ProjectView.ListView.class,
+            HumanResourceView.overview.class,
+            HumanResourceView.details.class,
+            ProjectView.details.class})
     private int id;
 
     @JsonView({MiscView.ShortView.class,
@@ -23,7 +25,8 @@ public class Skill {
             MatchingView.Resource.class,
             ProjectView.Summary.class,
             HumanResourceView.details.class,
-            ProjectView.details.class})
+            ProjectView.details.class,
+            JobView.JoinedResource.class})
     private String title;
 
     private Collection<ResourceSkills> resourceSkillsById;
