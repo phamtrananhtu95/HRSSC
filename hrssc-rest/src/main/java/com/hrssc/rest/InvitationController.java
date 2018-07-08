@@ -46,7 +46,6 @@ public class InvitationController {
             return new ResponseStatus("Project is already full, Accept Failed");
         }
         ResponseStatus response = new ResponseStatus(invitationService.acceptInvitation(invitation));
-        Project project = projectRepository.findById(invitation.getProjectId());
 
         if(projectManagementService.isProjectFull(invitation.getProjectId())){
            response.setMessage(response.getMessage()+", "+projectManagementService.closeProject(invitation.getProjectId()));

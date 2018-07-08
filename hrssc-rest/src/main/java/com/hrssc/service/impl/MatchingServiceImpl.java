@@ -81,7 +81,7 @@ public class MatchingServiceImpl implements MatchingService {
             }
             matchedList.sort(comparator);
             for (int i = 0; ; i++) {
-                if (i >= 10 || i >= matchedList.size()) {
+                if (i >= 5 || i >= matchedList.size()) {
                     break;
                 }
                 Interaction sortedMatch = matchedList.get(i);
@@ -158,13 +158,27 @@ public class MatchingServiceImpl implements MatchingService {
 
        List<Interaction> resourceList = interactionRepo.findByProjectIdAndType(projectId,Constant.InteractionType.MATCH);
        resourceList.sort(comparator);
-       return  resourceList;
+       List<Interaction> resultList = new ArrayList<>();
+       for(int i = 0; i < resourceList.size();i++){
+           if(i == 5){
+               break;
+           }
+           resultList.add(resourceList.get(i));
+       }
+       return  resultList;
     }
 
     @Override
     public List<Interaction> getMatchedProjectListByResourceId(int resourceId,int userId){
         List<Interaction> projectList = interactionRepo.findByHumanResourceIdAndType(resourceId, Constant.InteractionType.MATCH);
         projectList.sort(comparator);
-        return  projectList;
+        List<Interaction> resultList = new ArrayList<>();
+        for(int i = 0; i < projectList.size();i++){
+            if(i == 5){
+                break;
+            }
+            resultList.add(projectList.get(i));
+        }
+        return  resultList;
     }
 }
