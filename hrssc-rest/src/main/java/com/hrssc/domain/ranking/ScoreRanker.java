@@ -19,43 +19,38 @@ public class ScoreRanker {
     public double getSimilarityMultipler() {
         return similarityMultipler;
     }
-
     public void setSimilarityMultipler(double similarityMultipler) {
         this.similarityMultipler = similarityMultipler;
     }
-
     public double getRatingMultipler() {
         return ratingMultipler;
     }
-
     public void setRatingMultipler(double ratingMultipler) {
         this.ratingMultipler = ratingMultipler;
     }
-
-
-
     public double getBaseDomainScore() {
         return baseDomainScore;
     }
-
     public void setBaseDomainScore(double baseDomainScore) {
         this.baseDomainScore = baseDomainScore;
     }
-
     public double getBaseTypeScore() {
         return baseTypeScore;
     }
-
     public void setBaseTypeScore(double baseTypeScore) {
         this.baseTypeScore = baseTypeScore;
     }
-
     public double getBaseSkillScore() {
         return baseSkillScore;
     }
-
     public void setBaseSkillScore(double baseSkillScore) {
         this.baseSkillScore = baseSkillScore;
+    }
+    public double getBaseSalaryScore() {
+        return baseSalaryScore;
+    }
+    public void setBaseSalaryScore(double baseSalaryScore) {
+        this.baseSalaryScore = baseSalaryScore;
     }
 
     public ScoreRanker(double baseSkillScore, double baseDomainScore, double baseTypeScore, double similarityMultipler, double ratingMultipler) {
@@ -67,6 +62,86 @@ public class ScoreRanker {
     }
     public ScoreRanker(){}
 
+
+    private Map<ResourceSkills,ResourceSkills> findResourceSimilarSkills(HumanResource firstResource, HumanResource secondResource){
+        Map<ResourceSkills,ResourceSkills> similarSkills = new HashMap<>();
+        for(ResourceSkills skillA: firstResource.getResourceSkillsById()){
+            for(ResourceSkills skillB:secondResource.getResourceSkillsById()){
+                if(skillA.getSkillBySkillId().getTitle().equals(skillB.getSkillBySkillId().getTitle())){
+                    similarSkills.put(skillA,skillB);
+                }
+            }
+        }
+        return similarSkills;
+    }
+    private double calculateResourceSkillScore(Map<ResourceSkills,ResourceSkills> skillsMap){
+        double multipler = 1;
+        if(skillsMap.size() == 0){
+            return 0;
+        }
+        for(Map.Entry similarSkill: skillsMap.entrySet()){
+            ResourceSkills firstSkill = (ResourceSkills)similarSkill.getKey();
+            ResourceSkills secondSkill = (ResourceSkills)similarSkill.getValue();
+            double different = Math.abs(firstSkill.getExperience() - secondSkill.getExperience());
+            if(different == 0){
+                multipler *=2.3;
+            }
+            if(different > 0 && different <= 0.5){
+                multipler *= 1.7;
+            }
+            if(different > 0.5 && different <= 1){
+                multipler *= 1.4;
+            }
+            if(different > 1 && different <= 1.5){
+                multipler *= 1.2;
+            }
+
+        }
+        return this.getBaseSkillScore() * multipler;
+    }
+    private double calculateResourceDomainScore(HumanResource firstResource, HumanResource secondResource){
+        if(firstResource.getJobsById() == null||secondResource.getJobsById() == null){
+            return 0;
+        }
+        double result = 0;
+        for(Job jobA: firstResource.getJobsById()){
+             for(Job jobB: secondResource.getJobsById()){
+                 if(jobA.getProjectByProjectId().getDomain().equals(jobB.getProjectByProjectId().getDomain())){
+                     result+= this.baseDomainScore;
+                 }
+             }
+
+        }
+        return result;
+    }
+    private double calculateResourceTypeScore(HumanResource firstResource, HumanResource secondResource){
+        if(firstResource.getJobsById() == null||secondResource.getJobsById() == null){
+            return 0;
+        }
+        double result = 0;
+        for(Job jobA: firstResource.getJobsById()){
+            for(Job jobB: secondResource.getJobsById()){
+                if(jobA.getProjectByProjectId().getType().equals(jobB.getProjectByProjectId().getType())){
+                    result+= this.baseTypeScore;
+                }
+            }
+
+        }
+        return result;
+    }
+    private double calculateResourceSalaryScore(HumanResource firstResource, HumanResource secondResource){
+        return 0;
+    }
+    public double calculateResourceSimilarScore(HumanResource firstResource, HumanResource secondResource){
+        double skill = calculateResourceSkillScore(findResourceSimilarSkills(firstResource,secondResource));
+        if(skill == 0){
+            return 0;
+        }
+        double type = calculateResourceTypeScore(firstResource,secondResource);
+        double domain = calculateResourceDomainScore(firstResource,secondResource);
+        double salary = calculateResourceSalaryScore(firstResource,secondResource);
+        return skill + type + domain + salary;
+    }
 
 
 
@@ -83,7 +158,6 @@ public class ScoreRanker {
         }
         return skrMap;
     }
-
     private double calculateSkillScore(Map<ResourceSkills,SkillRequirements> skillMap){
         double multipler = 1;
         if(skillMap.size() == 0){
@@ -94,7 +168,7 @@ public class ScoreRanker {
             SkillRequirements requirementSkill = (SkillRequirements) similarEntry.getValue();
             double temp = resourceSkill.getExperience() / requirementSkill.getExperience();
             if(temp == 1){
-                multipler *=2.2;
+                multipler *=2.3;
             }
             if(temp > 1 && temp <= 1.3){
                 multipler *= 1.7;
