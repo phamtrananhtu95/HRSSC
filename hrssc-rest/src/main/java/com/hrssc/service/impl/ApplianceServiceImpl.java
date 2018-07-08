@@ -39,6 +39,13 @@ public class ApplianceServiceImpl implements ApplianceService {
     ProjectRequirementRepository projectRequirementRepository;
 
     public String applyToProject(Interaction interaction){
+        Project checkProject = projectRepository.findById(interaction.getProjectId());
+        if(checkProject == null){
+            return "Project not found";
+        }
+        if(checkProject.getRequestStatus() == Constant.RequestStatus.CLOSED){
+            return "Project full or closed";
+        }
         Job checkJob = jobRepository.findByProjectIdAndHumanResourceId(interaction.getProjectId(), interaction.getHumanResourceId());
         if(checkJob != null){
             return "This resource has already joined this project";
@@ -78,9 +85,16 @@ public class ApplianceServiceImpl implements ApplianceService {
     public String acceptAppliance(Interaction interaction){
         Interaction acceptInterAction = interactionRepository.findById(interaction.getId());
         Optional<HumanResource> humanResourceOptional = humanResourceRepository.findById(interaction.getHumanResourceId());
+        HumanResource humanResource = humanResourceOptional.get();
         Project project = projectRepository.findById(interaction.getProjectId());
-        if(acceptInterAction == null){
+        if(acceptInterAction == null || project == null || humanResource == null){
             return "Not found";
+        }
+        if(project.getRequestStatus() == Constant.RequestStatus.CLOSED){
+            return "Project full or closed";
+        }
+        if(humanResource.getStatus() == Constant.ResourceStatus.BUSY || humanResource.getStatus() == Constant.ResourceStatus.INACTIVE){
+            return "Resource busy or inactive";
         }
         long joindate = System.currentTimeMillis()/1000;
 
@@ -93,7 +107,6 @@ public class ApplianceServiceImpl implements ApplianceService {
         jobRepository.save(newJob);
 
 
-        HumanResource humanResource = humanResourceOptional.get();
         humanResource.setStatus(Constant.ResourceStatus.BUSY);
         humanResourceService.changeResourceStatus(humanResource);
         interactionRepository.deleteByHumanResourceId(humanResource.getId());

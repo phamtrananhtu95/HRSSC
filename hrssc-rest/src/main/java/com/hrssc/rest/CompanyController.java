@@ -33,15 +33,17 @@ public class CompanyController {
 	}
 
 	@JsonView(ProjectView.ListView.class)
-	@GetMapping(value = "/project-list/{companyId}")
-	public List<Project> viewCompanyProject(@PathVariable("companyId") int companyId){
-		return companyService.viewCompanyProject(companyId);
+	@GetMapping(value = "/project-list/{userId}/{companyId}")
+	public List<Project> viewCompanyProject(@PathVariable("companyId") int companyId,
+											@PathVariable("userId") int userId) throws NotFoundException{
+		return companyService.viewCompanyProject(companyId, userId);
 	}
 
 	@JsonView(HumanResourceView.overview.class)
-	@GetMapping(value = "/resource-list/{companyId}")
-	public List<HumanResource> viewCompanyResource(@PathVariable("companyId") int companyId) {
-		return companyService.viewCompanyResource(companyId);
+	@GetMapping(value = "/resource-list/{userId}/{companyId}")
+	public List<HumanResource> viewCompanyResource(@PathVariable("companyId") int companyId,
+												   @PathVariable("userId") int userId) throws NotFoundException{
+		return companyService.viewCompanyResource(companyId, userId);
 	}
 //	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 //	public CompanyDto createCompany(@RequestBody CompanyDto company) {

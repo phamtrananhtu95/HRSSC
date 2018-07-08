@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CompanyService {
     Company viewCompanyDetails(int companyId) throws NotFoundException;
-    List<Project> viewCompanyProject(int companyId);
-    List<HumanResource> viewCompanyResource(int companyId);
+    List<Project> viewCompanyProject(int companyId, int userId) throws NotFoundException;
+    List<HumanResource> viewCompanyResource(int companyId, int userId)throws NotFoundException;
 
 }

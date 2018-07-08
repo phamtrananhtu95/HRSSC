@@ -44,13 +44,11 @@ public class CompanyServiceImpl implements CompanyService {
         return  detailsCompany;
     }
 
-    public List<Project> viewCompanyProject(int companyId){
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        final Optional<User> user = userRepository.findByUsername(authentication.getName());
-        if(!user.isPresent()){
-            return null;
+    public List<Project> viewCompanyProject(int companyId, int userId) throws NotFoundException{
+        User checkUser = userRepository.findById(userId);
+        if(checkUser == null){
+            throw new NotFoundException("User not found");
         }
-        User checkUser = user.get();
         List<Project> resultList;
         if(checkUser.getCompanyId() == companyId && checkUser.getRoleId() == Constant.UserRole.CHIEF){
             resultList = projectRepository.findByCompanyId(companyId);
@@ -60,10 +58,11 @@ public class CompanyServiceImpl implements CompanyService {
         return resultList;
     }
 
-    public List<HumanResource> viewCompanyResource(int companyId){
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        final Optional<User> user = userRepository.findByUsername(authentication.getName());
-        User checkUser = user.get();
+    public List<HumanResource> viewCompanyResource(int companyId, int userId)throws NotFoundException{
+        User checkUser = userRepository.findById(userId);
+        if(checkUser == null){
+            throw new NotFoundException("User not found");
+        }
         List<HumanResource> resultList;
         if(checkUser.getCompanyId() == companyId && checkUser.getRoleId() == Constant.UserRole.CHIEF){
             resultList = humanResourceRepository.findByCompanyId(companyId);
