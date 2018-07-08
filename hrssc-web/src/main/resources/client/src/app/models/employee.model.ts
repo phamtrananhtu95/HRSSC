@@ -59,3 +59,28 @@ export class UserByUserId {
     fullname: string;
     id: number;
 }
+
+// Working history of resource
+export class ResourceHistory {
+    id: number;
+    humanResourceId: number;
+    joinedate: number;
+    leaveDate: number;
+    projectId: number;
+    projectByProjectId: ProjectByProjectId;
+    status: number;
+}
+
+export class ProjectByProjectId {
+    id: number;
+    title: string;
+    type: string;
+    domain: string;
+    companyId: number;
+    companyByCompanyId: CompanyByCompanyId
+}
+
+export class CompanyByCompanyId {
+    id: number;
+    name: string;
+}
