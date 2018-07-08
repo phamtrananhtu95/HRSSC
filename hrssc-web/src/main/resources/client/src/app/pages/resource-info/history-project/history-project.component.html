@@ -1,0 +1,222 @@
+<!-- <div class="row">
+  <div class="col-lg-12">
+    <div class="panel border-left-lg border-left-danger invoice-grid timeline-content">
+      <div class="panel-footer panel-footer-condensed">
+        <a class="heading-elements-toggle">
+          <i class="icon-more"></i>
+        </a>
+        <div class="heading-elements">
+          <span class="heading-text">
+            <span class="status-mark border-success position-left"></span>
+            <span class="text-semibold">Working history</span>
+          </span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <h6 class="text-semibold no-margin-top">Full name: </h6>
+            <ul class="list list-unstyled">
+              <li>Company:
+                <span class="text-semibold"></span>
+              </li>
+              <li>Location:
+                <span class="text-semibold"></span>
+              </li>
+              <li>Tel:
+                <span class="text-semibold"></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6">
+            <h6 class="text-semibold text-right no-margin-top">$ vnd</h6>
+            <ul class="list list-unstyled text-right">
+              <li>Skill:
+                <span class="text-semibold"></span>
+              </li>
+              <li>Available date:
+                <span class="text-semibold"></span>
+              </li>
+              <li>Duration available:
+                <span class="text-semibold"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div> -->
+
+<!-- ************************************* -->
+<!-- Custom handle -->
+<div class="panel panel-flat ">
+  <div class="panel-body">
+    <ul class="media-list">
+      <!-- <li class="media-header">Team leaders</li> -->
+
+      <li class="media">
+
+        <div class="media-left">
+          <img src="assets/images/placeholder.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
+
+        </div>
+        <div class="media-body">
+          <div class="media-heading text-semibold">&nbsp;</div>
+          <div class="media-heading text-semibold">Company name</div>
+          <div class="media-heading text-semibold">&nbsp;</div>
+          <!-- <span class="text-muted">Last.fm</span> -->
+        </div>
+        <div class="media-right media-middle">
+          <ul class="icons-list text-nowrap">
+            <li> </li>
+            <li>
+              <a data-toggle="collapse" href="#aaaa">
+                <i class="icon-menu7"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <br>
+        <div class="collapse" id="aaaa">
+          <!-- <div class="contact-details">
+            <ul class="list-extended list-unstyled list-icons">
+              <li>
+                <i class="icon-pin position-left"></i>
+              </li>
+              <li>
+                <i class="icon-user-tie position-left"></i>Anh Tu</li>
+              <li>
+                <i class="icon-phone position-left"></i> +1(800)431 8996</li>
+              <li>
+                <i class="icon-mail5 position-left"></i>
+                <a href="#">abc@gmail.com</a>
+              </li>
+            </ul>
+          </div> -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="panel border-left-lg border-left-danger invoice-grid timeline-content">
+                <!-- <div class="panel-footer panel-footer-condensed">
+                  <a class="heading-elements-toggle">
+                    <i class="icon-more"></i>
+                  </a>
+                  <div class="heading-elements">
+                    <span class="heading-text">
+                      <span class="status-mark border-success position-left"></span>
+                      <span class="text-semibold">Working history</span>
+                    </span>
+                  </div>
+                </div> -->
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- <h6 class="text-semibold no-margin-top">Full name: </h6> -->
+                      <ul class="list list-unstyled">
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            <span class="text-semibold">Project name</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            <span class="text-semibold">Project type</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            <span class="text-semibold">Joinning date</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            <span class="text-semibold">Leaving date</span>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- /custom handle -->
+
+<!-- ////////////////////////////////// -->
+<!-- Content area -->
+<!-- <div class="content">
+  <div class="panel panel-flat">
+    <div class="panel-heading">
+      <h5 class="panel-title">List company account request</h5>
+    </div>
+
+    <div class="panel-body">
+      <ul class="media-list">
+
+        <li class="media" *ngFor="let company of companies">
+
+          <div class="media-left">
+            <img src="assets/images/placeholder.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
+          </div>
+          <div class="media-body">
+            <div class="media-heading text-semibold"></div>
+            <div class="media-heading text-semibold">{{company.companyName}}</div>
+            <div class="media-heading text-semibold"></div>
+          </div>
+          <div class="media-right media-middle">
+            <ul class="icons-list text-nowrap">
+              <li>
+                <button type="button" class="btn btn-info btn-xs" (click)="acceptCompany(company.id)">
+                  <i class="glyphicon glyphicon-ok position-left"></i>Accept</button>
+              </li>
+              <li>
+                <button type="button" class="btn btn-danger btn-xs">
+                  <i class="glyphicon glyphicon-remove position-left"></i>Remove</button>
+              </li>
+              <li> </li>
+              <li>
+                <a data-toggle="collapse" [attr.data-target]="'#company' + company.id">
+                  <i class="icon-menu7"></i>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+          <div class="collapse" id="company{{company.id}}">
+            <div class="contact-details">
+              <ul class="list-extended list-unstyled list-icons">
+                <li>
+                  <i class="icon-pin position-left"></i>{{company.companyAddress}}</li>
+                <li>
+                  <i class="icon-user-tie position-left"></i>Anh Tu</li>
+                <li>
+                  <i class="icon-phone position-left"></i> +1(800)431 8996</li>
+                <li>
+                  <i class="icon-mail5 position-left"></i>
+                  <a href="#">abc@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->
