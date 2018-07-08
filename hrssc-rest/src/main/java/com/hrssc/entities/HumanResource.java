@@ -36,7 +36,7 @@ public class HumanResource {
     @JsonView(HumanResourceView.details.class)
     private Collection<Feedback> feedbacksById;
 
-    @JsonView({JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
+    @JsonView({ApplianceView.Listview.class,JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
 
     @JsonView(HumanResourceView.details.class)

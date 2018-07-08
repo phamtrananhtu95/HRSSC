@@ -97,8 +97,8 @@ public class HumanResourceController {
 	}
 
 	@JsonView(HumanResourceView.history.class)
-	@GetMapping(value = "/viewHistory/{id}")
-	public List<Job> viewHumanresourceHistory(@PathVariable("id") int id){
+	@GetMapping(value = "/history/{resourceId}")
+	public List<Job> viewHumanresourceHistory(@PathVariable("resourceId") int id){
 		return humanResourceService.viewHumanresourceHistory(id);
 	}
 }
