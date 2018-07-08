@@ -81,7 +81,7 @@
                     <a href="#"> {{interaction?.projectByProjectId?.title}}</a><i> project </i>
                   </div>
                   <div class="media-right">
-                    <button class="btn btn-success">Accept</button>
+                    <button class="btn btn-success" (click)="acceptInvite(interaction?.projectByProjectId?.id, invitation?.id)">Accept</button>
                   </div>
                 </div>
               </div>

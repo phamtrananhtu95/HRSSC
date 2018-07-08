@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InvitationService } from '../../services/invitation.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Invitation } from '../../models/invitation.model';
+import { Interaction } from '../../models/interaction.model';
 
 @Component({
   selector: 'app-manage-invitations',
@@ -15,23 +16,26 @@ export class ManageInvitationsComponent implements OnInit {
   public subTitle = " - Invite";
   // --------------------------------
 
-  public managerId: number;
+  public userId: number;
   public invitations: Invitation[];
+  public formModel = new Interaction();
+
   // public countInvite: number;
-  public a: number;
 
   constructor(
     private invitationService: InvitationService,
     private authenticateService: AuthenticateService
-  ) { }
+  ) {
+    this.userId = this.authenticateService.getUserId();
+  }
 
   ngOnInit() {
-    this.managerId = this.authenticateService.getUserId();
+    this.userId = this.authenticateService.getUserId();
     this.getInvitations();
   }
 
   getInvitations() {
-    this.invitationService.getInvites(this.managerId).subscribe(
+    this.invitationService.getInvites(this.userId).subscribe(
       res => {
 
         this.invitations = res;
@@ -43,6 +47,19 @@ export class ManageInvitationsComponent implements OnInit {
         });
         // console.log("----------" + JSON.stringify(this.invitations));
 
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  acceptInvite(projectId, humanResourceId) {
+    this.formModel.projectId = projectId;
+    this.formModel.humanResourceId = humanResourceId;
+    this.invitationService.acceptInvite(this.formModel).subscribe(
+      res => {
+        this.getInvitations();
       },
       err => {
         console.log(err);

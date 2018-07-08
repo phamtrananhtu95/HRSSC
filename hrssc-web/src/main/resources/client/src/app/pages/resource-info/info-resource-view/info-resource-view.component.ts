@@ -37,6 +37,9 @@ export class InfoResourceViewComponent implements OnInit {
 
     getHumanResourceById() {
         let humanResourceId = this.route.snapshot.queryParams['id'];
+        if(!this.userId  || !humanResourceId){
+            return;
+        }
         this.employeeService.getHumanResourceById(this.userId, humanResourceId).subscribe(
             res => {
                 this.humanResource = res;

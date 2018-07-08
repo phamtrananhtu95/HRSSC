@@ -15,23 +15,35 @@ declare var $: any;
 export class InviteResourcePopover implements OnInit {
     @Input() humanResource: Employee;
     @Output() inviteSuccess = new EventEmitter();
-    public userIdForProject: number;
+    public userId: number;
     public projects: ProjectMatch[];
     public formModel = new Interaction();
     constructor(
         private projectService: ProjectService,
         private authenticateService: AuthenticateService,
         private employeeService: EmployeeService
-    ) { }
+    ) {
+        this.userId = this.authenticateService.getUserId();
+     }
 
     ngOnChanges() {
+        if (!this.humanResource) {
+            return;
+        }
         this.formModel.humanResourceId = this.humanResource.id;
+        this.loadProjectNotInvite();
     }
     ngOnInit() {
-        this.userIdForProject = this.authenticateService.getUserId();
-        this.projectService.getProjectByManagerId(this.userIdForProject).subscribe(
+    }
+
+    loadProjectNotInvite() {
+        if(!this.userId || !this.humanResource || !this.humanResource.id){
+            return;
+        }
+        this.projectService.loadProjectNotInvite(this.userId, this.humanResource.id).subscribe(
             res => {
                 this.projects = res;
+                this.inviteSuccess.emit({length: this.projects.length});
                 console.log(this.projects)
             },
             err => {
@@ -39,12 +51,11 @@ export class InviteResourcePopover implements OnInit {
             }
         )
     }
-
     inviteHumanResource(projectId) {
         this.formModel.projectId = projectId;
         this.employeeService.inviteHumanResource(this.formModel).subscribe(
             res => {
-                this.inviteSuccess.emit();
+                this.loadProjectNotInvite();
                 (<any>$("#modal_theme_info")).modal("hide");
             },
             err => {

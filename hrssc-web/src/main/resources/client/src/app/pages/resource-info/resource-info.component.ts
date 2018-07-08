@@ -28,7 +28,7 @@ export class ResourceInfoComponent implements OnInit {
   // For invite
   public projects: ProjectMatch[];
   public formModel: Interaction;
-  public isInvite = false;
+  public isEmptyProject = false;
 
   constructor(
     private router: Router,
@@ -44,6 +44,7 @@ export class ResourceInfoComponent implements OnInit {
     (<any>window).componentPopup = true;
     this.resourceId = this.route.snapshot.queryParams['id'];
     this.userId = this.authenticateService.getUserId();
+
     this.getHumanResourceById();
 
     //For invite
@@ -69,8 +70,8 @@ export class ResourceInfoComponent implements OnInit {
 
         this.humanResource = res;
         this.userByUserId = this.humanResource.userByUserId.id;
-
         this.isOwnManager = this.userId === this.userByUserId;
+
         console.log(this.isOwnManager);
         // console.log(this.humanResource.availableDate);
         // console.log("----------" + JSON.stringify(this.humanResource));
@@ -89,7 +90,7 @@ export class ResourceInfoComponent implements OnInit {
     this.projectMatchingComponent.getProjectMatching();
   }
 
-  inviteSuccess(){
-    this.isInvite = true;
+  inviteSuccess(event){
+    this.isEmptyProject = (event.length == 0);
   }
 }

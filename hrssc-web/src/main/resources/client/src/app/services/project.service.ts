@@ -46,4 +46,9 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  loadProjectNotInvite(userId, resourceId){
+    let url = "manage-project/get-invitable-project/" + userId + "/" + resourceId;
+    return this.restService.get(url);
+  }
+
 }

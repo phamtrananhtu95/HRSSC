@@ -19,4 +19,9 @@ export class InvitationService {
 
     
   // }
+
+  acceptInvite(formInvite){
+    let url = "invitation/accept";
+    return this.restService.post(url, formInvite);
+  }
 }
