@@ -23,9 +23,6 @@ export class InfoProjectViewComponent implements OnInit {
       this.projectInfo = Object.assign({}, this.project);
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
-
-      console.log(this.projectInfo);
-
     }
   }
   ConvertToDatetime(dateValue) {
