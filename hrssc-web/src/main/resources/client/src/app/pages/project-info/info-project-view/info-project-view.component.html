@@ -1,11 +1,64 @@
 <div class="text-center">
-  <h5 class="text-semibold no-margin">Information</h5>
+  <h5 class="text-semibold no-margin">INFOMATION</h5>
 </div>
-<div class="panel-body">
-  <p> <b>Name project</b>: Ruby on Rails Application</p>
-  <p><b>Skill</b>: MySQL, Linux, Ruby on Rails</p>
-  <p><b>Time</b>: 3 months</p>
-  <p><b>Status</b>: pending</p>
-  <p><b>Description</b>: Application for saling...</p>
-  <p><b><i class="icon-location4"></i> Location</b>: Ho Chi Minh, District 1, Nguyen Dinh Chieu</p>
-</div>
+  <div class="panel-heading">
+    <h6 class="panel-title text-semibold">Job Description</h6>
+  </div>
+  
+  <div class="panel-body">
+    {{projectInfo.description}}
+  </div>
+  <hr>
+  <div class="panel-heading">
+    <h6 class="panel-title text-semibold">Your Skills and Experience</h6>
+  </div>
+  <div class="panel-body">
+      <div class="table-responsive pre-scrollable">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>SKill | Experience</th>
+                <th>Quantity</th>
+                <th>Payment</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let x of projectInfo.projectRequirementsById">
+              <tr>
+                <td>{{x.positionByPositionId.title}}</td>
+                <td>
+                    <p *ngFor="let c of x.skillRequirementsById">
+                        {{c.skillBySkillId.title}} | {{c.experience}} years
+                    </p>
+                </td>
+                <td>{{x.quantity}}</td>
+                <td>{{x.payment}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  </div>
+  <hr>
+  <div class="panel-heading">
+    <h6 class="panel-title text-semibold">Related information</h6>
+  </div>
+  <div class="panel-body border-left-lg border-left-success invoice-grid timeline-content">
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list list-unstyled">
+          <li><i class="glyphicon glyphicon-calendar"></i> Start date: {{createDate}}</li>
+          <li><i class="icon-location4"></i> Location: {{projectInfo?.companyByCompanyId?.city}} </li>
+          <li></li>
+        </ul>
+        
+        
+      </div>
+      <div class="col-md-6">
+        
+        <ul class="list list-unstyled">
+            <li><i class="glyphicon glyphicon-calendar"></i> End date: {{endDate}}</li>
+            <li><i class="icon-iphone"> Phone: 0946142026</i></li>
+          </ul>
+      </div>
+    </div>
+  </div>

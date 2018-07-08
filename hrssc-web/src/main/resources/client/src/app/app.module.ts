@@ -67,6 +67,7 @@ import { ProjectInfoPopupComponent } from './pages/project-info/project-info-pop
 import { InviteResourcePopover } from './pages/resource-info/invite-resource-popover/invite-resource-popover.component';
 import { InvitationService } from './services/invitation.service';
 import { ApplianceService } from './services/appliance.service';
+import { ProjectSimilarComponent } from './pages/project-info/project-similar/project-similar.component';
 
 const appRoutes: Routes = [
 
@@ -187,7 +188,8 @@ const appRoutes: Routes = [
     InfoProjectViewComponent,
     ResourceMatchingComponent,
     ProjectInfoPopupComponent,
-    InviteResourcePopover
+    InviteResourcePopover,
+    ProjectSimilarComponent
   ],
   imports: [
     BrowserModule,

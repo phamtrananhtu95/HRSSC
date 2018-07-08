@@ -155,9 +155,11 @@
     </div>
 
     <!-- right content -->
-    <div class="col-md-4">
+    <div *ngIf="isManager" class="col-md-4">
       <app-resource-matching></app-resource-matching>
-
+    </div>
+    <div *ngIf="!isManager" class="col-md-4">
+      <app-project-similar></app-project-similar>
     </div>
   </div>
 
