@@ -38,10 +38,6 @@ public class MatchingController {
         return matchingService.getMatchedProjectListByResourceId(resourceId,userId);
     }
 
-
-
-
-
     @JsonView(MatchingView.Resource.class)
     @PostMapping(value = "/resource")
     public List<Interaction> matchResource(@RequestBody HumanResource resource) {
@@ -58,6 +54,9 @@ public class MatchingController {
         return matchingService.getMatchedResourceListByProjectId(projectId,userId);
     }
 
-
+    @GetMapping(value = "/similar-resource/{resourceId}")
+    public List<Interaction> findSimilarResource(@PathVariable(value = "resourceId") int resourceId){
+        return null;
+    }
 
 }

@@ -119,7 +119,7 @@
         <div class="panel border-left-lg border-left-success invoice-grid timeline-content">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <h6 class="text-semibold no-margin-top">Full name: {{humanResource.fullname}}</h6>
                         <ul class="list list-unstyled">
                             <li>Company:
@@ -134,9 +134,9 @@
                         </ul>
                     </div>
 
-                    <div class="col-sm-6">
-                        <h6 class="text-semibold text-right no-margin-top">${{humanResource.salary}} vnd</h6>
-                        <ul class="list list-unstyled text-right">
+                    <div class="col-sm-4">
+                        <h6 class="text-semibold no-margin-top">${{humanResource.salary}} vnd</h6>
+                        <ul class="list list-unstyled">
                             <li>Skill:
                                 <span class="text-semibold">{{skillList}}</span>
                             </li>
@@ -165,8 +165,20 @@
                 <div class="heading-elements">
                     <span class="heading-text">
                         <span class="status-mark border-success position-left"></span>
-                        <span class="text-semibold">Working history</span>
+                        <span class="text-semibold">Skills and experiences</span>
                     </span>
+                </div>
+                <div class="panel-body">
+                    <div style="padding-bottom: 2px;" *ngFor="let skills of humanResource?.resourceSkillsById">
+                        <span class="heading-text">
+                            &nbsp;&nbsp;&nbsp;<span class="text-semibold">{{skills?.skillBySkillId?.title}} : {{skills?.experience}} years</span>
+                        </span>
+                    </div>
+                    <!-- <div>
+                        <span class="heading-text">
+                            <span>Skills : ex</span>
+                        </span>
+                    </div> -->
                 </div>
             </div>
         </div>

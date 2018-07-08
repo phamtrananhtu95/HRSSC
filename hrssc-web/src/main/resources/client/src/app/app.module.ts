@@ -59,6 +59,8 @@ import { RatingResourceComponent } from './pages/resource-info/rating-resource/r
 
 import { SelectModule } from 'ng-select';
 import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
+import {RatingModule} from "ngx-rating";
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoProjectManagerComponent } from './pages/project-info/info-project-manager/info-project-manager.component';
 import { InfoProjectViewComponent } from './pages/project-info/info-project-view/info-project-view.component';
@@ -67,8 +69,10 @@ import { ProjectInfoPopupComponent } from './pages/project-info/project-info-pop
 import { InviteResourcePopover } from './pages/resource-info/invite-resource-popover/invite-resource-popover.component';
 import { InvitationService } from './services/invitation.service';
 import { ApplianceService } from './services/appliance.service';
+
 import { ProjectSimilarComponent } from './pages/project-info/project-similar/project-similar.component';
 import { ResourceJoinedComponent } from './pages/project-info/resource-joined/resource-joined.component';
+import { HistoryProjectComponent } from './pages/resource-info/history-project/history-project.component';
 
 const appRoutes: Routes = [
 
@@ -191,7 +195,8 @@ const appRoutes: Routes = [
     ProjectInfoPopupComponent,
     InviteResourcePopover,
     ProjectSimilarComponent,
-    ResourceJoinedComponent
+    ResourceJoinedComponent,
+    HistoryProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -205,6 +210,7 @@ const appRoutes: Routes = [
     MomentModule,
     SelectModule,
     MyDatePickerModule,
+    RatingModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

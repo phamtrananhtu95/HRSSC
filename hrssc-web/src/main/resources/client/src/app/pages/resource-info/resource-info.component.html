@@ -156,6 +156,11 @@
           </li>
           <li>
             <a href="#basic-tab2" data-toggle="tab">
+              <h6>Working history</h6>
+            </a>
+          </li>
+          <li>
+            <a href="#basic-tab3" data-toggle="tab">
               <h6>Reviews</h6>
             </a>
           </li>
@@ -163,18 +168,22 @@
 
         <div class="tab-content panel-body">
           <div class="tab-pane fade in active" id="basic-tab1">
-            <div *ngIf="isOwnManager" >
-              <app-info-resource-manager-view [humanResource]="humanResource" (reloadManagerList)="getHumanResourceById()"
-                (reloadMatchingProject)="reloadMatchingProject()">
+            <div *ngIf="isOwnManager">
+              <app-info-resource-manager-view [humanResource]="humanResource" (reloadManagerList)="getHumanResourceById()" (reloadMatchingProject)="reloadMatchingProject()">
               </app-info-resource-manager-view>
             </div>
             <div *ngIf="!isOwnManager">
-              <app-info-resource-view  [humanResource]="humanResource" [skillList]="skillList"></app-info-resource-view>
+              <app-info-resource-view [humanResource]="humanResource" [skillList]="skillList"></app-info-resource-view>
             </div>
           </div>
 
           <div class="tab-pane fade" id="basic-tab2">
             <h1>tab 2</h1>
+            <app-history-project></app-history-project>
+          </div>
+
+          <div class="tab-pane fade" id="basic-tab3">
+            <h1>tab 3</h1>
             <app-rating-resource></app-rating-resource>
           </div>
         </div>
