@@ -1,66 +1,51 @@
 <app-page-header [parentTitle]="parentTitle" [title]="title" [subTitle]="subTitle"></app-page-header>
-<button type="button" class="btn btn-primary btn-labeled btn-labeled-right" data-toggle="modal" data-target="#modal_theme_info">Feedback
-</button>
 
-<!-- Info modal -->
-<div id="modal_theme_info" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-          <div class="text-center">
-              <img src="assets/images/kas-logo-65-65.png" class="text-center" alt="">
-              <h1 class="modal-title text-center text-muted">Your feedback</h1>
-          </div>
-          
-        </div>
-
-        <div class="modal-body">
-          <!-- List  -->
-          <h3>What is your opinion ..?</h3>
-          <div class="row lead evaluation">
-              <div id="colorstar" class="starrr ratable" ></div>
-              <span id="count">0</span> star(s) - <span id="meaning"> </span>
-                  
-              
-                  <div class='indicators' style="display:none">
-                      <div id='textwr'>What went wrong?</div>
-                      <input id="rate[]" name="rate[]" type="text" placeholder="" class="form-control input-md" style="display:none;">
-                      <input id="rating[]" name="rating[]" type="text" placeholder="" class="form-control input-md rateval" style="display:none;">
-                      
-                      <span class="button-checkbox">
-                      <button type="button" class="btn criteria" data-color="info">Punctuallity</button>
-                       <input type="checkbox" class="hidden"  />
-                      </span>
-                      <span class="button-checkbox">
-                      <button type="button" class="btn criteria" data-color="info">Assistance</button>
-                       <input type="checkbox" class="hidden"  />
-                      </span>
-                      <span class="button-checkbox">
-                      <button type="button" class="btn criteria" data-color="info">Knowledge</button>
-                       <input type="checkbox" class="hidden"  />
-                      </span>
+<!-- content area -->
+<div class="content">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="panel panel-flat col-md-8">
+      <div class="panel-body">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-body" *ngFor="let apply of listAppliance">
+              <a data-toggle="collapse" [attr.data-target]="'#appliance' + apply.id">
+                <div class="media">
+                  <div class="media-left">
+                    <img src="assets/images/evolable-asia-logo-170-151.png" alt="">
                   </div>
-                  
-              
-        </div>
-           <!-- list -->
-          <hr>
-          <!-- List  -->
-          
-         <!-- list -->
-          <hr>
-         <!-- List  -->
-          
-       <!-- list -->
-
-       <hr>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info">Save changes</button>
+                  <div class="media-body">
+                    {{apply.title}}
+                    <p>Type: {{apply.type}}</p>
+                  </div>
+                  <div class="media-right">Appliance({{apply.countApply}})</div>
+                </div>
+              </a>
+              <!-- data collapse 1 -->
+              <div id="appliance{{apply.id}}" class="panel-collapse collapse">
+                <div class="panel-body" *ngFor="let resourceList of apply.interactionsById">
+                  <div class="media-left">
+                    <img src="assets/images/FPT.jpg" alt="">
+                  </div>
+                  <div class="media-body">
+                    
+                    <a href="#"> {{resourceList.humanResourceByHumanResourceId.fullname}}</a>
+                    <i>of</i>
+                    <!-- {{resourceList.humanResourceByHumanResourceId.companyId}} -->
+                    <a href="">{{resourceList.humanResourceByHumanResourceId.companyByCompanyId.name}}</a>
+                    <i>want to join</i>
+                  </div>
+                  <div class="media-right">
+                    <button (click)="selectResource(resourceList, apply.id)" class="btn btn-success">select</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="col-md-2"></div>
   </div>
+</div>

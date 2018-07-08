@@ -40,3 +40,9 @@ export class Appliable {
     humanResourceId: number;
 }
 
+export class AcceptResource {
+    id: number;
+    projectId: number;
+    humanResourceId: number;
+}
+

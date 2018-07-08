@@ -23,6 +23,7 @@ export class ProjectInfoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private auth: AuthenticateService,
     private prjService: ProjectService,
     private empService: EmployeeService
@@ -37,13 +38,11 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   getProjectById() {
-
-
     this.prjService.getProjectByProjectId(this.userId, this.projectId).subscribe(
       res => {
         this.project = res;
         this.userIdByProjectId = this.project.userId;
-        this.isManager = this.userId === this.userId;
+        this.isManager = this.userId === this.userIdByProjectId;
         console.log(this.isManager);
         this.project.projectRequirementsById.forEach(el => {
           el.skillRequirementsById.forEach(el2 => {
@@ -54,7 +53,7 @@ export class ProjectInfoComponent implements OnInit {
         this.skillList = this.skillList.substring(0, lastIndex);
       },
       err => {
-
+        this.router.navigate(['home']);
       }
     );
 
@@ -72,6 +71,7 @@ export class ProjectInfoComponent implements OnInit {
             resource: el
           })
         });
+        console.log(this.listAvailableResource);
       },
       err => {
 

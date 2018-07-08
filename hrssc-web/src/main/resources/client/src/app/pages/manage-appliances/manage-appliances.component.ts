@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApplianceService } from '../../services/appliance.service';
+import { AuthenticateService } from '../../services/authenticate.service';
+import { AcceptResource } from '../../models';
 
 @Component({
   selector: 'app-manage-appliances',
@@ -9,9 +12,50 @@ export class ManageAppliancesComponent implements OnInit {
   public parentTitle = "Home";
   public title = " - Manage resources";
   public subTitle = " - Appliance";
-  constructor() { }
+  public userId: number;
+  public listAppliance = [];
+  public acceptResource: AcceptResource;
+
+  constructor(
+    private applyService: ApplianceService,
+    private auth: AuthenticateService
+  ) { }
 
   ngOnInit() {
+    this.userId = this.auth.getUserId();
+    this.getAllAppliance();
   }
 
+  getAllAppliance() {
+    this.applyService.getAllAppliance(this.userId).subscribe(
+      res => {
+        this.listAppliance = [];
+        this.listAppliance = res;
+        this.listAppliance.forEach(el => {
+          el.countApply = el.interactionsById.length;
+        });
+
+      },
+      err => {
+
+      }
+    );
+  }
+
+  selectResource(resource, projectId) {
+    this.acceptResource = new AcceptResource();
+    this.acceptResource.id = resource.id;
+    this.acceptResource.humanResourceId = resource.humanResourceId;
+    this.acceptResource.projectId = projectId;
+
+    this.applyService.acceptResource(this.acceptResource).subscribe(
+      res => {
+        this.getAllAppliance();
+      },
+      err => {
+      }
+    );
+
+    // console.log(this.acceptResource);
+  }
 }

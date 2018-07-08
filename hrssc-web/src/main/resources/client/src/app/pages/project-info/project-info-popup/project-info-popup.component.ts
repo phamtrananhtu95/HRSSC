@@ -2,7 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
 import { AuthenticateService } from '../../../services/authenticate.service';
 import { ApplianceService } from '../../../services/appliance.service';
-import { Appliable } from '../../../models';
+import { Appliable, Project } from '../../../models';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from '../../../services/project.service';
 
 @Component({
   selector: 'app-project-info-popup',
@@ -11,36 +13,68 @@ import { Appliable } from '../../../models';
 })
 export class ProjectInfoPopupComponent implements OnInit {
   public userId: number;
+  public projectId: number;
+  public project = new Project();
   public resourceAppliance: Appliable;
   @Input() listAvailableResource;
 
   constructor(
+    private route: ActivatedRoute,
     private empService: EmployeeService,
     private auth: AuthenticateService,
-    private applyService: ApplianceService
+    private applyService: ApplianceService,
+    private prjService: ProjectService
   ) { }
 
   ngOnInit() {
     this.userId = this.auth.getUserId();
+    this.projectId = this.route.snapshot.queryParams['id'];
+
   }
   ngOnChanges() {
     if (this.listAvailableResource) {
-        // console.log(this.listAvailableResource);
+      // console.log(this.listAvailableResource);
     }
   }
-  appliable(val: any){
-      console.log(val);
-      this.resourceAppliance = new Appliable();
-      this.resourceAppliance.projectId = val.project.id;
-      this.resourceAppliance.humanResourceId = val.resource.id;
-      this.applyService.applianceResource(this.resourceAppliance).subscribe(
-        res => {
-            
-        },
-        err => {
 
-        }
-      );
+
+
+  getAvailableResource() {
+    this.prjService.getProjectByProjectId(this.userId, this.projectId).subscribe(
+      res => {
+        this.project = res;
+      },
+      err => {
+      }
+    );
+    this.empService.getAppliableByManagerId(this.userId, this.projectId).subscribe(
+      res => {
+        this.listAvailableResource = [];
+        res.forEach(el => {
+          this.listAvailableResource.push({
+            project: this.project,
+            resource: el
+          })
+        });
+      },
+      err => {
+
+      }
+    );
+  }
+  appliable(val: any) {
+    console.log(val);
+    this.resourceAppliance = new Appliable();
+    this.resourceAppliance.projectId = val.project.id;
+    this.resourceAppliance.humanResourceId = val.resource.id;
+    this.applyService.applianceResource(this.resourceAppliance).subscribe(
+      res => {
+        this.getAvailableResource();
+      },
+      err => {
+
+      }
+    );
 
   }
 

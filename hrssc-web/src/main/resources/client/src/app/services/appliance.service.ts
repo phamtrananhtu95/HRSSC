@@ -12,5 +12,14 @@ export class ApplianceService {
       let url = 'appliance/apply';
       return this.restService.post(url, resource);
   }
+  
+  getAllAppliance(managerId){
+      let url = 'appliance/get-all-appliance/'+ managerId;
+      return this.restService.get(url);
+  }
 
+  acceptResource(resource){
+    let url = 'appliance/accept';
+    return this.restService.post(url, resource);
+  }
 }

@@ -2,28 +2,37 @@
 <div class="page-header page-header-default">
   <div class="page-header-content">
     <div class="page-title">
-      <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Project</span> - Information</h4>
+      <h4>
+        <i class="icon-arrow-left52 position-left"></i>
+        <span class="text-semibold">Project</span> - Information</h4>
     </div>
 
     <div class="heading-elements">
       <div class="heading-btn-group">
-          <!-- <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a> -->
-          <form action="#" class="main-search">
-              <div class="input-group content-group btn-float has-text">
-                  <input type="text" class="form-control input-lg" placeholder="Search">
-                  <div class="input-group-btn">
-                      <button type="submit" class="btn bg-slate-600 btn-icon btn-lg"><i class="icon-search4"></i></button>
-                  </div>
-                </div>
-          </form>
+        <!-- <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a> -->
+        <form action="#" class="main-search">
+          <div class="input-group content-group btn-float has-text">
+            <input type="text" class="form-control input-lg" placeholder="Search">
+            <div class="input-group-btn">
+              <button type="submit" class="btn bg-slate-600 btn-icon btn-lg">
+                <i class="icon-search4"></i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
   <div class="breadcrumb-line">
     <ul class="breadcrumb">
-      <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-      <li><a href="appearance_content_panels.html">Project</a></li>
+      <li>
+        <a href="index.html">
+          <i class="icon-home2 position-left"></i> Home</a>
+      </li>
+      <li>
+        <a href="appearance_content_panels.html">Project</a>
+      </li>
       <li class="active">Info</li>
     </ul>
 
@@ -50,67 +59,99 @@
 
 <!-- Content area -->
 <div class="content">
-  
+
   <div class="row">
 
     <!-- left content -->
     <div class="col-md-8">
       <div class="panel panel-success">
-        
+
         <div class="panel-body">
           <div class="col-md-3">
-              <div class="thumbnail no-padding">
-                  <div class="thumb">
-                    <img src="assets/images/evolable-asia-logo-170-151.png" alt="">
-                    <div class="caption-overflow">
-                      <span>
-                        <a href="assets/images/evolable-asia-logo-170-151.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
-                        <a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
-                      </span>
-                    </div>
-                  </div>
-                
-                    <div class="caption text-center">
-                      <h6 class="text-semibold no-margin">{{project?.companyByCompanyId?.name}}</h6>
-                      <ul class="icons-list mt-15">
-                          <li><a href="#" data-popup="tooltip" title="Google Drive" data-container="body"><i class="icon-google-drive"></i></a></li>
-                          <li><a href="#" data-popup="tooltip" title="Twitter" data-container="body"><i class="icon-twitter"></i></a></li>
-                          <li><a href="#" data-popup="tooltip" title="Github" data-container="body"><i class="icon-github"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
+            <div class="thumbnail no-padding">
+              <div class="thumb">
+                <img src="assets/images/evolable-asia-logo-170-151.png" alt="">
+                <div class="caption-overflow">
+                  <span>
+                    <a href="assets/images/evolable-asia-logo-170-151.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox">
+                      <i class="icon-plus2"></i>
+                    </a>
+                    <a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs">
+                      <i class="icon-link"></i>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="caption text-center">
+                <h6 class="text-semibold no-margin">{{project?.companyByCompanyId?.name}}</h6>
+                <ul class="icons-list mt-15">
+                  <li>
+                    <a href="#" data-popup="tooltip" title="Google Drive" data-container="body">
+                      <i class="icon-google-drive"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-popup="tooltip" title="Twitter" data-container="body">
+                      <i class="icon-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-popup="tooltip" title="Github" data-container="body">
+                      <i class="icon-github"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="col-md-9">
-              <div class="media-body">
-                  <h1 class="media-heading"><b>{{project?.title}}</b></h1>
-                  <h4><b>Skill: {{skillList}}</b></h4>
-                  <h4><b>Number: ?</b></h4>
-                  <h4><b><i class="icon-location4"></i> Location:{{project?.companyByCompanyId?.city}}</b></h4>
-                  <h4><b><i class="glyphicon glyphicon-calendar"></i> 5 days ago</b></h4>
-                    
-                </div>
-                <div class="media-right media-middle">
-                    <button type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()" data-toggle="modal" data-target="#modal_theme_info">
-                      Apply
-                    </button>
-                </div>
+            <div class="media-body">
+              <h1 class="media-heading">
+                <b>{{project?.title}}</b>
+              </h1>
+              <h4>
+                <b>Skill: {{skillList}}</b>
+              </h4>
+              <h4>
+                <b>Number: ?</b>
+              </h4>
+              <h4>
+                <b>
+                  <i class="icon-location4"></i> Location:{{project?.companyByCompanyId?.city}}</b>
+              </h4>
+              <h4>
+                <b>
+                  <i class="glyphicon glyphicon-calendar"></i> 5 days ago</b>
+              </h4>
+
+            </div>
+            <div class="media-right media-middle">
+              <button *ngIf="!isManager" type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()" data-toggle="modal"
+                data-target="#modal_theme_info">
+                Apply
+              </button>
+              <span *ngIf="isManager" style="font-size: 12px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'"
+                class="label label-flat">
+                {{project.processStatus == 1 ? "PENDING" : "ON_GOING"}}</span>
+            </div>
           </div>
         </div>
-        
+
       </div>
 
       <div class="panel panel-flat">
         <div class="panel-body">
-            <div *ngIf="isManager" class="col-md-12">
-                <app-info-project-manager (reloadMatchingResource)="reloadMatchingResource()" [project]="project"></app-info-project-manager>
-            </div>
-            <div *ngIf="!isManager" class="col-md-12">
-              <app-info-project-view [project]="project"></app-info-project-view>
+          <div *ngIf="isManager" class="col-md-12">
+            <app-info-project-manager (reloadMatchingResource)="reloadMatchingResource()" [project]="project"></app-info-project-manager>
+          </div>
+          <div *ngIf="!isManager" class="col-md-12">
+            <app-info-project-view [project]="project"></app-info-project-view>
           </div>
         </div>
       </div>
 
-      
+
     </div>
 
     <!-- right content -->
