@@ -11,6 +11,7 @@ import com.hrssc.entities.Project;
 import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.MatchingService;
 import com.hrssc.service.ProjectManagementService;
+import com.hrssc.service.SimilarService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,6 +31,9 @@ public class ProjectManagementController {
 
     @Autowired
     MatchingService matchingService;
+
+    @Autowired
+    SimilarService similarService;
 
     @JsonView(ProjectView.ListView.class)
     @GetMapping(value = "/load-project/{managerId}")
@@ -55,6 +59,7 @@ public class ProjectManagementController {
     public ResponseStatus addProject(@RequestBody Project project){
         ResponseStatus response = new ResponseStatus(projectManagementService.addProject(project));
         matchingService.matchProject(project.getId());
+        similarService.findSimilarProject(project.getId());
        return response;
     }
 
@@ -62,6 +67,7 @@ public class ProjectManagementController {
     public ResponseStatus updateProject(@RequestBody Project project){
         ResponseStatus response = new ResponseStatus(projectManagementService.updateProject(project));
         matchingService.matchProject(project.getId());
+        similarService.findSimilarProject(project.getId());
         return response;
     }
 

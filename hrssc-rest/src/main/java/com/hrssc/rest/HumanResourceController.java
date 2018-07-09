@@ -14,6 +14,7 @@ import com.hrssc.entities.Skill;
 import com.hrssc.entities.User;
 import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.MatchingService;
+import com.hrssc.service.SimilarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -39,7 +40,12 @@ public class HumanResourceController {
 	private MatchingService matchingService;
 
 	@Autowired
+	private SimilarService similarService;
+
+	@Autowired
 	AuthorizationService authorizationService;
+
+
 
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HumanResourceDto> getHumanResource() {
@@ -77,6 +83,7 @@ public class HumanResourceController {
 		if(humanResource.getStatus() == Constant.ResourceStatus.AVAILABLE){
 
 			matchingService.matchResource(humanResource.getId());
+			similarService.findSimilarResource(humanResource.getId());
 		}
 
 		return  response;
