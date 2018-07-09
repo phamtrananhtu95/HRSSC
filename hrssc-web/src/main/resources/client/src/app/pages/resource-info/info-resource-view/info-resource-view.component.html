@@ -123,23 +123,31 @@
                         <h6 class="text-semibold no-margin-top">Full name: {{humanResource.fullname}}</h6>
                         <ul class="list list-unstyled">
                             <li>Company:
-                                <span class="text-semibold">{{humanResource?.companyByCompanyId?.name}}</span>
+                                <span class="text-semibold">
+                                    <a>{{humanResource?.companyByCompanyId?.name}}</a>
+                                </span>
                             </li>
                             <li>Location:
                                 <span class="text-semibold">{{humanResource?.companyByCompanyId?.city}}</span>
                             </li>
-                            <li>Tel:
-                                <span class="text-semibold">{{humanResource.tel}}</span>
+                            <li>Manager:
+                                <span class="text-semibold">
+                                    <a>{{humanResource?.userByUserId?.fullname}}</a>
+                                </span>
                             </li>
+                            <!-- <li>Skill:
+                                <span class="text-semibold">{{skillList}}</span>
+                            </li> -->
                         </ul>
                     </div>
 
                     <div class="col-sm-4">
                         <h6 class="text-semibold no-margin-top">${{humanResource.salary}} vnd</h6>
                         <ul class="list list-unstyled">
-                            <li>Skill:
-                                <span class="text-semibold">{{skillList}}</span>
+                            <li>Tel:
+                                <span class="text-semibold">{{humanResource.tel}}</span>
                             </li>
+
                             <li>Available date:
                                 <span class="text-semibold">{{humanResource.availableDate | date:'dd/MM/yyyy'}}</span>
                             </li>
@@ -169,9 +177,24 @@
                     </span>
                 </div>
                 <div class="panel-body">
-                    <div style="padding-bottom: 2px;" *ngFor="let skills of humanResource?.resourceSkillsById">
+                    <div style="padding-bottom: 2px;" >
                         <span class="heading-text">
-                            &nbsp;&nbsp;&nbsp;<span class="text-semibold">{{skills?.skillBySkillId?.title}} : {{skills?.experience}} years</span>
+                            <!-- &nbsp;&nbsp;&nbsp; -->
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th>Skill</th>
+                                        <th>Experience (years)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let skills of humanResource?.resourceSkillsById">
+                                        <td class="text-semibold">{{skills?.skillBySkillId?.title}}</td>
+                                        <td>{{skills?.experience}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <span class="text-semibold">{{skills?.skillBySkillId?.title}} : {{skills?.experience}} years</span> -->
                         </span>
                     </div>
                     <!-- <div>

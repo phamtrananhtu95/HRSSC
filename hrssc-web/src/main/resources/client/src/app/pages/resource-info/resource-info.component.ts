@@ -7,6 +7,7 @@ import { ProjectMatchingComponent } from './project-matching/project-matching.co
 import { ProjectService } from '../../services/project.service';
 import { ProjectMatch } from '../../models/projectMatched.model';
 import { Interaction } from '../../models/interaction.model';
+import { Feedback } from '../../models/feedback.model';
 
 @Component({
   selector: 'app-resource-info',
@@ -22,6 +23,9 @@ export class ResourceInfoComponent implements OnInit {
 
   public userId: number;
   public resourceId: number;
+
+  // Feedback
+  public formFeedback = new Feedback();
   @ViewChild(ProjectMatchingComponent) projectMatchingComponent: ProjectMatchingComponent;  //call event child
 
 
@@ -47,20 +51,9 @@ export class ResourceInfoComponent implements OnInit {
 
     this.getHumanResourceById();
 
-    //For invite
-    // this.formModel.humanResourceId;
-    // this.formModel.projectId
-    
-    // this.projectService.getProjectByManagerId(this.userId).subscribe(
-    //   res => {
-    //     this.projects = res;
-    //     console.log(this.projects)
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // )
-    //--For invite
+    // Feedback
+    this.formFeedback.rating = 4.5;
+    this.formFeedback.comment = "he is very good!!!";
   }
 
   getHumanResourceById() {
@@ -90,7 +83,7 @@ export class ResourceInfoComponent implements OnInit {
     this.projectMatchingComponent.getProjectMatching();
   }
 
-  inviteSuccess(event){
+  inviteSuccess(event) {
     this.isEmptyProject = (event.length == 0);
   }
 }
