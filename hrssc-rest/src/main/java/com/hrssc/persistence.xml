@@ -25,8 +25,10 @@
       <mapping class="com.hrssc.entities.User"/>
     <mapping class="com.hrssc.entities.HibernateSequence"/>
     <mapping class="com.hrssc.entities.ProjectRequirements"/>
+      <mapping class="com.hrssc.entities.SimilarProject"/>
+      <mapping class="com.hrssc.entities.SimilarResource"/>
 
-    <!-- <property name="connection.username"/> -->
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

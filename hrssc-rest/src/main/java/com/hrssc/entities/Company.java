@@ -15,11 +15,11 @@ import java.util.Objects;
 public class Company {
     @JsonView({HumanResourceView.history.class,CompanyView.info.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
     private int id;
-    @JsonView({ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({SimilarView.Resource.class,SimilarView.Project.class,ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String name;
     @JsonView(CompanyView.info.class)
     private String address;
-    @JsonView({JobView.JoinedResource.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({SimilarView.Resource.class,SimilarView.Project.class,JobView.JoinedResource.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String city;
     @JsonView(CompanyView.info.class)
     private String tel;
@@ -31,6 +31,7 @@ public class Company {
     private Collection<HumanResource> humanResourcesById;
     private Collection<Project> projectsById;
     private Collection<User> usersById;
+    private String description;
 
     public Company() {
 
@@ -163,5 +164,15 @@ public class Company {
 
     public void setUsersById(Collection<User> usersById) {
         this.usersById = usersById;
+    }
+
+    @Basic
+    @Column(name = "description", nullable = true, length = 1000)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

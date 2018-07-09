@@ -54,9 +54,6 @@ public class MatchingController {
         return matchingService.getMatchedResourceListByProjectId(projectId,userId);
     }
 
-    @GetMapping(value = "/similar-resource/{resourceId}")
-    public List<Interaction> findSimilarResource(@PathVariable(value = "resourceId") int resourceId){
-        return null;
-    }
+
 
 }

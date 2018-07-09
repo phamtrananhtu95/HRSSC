@@ -2,10 +2,7 @@ package com.hrssc.domain.ranking;
 
 import com.hrssc.entities.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ScoreRanker {
     private double baseSkillScore;
@@ -144,6 +141,79 @@ public class ScoreRanker {
     }
 
 
+    private Map<SkillRequirements,SkillRequirements> findProjectSimilarSkills(Project firstProject, Project secondProject){
+        Map<SkillRequirements,SkillRequirements> similarSkills = new HashMap<>();
+        List<SkillRequirements> skillListA = new ArrayList<>();
+        for(ProjectRequirements proReqA: firstProject.getProjectRequirementsById()){
+            for(SkillRequirements skr: proReqA.getSkillRequirementsById()){
+                skillListA.add(skr);
+            }
+        }
+        List<SkillRequirements> skillListB = new ArrayList<>();
+        for(ProjectRequirements proReqB: secondProject.getProjectRequirementsById()){
+            for(SkillRequirements skr: proReqB.getSkillRequirementsById()){
+                skillListB.add(skr);
+            }
+        }
+        for(SkillRequirements skillA: skillListA){
+            for(SkillRequirements skillB: skillListB){
+                if(skillA.getSkillBySkillId().getTitle().equals(skillB.getSkillBySkillId().getTitle())){
+                    similarSkills.put(skillA,skillB);
+                }
+            }
+        }
+        return similarSkills;
+    }
+    private double calculateProjectSkillScore(Map<SkillRequirements,SkillRequirements> skillsMap){
+        double multipler = 1;
+        if(skillsMap.size() == 0){
+            return 0;
+        }
+        for(Map.Entry similarSkill: skillsMap.entrySet()){
+            SkillRequirements firstSkill = (SkillRequirements)similarSkill.getKey();
+            SkillRequirements secondSkill = (SkillRequirements)similarSkill.getValue();
+            double different = Math.abs(firstSkill.getExperience() - secondSkill.getExperience());
+            if(different == 0){
+                multipler *=2.3;
+            }
+            if(different > 0 && different <= 0.5){
+                multipler *= 1.7;
+            }
+            if(different > 0.5 && different <= 1){
+                multipler *= 1.4;
+            }
+            if(different > 1 && different <= 1.5){
+                multipler *= 1.2;
+            }
+
+        }
+        return this.getBaseSkillScore() * multipler;
+    }
+    private double calculateProjectDomainScore(Project firstProject, Project secondProject){
+       if(firstProject.getDomain().equals(secondProject.getDomain())){
+           return this.getBaseDomainScore();
+       }
+       return 0;
+    }
+    private double calculateProjectTypeScore(Project firstProject, Project secondProject){
+        if(firstProject.getType().equals(secondProject.getType())){
+            return this.getBaseTypeScore();
+        }
+        return 0;
+    }
+    private double calculateProjectSalaryScore(Project firstProject, Project secondProject){
+        return 0;
+    }
+    public double calculateProjectSimilarScore(Project firstProject, Project secondProject){
+        double skill = calculateProjectSkillScore(findProjectSimilarSkills(firstProject,secondProject));
+        if(skill == 0){
+            return 0;
+        }
+        double type = calculateProjectTypeScore(firstProject,secondProject);
+        double domain = calculateProjectDomainScore(firstProject,secondProject);
+        double salary = calculateProjectSalaryScore(firstProject,secondProject);
+        return skill + type + domain + salary;
+    }
 
     private Map<ResourceSkills,SkillRequirements> findSimilarSkills(HumanResource resource, Project project){
         Map<ResourceSkills,SkillRequirements> skrMap = new HashMap<>();

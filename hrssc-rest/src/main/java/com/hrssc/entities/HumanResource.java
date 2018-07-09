@@ -14,21 +14,21 @@ import java.util.Objects;
 public class HumanResource {
     @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private int id;
-    @JsonView({JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private String fullname;
     @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
     private int status;
-    @JsonView({JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String email;
-    @JsonView({HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({SimilarView.Resource.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String tel;
     @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDate;
     @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDuration;
-    @JsonView({JobView.JoinedResource.class,ApplianceView.Listview.class,HumanResourceView.overview.class,ProjectView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,HumanResourceView.overview.class,ProjectView.details.class})
     private int companyId;
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class})
+    @JsonView({SimilarView.Resource.class,ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class})
     private double salary;
 
 
@@ -36,7 +36,7 @@ public class HumanResource {
     @JsonView(HumanResourceView.details.class)
     private Collection<Feedback> feedbacksById;
 
-    @JsonView({ApplianceView.Listview.class,JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
+    @JsonView({SimilarView.Resource.class,ApplianceView.Listview.class,JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
 
     @JsonView(HumanResourceView.details.class)
@@ -49,8 +49,10 @@ public class HumanResource {
     private Collection<Job> jobsById;
 
     private Collection<Notification> notificationsById;
-    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class, HumanResourceView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class, HumanResourceView.details.class})
     private Collection<ResourceSkills> resourceSkillsById;
+    private Collection<SimilarResource> similarResourcesById;
+    private Collection<SimilarResource> similarResourcesById_0;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -238,5 +240,23 @@ public class HumanResource {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<SimilarResource> getSimilarResourcesById() {
+        return similarResourcesById;
+    }
+
+    public void setSimilarResourcesById(Collection<SimilarResource> similarResourcesById) {
+        this.similarResourcesById = similarResourcesById;
+    }
+
+    @OneToMany(mappedBy = "humanResourceBySimilarResourceId")
+    public Collection<SimilarResource> getSimilarResourcesById_0() {
+        return similarResourcesById_0;
+    }
+
+    public void setSimilarResourcesById_0(Collection<SimilarResource> similarResourcesById_0) {
+        this.similarResourcesById_0 = similarResourcesById_0;
     }
 }

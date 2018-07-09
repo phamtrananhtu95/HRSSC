@@ -171,14 +171,17 @@ public class MatchingServiceImpl implements MatchingService {
     @Override
     public List<Interaction> getMatchedProjectListByResourceId(int resourceId,int userId){
         List<Interaction> projectList = interactionRepo.findByHumanResourceIdAndType(resourceId, Constant.InteractionType.MATCH);
-        projectList.sort(comparator);
         List<Interaction> resultList = new ArrayList<>();
-        for(int i = 0; i < projectList.size();i++){
-            if(i == 5){
-                break;
+        if(projectList!= null){
+            projectList.sort(comparator);
+            for(int i = 0; i < projectList.size();i++){
+                if(i == 5){
+                    break;
+                }
+                resultList.add(projectList.get(i));
             }
-            resultList.add(projectList.get(i));
         }
+
         return  resultList;
     }
 }

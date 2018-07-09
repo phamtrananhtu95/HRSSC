@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.JobView;
 import com.hrssc.domain.jacksonview.MatchingView;
+import com.hrssc.domain.jacksonview.SimilarView;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,12 +16,12 @@ public class ResourceSkills implements Serializable{
     @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private int id;
 
-    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private int skillId;
     private int humanResourceId;
-    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private Double experience;
-    @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({SimilarView.Resource.class,JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private Skill skillBySkillId;
     private HumanResource humanResourceByHumanResourceId;
 

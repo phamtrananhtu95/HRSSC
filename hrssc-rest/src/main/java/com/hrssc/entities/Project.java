@@ -11,19 +11,19 @@ import java.util.Objects;
 public class Project {
     @JsonView({HumanResourceView.history.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private int id;
-    @JsonView({HumanResourceView.history.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String title;
     @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class})
     private String description;
     @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private long createDate;
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({SimilarView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private long endDate;
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
+    @JsonView({SimilarView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
     private long duration;
-    @JsonView({HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String type;
-    @JsonView({HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String domain;
     @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private int processStatus;
@@ -31,18 +31,20 @@ public class Project {
     private int requestStatus;
     @JsonView({ProjectView.details.class,ProjectView.ListView.class})
     private int userId;
-    @JsonView({ProjectView.ListView.class,HumanResourceView.history.class})
+    @JsonView({SimilarView.Project.class,ProjectView.ListView.class,HumanResourceView.history.class})
     private int companyId;
     private Collection<Notification> notificationsById;
     private User userByUserId;
-    @JsonView({HumanResourceView.history.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class})
+    @JsonView({SimilarView.Project.class,HumanResourceView.history.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class})
     private Company companyByCompanyId;
 
-    @JsonView({ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
+    @JsonView({SimilarView.Project.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
     private Collection<ProjectRequirements> projectRequirementsById;
     @JsonView(ApplianceView.Listview.class)
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
+    private Collection<SimilarProject> similarProjectsById;
+    private Collection<SimilarProject> similarProjectsById_0;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -244,5 +246,23 @@ public class Project {
 
     public void setJobsById(Collection<Job> jobsById) {
         this.jobsById = jobsById;
+    }
+
+    @OneToMany(mappedBy = "projectByProjectId")
+    public Collection<SimilarProject> getSimilarProjectsById() {
+        return similarProjectsById;
+    }
+
+    public void setSimilarProjectsById(Collection<SimilarProject> similarProjectsById) {
+        this.similarProjectsById = similarProjectsById;
+    }
+
+    @OneToMany(mappedBy = "projectBySimilarProjectId")
+    public Collection<SimilarProject> getSimilarProjectsById_0() {
+        return similarProjectsById_0;
+    }
+
+    public void setSimilarProjectsById_0(Collection<SimilarProject> similarProjectsById_0) {
+        this.similarProjectsById_0 = similarProjectsById_0;
     }
 }
