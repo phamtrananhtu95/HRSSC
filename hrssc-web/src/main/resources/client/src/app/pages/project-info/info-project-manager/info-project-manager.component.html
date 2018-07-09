@@ -72,7 +72,7 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <div class="table-responsive" style="height: 150px; overflow: auto;">
+      <div class="table-responsive pre-scrollable">
         <table class="table table-hover">
           <thead class="text-center">
             <tr>
@@ -91,7 +91,7 @@
               </td>
               <td>
                 <p *ngFor="let c of x.value.skillRequirementsById">
-                  {{c.skillBySkillId.title}}|{{c.experience}}
+                  {{c.skillBySkillId.title}} | {{c.experience}} years
                 </p>
               </td>
               <td>{{x.value.quantity}}</td>

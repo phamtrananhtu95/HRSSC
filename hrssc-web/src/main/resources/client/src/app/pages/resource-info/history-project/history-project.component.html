@@ -54,19 +54,21 @@
 <!-- ************************************* -->
 <!-- Custom handle -->
 <div class="panel panel-flat ">
-  <div class="panel-body">
+  <div class="panel-body" *ngFor="let resourceHistory of resourceHistories">
     <ul class="media-list">
       <!-- <li class="media-header">Team leaders</li> -->
 
       <li class="media">
 
         <div class="media-left">
-          <img src="assets/images/placeholder.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
+          <img src="https://img.pokemondb.net/artwork/bulbasaur.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
 
         </div>
         <div class="media-body">
           <div class="media-heading text-semibold">&nbsp;</div>
-          <div class="media-heading text-semibold">Company name</div>
+          <div class="media-heading text-semibold">
+            <a>{{resourceHistory?.projectByProjectId?.companyByCompanyId?.name}}</a>
+          </div>
           <div class="media-heading text-semibold">&nbsp;</div>
           <!-- <span class="text-muted">Last.fm</span> -->
         </div>
@@ -74,7 +76,7 @@
           <ul class="icons-list text-nowrap">
             <li> </li>
             <li>
-              <a data-toggle="collapse" href="#aaaa">
+              <a data-toggle="collapse" [attr.data-target]="'#resourceHistory' + resourceHistory.id">
                 <i class="icon-menu7"></i>
               </a>
             </li>
@@ -82,7 +84,7 @@
           </ul>
         </div>
         <br>
-        <div class="collapse" id="aaaa">
+        <div class="collapse" id="resourceHistory{{resourceHistory.id}}">
           <!-- <div class="contact-details">
             <ul class="list-extended list-unstyled list-icons">
               <li>
@@ -114,31 +116,42 @@
                 </div> -->
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                       <!-- <h6 class="text-semibold no-margin-top">Full name: </h6> -->
                       <ul class="list list-unstyled">
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
-                            <span class="text-semibold">Project name</span>
+                            Project name: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.title}}</span>
                           </span>
                         </li>
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
-                            <span class="text-semibold">Project type</span>
+                            Project type: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.type}}</span>
                           </span>
                         </li>
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
-                            <span class="text-semibold">Joinning date</span>
+                            Domain: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.domain}}</span>
                           </span>
                         </li>
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
-                            <span class="text-semibold">Leaving date</span>
+                            Joinning date: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.joinedate | date:'dd/MM/yyyy'}}</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Leaving date: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.leaveDate | date:'dd/MM/yyyy'}}</span>
                           </span>
                         </li>
                       </ul>

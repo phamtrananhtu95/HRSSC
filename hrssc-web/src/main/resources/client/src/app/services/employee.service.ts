@@ -19,8 +19,8 @@ export class EmployeeService {
   }
 
 
-  getAppliableByManagerId(userId, projectId){
-    let url = 'humanResource/get-appliable/'+ userId +'/'+projectId;
+  getAppliableByManagerId(userId, projectId) {
+    let url = 'humanResource/get-appliable/' + userId + '/' + projectId;
     return this.restService.get(url);
   }
 
@@ -51,6 +51,11 @@ export class EmployeeService {
   inviteHumanResource(invite) {
     let url = "invitation/invite";
     return this.restService.post(url, invite);
+  }
+
+  loadHistoryResource(resourceId) {
+    let url = "humanResource/history/" + resourceId;
+    return this.restService.get(url);
   }
 
 }

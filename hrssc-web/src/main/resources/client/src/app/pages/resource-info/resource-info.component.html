@@ -107,8 +107,8 @@
                 <b>Available date: {{humanResource.availableDate | date:'dd/MM/yyyy'}}</b>
               </h4>
               <!-- rating -->
-              <div class="rating-block">
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <div class="rating-block" style="position: absolute; bottom: -25%;">
+                <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
@@ -122,7 +122,9 @@
                 </button>
                 <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
+                </button> -->
+                <rating [(ngModel)]="formFeedback.rating" [readonly]="true" style="font-size: 20px;">
+                </rating>
               </div>
             </div>
             <div class="media-right media-middle">
@@ -178,12 +180,12 @@
           </div>
 
           <div class="tab-pane fade" id="basic-tab2">
-            <h1>tab 2</h1>
+            <h6 class="text-muted">The projects he worked on</h6>
             <app-history-project></app-history-project>
           </div>
 
           <div class="tab-pane fade" id="basic-tab3">
-            <h1>tab 3</h1>
+            <h6 class="text-muted">1 review(s)</h6>
             <app-rating-resource></app-rating-resource>
           </div>
         </div>

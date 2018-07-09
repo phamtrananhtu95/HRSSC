@@ -51,4 +51,9 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  getJoinedResourceList(projectId){
+    let url = "manage-project/get-joined-resource/"+projectId;
+    return this.restService.get(url);
+  }
+
 }

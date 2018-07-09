@@ -43,7 +43,6 @@ export class ProjectInfoComponent implements OnInit {
         this.project = res;
         this.userIdByProjectId = this.project.userId;
         this.isManager = this.userId === this.userIdByProjectId;
-        console.log(this.isManager);
         this.project.projectRequirementsById.forEach(el => {
           el.skillRequirementsById.forEach(el2 => {
             this.skillList = this.skillList + el2.skillBySkillId.title + ", ";
