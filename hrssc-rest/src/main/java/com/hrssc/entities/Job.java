@@ -16,7 +16,7 @@ public class Job {
 
     @JsonView(JobView.JoinedResource.class)
     private HumanResource humanResourceByHumanResourceId;
-    @JsonView(HumanResourceView.history.class)
+    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
     private long joinedate;
     @JsonView(HumanResourceView.history.class)
     private long leaveDate;

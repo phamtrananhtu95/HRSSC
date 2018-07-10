@@ -33,6 +33,9 @@ export class InfoProjectManagerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    (<any>window).sweetAlertMin = true;
+        (<any>window).componentModalsJs = true;
+
     this.loadAllPosition();
     // this.formPositionModel.positionId = '1';
 
@@ -212,7 +215,6 @@ export class InfoProjectManagerComponent implements OnInit {
     })
   }
   updatePrj() {
-    let vm = this;
 
     var listPosition = [];
     this.positionList.forEach(el => {
@@ -225,9 +227,6 @@ export class InfoProjectManagerComponent implements OnInit {
       res => {
         (<any>$("#modal_small")).modal("hide");
         this.reloadMatchingResource.emit();
-        setTimeout(function () {
-          vm.onScroll();
-        }, 1500);
       },
       err => {
         console.log(err);

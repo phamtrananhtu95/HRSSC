@@ -53,6 +53,7 @@ export class ManageProjectsComponent implements OnInit {
 
   ngOnInit() {
     
+    
     // this.projects = new projectList().projects;
     if (this.auth.checkLogin()) {
       // let userInfo = this.auth.getUserInfo();

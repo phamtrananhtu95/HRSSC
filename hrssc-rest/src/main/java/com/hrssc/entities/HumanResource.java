@@ -53,6 +53,7 @@ public class HumanResource {
     private Collection<ResourceSkills> resourceSkillsById;
     private Collection<SimilarResource> similarResourcesById;
     private Collection<SimilarResource> similarResourcesById_0;
+    private double avgRating;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -258,5 +259,15 @@ public class HumanResource {
 
     public void setSimilarResourcesById_0(Collection<SimilarResource> similarResourcesById_0) {
         this.similarResourcesById_0 = similarResourcesById_0;
+    }
+
+    @Basic
+    @Column(name = "avg_rating")
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
     }
 }

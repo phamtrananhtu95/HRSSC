@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticateService } from '../../../services/authenticate.service';
 import { ProjectService } from '../../../services/project.service';
 import { ResourceMatch } from '../../../models/resourceMatched.model';
@@ -17,7 +17,8 @@ export class ResourceMatchingComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthenticateService,
-    private prjService: ProjectService
+    private prjService: ProjectService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -45,5 +46,7 @@ export class ResourceMatchingComponent implements OnInit {
     );
   }
 
-
+  navigateResource(id){
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});
+  }
 }
