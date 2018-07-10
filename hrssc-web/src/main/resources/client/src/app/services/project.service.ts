@@ -41,18 +41,23 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
-  loadMatchingProject(userId, resourceId){
+  loadMatchingProject(userId, resourceId) {
     let url = 'matching/get-matched-project/' + userId + '/' + resourceId;
     return this.restService.get(url);
   }
 
-  loadProjectNotInvite(userId, resourceId){
+  loadProjectNotInvite(userId, resourceId) {
     let url = "manage-project/get-invitable-project/" + userId + "/" + resourceId;
     return this.restService.get(url);
   }
 
-  getJoinedResourceList(projectId){
-    let url = "manage-project/get-joined-resource/"+projectId;
+  getJoinedResourceList(projectId) {
+    let url = "manage-project/get-joined-resource/" + projectId;
+    return this.restService.get(url);
+  }
+
+  getSimilarProject(projectId) {
+    let url = 'similar/get-project-list/' + projectId;
     return this.restService.get(url);
   }
 

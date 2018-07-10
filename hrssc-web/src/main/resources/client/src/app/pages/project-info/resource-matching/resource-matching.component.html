@@ -13,7 +13,7 @@
             </div>
           </div>
           <div class="media-body">
-            <a href="#">{{resource.humanResourceByHumanResourceId.fullname}} <span class="media-annotation pull-right">3:03</span></a>
+            <a (click)="navigateResource(resource.humanResourceByHumanResourceId.id)">{{resource.humanResourceByHumanResourceId.fullname}} <span class="media-annotation pull-right">3:03</span></a>
             <p>Email: {{resource.humanResourceByHumanResourceId.email}}</p>
             <p>Company: {{resource.humanResourceByHumanResourceId.companyByCompanyId.name}}</p>
             <p>Skill: {{resource.listSkill}}</p>

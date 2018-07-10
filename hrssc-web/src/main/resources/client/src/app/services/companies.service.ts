@@ -16,4 +16,9 @@ export class CompaniesService {
     let url = 'manage-companies/accept-company/' + companyId;
     return this.restService.post(url, null);
   }
+
+  getCompanyInfoById(companyId){
+    let url = 'company/details/' + companyId;
+    return this.restService.get(url);
+  }
 }

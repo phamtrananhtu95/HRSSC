@@ -1,68 +1,24 @@
 <div class="panel panel-flat">
   <div class="panel-heading">
-    <h6 class="panel-title text-center text-semibold">Similar</h6>
+    <h6 class="panel-title text-center text-semibold">Similar project</h6>
   </div>
-  
+
   <div class="panel-body">
-      <div class="media">
-          <div class="media-left ">
-            <div class="thumb">
-                <a href="#">
-                    <img src="assets/images/bong-mai-logo-65-65.png" class="media-preview" alt="">
-                  </a>
-            </div>
-            
-          </div>
-          <div class="media-body">
-            <a href="#">.NET Application <span class="media-annotation pull-right">3:03</span></a>
-            <p>Công ty TNHH Công Nghệ Thông Tin Bông Mai</p>
-            <p>Java, C#</p>
-          </div>
+    <div class="media" *ngFor="let x of listSimilarProject">
+      <div class="media-left ">
+        <div class="thumb">
+          <a href="#">
+            <img src="assets/images/bong-mai-logo-65-65.png" class="media-preview" alt="">
+          </a>
+        </div>
       </div>
-      <div class="media">
-          <div class="media-left ">
-            <div class="thumb">
-                <a href="#">
-                    <img src="assets/images/coinected-io-logo-65-65.jpg" class="media-preview" alt="">
-                  </a>
-            </div>
-            
-          </div>
-          <div class="media-body">
-            <a href="#">.NET Application <span class="media-annotation pull-right">3:03</span></a>
-            <p>KAS- Giải pháp bán hàng</p>
-            <p>Java, C#</p>
-          </div>
+      <div class="media-body">
+        <a (click)="navigateProject(x.similarProjectId)">{{x.projectBySimilarProjectId.title}}
+          <!-- <span class="media-annotation pull-right">3:03</span> -->
+        </a>
+        <p>Company: {{x.projectBySimilarProjectId.companyByCompanyId.name}}</p>
+        <p>SKill: <span *ngFor="let c of skillList">{{c.skillRequirementsById}}</span></p>
       </div>
-      <div class="media">
-          <div class="media-left ">
-            <div class="thumb">
-                <a href="#">
-                    <img src="assets/images/kas-logo-65-65.png" class="media-preview" alt="">
-                  </a>
-            </div>
-            
-          </div>
-          <div class="media-body">
-            <a href="#">Wordpress Application <span class="media-annotation pull-right">3:03</span></a>
-            <p>Game Media Asia</p>
-            <p>CSS, Wordpress, PHP</p>
-          </div>
-      </div>
-      <div class="media">
-          <div class="media-left ">
-            <div class="thumb">
-                <a href="#">
-                    <img src="assets/images/game-media-asia-logo-65-65.png" class="media-preview" alt="">
-                  </a>
-            </div>
-            
-          </div>
-          <div class="media-body">
-            <a href="#">UI-UX Application <span class="media-annotation pull-right">3:03</span></a>
-            <p>COINECTED.IO</p>
-            <p>Mobile Apps, UI-UX, Designer</p>
-          </div>
-      </div>
+    </div>
   </div>
 </div>
