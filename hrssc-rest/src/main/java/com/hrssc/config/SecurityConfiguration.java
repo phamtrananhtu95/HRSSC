@@ -83,7 +83,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/invitation/**",
                         "/appliance/**",
                         "/company/**",
-                        "/similar/**"
+                        "/similar/**",
+                        "/feedback/**"
                 ).permitAll()
 //                .mvcMatchers("/manage-companies/**").hasAuthority("MANAGE_COMPANIES")
 //                .mvcMatchers("/manage-manager/**").access("hasAuthority('MANAGE_MANAGER')")

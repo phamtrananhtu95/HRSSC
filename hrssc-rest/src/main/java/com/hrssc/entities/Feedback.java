@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.FeedbackView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 
 import javax.persistence.*;
@@ -8,18 +9,18 @@ import java.util.Objects;
 
 @Entity
 public class Feedback {
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private int id;
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private double rating;
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private String comment;
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private long timestamp;
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private int userId;
     private int humanResourceId;
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private User userByUserId;
     private HumanResource humanResourceByHumanResourceId;
 

@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.FeedbackView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.domain.jacksonview.UserView;
@@ -14,12 +15,12 @@ import java.util.Objects;
 @Data
 @Entity(name = "user")
 public class User {
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private int id;
-    @JsonView({UserView.overview.class,UserView.details.class})
+    @JsonView({UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class})
     private String username;
     private String password;
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private String fullname;
     @JsonView({UserView.overview.class,UserView.details.class})
     private String email;
