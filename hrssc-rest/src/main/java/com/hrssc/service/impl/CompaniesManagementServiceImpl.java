@@ -97,6 +97,12 @@ public class CompaniesManagementServiceImpl implements CompaniesManagementServic
                 tempInfoRepo.delete(temp);
 
     }
+
+    @Override
+    public List<Company> getCompanyList(){
+        return companyRepo.findAll();
+    }
+
 //    private static String randomPassword(){
 //        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 //        return RandomStringUtils.random( 6, characters );

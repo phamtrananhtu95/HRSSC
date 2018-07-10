@@ -31,6 +31,7 @@ public class Company {
     private Collection<HumanResource> humanResourcesById;
     private Collection<Project> projectsById;
     private Collection<User> usersById;
+    @JsonView(CompanyView.info.class)
     private String description;
 
     public Company() {

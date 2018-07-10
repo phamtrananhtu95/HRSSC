@@ -3,6 +3,7 @@ package com.hrssc.rest;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.CompanyView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.ProjectView;
@@ -45,6 +46,14 @@ public class CompanyController {
 												   @PathVariable("userId") int userId) throws NotFoundException{
 		return companyService.viewCompanyResource(companyId, userId);
 	}
+
+	@PostMapping(value = "update")
+	public ResponseStatus updateCompany(@RequestBody Company company){
+		return  new ResponseStatus(companyService.updateCompany(company));
+	}
+
+
+
 //	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 //	public CompanyDto createCompany(@RequestBody CompanyDto company) {
 //		return companyService.createCompany(company);

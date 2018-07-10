@@ -72,4 +72,21 @@ public class CompanyServiceImpl implements CompanyService {
         return resultList;
     }
 
+    public  String updateCompany(Company company){
+        Company companyEntity = companyRepository.findById(company.getId());
+        if(companyEntity == null){
+            return "Company does not existed.";
+        }
+        //companyEntity.setCity(company.getCity());
+        //companyEntity.setAddress(company.getAddress());
+        //companyEntity.setName(company.getName());
+        companyEntity.setEmail(company.getEmail());
+        companyEntity.setDescription(company.getDescription());
+        companyEntity.setTel(company.getTel());
+        companyRepository.save(companyEntity);
+        return "Successfully Update Company";
+
+    }
+
+
 }
