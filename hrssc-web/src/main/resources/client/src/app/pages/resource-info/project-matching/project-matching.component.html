@@ -91,7 +91,7 @@
     
                 </div>
                 <div class="media-body">
-                    <a href="#">{{project?.projectByProjectId?.title}}
+                    <a (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)">{{project?.projectByProjectId?.title}}
                         <span class="media-annotation pull-right">3:03</span>
                     </a>
                     <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>

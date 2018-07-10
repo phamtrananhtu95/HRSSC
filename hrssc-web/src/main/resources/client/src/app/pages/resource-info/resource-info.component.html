@@ -212,7 +212,7 @@
     <div class="col-md-4">
       <app-project-matching *ngIf="isOwnManager" [userId]="userId" [resourceId]="resourceId"></app-project-matching>
 
-      <app-resource-similar *ngIf="!isOwnManager"></app-resource-similar>
+      <app-resource-similar *ngIf="!isOwnManager" [resourceId]="resourceId" [skillList]="skillList"></app-resource-similar>
     </div>
   </div>
 

@@ -4,24 +4,24 @@
     </div>
 
     <div class="panel-body">
-        <div class="media">
+        <div class="media" *ngFor="let similar of similars">
             <div class="media-left ">
                 <div class="thumb">
-                    <a href="#">
+                    <a >
                         <img src="../../../../assets/images/avatar.png" class="media-preview" alt="">
                     </a>
                 </div>
 
             </div>
             <div class="media-body">
-                <a href="#">Nguyen Van A
-                    <span class="media-annotation pull-right">3:03</span>
+                <a (click)="viewHumanDetail(similar?.similarResourceId)">{{similar?.humanResourceBySimilarResourceId?.fullname}}
+                    <!-- <span class="media-annotation pull-right">3:03</span> -->
                 </a>
-                <p>ABC Software</p>
-                <p>Java, C#</p>
+                <p>{{similar?.humanResourceBySimilarResourceId?.companyByCompanyId?.name}}</p>
+                <p>{{skillList}}</p>
             </div>
         </div>
-        <div class="media">
+        <!-- <div class="media">
             <div class="media-left ">
                 <div class="thumb">
                     <a href="#">
@@ -71,6 +71,6 @@
                 <p>ABC Software</p>
                 <p>Java, C#</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

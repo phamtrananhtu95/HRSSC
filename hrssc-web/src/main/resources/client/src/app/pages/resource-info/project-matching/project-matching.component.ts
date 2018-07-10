@@ -3,6 +3,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ProjectMatch } from './../../../models/projectMatched.model';
 import * as jQuery from 'jquery';
 import { ProjectService } from '../../../services/project.service';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -14,9 +15,10 @@ export class ProjectMatchingComponent {
     @Input() userId: number;
     @Input() resourceId: number;
     public projectsMatched: ProjectMatch[];
-    
+
     constructor(
-        private projectService: ProjectService
+        private projectService: ProjectService,
+        private router: Router
     ) { }
 
     ngOnChanges() {
@@ -44,6 +46,10 @@ export class ProjectMatchingComponent {
             })
             projectByProjectId.combinedSkill = skills.join(', ');
         })
+    }
+
+    viewHumanProjectDetail(projectId) {
+        this.router.navigate(['manager/project/info'], { queryParams: { "id": projectId } });
     }
 
 }
