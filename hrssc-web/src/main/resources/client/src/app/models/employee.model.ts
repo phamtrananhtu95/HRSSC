@@ -12,6 +12,7 @@ export class Employee {
     salary: number;
     userByUserId: UserByUserId;
     skill: string;
+    avgRating: number;
     constructor() {
         this.resourceSkillsById = [];
     }

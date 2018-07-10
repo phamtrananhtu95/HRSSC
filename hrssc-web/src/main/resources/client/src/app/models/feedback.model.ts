@@ -4,8 +4,20 @@ export class Feedback {
     comment: string;
     timestamp: number;
     userId: number;
-    humanResourceId: number;
-    constructor(){
-        
+    userByUserId: UserByUserId;
+
+    constructor() {
+
     }
+}
+
+export class UserByUserId {
+    id: number;
+    username: string;
+    fullname: string;
+    companyByCompanyId: CompanyByCompanyId;
+}
+
+export class CompanyByCompanyId {
+    name: string;
 }

@@ -58,8 +58,13 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
-  loadSimilarHumanResource(resourceId){
+  loadSimilarHumanResource(resourceId) {
     let url = "similar/get-resource-list/" + resourceId;
+    return this.restService.get(url);
+  }
+
+  loadFeedBackResource(humanResourceId) {
+    let url = "feedback/loadAll/" + humanResourceId;
     return this.restService.get(url);
   }
 

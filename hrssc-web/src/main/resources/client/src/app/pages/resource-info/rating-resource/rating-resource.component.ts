@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import * as jQuery from 'jquery';
 import { Feedback } from '../../../models/feedback.model';
+import { EmployeeService } from '../../../services/employee.service';
+import { Employee } from '../../../models';
 declare var $: any;
 
 @Component({
@@ -9,14 +11,31 @@ declare var $: any;
 })
 export class RatingResourceComponent implements OnInit {
 
-    public formModel = new Feedback();
-
+    // @Input() humanResourcea = new Employee();
+    public formFeedbacks: Feedback[];
+    // public humanResourceId = this.humanResourcea.id;
     constructor(
+        private employeeService: EmployeeService
     ) { }
 
     ngOnInit() {
-        this.formModel.rating = 4.5;
-        this.formModel.comment = "he is very good!!!";
+        // console.log("user id: " + this.humanResourceId);
+        this.employeeService.loadFeedBackResource(5).subscribe(
+            res => {
+                this.formFeedbacks = res;
+                console.log("----------" + JSON.stringify(this.formFeedbacks));
+                this.formFeedbacks.forEach(element => {
+                    console.log(element.userByUserId.fullname);
+                });
+            },
+            err => {
+                console.log(err);
+            }
+        )
+
+
+        // this.formModel.rating = 4.5;
+        // this.formModel.comment = "he is very good!!!";
     }
 
 }

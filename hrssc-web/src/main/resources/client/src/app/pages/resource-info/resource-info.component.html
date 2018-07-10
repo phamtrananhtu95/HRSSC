@@ -101,7 +101,7 @@
                   Location: {{humanResource?.companyByCompanyId?.city}}</b>
               </h4>
               <h4>
-                <b>Salary: {{humanResource.salary}}</b>
+                <b>Salary: {{humanResource.salary | currency:'USD':true:'1.0-0'}}</b>
               </h4>
               <h4>
                 <b>Available date: {{humanResource.availableDate | date:'dd/MM/yyyy'}}</b>
@@ -123,7 +123,7 @@
                 <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </button> -->
-                <rating [(ngModel)]="formFeedback.rating" [readonly]="true" style="font-size: 20px;">
+                <rating [(ngModel)]="humanResource.avgRating" [readonly]="true" style="font-size: 20px;">
                 </rating>
               </div>
             </div>
@@ -186,7 +186,7 @@
 
           <div class="tab-pane fade" id="basic-tab3">
             <h6 class="text-muted">1 review(s)</h6>
-            <app-rating-resource></app-rating-resource>
+            <app-rating-resource ></app-rating-resource>
           </div>
         </div>
       </div>

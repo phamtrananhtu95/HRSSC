@@ -3,26 +3,26 @@
 </div> -->
 
 <div class="modal-body" style="height: 250px; overflow: scroll; overflow-x: hidden">
-    <div>
+    <div *ngFor="let formFeedback of formFeedbacks">
         <div class="has-feedback">
             <h5>
-                <a>Manager name</a> -
+                <a>{{formFeedback?.userByUserId?.fullname}}</a> -
                 <a>
-                    <b>Company name</b>
+                    <b>{{formFeedback?.userByUserId?.companyByCompanyId?.name}}</b>
                 </a>
             </h5>
         </div>
         <div class="has-feedback">
             <!-- rating readonly -->
-            <rating [(ngModel)]="formModel.rating" [readonly]="true">
+            <rating [(ngModel)]="formFeedback.rating" [readonly]="true">
             </rating>
         </div>
         <div class="form-group has-feedback">
-            <textarea [(ngModel)]="formModel.comment" disabled rows="3" cols="5" class="form-control" placeholder="Default textarea"></textarea>
+            <textarea [(ngModel)]="formFeedback.comment" disabled rows="3" cols="5" class="form-control" placeholder="Default textarea"></textarea>
         </div>
         <hr>
     </div>
-    <div>
+    <!-- <div>
         <div class="form-group has-feedback">
             <h5>
                 Manager name-
@@ -30,14 +30,13 @@
             </h5>
         </div>
         <div class="form-group has-feedback">
-            <!-- rating readonly -->
             <rating [(ngModel)]="formModel.rating" [readonly]="true">
             </rating>
         </div>
         <div class="form-group has-feedback">
             <textarea [(ngModel)]="formModel.comment" disabled rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="container">

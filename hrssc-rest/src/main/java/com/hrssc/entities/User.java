@@ -32,7 +32,7 @@ public class User {
     private boolean isFirstLogin;
     @JsonView({UserView.overview.class,UserView.details.class})
     private int roleId;
-    @JsonView({UserView.overview.class})
+    @JsonView({UserView.overview.class,FeedbackView.loadAllview.class})
     private int companyId;
     private Collection<ChosenDomains> chosenDomainsById;
     private Collection<Feedback> feedbacksById;
@@ -42,6 +42,7 @@ public class User {
     @JsonView(UserView.details.class)
     private Collection<Project> projectsById;
     private Role roleByRoleId;
+    @JsonView({FeedbackView.loadAllview.class})
     private Company companyByCompanyId;
 
     @Id

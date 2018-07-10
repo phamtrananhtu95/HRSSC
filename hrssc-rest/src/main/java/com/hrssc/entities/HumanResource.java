@@ -53,6 +53,8 @@ public class HumanResource {
     private Collection<ResourceSkills> resourceSkillsById;
     private Collection<SimilarResource> similarResourcesById;
     private Collection<SimilarResource> similarResourcesById_0;
+    
+    @JsonView(HumanResourceView.details.class)
     private double avgRating;
 
     @Id
