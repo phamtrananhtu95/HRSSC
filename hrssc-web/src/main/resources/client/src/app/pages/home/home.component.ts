@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
-import { Project, companyList, Company, Employee } from '../../models';
+import { Project, Company, Employee } from '../../models';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (this.authenticate.checkLogin()) {
-      this.companies = new companyList().companies;
       this.employeeService.getEmployees().subscribe(
         res => {
           this.employees = res;

@@ -12,7 +12,7 @@ import { EmployeeService } from '../../services/employee.service';
   styleUrls: ['./project-info.component.css']
 })
 export class ProjectInfoComponent implements OnInit {
-  public project = new Project();
+  public project;
   public skillList = "";
   public isManager: boolean;
   public userId: number;
@@ -38,6 +38,7 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   getProjectById() {
+    this.project = new Project();
     this.prjService.getProjectByProjectId(this.userId, this.projectId).subscribe(
       res => {
         this.project = res;

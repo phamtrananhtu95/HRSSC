@@ -46,3 +46,15 @@ export class AcceptResource {
     humanResourceId: number;
 }
 
+export class ProjectSimilar {
+    id: number;
+    similarScore: number;
+    similarProjectId: number;
+    listSkillTitle;
+    projectBySimilarProjectId;
+    constructor(){
+        this.listSkillTitle = [];
+        this.projectBySimilarProjectId = [];
+    }
+
+}

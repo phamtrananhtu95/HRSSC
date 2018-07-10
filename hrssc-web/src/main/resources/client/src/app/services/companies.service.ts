@@ -21,4 +21,14 @@ export class CompaniesService {
     let url = 'company/details/' + companyId;
     return this.restService.get(url);
   }
+
+  getListCompany() {
+    let url = 'manage-companies/get-company-list';
+    return this.restService.get(url);
+  }
+
+  updateCompany(company) {
+    let url = 'company/update';
+    return this.restService.post(url, company);
+  }
 }

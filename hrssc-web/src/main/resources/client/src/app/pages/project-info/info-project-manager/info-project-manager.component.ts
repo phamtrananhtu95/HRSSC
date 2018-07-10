@@ -11,6 +11,7 @@ import { IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 export class InfoProjectManagerComponent implements OnInit {
   @Input() project: Project
   @Output() reloadMatchingResource: EventEmitter<any> = new EventEmitter();
+  @Output() reloadProject: EventEmitter<any> = new EventEmitter();
 
   public projectInfo: Project;
   createDate: any = null;
@@ -227,6 +228,7 @@ export class InfoProjectManagerComponent implements OnInit {
       res => {
         (<any>$("#modal_small")).modal("hide");
         this.reloadMatchingResource.emit();
+        this.reloadProject.emit();
       },
       err => {
         console.log(err);

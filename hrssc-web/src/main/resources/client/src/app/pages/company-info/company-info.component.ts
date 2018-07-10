@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ActivatedRoute } from '@angular/router';
 import { CompaniesService } from '../../services/companies.service';
+import { Company } from '../../models';
 
 @Component({
   selector: 'app-company-info',
@@ -10,6 +11,7 @@ import { CompaniesService } from '../../services/companies.service';
 })
 export class CompanyInfoComponent implements OnInit {
   public companyId: number;
+  public company;
 
   constructor(
     private auth: AuthenticateService,
@@ -26,9 +28,10 @@ export class CompanyInfoComponent implements OnInit {
   }
 
   getCompanyInfo(){
+    this.company = new Company();
     this.companyService.getCompanyInfoById(this.companyId).subscribe(
       res => {
-          console.log(res);
+          this.company = res;
       },
       err => {
 

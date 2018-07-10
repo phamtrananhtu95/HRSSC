@@ -21,161 +21,21 @@
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
-
-            <tr>
-              <td>ABC software</td>
-              <td>01 Tran Hung Dao</td>
-              <td>Ho Chi Minh</td>
-              <td>01649407777</td>
-              <td>abc@gmail.com</td>
+          <tbody *ngFor="let x of companies" (click)="viewCompanyDetail(x.id)">
+            <tr >
+              <td>{{x.name}}</td>
+              <td>{{x.address}}</td>
+              <td>{{x.city}}</td>
+              <td>{{x.tel}}</td>
+              <td>{{x.email}}</td>
               <td>
                 <button type="button" class="btn btn-success">
                   Available
                 </button>
               </td>
-
             </tr>
-
-            <tr>
-              <td>HIHI software</td>
-              <td>07 Nguyen Thi Minh Khai</td>
-              <td>Ha Noi</td>
-              <td>01649409999</td>
-              <td>hihi@gmail.com</td>
-              <td>
-                <button type="button" class="btn btn-danger">
-                  Inactive
-                </button>
-              </td>
-
-            </tr>
-
           </tbody>
         </table>
-
-        <!-- <div class="tabbable">
-          <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-            <li class="active">
-              <a href="#AvailableTab" data-toggle="tab" aria-expanded="false">Available
-                <span class="badge bg-slate position-right">23</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="#InactiveTab" data-toggle="tab" aria-expanded="true">Inactive
-                <span class="badge bg-slate position-right">10</span>
-              </a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="AvailableTab">
-              <div class="panel panel-flat">
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-center">
-                      <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Location</th>
-                        <th>Account</th>
-                        <th>Project</th>
-                        <th>Resource</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="media-right">
-                            <img src="assets/images/FPT.jpg" alt="">
-                          </div>
-                        </td>
-                        <td><a href="">FPT Software</a></td>
-                        <td>Ho Chi Minh City</td>
-                        <td>tuhihi</td>
-                        <td>(5)</td>
-                        <td>(6)</td>
-                        <td>
-                          <button type="submit" class="btn btn-danger">Deactive</button>
-                        </td>
-                      </tr>
-                      <tr>
-                          <td>
-                            <div class="media-right">
-                              <img src="assets/images/FPT.jpg" alt="">
-                            </div>
-                          </td>
-                          <td>FPT Software</td>
-                          <td>Ho Chi Minh City</td>
-                          <td>tuhihi</td>
-                          <td>(5)</td>
-                          <td>(6)</td>
-                          <td>
-                            <button type="submit" class="btn btn-danger">Deactive</button>
-                          </td>
-                        </tr>
-
-                        
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane" id="InactiveTab">
-                <div class="panel panel-flat">
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead class="text-center">
-                          <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>Account</th>
-                            <th>Project</th>
-                            <th>Resource</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="media-right">
-                                <img src="assets/images/FPT.jpg" alt="">
-                              </div>
-                            </td>
-                            <td><a href="">FPT Software</a></td>
-                            <td>Ho Chi Minh City</td>
-                            <td>tuhihi</td>
-                            <td>(5)</td>
-                            <td>(6)</td>
-                            <td>
-                              <button type="submit" class="btn btn-success">Activate</button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                <div class="media-right">
-                                  <img src="assets/images/FPT.jpg" alt="">
-                                </div>
-                              </td>
-                              <td>FPT Software</td>
-                              <td>Ho Chi Minh City</td>
-                              <td>tuhihi</td>
-                              <td>(5)</td>
-                              <td>(6)</td>
-                              <td>
-                                <button type="submit" class="btn btn-success">Activate</button>
-                              </td>
-                            </tr>
-    
-                            
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>

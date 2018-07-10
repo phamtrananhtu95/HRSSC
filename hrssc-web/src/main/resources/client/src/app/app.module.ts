@@ -73,6 +73,7 @@ import { ApplianceService } from './services/appliance.service';
 import { ProjectSimilarComponent } from './pages/project-info/project-similar/project-similar.component';
 import { ResourceJoinedComponent } from './pages/project-info/resource-joined/resource-joined.component';
 import { HistoryProjectComponent } from './pages/resource-info/history-project/history-project.component';
+import { CompanyProfileComponent } from './pages/company-info/company-profile/company-profile.component';
 
 const appRoutes: Routes = [
 
@@ -196,7 +197,8 @@ const appRoutes: Routes = [
     InviteResourcePopover,
     ProjectSimilarComponent,
     ResourceJoinedComponent,
-    HistoryProjectComponent
+    HistoryProjectComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,

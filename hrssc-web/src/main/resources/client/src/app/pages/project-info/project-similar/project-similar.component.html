@@ -17,7 +17,7 @@
           <!-- <span class="media-annotation pull-right">3:03</span> -->
         </a>
         <p>Company: {{x.projectBySimilarProjectId.companyByCompanyId.name}}</p>
-        <p>SKill: <span *ngFor="let c of skillList">{{c.skillRequirementsById}}</span></p>
+        <p>SKill: <span *ngFor="let skill of x.listSkillTitle"> {{skill}}, </span> </p>
       </div>
     </div>
   </div>

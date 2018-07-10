@@ -75,10 +75,10 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   onDateChangedCreate(event: IMyDateModel) {
-    this.formModel.createDate = this.createDate.epoc;
+    this.formModel.createDate = event && event.jsdate ? event.jsdate.getTime() : null;
   }
   onDateChangedEnd(event: IMyDateModel) {
-    this.formModel.endDate = this.endDate.epoc;
+    this.formModel.endDate = event && event.jsdate ? event.jsdate.getTime() : null;
   }
 
   getProjectsByCompanyId() {
