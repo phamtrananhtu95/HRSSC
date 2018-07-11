@@ -43,21 +43,23 @@ export class ResourceInfoComponent implements OnInit {
     // For invite
     public projectService: ProjectService
   ) {
-    // this.route.queryParams.subscribe(params => {
-    //   console.log(params);
-    //   if (params && params["id"]) {
-    //     this.resourceId = params["id"];
-    //     this.getHumanResourceById();
-    //   }
-    // });
+    this.route.queryParams.subscribe(param => {
+
+      //Reload
+      this.resourceId = this.route.snapshot.queryParams['id'];
+      this.userId = this.authenticateService.getUserId();
+      this.getHumanResourceById();
+      
+      // console.log("param------" + param.id)
+    });
   }
 
   ngOnInit() {
     (<any>window).componentPopup = true;
 
-    this.resourceId = this.route.snapshot.queryParams['id'];
-    this.userId = this.authenticateService.getUserId();
-    this.getHumanResourceById();
+    // this.resourceId = this.route.snapshot.queryParams['id'];
+    // this.userId = this.authenticateService.getUserId();
+    // this.getHumanResourceById();
 
     // Feedback
     this.formFeedback.rating = 4.5;
