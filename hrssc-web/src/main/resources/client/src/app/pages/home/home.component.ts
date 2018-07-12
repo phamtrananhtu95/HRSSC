@@ -38,8 +38,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  viewResourceDetail(user: User) {
-    this.router.navigate(['manager/resource/info']);
+  viewResourceDetail(humanResourceId) {
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});
   }
 
   viewProjectDetail(project: Project) {

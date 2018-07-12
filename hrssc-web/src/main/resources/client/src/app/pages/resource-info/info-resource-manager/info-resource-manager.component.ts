@@ -22,7 +22,8 @@ export class InfoResourceManagerComponent implements OnInit {
         // other options...
         dateFormat: 'dd/mm/yyyy',
     };
-    createDate: any = null;
+    startDate: any = null;
+    endDate: any = null;
 
     public resourceInfo = new Employee();
     public skills = [];
@@ -40,7 +41,8 @@ export class InfoResourceManagerComponent implements OnInit {
     ngOnChanges() {
         if (this.humanResource) {
             this.resourceInfo = Object.assign({}, this.humanResource);
-            this.createDate = this.ConvertToDatetime(this.resourceInfo.availableDate);
+            this.startDate = this.ConvertToDatetime(this.resourceInfo.availableDate);
+            this.endDate = this.ConvertToDatetime(this.resourceInfo.availableDuration);
             if (this.resourceInfo.resourceSkillsById && this.resourceInfo.resourceSkillsById.length != 0) {
                 this.skills = [];
                 for (let i = 0; i < this.resourceInfo.resourceSkillsById.length; i++) {
@@ -64,6 +66,10 @@ export class InfoResourceManagerComponent implements OnInit {
 
     onDateChangedCreate(event: IMyDateModel) {
         this.resourceInfo.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
+    }
+
+    onDateChangedEnd(event: IMyDateModel) {
+        this.resourceInfo.availableDuration = event && event.jsdate ? event.jsdate.getTime() : null;
     }
 
     ConvertToDatetime(dateValue) {

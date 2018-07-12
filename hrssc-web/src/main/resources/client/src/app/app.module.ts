@@ -60,6 +60,8 @@ import { RatingResourceComponent } from './pages/resource-info/rating-resource/r
 import { SelectModule } from 'ng-select';
 import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
 import {RatingModule} from "ngx-rating";
+import { UiSwitchModule } from 'ngx-ui-switch';
+import { FormWizardModule } from 'angular2-wizard';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoProjectManagerComponent } from './pages/project-info/info-project-manager/info-project-manager.component';
@@ -213,6 +215,8 @@ const appRoutes: Routes = [
     SelectModule,
     MyDatePickerModule,
     RatingModule,
+    UiSwitchModule,
+    FormWizardModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
