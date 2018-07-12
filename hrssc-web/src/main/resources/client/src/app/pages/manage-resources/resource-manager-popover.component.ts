@@ -6,6 +6,8 @@ import { Manager } from '../../models/manager.model';
 import * as jQuery from 'jquery';
 import { skill } from '../../models/skill.model';
 import { EmployeeService } from '../../services/employee.service';
+import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
+// import { UiSwitchModule } from 'ngx-ui-switch';
 
 declare var $: any;
 @Component({
@@ -21,7 +23,11 @@ export class ResourceManagerPopoverComponent implements OnInit {
     public formModel = new EmployeeRequest();
     public skillOpts;
     public skills: Skill[];
+    public status = null;
 
+    public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
 
     constructor(
         private managementService: ManagementService,
@@ -34,6 +40,11 @@ export class ResourceManagerPopoverComponent implements OnInit {
     }
 
     ngOnInit() {
+        (<any>window).wizardStepsTu = true;
+        (<any>window).stepsMinTu = true;
+        
+        // From wizard_steps.
+        (<any>window).resourceManagerPopoverComponent = this;
         this.getSkillOpts();
         this.skills = [];
         this.skills.push(new Skill());
@@ -65,18 +76,9 @@ export class ResourceManagerPopoverComponent implements OnInit {
         //     }
         // );
     }
-
-    // editNewManager() {
-    //     this.managementService.editManager(this.formModel).subscribe(
-    //         res => {
-    //             this.reloadManagerList.emit();
-    //             (<any>$("#modal_small")).modal("hide");
-    //         },
-    //         err => {
-    //             console.log(err);
-    //         }
-    //     );
-    // }
+    testClick(){
+        alert(123);
+    }
 
     getSkillOpts() {
         this.employeeService.getSkills().subscribe(
@@ -108,5 +110,18 @@ export class ResourceManagerPopoverComponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+    onDateChangedCreate(event: IMyDateModel) {
+        this.formModel.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
+    }
+
+    onDateChangedEnd(event: IMyDateModel) {
+        this.formModel.availableDuration = event && event.jsdate ? event.jsdate.getTime() : null;
+    }
+
+    onValueChangeStatus($event){
+        this.formModel.status = $event ? 1 : 2;
+        // console.log(this.formModel);
     }
 }

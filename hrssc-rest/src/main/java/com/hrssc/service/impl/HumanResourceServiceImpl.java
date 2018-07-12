@@ -114,7 +114,8 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 		try {
 			HumanResource humanResource = new HumanResource();
 			humanResource.setFullname(humanResourceSkill.getFullname());
-			humanResource.setStatus(Constant.ResourceStatus.INACTIVE);
+//			humanResource.setStatus(Constant.ResourceStatus.INACTIVE);
+			humanResource.setStatus(humanResourceSkill.getStatus());
 			humanResource.setEmail(humanResourceSkill.getEmail());
 			humanResource.setTel(humanResourceSkill.getTel());
 			humanResource.setAvailableDate(humanResourceSkill.getAvailableDate());

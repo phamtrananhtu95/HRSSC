@@ -33,19 +33,23 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group has-feedback">
-                <b>Available date</b>
+                <b>Start date</b>
                 <!-- <input type="text" [(ngModel)]="resourceInfo.availableDate" class="form-control"> -->
 
                 <form #myForm="ngForm" novalidate>
-                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
+                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
                         required></my-date-picker>
                 </form>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group has-feedback">
-                <b>Available duration</b>
-                <input type="text" [(ngModel)]="resourceInfo.availableDuration" class="form-control">
+                <b>End duration</b>
+                <form #myForm="ngForm" novalidate>
+                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+                        required></my-date-picker>
+                </form>
+                <!-- <input type="text" [(ngModel)]="resourceInfo.availableDuration" class="form-control"> -->
             </div>
         </div>
     </div>

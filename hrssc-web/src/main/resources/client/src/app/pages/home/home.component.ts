@@ -55,9 +55,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  viewResourceDetail(id) {
-    // this.router.navigate(['manager/resource/info']);
-    this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});
+
+  viewResourceDetail(humanResourceId) {
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});
   }
 
   viewProjectDetail(project: Project) {

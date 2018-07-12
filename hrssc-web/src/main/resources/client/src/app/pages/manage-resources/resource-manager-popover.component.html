@@ -3,131 +3,407 @@
     <div id="modal_default" class="modal fade" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h5 lass="content-group-lg">Add new a resource</h5>
+                    <h5 lass="content-group-lg">Add a new resource</h5>
                 </div>
 
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group has-feedback">
-                                <label>Name</label>
-                                <input type="text" [(ngModel)]="formModel.fullname" class="form-control" placeholder="Name of resource">
-                                <div class="form-control-feedback">
-                                    <i class="icon-user-tie text-muted"></i>
+                <!-- <form-wizard>
+                    <wizard-step [title]="'Personal infomation'">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Name</b>
+                                    <div class="form-group has-feedback">
+                                        <input type="text" [(ngModel)]="formModel.fullname" class="form-control" placeholder="Name of resource">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-user-tie text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>Email</b>
+                                    <div class="form-group has-feedback">
+                                        <input type="text" [(ngModel)]="formModel.email" class="form-control" placeholder="resource@gmail.com">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-envelop text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Tel</b>
+                                    <div class="form-group has-feedback">
+                                        <input type="text" [(ngModel)]="formModel.tel" class="form-control" placeholder="0xxxxxxxx">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone2 text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <b>Salary</b>
+                                    <div class="form-group has-feedback">
+                                        <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-coins text-muted"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group has-feedback">
-                                <label>Email</label>
-                                <input type="text" [(ngModel)]="formModel.email" class="form-control" placeholder="resource@gmail.com">
-                                <div class="form-control-feedback">
-                                    <i class="icon-envelop text-muted"></i>
+                    </wizard-step>
+                    <wizard-step [title]="'Skill and time'">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Start date</b>
+                                    <div class="form-group has-feedback">
+                                        <form #myForm="ngForm" novalidate>
+                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
+                                        </form>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone2 text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <b>End date</b>
+                                    <div class="form-group has-feedback">
+                                        <form #myForm="ngForm" novalidate>
+                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
+                                        </form>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone2 text-muted"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group has-feedback">
-                                <label>Tel</label>
-                                <input type="text" [(ngModel)]="formModel.tel" class="form-control" placeholder="0xxxxxxxx">
-                                <div class="form-control-feedback">
-                                    <i class="icon-phone2 text-muted"></i>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Skill</b>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>Experience</b>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group has-feedback has-feedback-left">
-                                <label>Salary</label>
-                                <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $">
-                                <div class="form-control-feedback">
-                                    <i class="icon-coins text-muted"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- <div class="form-group has-feedback has-feedback-left">
-                                            <label style="float: left;">Skill</label>
-                                            <div class="col-md-6" style="float: right;">
-                                                <div class="form-group" style="float: right;">
-                                                    <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
-                                                        <i class="icon-plus22"></i>
-                                                    </button>
+                            <div class="row" style="height: 120px; overflow: hidden; position: relative;">
+                                <div style="position: absolute; top: 0; bottom: 0; left: 0; right: -17px; overflow-y: scroll;  overflow-x: hidden;">
+                                    <div *ngFor="let skill of skills">
+                                        <div class="col-sm-6">
+                                            <div class="form-group has-feedback">
+                                                <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
+                                                <div class="form-control-feedback">
+                                                    <i class=" icon-chess text-muted"></i>
                                                 </div>
                                             </div>
-                                            <div *ngFor="let skill of skills">
-                                                <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId"></ng-select>
-                                                <input type="number" [(ngModel)]="skill.experience" class="form-control input-xlg">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group has-feedback">
+                                                <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-calendar text-muted"></i>
+                                                </div>
                                             </div>
-                                        </div> -->
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <b>Skill</b>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label>&ensp;</label>
+                                        <div class="btn-group bootstrap-select" style="width: 100%;">
+                                            <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
+                                                <i class="icon-plus22 text-muted"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <b>Experience</b>
-                        </div>
-                    </div>
-                    <div class="row" style="height: 110px; overflow: hidden; position: relative;">
-                        <div style="position: absolute; top: 0; bottom: 0; left: 0; right: -17px; overflow-y: scroll;  overflow-x: hidden;">
-                            <div *ngFor="let skill of skills">
+                    </wizard-step>
+                </form-wizard> -->
+                <!-- <div class="steps-basic">
+                    <h6>Personal data</h6>
+                    <fieldset>
+                        <div class="modal-body">
+                            <div class="row">
                                 <div class="col-sm-6">
+                                    <b>Name</b>
                                     <div class="form-group has-feedback">
-                                        <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
+                                        <input type="text" [(ngModel)]="formModel.fullname" class="form-control" placeholder="Name of resource">
                                         <div class="form-control-feedback">
-                                            <i class=" icon-chess text-muted"></i>
+                                            <i class="icon-user-tie text-muted"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
+                                    <b>Email</b>
                                     <div class="form-group has-feedback">
-                                        <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                        <input type="text" [(ngModel)]="formModel.email" class="form-control" placeholder="resource@gmail.com">
                                         <div class="form-control-feedback">
-                                            <i class="icon-calendar text-muted"></i>
+                                            <i class="icon-envelop text-muted"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1">
-                                <label>&ensp;</label>
-                                <div class="btn-group bootstrap-select" style="width: 100%;">
-                                    <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
-                                        <i class="icon-plus22 text-muted"></i>
-                                    </button>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Tel</b>
+                                    <div class="form-group has-feedback">
+                                        <input type="text" [(ngModel)]="formModel.tel" class="form-control" placeholder="0xxxxxxxx">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone2 text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <b>Salary</b>
+                                    <div class="form-group has-feedback">
+                                        <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-coins text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+
+                    <h6>Skills and time</h6>
+                    <fieldset>
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Start date</b>
+                                    <div class="form-group has-feedback">
+                                        <form #myForm="ngForm" novalidate>
+                                            <my-date-picker name="mydate"  [options]="myDatePickerOptions" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
+                                        </form>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone2 text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <b>End date</b>
+                                    <div class="form-group has-feedback">
+                                        <form #myForm="ngForm" novalidate>
+                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
+                                        </form>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone2 text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>Skill</b>
+                                </div>
+                                <div class="col-sm-6">
+                                    <b>Experience</b>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 120px; overflow: hidden; position: relative;">
+                                <div style="position: absolute; top: 0; bottom: 0; left: 0; right: -17px; overflow-y: scroll;  overflow-x: hidden;">
+                                    <div *ngFor="let skill of skills">
+                                        <div class="col-sm-6">
+                                            <div class="form-group has-feedback">
+                                                <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
+                                                <div class="form-control-feedback">
+                                                    <i class=" icon-chess text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group has-feedback">
+                                                <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-calendar text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label>&ensp;</label>
+                                        <div class="btn-group bootstrap-select" style="width: 100%;">
+                                            <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
+                                                <i class="icon-plus22 text-muted"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div> -->
+                <div class="tabbable panel login-form width-400">
+                    <ul class="nav nav-tabs nav-tabs-bottom bottom-divided nav-justified">
+                        <li class="active">
+                            <a href="#basic-tab1" data-toggle="tab">
+                                <h6>Personal infomation</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#basic-tab2" data-toggle="tab">
+                                <h6>Skills and time</h6>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content panel-body">
+                        <div class="tab-pane fade in active" id="basic-tab1">
+
+                            <!-- Person info -->
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <b>Name</b>
+                                        <div class="form-group has-feedback">
+                                            <input type="text" [(ngModel)]="formModel.fullname" class="form-control" placeholder="Name of resource">
+                                            <div class="form-control-feedback">
+                                                <i class="icon-user-tie text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <b>Email</b>
+                                        <div class="form-group has-feedback">
+                                            <input type="text" [(ngModel)]="formModel.email" class="form-control" placeholder="resource@gmail.com">
+                                            <div class="form-control-feedback">
+                                                <i class="icon-envelop text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <b>Tel</b>
+                                        <div class="form-group has-feedback">
+                                            <input type="text" [(ngModel)]="formModel.tel" class="form-control" placeholder="0xxxxxxxx">
+                                            <div class="form-control-feedback">
+                                                <i class="icon-phone2 text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <b>Salary</b>
+                                        <div class="form-group has-feedback">
+                                            <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $">
+                                            <div class="form-control-feedback">
+                                                <i class="icon-coins text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="basic-tab2">
+                            <!-- Skills and time -->
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <b>Start date</b>
+                                        <div class="form-group has-feedback">
+                                            <form #myForm="ngForm" novalidate>
+                                                <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
+                                            </form>
+                                            <div class="form-control-feedback">
+                                                <i class="icon-phone2 text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <b>End date</b>
+                                        <div class="form-group has-feedback">
+                                            <form #myForm="ngForm" novalidate>
+                                                <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
+                                            </form>
+                                            <div class="form-control-feedback">
+                                                <i class="icon-phone2 text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <b>Skill</b>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <b>Experience</b>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: 120px; overflow: hidden; position: relative;">
+                                    <div style="position: absolute; top: 0; bottom: 0; left: 0; right: -17px; overflow-y: scroll;  overflow-x: hidden;">
+                                        <div *ngFor="let skill of skills">
+                                            <div class="col-sm-6">
+                                                <div class="form-group has-feedback">
+                                                    <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
+                                                    <div class="form-control-feedback">
+                                                        <i class=" icon-chess text-muted"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group has-feedback">
+                                                    <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                                    <div class="form-control-feedback">
+                                                        <i class="icon-calendar text-muted"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <label>&ensp;</label>
+                                            <div class="btn-group bootstrap-select" style="width: 100%;">
+                                                <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
+                                                    <i class="icon-plus22 text-muted"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group has-feedback">
-                                <label>Status</label>
-                                <select name="select" class="form-control" name="status" (change)="formModel.status=$event.target.value">
-                                    <option value="1" [selected]="formModel?.status==1">Available</option>
-                                    <option value="2" [selected]="formModel?.status!=1">Inactive</option>
-                                </select>
-                                <div class="form-control-feedback">
-                                    <i class="icon-bell3 text-muted"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
-                <div class="modal-footer">
+                <div class="modal-footer row">
 
-                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="addNewResource()">Add new</button>
+                    <div class="col-sm-6">
+                        <!-- <div class="form-group has-feedback">
+                            <select name="select" class="form-control" name="status" (change)="formModel.status=$event.target.value">
+                                <option value="1" [selected]="formModel?.status==1">Available</option>
+                                <option value="2" [selected]="formModel?.status!=1">Inactive</option>
+                            </select>
+                            <div class="form-control-feedback">
+                                <i class="icon-bell3 text-muted"></i>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ui-switch size="small" (change)="onValueChangeStatus($event)"  [(ngModel)]="status"></ui-switch>
+                            </div>
+                            <div class="col-sm-5" style="padding-top: 0;text-align: left">
+                                <b>{{status ? 'Available' : 'Inactive'}}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="addNewResource()">Add new</button>
+                    </div>
                 </div>
             </div>
         </div>
