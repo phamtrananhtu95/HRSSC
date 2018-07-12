@@ -4,6 +4,7 @@ import { Project, Company, Employee } from '../../models';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'hrssc-home',
@@ -22,24 +23,41 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
+    private prjSerivce: ProjectService,
     private authenticate: AuthenticateService,
   ) { }
 
   ngOnInit() {
     if (this.authenticate.checkLogin()) {
-      this.employeeService.getEmployees().subscribe(
-        res => {
-          this.employees = res;
-        },
-        err => {
-          console.log(err);
-        });
+        this.getHumanResource();
+        // this.getProjects();
     }
 
   }
 
-  viewResourceDetail(user: User) {
-    this.router.navigate(['manager/resource/info']);
+  getHumanResource() {
+    this.employeeService.getEmployees().subscribe(
+      res => {
+        this.employees = res;
+      },
+      err => {
+        console.log(err);
+      });
+  }
+  getProjects() {
+    this.prjSerivce.getProjects().subscribe(
+      res => {
+
+      },
+      err => {
+
+      }
+    );
+  }
+
+  viewResourceDetail(id) {
+    // this.router.navigate(['manager/resource/info']);
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});
   }
 
   viewProjectDetail(project: Project) {

@@ -1,11 +1,17 @@
+#button-add-emp {
+  right: 0px;
+  margin-bottom: 5px;
+}
 
-#button-add-emp{
-    right: 0px;
-    margin-bottom: 5px;
-   }
-   .btn-r-e{
-       width: 20px;
-   }
-   .btn-r-e button{
-       background: none;
-   }
+.btn-r-e {
+  width: 20px;
+}
+
+.btn-r-e button {
+  background: none;
+}
+
+h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

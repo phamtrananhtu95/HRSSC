@@ -8,6 +8,12 @@ export class ProjectService {
     private restService: RestService
   ) { }
 
+  getProjects() {
+      let url = 'ss';
+      return this.restService.get(url);
+  }
+
+
   getProjectByManagerId(id) {
     let url = 'manage-project/load-project/' + id;
     return this.restService.get(url);

@@ -20,11 +20,11 @@ export class Project {
 export class ProjectRequirement {
     payment: number;
     positionId: string;
-    skillSelect;
+    positionTitle: string;
     skillRequirementsById;
     quantity: number;
+    
     constructor(){
-        this.skillSelect = [],
         this.skillRequirementsById = [];
     }
     
@@ -32,6 +32,7 @@ export class ProjectRequirement {
 
 export class SkillRequirement {
     skillId: number;
+    skillTitle: string;
     experience: number;
 }
 

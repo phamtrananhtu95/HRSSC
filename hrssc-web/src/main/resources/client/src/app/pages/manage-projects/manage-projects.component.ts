@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input } from '@ang
 import { Project, SkillRequirement, ProjectRequirement } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
-import { skill } from '../../models/skill.model';
 import { Router } from '@angular/router';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 
@@ -19,17 +18,17 @@ export class ManageProjectsComponent implements OnInit {
     dateFormat: 'dd/mm/yyyy',
   };
   createDate: any = { date: { year: 2018, month: 10, day: 9 } };
-  endDate:any = { date: { year: 2018, month: 10, day: 9 } };
+  endDate: any = { date: { year: 2018, month: 10, day: 9 } };
   public parentTitle = "Home";
   public title = " - Manage projects";
   public subTitle = " - Project";
   public projects;
   public positions;
   positionSelected: Number;
-  skills: skill[];
   isChecked = false;
 
   public positionList = [];
+  public positionListShow = [];
   public userId;
   public companyId;
   public isUpdateForm: boolean;
@@ -40,10 +39,19 @@ export class ManageProjectsComponent implements OnInit {
   // add something
   public positionOpt;
   public skillOpt;
-  public listSkillExp;
+  public listDomainOpt;
+  public listTypeOpt;
   public isPositionUpdate: boolean;
 
   public countId = 0;
+  public listDomain = [
+    "Security","Education","Testing"
+  ];
+
+  public listType = [
+    "Web Application","Mobile","Desktop Application"
+  ];
+
 
   constructor(
     private auth: AuthenticateService,
@@ -52,8 +60,8 @@ export class ManageProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    
+
+
     // this.projects = new projectList().projects;
     if (this.auth.checkLogin()) {
       // let userInfo = this.auth.getUserInfo();
@@ -61,15 +69,31 @@ export class ManageProjectsComponent implements OnInit {
       this.companyId = this.auth.getCompanyId();
       this.getProjectsByCompanyId();
       this.loadAllPosition();
-      this.formPositionModel.positionId = '1';
-      if (this.formPositionModel.positionId) {
-        this.loadSkillByPositionId(this.formPositionModel.positionId);
-        this.formPositionModel.skillSelect = [
-          15, 2
-        ]
-      }
-      this.formPositionModel.quantity = 1;
-      this.formPositionModel.payment = 1;
+
+      this.formPositionModel.skillRequirementsById = [];
+      this.formPositionModel.skillRequirementsById.push(new SkillRequirement());
+
+      // 
+      this.listDomainOpt = [];
+      this.listDomain.forEach(domain => {
+          this.listDomainOpt.push({ value: domain.toString(), label: domain })
+      });
+      
+      // 
+      this.listTypeOpt = [];
+      this.listType.forEach(type => {
+          this.listTypeOpt.push({ value: type.toString(), label: type })
+      });
+      // 
+      // this.formPositionModel.positionId = '1';
+      // if (this.formPositionModel.positionId) {
+      //   this.loadSkillByPositionId(this.formPositionModel.positionId);
+      //   this.formPositionModel.skillSelect = [
+      //     15, 2
+      //   ]
+      // }
+      // this.formPositionModel.quantity = 1;
+      // this.formPositionModel.payment = 1;
 
     }
   }
@@ -95,8 +119,8 @@ export class ManageProjectsComponent implements OnInit {
       }
     );
   }
-  viewProjectDetail(id:any){
-    this.router.navigate(['manager/project/info'], {queryParams:{"id": id}});
+  viewProjectDetail(id: any) {
+    this.router.navigate(['manager/project/info'], { queryParams: { "id": id } });
   }
 
   loadAllPosition() {
@@ -125,11 +149,8 @@ export class ManageProjectsComponent implements OnInit {
     this.prjService.loadSkillByPositionId(id).subscribe(
       res => {
         this.skillOpt = [];
-        this.listSkillExp = [];
         res.forEach(skill => {
-          this.skillOpt.push({ value: skill.id, label: skill.title })
-          this.listSkillExp.push(skill);
-
+          this.skillOpt.push({ value: skill.id.toString(), label: skill.title })
         });
       },
       err => {
@@ -139,30 +160,30 @@ export class ManageProjectsComponent implements OnInit {
   }
   onPositionSelected(val: any) {
     this.loadSkillByPositionId(val);
-    this.listSkillExp = [];
     this.formPositionModel.skillRequirementsById = [];
+    this.formPositionModel.skillRequirementsById.push(new SkillRequirement());
+  }
+  createNewSkill() {
+    this.formPositionModel.skillRequirementsById.push(new SkillRequirement());
   }
 
-  onSkillSelected(val: any) {
-    this.formPositionModel.skillRequirementsById = [];
-    console.log(this.listSkillExp);
-    val.forEach(val => {
-      this.listSkillExp.forEach(el => {
-        if (el.id === val) {
-          var tmp = {
-            skillId: el.id,
-            title: el.title,
-            positionId: el.positionId
+  // onSkillSelected(val: any) {
+  //   val.forEach(val => {
+  //     this.listSkillExp.forEach(el => {
+  //       if (el.id === val) {
+  //         var tmp = {
+  //           skillId: el.id,
+  //           title: el.title,
+  //           positionId: el.positionId
 
-          }
-          this.formPositionModel.skillRequirementsById.push(tmp);
-          console.log(this.formPositionModel.skillRequirementsById);
-        }
-      });
-    });
-    // console.log(this.formPositionModel.skillRequirementsById);
+  //         }
+  //         this.formPositionModel.skillRequirementsById.push(tmp);
+  //       }
+  //     });
+  //   });
+  //   // console.log(this.formPositionModel.skillRequirementsById);
 
-  }
+  // }
 
   selectSkill(val: any) {
     if (val.checked === true) {
@@ -175,41 +196,50 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   addNewPosition() {
+    this.positionOpt.forEach(pos => {
+      if (pos.value == this.formPositionModel.positionId) {
+        this.formPositionModel.positionTitle = pos.label;
+      }
+    });
+    this.skillOpt.forEach(skils => {
+        this.formPositionModel.skillRequirementsById.forEach(el => {
+          if(el.skillId == skils.value){
+            el.skillTitle = skils.label;
+          }
+        });
+    });
+    // console.log(this.skillOpt);
+    // console.log(this.formPositionModel.skillRequirementsById);
+    // this.formPositionModel.skillRequirementsById.forEach(el => {
+    //   el.skillTitle = "java"
+    // });
+    var projectRequirement = Object.assign({}, this.formPositionModel);
 
-    console.log(this.formPositionModel);
-    var projectRequirement = this.formPositionModel;
+    // this.formPositionModel = Object.assign({}, val.value);
     this.positionList.push({
       id: this.countId,
       value: projectRequirement
     })
-    console.log(this.positionList);
     this.countId = this.countId + 1;
+
+    $('#quantityAdd').val('');
+    $('#paymentAdd').val('');
 
 
     // ver 2
 
   }
-  updateNewPosition() {
-    this.positionList.forEach(el => {
-      if (el === this.formPositionModel) {
 
-      }
-    });
-  }
-  addPosition() {
-    this.isPositionUpdate = false;
-    this.formPositionModel = new ProjectRequirement();
-  }
   editPosition(val: any) {
-    console.log(val);
-    this.isPositionUpdate = true;
     this.formPositionModel = Object.assign({}, val.value);
+    this.loadSkillByPositionId(this.formPositionModel.positionId);
 
     this.positionList.forEach(el => {
       if (el.id === val.id) {
         el.value = this.formPositionModel;
       }
     });
+
     // console.log(this.positionList);
     // $("#positionAdd option[id='" + projectRequirement.positionId + "']").prop('selected', true);
 
@@ -228,7 +258,8 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   addNewProject() {
-
+    this.formModel.domain = this.formModel.domain.toString();
+    this.formModel.type = this.formModel.type.toString();
 
     this.formModel.userId = this.userId;
     this.formModel.companyId = this.companyId;
