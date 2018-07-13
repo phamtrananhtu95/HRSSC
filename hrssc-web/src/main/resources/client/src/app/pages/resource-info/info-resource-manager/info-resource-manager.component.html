@@ -37,7 +37,7 @@
                 <!-- <input type="text" [(ngModel)]="resourceInfo.availableDate" class="form-control"> -->
 
                 <form #myForm="ngForm" novalidate>
-                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
+                    <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
                         required></my-date-picker>
                 </form>
             </div>
@@ -70,7 +70,7 @@
                 <div class="col-sm-6">
                     <div class="has-feedback">
 
-                        <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 999;"></ng-select>
+                        <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 9;"></ng-select>
                     </div>
                 </div>
                 <div class="col-sm-5">

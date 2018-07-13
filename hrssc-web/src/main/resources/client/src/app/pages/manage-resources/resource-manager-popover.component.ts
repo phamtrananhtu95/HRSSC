@@ -25,6 +25,10 @@ export class ResourceManagerPopoverComponent implements OnInit {
     public skills: Skill[];
     public status = null;
 
+    // wizard
+    public isChangeTab = false;
+    public isEndChangeTab = false;
+
     public myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
     };
@@ -42,7 +46,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
     ngOnInit() {
         (<any>window).wizardStepsTu = true;
         (<any>window).stepsMinTu = true;
-        
+
         // From wizard_steps.
         (<any>window).resourceManagerPopoverComponent = this;
         this.getSkillOpts();
@@ -51,7 +55,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
 
         this.formModel.companyId = this.authenticateService.getCompanyId();
         this.formModel.userId = this.authenticateService.getUserId();
-        
+
     }
 
     addNewResource() {
@@ -76,7 +80,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
         //     }
         // );
     }
-    testClick(){
+    testClick() {
         alert(123);
     }
 
@@ -85,7 +89,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
             res => {
                 this.skillOpts = [];
                 res.forEach(skill => {
-                    this.skillOpts.push({value: skill.id.toString(), label: skill.title});
+                    this.skillOpts.push({ value: skill.id.toString(), label: skill.title });
                 });
                 console.log(this.skillOpts);
             },
@@ -95,7 +99,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
         );
     }
 
-    createNewSkill(){
+    createNewSkill() {
         this.skills.push(new Skill());
         console.log(this.skills);
     }
@@ -120,8 +124,18 @@ export class ResourceManagerPopoverComponent implements OnInit {
         this.formModel.availableDuration = event && event.jsdate ? event.jsdate.getTime() : null;
     }
 
-    onValueChangeStatus($event){
+    onValueChangeStatus($event) {
         this.formModel.status = $event ? 1 : 2;
         // console.log(this.formModel);
+    }
+
+    nextTab() {
+        this.isChangeTab = true;
+        this.isEndChangeTab = false;
+    }
+
+    preTab() {
+        this.isChangeTab = false;
+        this.isEndChangeTab = true;
     }
 }

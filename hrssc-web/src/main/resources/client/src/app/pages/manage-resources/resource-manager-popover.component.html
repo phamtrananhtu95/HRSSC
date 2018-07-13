@@ -305,6 +305,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
 
@@ -318,9 +320,6 @@
                                             <form #myForm="ngForm" novalidate>
                                                 <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
                                             </form>
-                                            <div class="form-control-feedback">
-                                                <i class="icon-phone2 text-muted"></i>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -330,9 +329,6 @@
                                             <form #myForm="ngForm" novalidate>
                                                 <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
                                             </form>
-                                            <div class="form-control-feedback">
-                                                <i class="icon-phone2 text-muted"></i>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -344,12 +340,12 @@
                                         <b>Experience</b>
                                     </div>
                                 </div>
-                                <div class="row" style="height: 120px; overflow: hidden; position: relative;">
+                                <div class="row" style="height: 150px; overflow: hidden; position: relative;">
                                     <div style="position: absolute; top: 0; bottom: 0; left: 0; right: -17px; overflow-y: scroll;  overflow-x: hidden;">
                                         <div *ngFor="let skill of skills">
                                             <div class="col-sm-6">
                                                 <div class="form-group has-feedback">
-                                                    <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 99;"></ng-select>
+                                                    <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId"></ng-select>
                                                     <div class="form-control-feedback">
                                                         <i class=" icon-chess text-muted"></i>
                                                     </div>
@@ -379,6 +375,34 @@
                     </div>
                 </div>
 
+                <!-- <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <b>Pre</b>
+                        <div class="form-group has-feedback">
+                            <a href="#basic-tab1" type="button" (click)="preTab()" class="btn border-default text-blue-600 btn-flat btn-icon btn-rounded"
+                                data-toggle="tab">
+                                <i class="icon-arrow-left16"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <b>Next</b>
+                        <div>
+                            <a href="#basic-tab2" type="button" (click)="nextTab()" class="btn border-default text-blue-600 btn-flat btn-icon btn-rounded"
+                                data-toggle="tab">
+                                <i class="icon-arrow-right16"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+
+                </div> -->
+
                 <div class="modal-footer row">
 
                     <div class="col-sm-6">
@@ -393,10 +417,10 @@
                         </div> -->
                         <div class="row">
                             <div class="col-md-6">
-                                <ui-switch size="small" (change)="onValueChangeStatus($event)"  [(ngModel)]="status"></ui-switch>
+                                <ui-switch size="small" (change)="onValueChangeStatus($event)" [(ngModel)]="status"></ui-switch>
                             </div>
-                            <div class="col-sm-5" style="padding-top: 0;text-align: left">
-                                <b>{{status ? 'Available' : 'Inactive'}}</b>
+                            <div class="col-sm-5 text-simboild" style="padding-top: 0;text-align: left">
+                                <span class="label label-rounded" [ngClass]="status == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'">{{status ? 'Available' : 'Inactive'}}</span>
                             </div>
                         </div>
                     </div>
