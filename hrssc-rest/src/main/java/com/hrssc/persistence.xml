@@ -27,6 +27,7 @@
     <mapping class="com.hrssc.entities.ProjectRequirements"/>
       <mapping class="com.hrssc.entities.SimilarProject"/>
       <mapping class="com.hrssc.entities.SimilarResource"/>
+      <mapping class="com.hrssc.entities.Contract"/>
 
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->

@@ -27,6 +27,7 @@ public class Job {
     private Project projectByProjectId;
     @JsonView(HumanResourceView.history.class)
     private int status;
+    private Contract contractByContractId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -123,5 +124,15 @@ public class Job {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "contract_id", referencedColumnName = "id")
+    public Contract getContractByContractId() {
+        return contractByContractId;
+    }
+
+    public void setContractByContractId(Contract contractByContractId) {
+        this.contractByContractId = contractByContractId;
     }
 }

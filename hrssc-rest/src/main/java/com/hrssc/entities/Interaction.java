@@ -28,6 +28,7 @@ public class Interaction {
     private int projectId;
     @JsonView({InvitationView.ListView.class,MatchingView.Resource.class})
     private Project projectByProjectId;
+    private Contract contractByContractId;
 
     public Interaction(String type){
         this.type = type;
@@ -81,8 +82,6 @@ public class Interaction {
         return Objects.hash(id, type,humanResourceId);
     }
 
-
-
     @Basic
     @Column(name = "rankingScore")
     public Double getRankingScore() {
@@ -121,5 +120,15 @@ public class Interaction {
 
     public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
         this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "contract_id", referencedColumnName = "id")
+    public Contract getContractByContractId() {
+        return contractByContractId;
+    }
+
+    public void setContractByContractId(Contract contractByContractId) {
+        this.contractByContractId = contractByContractId;
     }
 }
