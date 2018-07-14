@@ -10,7 +10,7 @@ public interface ApplianceService {
     String applyToProject(Interaction interaction);
     List<Project> loadAllProjectAppliance(int managerId);
     List<HumanResource> loadAllResourceAppliance(int managerId);
-    Interaction loadContract(int interactonId) throws Exception;
+
     String acceptAppliance(Interaction interaction);
     String rejectAppliance(Interaction interaction);
 }

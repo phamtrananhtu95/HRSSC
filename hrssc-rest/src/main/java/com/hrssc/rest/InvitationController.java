@@ -2,6 +2,7 @@ package com.hrssc.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.dto.ResponseStatus;
+import com.hrssc.domain.jacksonview.ApplianceView;
 import com.hrssc.domain.jacksonview.InvitationView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Interaction;
@@ -38,6 +39,13 @@ public class InvitationController {
     public List<HumanResource> getAllInvitations(@PathVariable(value = "managerId") int managerId){
         return  invitationService.loadAllInvitationByManager(managerId);
     }
+
+    @JsonView(ApplianceView.Listview.class)
+    @GetMapping("/get-resource-offers/{managerId}")
+    public List<Project> loadAllResourceAppliance(@PathVariable("managerId") int managerId){
+        return  invitationService.loadAllOfferByManager(managerId);
+    }
+
 
     @PostMapping(value = "/accept")
     public ResponseStatus acceptInvitation(@RequestBody Interaction invitation){

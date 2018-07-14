@@ -178,11 +178,5 @@ public class ApplianceServiceImpl implements ApplianceService {
         return "Success";
     }
 
-    public Interaction loadContract(int interactonId) throws Exception{
-        Interaction resultInteraction = interactionRepository.findById(interactonId);
-        if(resultInteraction == null){
-            throw new NotFoundException("Khong tim thay interaction!");
-        }
-        return resultInteraction;
-    }
+
 }

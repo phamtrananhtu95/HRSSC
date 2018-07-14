@@ -30,7 +30,7 @@ public class Interaction {
     private Project projectByProjectId;
     @JsonView(ApplianceView.ContractView.class)
     private Contract contractByContractId;
-    @JsonView({ApplianceView.Listview.class,ApplianceView.ContractView.class})
+    @JsonView({InvitationView.ListView.class,ApplianceView.Listview.class,ApplianceView.ContractView.class})
     private Integer contractId;
 
     public Interaction(String type){

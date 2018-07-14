@@ -36,6 +36,9 @@ public class InvitationServiceImpl implements InvitationService {
     @Autowired
     ProjectManagementService projectManagementService;
 
+    @Autowired
+    ContractRepository contractRepository;
+
     @Override
     public String inviteResource(Interaction interaction){
         Job job = jobRepository.findByProjectIdAndHumanResourceId(interaction.getProjectId(),interaction.getHumanResourceId());
@@ -44,13 +47,28 @@ public class InvitationServiceImpl implements InvitationService {
         }
         Interaction interactionEntity = interactionRepository.findByHumanResourceIdAndProjectId(
                 interaction.getHumanResourceId(),interaction.getProjectId());
+
+        //Lưu Contract
+        Contract contract = interaction.getContractByContractId();
+        contract.setCreatedDate(System.currentTimeMillis()/1000);
+
+
         if(interactionEntity != null){
-            if(interactionEntity.getType().equals(Constant.InteractionType.MATCH)){
+            String type = interactionEntity.getType();
+            if(type.equals(Constant.InteractionType.MATCH)){
+                contract = contractRepository.save(contract);
                 interactionEntity.setType(Constant.InteractionType.INVITE);
+                interactionEntity.setContractId(contract.getId());
                 interactionRepository.save(interactionEntity);
+            }else if(type.equals(Constant.InteractionType.INVITE)){
+                return "This resource has been invited to this project";
+            }else if(type.equals(Constant.InteractionType.APPLY)){
+                return "This resource has been applied to this project";
             }
         }else{
+            contract = contractRepository.save(contract);
             interaction.setType(Constant.InteractionType.INVITE);
+            interaction.setContractId(contract.getId());
             interactionRepository.save(interaction);
         }
         return "Successfully Invited this Resource.";
@@ -70,14 +88,30 @@ public class InvitationServiceImpl implements InvitationService {
             if(interactionList.size() > 0){
                 resource.setInteractionsById(interactionList);
                 resultList.add(resource);
-                interactionList = new ArrayList<>();
             }
-
-
         }
         return resultList;
     }
 
+
+    public List<Project> loadAllOfferByManager(int managerId){
+        List<Project> projectList = projectManagementService.getProjectByManagerId(managerId);
+        List<Project> resultList = new ArrayList<>();
+        for(Project project: projectList){
+            List<Interaction> interactionList = new ArrayList<>();
+            for(Interaction interaction: project.getInteractionsById()){
+                if(interaction.getType().equals(Constant.InteractionType.INVITE)){
+                    interactionList.add(interaction);
+                }
+            }
+            if(interactionList.size() > 0){
+                project.setInteractionsById(interactionList);
+                resultList.add(project);
+
+            }
+        }
+        return resultList;
+    }
     @Transactional
     @Override
     public String acceptInvitation(Interaction invitation){
@@ -98,6 +132,8 @@ public class InvitationServiceImpl implements InvitationService {
         }else {
             return "Invitation not existed";
         }
+
+
         //1. Lưu Job
         Job job = new Job();
         job.setHumanResourceId(invitation.getHumanResourceId());

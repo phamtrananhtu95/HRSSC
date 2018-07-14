@@ -37,16 +37,12 @@ public class ApplianceController {
     }
 
     @JsonView(InvitationView.ListView.class)
-    @GetMapping("/get-resource-appliance/{managerId}")
+    @GetMapping("/get-project-offers/{managerId}")
     public List<HumanResource> loadAllResourceAppliance(@PathVariable("managerId") int managerId){
         return  applianceService.loadAllResourceAppliance(managerId);
     }
 
-    @JsonView(ApplianceView.ContractView.class)
-    @GetMapping("/get-contract/{interactionId}")
-    public Interaction loadContract(@PathVariable("interactionId") int interactionId) throws Exception{
-        return applianceService.loadContract(interactionId);
-    }
+
 
     @PostMapping("/accept")
     public ResponseStatus acceptAppliance(@RequestBody Interaction interaction){

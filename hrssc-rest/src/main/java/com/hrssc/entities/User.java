@@ -44,6 +44,7 @@ public class User {
     private Role roleByRoleId;
     @JsonView({FeedbackView.loadAllview.class})
     private Company companyByCompanyId;
+    private Collection<Contract> contractsById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -232,5 +233,14 @@ public class User {
 
     public void setCompanyByCompanyId(Company companyByCompanyId) {
         this.companyByCompanyId = companyByCompanyId;
+    }
+
+    @OneToMany(mappedBy = "userByLatestEditorId" )
+    public Collection<Contract> getContractsById() {
+        return contractsById;
+    }
+
+    public void setContractsById(Collection<Contract> contractsById) {
+        this.contractsById = contractsById;
     }
 }

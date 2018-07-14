@@ -26,6 +26,8 @@ public class Contract {
     private boolean isAccepted;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
+    private Integer latestEditorId;
+    private User userByLatestEditorId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -145,5 +147,25 @@ public class Contract {
 
     public void setJobsById(Collection<Job> jobsById) {
         this.jobsById = jobsById;
+    }
+
+    @Basic
+    @Column(name = "latest_editor_id", nullable = true)
+    public Integer getLatestEditorId() {
+        return latestEditorId;
+    }
+
+    public void setLatestEditorId(Integer latestEditorId) {
+        this.latestEditorId = latestEditorId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "latest_editor_id", referencedColumnName = "id", updatable = false, insertable = false)
+    public User getUserByLatestEditorId() {
+        return userByLatestEditorId;
+    }
+
+    public void setUserByLatestEditorId(User userByLatestEditorId) {
+        this.userByLatestEditorId = userByLatestEditorId;
     }
 }
