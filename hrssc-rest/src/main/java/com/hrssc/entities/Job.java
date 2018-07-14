@@ -128,7 +128,7 @@ public class Job {
     }
 
     @ManyToOne
-    @JoinColumn(name = "contract_id", referencedColumnName = "id")
+    @JoinColumn(name = "contract_id", referencedColumnName = "id", updatable = false, insertable = false)
     public Contract getContractByContractId() {
         return contractByContractId;
     }
