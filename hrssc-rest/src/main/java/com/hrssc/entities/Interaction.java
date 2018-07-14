@@ -29,6 +29,7 @@ public class Interaction {
     @JsonView({InvitationView.ListView.class,MatchingView.Resource.class})
     private Project projectByProjectId;
     private Contract contractByContractId;
+    private Integer contractId;
 
     public Interaction(String type){
         this.type = type;
@@ -130,5 +131,15 @@ public class Interaction {
 
     public void setContractByContractId(Contract contractByContractId) {
         this.contractByContractId = contractByContractId;
+    }
+
+    @Basic
+    @Column(name = "contract_id")
+    public Integer getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 }
