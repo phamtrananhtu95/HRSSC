@@ -26,6 +26,7 @@ public class Contract {
     private boolean isAccepted;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
+    @JsonView(ApplianceView.ContractView.class)
     private Integer latestEditorId;
     private User userByLatestEditorId;
 

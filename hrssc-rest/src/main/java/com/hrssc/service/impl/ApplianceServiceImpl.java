@@ -78,6 +78,7 @@ public class ApplianceServiceImpl implements ApplianceService {
         dbContract.setStartDate(applyContract.getStartDate());
         dbContract.setEndDate(applyContract.getEndDate());
         dbContract.setAdditionalTerms(applyContract.getAdditionalTerms());
+        dbContract.setLatestEditorId(applyContract.getLatestEditorId());
 
         dbContract = contractRepository.save(dbContract);
         applyInteraction.setContractId(dbContract.getId());
