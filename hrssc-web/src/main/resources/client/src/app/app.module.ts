@@ -76,6 +76,14 @@ import { ProjectSimilarComponent } from './pages/project-info/project-similar/pr
 import { ResourceJoinedComponent } from './pages/project-info/resource-joined/resource-joined.component';
 import { HistoryProjectComponent } from './pages/resource-info/history-project/history-project.component';
 import { CompanyProfileComponent } from './pages/company-info/company-profile/company-profile.component';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ChatPageComponent } from './pages/chat-page/chat-page.component';
+import { LocalstoragesService } from './services/localstorages.service';
+import { ChatFeedComponent } from './pages/chat-page/chat-feed/chat-feed.component';
+import { ChatMessageComponent } from './pages/chat-page/chat-message/chat-message.component';
+import { ChatFormComponent } from './pages/chat-page/chat-form/chat-form.component';
+import { ChatService } from './services/chat.service';
+
 
 const appRoutes: Routes = [
 
@@ -150,6 +158,16 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
+    path: 'search',
+    component: SearchPageComponent,
+    data: { title: 'Search page' }
+  },
+  {
+    path: 'inbox/user',
+    component: ChatPageComponent,
+    data: { title: 'Inbox' }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -200,7 +218,12 @@ const appRoutes: Routes = [
     ProjectSimilarComponent,
     ResourceJoinedComponent,
     HistoryProjectComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    SearchPageComponent,
+    ChatPageComponent,
+    ChatFeedComponent,
+    ChatMessageComponent,
+    ChatFormComponent
   ],
   imports: [
     BrowserModule,
@@ -241,7 +264,10 @@ const appRoutes: Routes = [
     ScriptLoadService,
     ManagementService,
     InvitationService,
-    ApplianceService
+    ApplianceService,
+    ChatService,
+    LocalstoragesService,
+    
   ],
   bootstrap: [AppComponent]
 })

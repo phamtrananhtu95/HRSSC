@@ -50,6 +50,7 @@ export class InfoProjectManagerComponent implements OnInit {
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
       if (this.projectInfo.projectRequirementsById) {
         this.listSkill = [];
+        this.positionList = [];
         this.projectInfo.projectRequirementsById.forEach(el => {
 
           this.positionList.push({
@@ -175,12 +176,12 @@ export class InfoProjectManagerComponent implements OnInit {
         this.formPositionModel = el.value;
         this.formPositionModel.positionId = el.value.positionId.toString();
         this.loadSkillByPositionId(this.formPositionModel.positionId);
-        // this.formPositionModel.skillSelect = [];
-        // let skills = el.value.skillRequirementsById;
-        // skills.forEach(el => {
-        //   this.formPositionModel.skillSelect.push(el.skillBySkillId.id.toString());
-        //   // this.formPositionModel.skillRequirementsById.push(el);
-        // });
+        this.formPositionModel.skillSelect = [];
+        let skills = el.value.skillRequirementsById;
+        skills.forEach(el => {
+          this.formPositionModel.skillSelect.push(el.skillBySkillId.id.toString());
+          // this.formPositionModel.skillRequirementsById.push(el);
+        });
       }
     });
     // console.log(this.positionList);

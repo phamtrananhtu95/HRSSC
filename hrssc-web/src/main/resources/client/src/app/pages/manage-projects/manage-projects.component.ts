@@ -7,6 +7,7 @@ import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-pick
 
 declare var $: any;
 
+
 @Component({
   selector: 'app-manage-projects',
   templateUrl: './manage-projects.component.html',
@@ -60,8 +61,10 @@ export class ManageProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-
+    (<any>window).datatables = true;
+    (<any>window).select2 = true;
+    (<any>window).datatablesBasic = true;
+    
     // this.projects = new projectList().projects;
     if (this.auth.checkLogin()) {
       // let userInfo = this.auth.getUserInfo();
@@ -97,6 +100,8 @@ export class ManageProjectsComponent implements OnInit {
 
     }
   }
+
+  
 
   onDateChangedCreate(event: IMyDateModel) {
     this.formModel.createDate = event && event.jsdate ? event.jsdate.getTime() : null;

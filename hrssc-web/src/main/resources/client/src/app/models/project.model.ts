@@ -23,8 +23,9 @@ export class ProjectRequirement {
     positionTitle: string;
     skillRequirementsById;
     quantity: number;
-    
+    skillSelect;
     constructor(){
+        this.skillSelect = [];
         this.skillRequirementsById = [];
     }
     

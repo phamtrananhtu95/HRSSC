@@ -172,7 +172,7 @@
                     <div *ngFor="let skill of formPositionModel.skillRequirementsById" >
                         <label (ngModel)="skill.skillBySkillId.id">{{skill.skillBySkillId.title}}</label>
                         <input type="number" [(ngModel)]="skill.experience" placeholder="Enter experience.." class="form-control input-xlg">
-                        {{skill.experience}}
+                        
                       </div>
                   </div>
 
@@ -200,7 +200,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
           <button type="submit" *ngIf="!isPositionUpdate" data-dismiss="modal" (click)="addNewPosition()" class="btn btn-primary">Save</button>
-          <button type="submit" *ngIf="isPositionUpdate" data-dismiss="modal" class="btn btn-primary" (click)="updateNewPosition()">Update</button>
+          <button type="submit" *ngIf="isPositionUpdate" data-dismiss="modal" class="btn btn-primary" (click)="updateNewPosition()">Updates</button>
         </div>
       </div>
     </div>

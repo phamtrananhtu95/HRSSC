@@ -12,362 +12,336 @@
   </div>
   <div class="panel panel-flat">
     <div class="panel-body">
-      <div class="tabbable">
-        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-          <li class="active">
-            <a href="#highlighted-justified-tab1" data-toggle="tab" aria-expanded="false">Openning</a>
-          </li>
-          <li class="">
-            <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">Closed</a>
-          </li>
-        </ul>
+      <table class="table datatable-basic table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Created Date</th>
+            <th>Matched</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects" (click)="viewProjectDetail(project.id)">
+            <td>{{project.title}}</td>
+            <td>{{project.type}}</td>
+            <td>{{project.createDate}}</td>
+            <td></td>
+            <td>
+              <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'">
+                {{project.processStatus == 1 ? "PENDING" : "ON GOING"}}</span>
+            </td>
+            <td class="btn-r-e">
+              <button type="submit" class="btn" data-toggle="modal" data-target="#modal_small" (click)="updateProject(project)">
+                <i class="icon-pencil"></i>
+              </button>
+            </td>
 
-        <div class="tab-content">
-          <div class="tab-pane active" id="highlighted-justified-tab1">
-            <div class="panel panel-flat">
-              <div class="table-responsive">
-                <table class="table datatable-basic table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Created Date</th>
-                      <th>Matched</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let project of projects" (click)="viewProjectDetail(project.id)">
-                    <tr>
-                      <td>{{project.id}}</td>
-                      <td>{{project.title}}</td>
-                      <td>{{project.type}}</td>
-                      <td>{{project.createDate}}</td>
-                      <td></td>
-                      <td>
-                        <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'">
-                          {{project.processStatus == 1 ? "PENDING" : "ON GOING"}}</span>
-                      </td>
-                      <td class="btn-r-e">
-                        <button type="submit" class="btn" data-toggle="modal" data-target="#modal_small" (click)="updateProject(project)">
-                          <i class="icon-pencil"></i>
-                        </button>
-                      </td>
+          </tr>
 
-                    </tr>
+        </tbody>
+      </table>
 
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+      <div class="modal-content">
+        <div id="modal_small" class="modal fade" style="display: none;">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h5 class="modal-title">Manager project</h5>
+              </div> -->
 
-          <div class="tab-pane" id="highlighted-justified-tab2">
-            Close project
-          </div>
-        </div>
+              <div class="modal-body">
+                <fieldset class="content-group">
+                  <legend class="text-bold" style="margin-bottom: 0">Add new project</legend>
+                  <!-- <legend class="text-bold" *ngIf="isUpdateForm">Update project</legend> -->
 
-        <!-- popup add new -->
-        <div class="modal-content">
-          <div id="modal_small" class="modal fade" style="display: none;">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <!-- <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">×</button>
-                  <h5 class="modal-title">Manager project</h5>
-                </div> -->
-
-                <div class="modal-body">
-                  <fieldset class="content-group">
-                    <legend class="text-bold" style="margin-bottom: 0">Add new a project</legend>
-                    <!-- <legend class="text-bold" *ngIf="isUpdateForm">Update project</legend> -->
-
-                    <ul class="nav nav-tabs nav-tabs-top nav-justified">
-                      <li class="active">
-                        <a href="#AddInfoTab" data-toggle="tab">
-                          <h6>Info</h6>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#AddPositionTab" data-toggle="tab">
-                          <h6>Position</h6>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#AddDescription" data-toggle="tab">
-                          <h6>Description</h6>
-                        </a>
-                      </li>
-                    </ul>
-                    <div class="tab-content panel-body no-padding">
-                      <div class="tab-pane fade in active" id="AddInfoTab">
-                        <div class="form-group">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group has-feedback has-feedback-left">
-                                    <label>Project name</label>
-                                    <!-- Web application, mobile , desktop -->
-                                    <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="Abc application">
-                                    <div class="form-control-feedback">
-                                      <i class="icon-office"></i>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <div class="form-group has-feedback has-feedback-left">
-                                    <label>Domain</label>
-                                    <!-- security,  -->
-                                    <!-- <input type="text" [(ngModel)]="formModel.domain" class="form-control input-xlg" placeholder="Testing...">
-                                    <div class="form-control-feedback">
-                                      <i class="icon-office"></i>
-                                    </div> -->
-
-                                    <ng-select [options]="listDomainOpt" [multiple]=true [(ngModel)]="formModel.domain" style="z-index: 99;">
-                                    </ng-select>
-                                    {{formModel.domain}}
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group has-feedback has-feedback-left">
-                                    <label>Duration</label>
-                                    <input type="text" [(ngModel)]="formModel.duration" class="form-control input-lg" placeholder="1 (month)">
-                                    <div class="form-control-feedback">
-                                      <i class="icon-make-group"></i>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <div class="form-group has-feedback has-feedback-left">
-                                    <label>Type</label>
-                                    <!-- <input type="text" [(ngModel)]="formModel.type" class="form-control input-lg" placeholder="Web Applicaition..">
-                                    <div class="form-control-feedback">
-                                      <i class="icon-make-group"></i>
-                                    </div> -->
-                                    <ng-select [options]="listTypeOpt" [multiple]=true [(ngModel)]="formModel.type" style="z-index: 89;">
-                                    </ng-select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="form-group has-feedback has-feedback-left">
-
-                                  <div class="col-md-6">
-                                    <label>Start date</label>
-                                    <!-- <input type="text" [(ngModel)]="formModel.createDate" class="form-control" placeholder="25-10-2018">
-                                                <div class="form-control-feedback">
-                                                  <i class="icon-droplets"></i>
-                                                </div> -->
-                                    <form #myForm="ngForm" novalidate>
-                                      <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
-                                        required></my-date-picker>
-                                    </form>
-                                    {{formModel.createDate}}
-                                  </div>
-                                  <div class="col-md-6">
-                                    <label>End date</label>
-                                    <!-- <input type="text" [(ngModel)]="formModel.endDate" class="form-control" placeholder="25-10-2018">
-                                                <div class="form-control-feedback">
-                                                  <i class="icon-droplets"></i>
-                                                </div> -->
-                                    <form #myForm="ngForm" novalidate>
-                                      <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
-                                        required></my-date-picker>
-                                    </form>
-                                    {{formModel.endDate}}
-                                  </div>
-
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <label for="">Status</label>
-                                  <select name="select" class="form-control" [(ngModel)]="formModel.processStatus" name="processStatus">
-                                    <option value="1" [selected]="formModel?.status==1">Pending</option>
-                                    <option value="2" [selected]="formModel?.status!=1">On going</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane fade" id="AddPositionTab">
-                        <div class="form-group">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="row">
-                                <div class="form-group">
-                                  <div class="col-lg-12">
-                                    <div class="row">
-                                      <!-- postion, quantity, payment -->
-                                      <div class="form-group has-feedback has-feedback-left no-margin">
-                                        <div class="row">
-                                          <div class="col-md-4">
-                                            <div class="form-group has-feedback has-feedback-left no-margin">
-                                              <label class="text-bold">Position</label>
-
-                                              <ng-select #positionAdd [options]="positionOpt" [(ngModel)]="formPositionModel.positionId" (ngModelChange)="onPositionSelected($event)">
-                                              </ng-select>
-                                              <!-- position select:{{formPositionModel.positionId}} -->
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4">
-                                            <div class="form-group has-feedback has-feedback-left no-margin">
-                                              <label class="text-bold" for="">Quantity</label>
-                                              <div class="form-group">
-                                                <!-- <input type="text" id="quantityAdd"> -->
-                                                <input type="number" [(ngModel)]="formPositionModel.quantity" value="formPositionModel.quantity" id="quantityAdd" class="form-control input-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4">
-                                            <div class="form-group has-feedback has-feedback-left no-margin">
-                                              <label class="text-bold" for="">Payment</label>
-                                              <div class="form-group">
-                                                <!-- <input type="text" id="quantityAdd"> -->
-                                                <input type="number" [(ngModel)]="formPositionModel.payment" id="paymentAdd" class="form-control input-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-
-                                      </div>
-                                      <!-- test Skill -->
-                                      <!-- <div class="form-group has-feedback has-feedback-left no-margin">
-                                        <div class="col-sm-6">
-                                          
-                                        </div>
-                                        <div class="col-sm-6">
-                                          
-                                        </div>
-                                      </div> -->
-                                      <!-- add new skill, experience -->
-
-                                      <div class="form-group has-feedback has-feedback-left no-margin" style="height: 200px; overflow: auto;">
-                                        <div *ngFor="let skill of formPositionModel.skillRequirementsById">
-                                          <div class="col-sm-12 no-padding">
-                                            <div class="col-sm-6" style="padding-left: 0">
-                                              <div class="form-group has-feedback">
-                                                <label class="text-bold">Skill</label>
-                                                <ng-select #skillAdd [options]="skillOpt" [(ngModel)]="skill.skillId"></ng-select>
-                                              </div>
-                                            </div>
-                                            <div class="col-sm-6" style="padding-right: 0">
-                                              <div class="form-group has-feedback">
-                                                <label class="text-bold">Experience</label>
-                                                <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
-                                                <div class="form-control-feedback">
-                                                  <i class="icon-calendar text-muted"></i>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="col-sm-1">
-                                          <div class="btn-group bootstrap-select" style="width: 100%;">
-                                            <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
-                                              <i class="icon-plus22 text-muted"></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <!-- <div class="form-group has-feedback has-feedback-left no-margin">
-                                        <label class="text-bold">Skill</label>
-                                        <ng-select #skillAdd [options]="skillOpt" [multiple]=true [(ngModel)]="formPositionModel.skillSelect" (ngModelChange)="onSkillSelected($event)"></ng-select>
-                                      </div> -->
-                                      <!-- <div class="" style="height: 150px; overflow: auto;">
-                                        <div *ngFor="let skill of formPositionModel.skillRequirementsById">
-                                          <label (ngModel)="skill.skillId">{{skill.title}}</label>
-                                          <input type="number" [(ngModel)]="skill.experience" placeholder="Enter experience.." class="form-control input-xlg">
-                                        </div>
-                                      </div> -->
-
-                                      <div class="modal-footer">
-                                        <button type="submit" (click)="addNewPosition()" class="btn btn-primary">Add position</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="table-responsive" style="height: 150px; overflow: auto;">
-                                  <table class="table table-hover no-padding">
-                                    <thead class="text-center">
-                                      <tr>
-                                        <th>Position</th>
-                                        <th>Skill</th>
-                                        <th>Quantity</th>
-                                        <th>Payment</th>
-                                        <th></th>
-                                      </tr>
-                                    </thead>
-                                    <tbody *ngFor="let x of positionList">
-                                      <tr>
-                                        <td>{{x.value.positionTitle}}</td>
-                                        <td>
-
-                                          <span *ngFor="let c of x.value.skillRequirementsById">{{c.skillTitle}},</span>
-                                          <!-- <p *ngFor="let c of x.value.skillRequirementsById">
-                                            {{c.title}}|{{c.experience}}
-                                          </p> -->
-                                        </td>
-                                        <td>
-                                          {{x.value.quantity}}
-                                          <!-- <input type="text" [(ngModel)]="x.value.quantity" value="x.value.quantity" class="form-control input-sm" placeholder="quantity"> -->
-                                        </td>
-                                        <td>
-                                          {{x.value.payment}}
-                                          <!-- <input type="text" [(ngModel)]="x.value.payment" value="x.value.payment" class="form-control input-sm" placeholder="payment"> -->
-                                        </td>
-                                        <td>
-                                          <button (click)="editPosition(x)" type="button" class="btn btn-xs">
-                                            <i class="icon-pencil"></i>
-                                          </button>
-                                        </td>
-                                        <td>
-                                          <button (click)="deletePostion(x)" type="submit" class="btn btn-xs">
-                                            <i class="icon-trash"></i>
-                                          </button>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-
-
-
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                      <div class="tab-pane fade" id="AddDescription">
-                        <div class="form-group">
+                  <ul class="nav nav-tabs nav-tabs-top nav-justified">
+                    <li class="active">
+                      <a href="#AddInfoTab" data-toggle="tab">
+                        <h6>Info</h6>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#AddPositionTab" data-toggle="tab">
+                        <h6>Position</h6>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#AddDescription" data-toggle="tab">
+                        <h6>Description</h6>
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="tab-content panel-body no-padding">
+                    <div class="tab-pane fade in active" id="AddInfoTab">
+                      <div class="form-group">
+                        <div class="row">
                           <div class="col-md-12">
                             <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group has-feedback has-feedback-left">
+                                  <label>Project name</label>
+                                  <!-- Web application, mobile , desktop -->
+                                  <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="Abc application">
+                                  <div class="form-control-feedback">
+                                    <i class="icon-office"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group has-feedback has-feedback-left">
+                                  <label>Domain</label>
+                                  <!-- security,  -->
+                                  <!-- <input type="text" [(ngModel)]="formModel.domain" class="form-control input-xlg" placeholder="Testing...">
+                                  <div class="form-control-feedback">
+                                    <i class="icon-office"></i>
+                                  </div> -->
+
+                                  <ng-select [options]="listDomainOpt" [multiple]=true [(ngModel)]="formModel.domain" style="z-index: 99;">
+                                  </ng-select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group has-feedback has-feedback-left">
+                                  <label>Duration</label>
+                                  <input type="text" [(ngModel)]="formModel.duration" class="form-control input-lg" placeholder="1 (month)">
+                                  <div class="form-control-feedback">
+                                    <i class="icon-make-group"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group has-feedback has-feedback-left">
+                                  <label>Type</label>
+                                  <!-- <input type="text" [(ngModel)]="formModel.type" class="form-control input-lg" placeholder="Web Applicaition..">
+                                  <div class="form-control-feedback">
+                                    <i class="icon-make-group"></i>
+                                  </div> -->
+                                  <ng-select [options]="listTypeOpt" [multiple]=true [(ngModel)]="formModel.type" style="z-index: 89;">
+                                  </ng-select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
                               <div class="form-group has-feedback has-feedback-left">
-                                <label>Description</label>
-                                <textarea rows="7" cols="7" [(ngModel)]="formModel.description" class="form-control" placeholder="overview about project"></textarea>
+
+                                <div class="col-md-6">
+                                  <label>Start date</label>
+                                  <!-- <input type="text" [(ngModel)]="formModel.createDate" class="form-control" placeholder="25-10-2018">
+                                              <div class="form-control-feedback">
+                                                <i class="icon-droplets"></i>
+                                              </div> -->
+                                  <form #myForm="ngForm" novalidate>
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
+                                      required></my-date-picker>
+                                  </form>
+                                  {{formModel.createDate}}
+                                </div>
+                                <div class="col-md-6">
+                                  <label>End date</label>
+                                  <!-- <input type="text" [(ngModel)]="formModel.endDate" class="form-control" placeholder="25-10-2018">
+                                              <div class="form-control-feedback">
+                                                <i class="icon-droplets"></i>
+                                              </div> -->
+                                  <form #myForm="ngForm" novalidate>
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+                                      required></my-date-picker>
+                                  </form>
+                                  {{formModel.endDate}}
+                                </div>
+
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label for="">Status</label>
+                                <select name="select" class="form-control" [(ngModel)]="formModel.processStatus" name="processStatus">
+                                  <option value="1" [selected]="formModel?.status==1">Pending</option>
+                                  <option value="2" [selected]="formModel?.status!=1">On going</option>
+                                </select>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </fieldset>
-                </div>
+                    <div class="tab-pane fade" id="AddPositionTab">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="form-group">
+                                <div class="col-lg-12">
+                                  <div class="row">
+                                    <!-- postion, quantity, payment -->
+                                    <div class="form-group has-feedback has-feedback-left no-margin">
+                                      <div class="row">
+                                        <div class="col-md-4">
+                                          <div class="form-group has-feedback has-feedback-left no-margin">
+                                            <label class="text-bold">Position</label>
 
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" (click)="addNewProject()">Add new project</button>
-                </div>
+                                            <ng-select #positionAdd [options]="positionOpt" [(ngModel)]="formPositionModel.positionId" (ngModelChange)="onPositionSelected($event)">
+                                            </ng-select>
+                                            <!-- position select:{{formPositionModel.positionId}} -->
+                                          </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <div class="form-group has-feedback has-feedback-left no-margin">
+                                            <label class="text-bold" for="">Quantity</label>
+                                            <div class="form-group">
+                                              <!-- <input type="text" id="quantityAdd"> -->
+                                              <input type="number" [(ngModel)]="formPositionModel.quantity" value="formPositionModel.quantity" id="quantityAdd" class="form-control input-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <div class="form-group has-feedback has-feedback-left no-margin">
+                                            <label class="text-bold" for="">Payment</label>
+                                            <div class="form-group">
+                                              <!-- <input type="text" id="quantityAdd"> -->
+                                              <input type="number" [(ngModel)]="formPositionModel.payment" id="paymentAdd" class="form-control input-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <!-- test Skill -->
+                                    <!-- <div class="form-group has-feedback has-feedback-left no-margin">
+                                      <div class="col-sm-6">
+                                        
+                                      </div>
+                                      <div class="col-sm-6">
+                                        
+                                      </div>
+                                    </div> -->
+                                    <!-- add new skill, experience -->
+
+                                    <div class="form-group has-feedback has-feedback-left no-margin" style="height: 200px; overflow: auto;">
+                                      <div *ngFor="let skill of formPositionModel.skillRequirementsById">
+                                        <div class="col-sm-12 no-padding">
+                                          <div class="col-sm-6" style="padding-left: 0">
+                                            <div class="form-group has-feedback">
+                                              <label class="text-bold">Skill</label>
+                                              <ng-select #skillAdd [options]="skillOpt" [(ngModel)]="skill.skillId"></ng-select>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-6" style="padding-right: 0">
+                                            <div class="form-group has-feedback">
+                                              <label class="text-bold">Experience</label>
+                                              <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                              <div class="form-control-feedback">
+                                                <i class="icon-calendar text-muted"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-1">
+                                        <div class="btn-group bootstrap-select" style="width: 100%;">
+                                          <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
+                                            <i class="icon-plus22 text-muted"></i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!-- <div class="form-group has-feedback has-feedback-left no-margin">
+                                      <label class="text-bold">Skill</label>
+                                      <ng-select #skillAdd [options]="skillOpt" [multiple]=true [(ngModel)]="formPositionModel.skillSelect" (ngModelChange)="onSkillSelected($event)"></ng-select>
+                                    </div> -->
+                                    <!-- <div class="" style="height: 150px; overflow: auto;">
+                                      <div *ngFor="let skill of formPositionModel.skillRequirementsById">
+                                        <label (ngModel)="skill.skillId">{{skill.title}}</label>
+                                        <input type="number" [(ngModel)]="skill.experience" placeholder="Enter experience.." class="form-control input-xlg">
+                                      </div>
+                                    </div> -->
+
+                                    <div class="modal-footer">
+                                      <button type="submit" (click)="addNewPosition()" class="btn btn-primary">Add position</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="table-responsive" style="height: 150px; overflow: auto;">
+                                <table class="table table-hover no-padding">
+                                  <thead class="text-center">
+                                    <tr>
+                                      <th>Position</th>
+                                      <th>Skill</th>
+                                      <th>Quantity</th>
+                                      <th>Payment</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody *ngFor="let x of positionList">
+                                    <tr>
+                                      <td>{{x.value.positionTitle}}</td>
+                                      <td>
+
+                                        <span *ngFor="let c of x.value.skillRequirementsById">{{c.skillTitle}},</span>
+                                        <!-- <p *ngFor="let c of x.value.skillRequirementsById">
+                                          {{c.title}}|{{c.experience}}
+                                        </p> -->
+                                      </td>
+                                      <td>
+                                        {{x.value.quantity}}
+                                        <!-- <input type="text" [(ngModel)]="x.value.quantity" value="x.value.quantity" class="form-control input-sm" placeholder="quantity"> -->
+                                      </td>
+                                      <td>
+                                        {{x.value.payment}}
+                                        <!-- <input type="text" [(ngModel)]="x.value.payment" value="x.value.payment" class="form-control input-sm" placeholder="payment"> -->
+                                      </td>
+                                      <td>
+                                        <button (click)="editPosition(x)" type="button" class="btn btn-xs">
+                                          <i class="icon-pencil"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button (click)="deletePostion(x)" type="submit" class="btn btn-xs">
+                                          <i class="icon-trash"></i>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="AddDescription">
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="form-group has-feedback has-feedback-left">
+                              <label>Description</label>
+                              <textarea rows="7" cols="7" [(ngModel)]="formModel.description" class="form-control" placeholder="overview about project"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" (click)="addNewProject()">Add new project</button>
               </div>
             </div>
           </div>
