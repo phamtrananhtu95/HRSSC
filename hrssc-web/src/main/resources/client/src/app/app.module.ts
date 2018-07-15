@@ -6,9 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import {MomentModule} from 'angular2-moment/moment.module';
+import { MomentModule } from 'angular2-moment/moment.module';
 
-import { StorageServiceModule} from 'angular-webstorage-service';
+import { StorageServiceModule } from 'angular-webstorage-service';
 import { CustomFormsModule } from 'ng2-validation';
 
 import { HomeComponent } from './pages/home/home.component';
@@ -59,9 +59,10 @@ import { RatingResourceComponent } from './pages/resource-info/rating-resource/r
 
 import { SelectModule } from 'ng-select';
 import { MyDatePickerModule } from 'angular4-datepicker/src/my-date-picker';
-import {RatingModule} from "ngx-rating";
+import { RatingModule } from "ngx-rating";
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { FormWizardModule } from 'angular2-wizard';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoProjectManagerComponent } from './pages/project-info/info-project-manager/info-project-manager.component';
@@ -76,6 +77,7 @@ import { ProjectSimilarComponent } from './pages/project-info/project-similar/pr
 import { ResourceJoinedComponent } from './pages/project-info/resource-joined/resource-joined.component';
 import { HistoryProjectComponent } from './pages/resource-info/history-project/history-project.component';
 import { CompanyProfileComponent } from './pages/company-info/company-profile/company-profile.component';
+import { JobContractComponent } from './pages/job-contract/job-contract.component';
 
 const appRoutes: Routes = [
 
@@ -150,6 +152,11 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
+    path: 'job/contract',
+    component: JobContractComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -200,7 +207,8 @@ const appRoutes: Routes = [
     ProjectSimilarComponent,
     ResourceJoinedComponent,
     HistoryProjectComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    JobContractComponent
   ],
   imports: [
     BrowserModule,
@@ -217,6 +225,7 @@ const appRoutes: Routes = [
     RatingModule,
     UiSwitchModule,
     FormWizardModule,
+    CurrencyMaskModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

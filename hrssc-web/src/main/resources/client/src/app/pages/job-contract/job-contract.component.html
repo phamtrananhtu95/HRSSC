@@ -1,0 +1,218 @@
+<div class="content">
+
+  <!-- Fieldset legend -->
+  <div class="row">
+    <div class="col-md-8">
+
+      <!-- Advanced legend -->
+      <form class="form-horizontal" action="#">
+        <div class="panel panel-flat">
+          <div class="panel-heading text-center">
+            <h5 class="panel-title text-bold">Job contract</h5>
+          </div>
+
+          <div class="panel-body">
+
+            <!-- Parties -->
+            <fieldset>
+              <legend class="text-semibold">
+                <i class="icon-file-text2 position-left"></i>
+                <b>Parties</b>
+                <a class="control-arrow" data-toggle="collapse" data-target="#demo1">
+                  <i class="icon-circle-down2"></i>
+                </a>
+              </legend>
+
+              <div class="collapse in" id="demo1">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="panel panel-body">
+                      <div class="media">
+                        <div class="media-left">
+                          <img src="assets/images/placeholder.jpg" class="img-circle img-lg" alt="">
+                        </div>
+
+                        <div class="media-body">
+                          <h6 class="media-heading">Resource:
+                            <a>{{humanResource?.fullname}}</a>
+                          </h6>
+                          <span class="label border-left-primary label-striped">{{humanResource?.companyByCompanyId?.name}}</span>
+                          <!-- <span class="text-muted">Sales manager</span> -->
+                        </div>
+                        <label>
+                          &nbsp;
+                        </label>
+                        <!-- <div class="media-right media-middle">
+                          </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="panel panel-body">
+                      <div class="media">
+                        <div class="media-left">
+                          <img src="assets/images/placeholder.jpg" class="img-circle img-lg" alt="">
+                        </div>
+
+                        <div class="media-body">
+                          <h6 class="media-heading">Project:
+                            <a>{{project?.title}}</a>
+                          </h6>
+                          <span class="label border-left-primary label-striped">{{project?.companyByCompanyId?.name}}</span>
+                        </div>
+                        <div class="checkbox" style="padding-left: 10px">
+                          <label>
+                            <input [disabled]="isEditMode" type="checkbox" id="checkTerm" [checked]="isCheckTerm" (change)="onValueChangeCheckTerm($event)">
+                            <em class="text-danger">Term of agreement</em>
+                          </label>
+                        </div>
+                        <!-- <div class="media-right media-middle">
+                            a
+                          </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </fieldset>
+
+            <!-- Term contract -->
+            <fieldset>
+              <legend class="text-semibold">
+                <i class=" icon-pen position-left"></i>
+                <b>Term of contract</b>
+                <button (click)="onChangeEditMode()">Edit</button>
+                <a class="control-arrow" data-toggle="collapse" data-target="#demo2">
+                  <i class="icon-circle-down2"></i>
+                </a>
+              </legend>
+
+              <div class="collapse in" id="demo2">
+
+                <div class="form-group">
+                  <div>
+                    <label class="col-lg-2 control-label">Start date:</label>
+                    <div class="col-lg-4">
+                      <form #myForm="ngForm" novalidate>
+                        <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
+                          required></my-date-picker>
+                      </form>
+                    </div>
+
+                    <!-- <div class="col-lg-4">
+                      <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                    </div> -->
+                  </div>
+                  <div>
+                    <label class="col-lg-2 control-label">End date:</label>
+                    <div class="col-lg-4">
+                      <form #myForm="ngForm" novalidate>
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+                          required></my-date-picker>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Monthly payment:</label>
+                  <div *ngIf="!isEditMode">222222222222</div>
+                  <div *ngIf="isEditMode" class="col-lg-5">
+                    <input type="text" currencyMask [(ngModel)]="humanResource.salary" name="salary" [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}"
+                      class="form-control">
+                  </div>
+                  <label class="col-lg-1 control-label">(VND)</label>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Addtional terms</label>
+                  <div class="col-lg-9">
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Dealing message -->
+            <fieldset>
+              <legend class="text-semibold">
+                <i class="icon-reading position-left"></i>
+                <b>Dealing message</b>
+                <a class="control-arrow" data-toggle="collapse" data-target="#demo3">
+                  <i class="icon-circle-down2"></i>
+                </a>
+              </legend>
+
+              <div class="collapse in" id="demo3">
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Lastest message</label>
+                  <div class="col-lg-9">
+                    <textarea disabled rows="5" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Send message:</label>
+                  <div class="col-lg-9">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+              </div>
+            </fieldset>
+
+            <!-- Radio button -->
+            <div class="content">
+              <div class="form-group">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="unstyled-radio-left" checked="checked"> I have read and agree with the contract
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="unstyled-radio-left"> I want to change offer
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+
+                <button type="button" class="btn btn-danger">Cancel Offer
+                  <i class="icon-cross3 position-right"></i>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <div class="text-right">
+
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="text-right">
+                  <button *ngIf="isEditMode" type="button" class="btn btn-primary">Send Offer
+                    <i class="icon-arrow-right14 position-right"></i>
+                  </button>
+                  <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm">Accept
+                    <i class="icon-user-check position-right"></i>
+                  </button>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+      <!-- /a legend -->
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+  <!-- /fieldset legend -->
+</div>
