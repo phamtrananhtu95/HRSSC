@@ -14,6 +14,7 @@ public interface InteractionRepository extends JpaRepository<Interaction, Intege
     Interaction findByHumanResourceIdAndProjectId(int resourceId,int projectId);
     Interaction findByProjectIdAndHumanResourceId(int projectId, int resourceId);
     Interaction findById(int id);
+    Interaction findByContractId(int contractId);
 
 
     void deleteByProjectIdAndType(int id, String type);

@@ -40,7 +40,7 @@
 <!-- End page header -->
 
 <!-- content area -->
-<div class="content">
+<!-- <div class="content">
   <div class="row">
     <div class="col-md-2"></div>
     <div class="panel panel-flat col-md-8">
@@ -51,7 +51,7 @@
           <div class="panel panel-default">
 
             <div class="panel-body" *ngFor="let invitation of invitations">
-              <a data-toggle="collapse" [attr.data-target]="'#invitation' + invitation.id" >
+              <a data-toggle="collapse" [attr.data-target]="'#invitation' + invitation.id">
                 <div class="media">
                   <div class="media-left">
                     <img src="assets/images/avatar.png" alt="">
@@ -69,7 +69,6 @@
                   </div>
                 </div>
               </a>
-              <!-- data collapse 1 -->
               <div id="" class="panel-collapse collapse" id="invitation{{invitation.id}}">
                 <div class="panel-body" *ngFor="let interaction of invitation.interactionsById">
                   <div class="media-left">
@@ -78,7 +77,8 @@
                   <div class="media-body">
                     <a>{{interaction?.projectByProjectId?.companyByCompanyId?.name}}</a>
                     <i>Invited him </i> to
-                    <a href="#"> {{interaction?.projectByProjectId?.title}}</a><i> project </i>
+                    <a href="#"> {{interaction?.projectByProjectId?.title}}</a>
+                    <i> project </i>
                   </div>
                   <div class="media-right">
                     <button class="btn btn-success" (click)="acceptInvite(interaction?.projectByProjectId?.id, invitation?.id)">Accept</button>
@@ -91,5 +91,83 @@
       </div>
     </div>
     <div class="col-md-2"></div>
+  </div>
+</div> -->
+
+
+<!-- ******************************************** -->
+<div class="content">
+  <div class="row">
+      <div class="col-md-2"></div>
+      <div class="tabbable panel login-form width-400 col-md-8">
+        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+          <li class="active">
+            <a href="#basic-tab1" data-toggle="tab">
+              Invitations <span class="badge badge-info position-right">23</span>
+            </a>
+          </li>
+          <li>
+            <a href="#basic-tab2" data-toggle="tab">
+              My deals <span class="badge badge-info position-right">23</span>
+            </a>
+          </li>
+        </ul>
+  
+        <div class="tab-content panel-body">
+          <div class="tab-pane fade in active" id="basic-tab1">
+            <div class="panel panel-flat">
+              <div class="">
+                <div class="">
+                  <div class="">
+                    <div class="panel-body" *ngFor="let invitation of invitations">
+                      <a data-toggle="collapse" [attr.data-target]="'#invitation' + invitation.id">
+                        <div class="media">
+                          <div class="media-left">
+                            <img src="assets/images/avatar.png" alt="">
+                          </div>
+                          <div class="media-body">
+                            {{invitation?.fullname}}
+                            <p>{{invitation?.email}}</p>
+                          </div>
+                          <div class="media-right text-center">
+                            <a href="#">
+                              <span>Invitations
+                                <span class="label bg-blue-400">{{invitation?.countInvite}}</span>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- data collapse 1 -->
+                      <div id="" class="panel-collapse collapse" id="invitation{{invitation.id}}">
+                        <div class="panel-body" *ngFor="let interaction of invitation.interactionsById">
+                          <div class="media-left">
+                            <img src="assets/images/FPT.jpg" alt="">
+                          </div>
+                          <div class="media-body">
+                            <a>{{interaction?.projectByProjectId?.companyByCompanyId?.name}}</a>
+                            <i>Invited him </i> to
+                            <a href="#"> {{interaction?.projectByProjectId?.title}}</a>
+                            <i> project </i>
+                          </div>
+                          <div class="media-right">
+                            <button class="btn btn-success" (click)="acceptInvite(interaction?.projectByProjectId?.id, invitation?.id)">Accept</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="tab-pane fade" id="basic-tab2">
+            <h6 class="text-muted">The projects he worked on</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+
   </div>
 </div>

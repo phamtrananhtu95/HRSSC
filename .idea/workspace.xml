@@ -2,42 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db9a46c5-764a-405b-9ed9-c9c1fdf164e6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_socks_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_proxy_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_epoll_linux_x86_64_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_24_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_ipc_reactor_netty_0_7_7_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_core_3_1_7_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_reactor_netty_2_0_2_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_websocket_2_0_2_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_5_0_6_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_websocket_5_0_6_RELEASE.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/hrssc_rest_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/hrssc_rest_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/repository/ContractRepository.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/ContractController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/ContractService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/ContractServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/job-contract/job-contract.component.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/job-contract/job-contract.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/job-contract/job-contract.component.ts" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hrssc-rest.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hrssc-web.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/resource-info/resource-info.component.spec.ts" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/hrssc-rest.iml" afterPath="$PROJECT_DIR$/hrssc-rest/hrssc-rest.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/config/SecurityConfiguration.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/config/SecurityConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/config/WebSocketConfig.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/config/WebSocketConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/ChatController.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/ChatController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/jacksonview/ApplianceView.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/jacksonview/ApplianceView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/jacksonview/InvitationView.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/domain/jacksonview/InvitationView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/Contract.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/Contract.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/Interaction.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/Interaction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/User.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/entities/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/repository/InteractionRepository.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/repository/InteractionRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/repository/JobRepository.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/repository/JobRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/ApplianceController.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/ApplianceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/InvitationController.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/rest/InvitationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/ApplianceService.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/ApplianceService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/InvitationService.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/InvitationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/ApplianceServiceImpl.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/ApplianceServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/InvitationServiceImpl.java" afterPath="$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/service/impl/InvitationServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/package-lock.json" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/package-lock.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/package.json" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/app.component.ts" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/app.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/app.module.ts" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/components/header/header.component.html" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/components/header/header.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/models/project.model.ts" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/models/project.model.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-projects/manage-projects.component.html" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-projects/manage-projects.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-projects/manage-projects.component.ts" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-projects/manage-projects.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/project-info/info-project-manager/info-project-manager.component.html" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/project-info/info-project-manager/info-project-manager.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/project-info/info-project-manager/info-project-manager.component.ts" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/project-info/info-project-manager/info-project-manager.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/typings.d.ts" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/typings.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-invitations/manage-invitations.component.html" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-invitations/manage-invitations.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-resources/resource-manager-popover.component.html" afterPath="$PROJECT_DIR$/hrssc-web/src/main/resources/client/src/app/pages/manage-resources/resource-manager-popover.component.html" />
     </list>
     <ignored path="$PROJECT_DIR$/hrssc-web/target/" />
     <ignored path="$PROJECT_DIR$/hrssc-rest/target/" />
@@ -77,8 +71,8 @@
       <file leaf-file-name="WebSocketConfig.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/config/WebSocketConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="522">
+              <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1040,12 +1034,12 @@
       <workItem from="1531582607708" duration="3929000" />
       <workItem from="1531591248131" duration="2639000" />
       <workItem from="1531638827820" duration="7700000" />
-      <workItem from="1531680986270" duration="2496000" />
+      <workItem from="1531680986270" duration="3109000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131695000" />
+    <option name="totallyTimeSpent" value="132308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
@@ -1069,7 +1063,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34577388" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34577388" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1544,8 +1538,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hrssc-rest/src/main/java/com/hrssc/config/WebSocketConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="522">
+          <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

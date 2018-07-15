@@ -9,5 +9,8 @@
         <module name="hrssc-rest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hrssc-rest" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

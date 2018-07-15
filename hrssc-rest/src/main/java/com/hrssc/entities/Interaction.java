@@ -14,21 +14,23 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 public class Interaction {
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({ApplianceView.Listview.class,ApplianceView.ContractView.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
     private int id;
-    @JsonView({ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
+    @JsonView({ApplianceView.Listview.class,ApplianceView.ContractView.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class})
     private String type;
-    @JsonView({ApplianceView.Listview.class,MatchingView.Project.class})
+    @JsonView({ApplianceView.Listview.class,ApplianceView.ContractView.class,MatchingView.Project.class})
     private int humanResourceId;
     @JsonView({ApplianceView.Listview.class,MatchingView.Project.class})
     private HumanResource humanResourceByHumanResourceId;
     @JsonView({MatchingView.Resource.class,MatchingView.Project.class})
     private Double rankingScore;
-    @JsonView(MatchingView.Resource.class)
+    @JsonView({MatchingView.Resource.class,ApplianceView.ContractView.class})
     private int projectId;
     @JsonView({InvitationView.ListView.class,MatchingView.Resource.class})
     private Project projectByProjectId;
+    @JsonView(ApplianceView.ContractView.class)
     private Contract contractByContractId;
+    @JsonView({InvitationView.ListView.class,ApplianceView.Listview.class,ApplianceView.ContractView.class})
     private Integer contractId;
 
     public Interaction(String type){
