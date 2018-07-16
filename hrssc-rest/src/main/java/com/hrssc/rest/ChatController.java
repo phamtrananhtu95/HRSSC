@@ -15,6 +15,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
@@ -52,9 +53,4 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
     }
-
-//    @GetMapping
-//    public List<ChatLog> getChatLogByContractId(int contractId){
-//       return chatService.getMessageListByContractId(contractId);
-//    }
 }

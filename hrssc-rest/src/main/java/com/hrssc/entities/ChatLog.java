@@ -1,17 +1,27 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ContractView;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "chat_log", schema = "hrssc")
 public class ChatLog {
+    @JsonView(ContractView.ChatLog.class)
     private int id;
+    @JsonView(ContractView.ChatLog.class)
     private long sentDate;
+    @JsonView(ContractView.ChatLog.class)
     private String sentTime;
+    @JsonView(ContractView.ChatLog.class)
     private String messageContent;
+    @JsonView(ContractView.ChatLog.class)
     private int userId;
+    @JsonView(ContractView.ChatLog.class)
     private User userByUserId;
+    @JsonView(ContractView.ChatLog.class)
     private int contractId;
     private Contract contractByContractId;
 

@@ -1,10 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.hrssc.domain.jacksonview.FeedbackView;
-import com.hrssc.domain.jacksonview.HumanResourceView;
-import com.hrssc.domain.jacksonview.ProjectView;
-import com.hrssc.domain.jacksonview.UserView;
+import com.hrssc.domain.jacksonview.*;
 
 import lombok.Data;
 
@@ -17,7 +14,7 @@ import java.util.Objects;
 public class User {
     @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private int id;
-    @JsonView({UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class,ContractView.ChatLog.class})
     private String username;
     private String password;
     @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
