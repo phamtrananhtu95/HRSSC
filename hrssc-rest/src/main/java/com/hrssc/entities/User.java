@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Data
-@Entity
+@Entity(name="user")
 public class User {
     @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private int id;
