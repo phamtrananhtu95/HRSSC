@@ -8,6 +8,32 @@ public class ChatMessage {
     private MessageType messageType;
     private String content;
     private String sender;
+    private int contractId;
+    private int userId;
+
+    public MessageType getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(MessageType messageType) {
+        this.messageType = messageType;
+    }
+
+    public int getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(int contractId) {
+        this.contractId = contractId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public MessageType getType() {
         return messageType;

@@ -2,7 +2,9 @@ package com.hrssc.rest;
 
 import com.hrssc.domain.chat.ChatMessage;
 import com.hrssc.domain.chat.ChatMessage.MessageType;
+import com.hrssc.entities.ChatLog;
 import com.hrssc.listener.WebSocketListener;
+import com.hrssc.service.ChatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,10 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+import java.util.List;
 
 import static java.lang.String.format;
 
@@ -25,8 +30,12 @@ public class ChatController {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
+    @Autowired
+    private ChatService chatService;
+
     @MessageMapping("/chat/{roomId}/sendMessage")
     public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
+        chatService.saveLog(chatMessage);
         messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
     }
 
@@ -42,5 +51,10 @@ public class ChatController {
         }
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
+    }
+
+    @GetMapping
+    public List<ChatLog> getChatLogByContractId(int contractId){
+       return chatService.getMessageListByContractId(contractId);
     }
 }

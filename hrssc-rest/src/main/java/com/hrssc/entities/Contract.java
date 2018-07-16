@@ -28,7 +28,9 @@ public class Contract {
     private Collection<Job> jobsById;
     @JsonView(ApplianceView.ContractView.class)
     private Integer latestEditorId;
+    @JsonView(ApplianceView.ContractView.class)
     private User userByLatestEditorId;
+    private Collection<ChatLog> chatLogsById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -102,7 +104,7 @@ public class Contract {
     }
 
     @Basic
-    @Column(name = "isAccepted")
+    @Column(name = "is_accepted")
     public boolean isAccepted() {
         return isAccepted;
     }
@@ -168,5 +170,14 @@ public class Contract {
 
     public void setUserByLatestEditorId(User userByLatestEditorId) {
         this.userByLatestEditorId = userByLatestEditorId;
+    }
+
+    @OneToMany(mappedBy = "contractByContractId")
+    public Collection<ChatLog> getChatLogsById() {
+        return chatLogsById;
+    }
+
+    public void setChatLogsById(Collection<ChatLog> chatLogsById) {
+        this.chatLogsById = chatLogsById;
     }
 }

@@ -6,7 +6,7 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/hrssc</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping class="com.hrssc.entities.ChosenDomains"/>
+    <mapping class="com.hrssc.entities.ChosenDomains"/>
       <mapping class="com.hrssc.entities.Company"/>
       <mapping class="com.hrssc.entities.Feedback"/>
       <mapping class="com.hrssc.entities.HumanResource"/>
@@ -28,6 +28,7 @@
       <mapping class="com.hrssc.entities.SimilarProject"/>
       <mapping class="com.hrssc.entities.SimilarResource"/>
       <mapping class="com.hrssc.entities.Contract"/>
+      <mapping class="com.hrssc.entities.ChatLog"/>
 
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->

@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Data
-@Entity(name = "user")
+@Entity
 public class User {
     @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private int id;
@@ -45,6 +45,7 @@ public class User {
     @JsonView({FeedbackView.loadAllview.class})
     private Company companyByCompanyId;
     private Collection<Contract> contractsById;
+    private Collection<ChatLog> chatLogsById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -242,5 +243,14 @@ public class User {
 
     public void setContractsById(Collection<Contract> contractsById) {
         this.contractsById = contractsById;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<ChatLog> getChatLogsById() {
+        return chatLogsById;
+    }
+
+    public void setChatLogsById(Collection<ChatLog> chatLogsById) {
+        this.chatLogsById = chatLogsById;
     }
 }
