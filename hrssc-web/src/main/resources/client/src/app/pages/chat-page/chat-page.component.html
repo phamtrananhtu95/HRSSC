@@ -66,9 +66,9 @@
 
         <div class="tab-content">
           <div class="tab-pane fade in active has-padding" id="james">
-            <app-chat-feed></app-chat-feed>
+            <app-chat-feed [feed]="listMessage"></app-chat-feed>
             
-            <app-chat-form></app-chat-form>
+            <app-chat-form (reloadListMessage)="getListMessage()" ></app-chat-form>
            
           </div>
         </div>

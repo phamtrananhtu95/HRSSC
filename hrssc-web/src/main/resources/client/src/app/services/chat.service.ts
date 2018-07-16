@@ -7,6 +7,7 @@ import { AuthenticateService } from './authenticate.service';
 export class ChatService {
   chatMessages=[];
   username: any;
+  userId: any;
   private stompClient;
   public serverWsUrl = "http://localhost:8080/ws";
   public topic = null;
@@ -17,6 +18,7 @@ export class ChatService {
     private auth: AuthenticateService
   ) { 
     this.username = this.auth.getUserName();
+    this.userId = this.auth.getUserId();
   }
 
   connect(roomId) {
@@ -43,7 +45,7 @@ export class ChatService {
       });
       that.stompClient.send(`${that.topic}/addUser`,
         {},
-        JSON.stringify({ sender: that.username, type: 'JOIN' })
+        JSON.stringify({ sender: that.username, type: 'JOIN', contractId: 434, userId: that.userId })
       );
     });
 
@@ -68,7 +70,9 @@ export class ChatService {
       var chatMessage = {
         sender: this.username,
         content: msg,
-        type: 'CHAT'
+        type: 'CHAT',
+        contractId: 434,
+        userId: this.userId
       };
       this.stompClient.send(`${this.topic}/sendMessage`, {}, JSON.stringify(chatMessage));
     }

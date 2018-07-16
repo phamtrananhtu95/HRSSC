@@ -26,7 +26,7 @@ public class ChatServiceImpl implements ChatService {
         ChatLog chatLog = new ChatLog();
         chatLog.setMessageContent(chatMessage.getContent());
         chatLog.setContractId(chatMessage.getContractId());
-        chatLog.setUserId(chatMessage.getContractId());
+        chatLog.setUserId(chatMessage.getUserId());
 
         long currentTimeMillis = System.currentTimeMillis();
         chatLog.setSentDate(currentTimeMillis);

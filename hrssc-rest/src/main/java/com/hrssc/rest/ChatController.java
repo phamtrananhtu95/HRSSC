@@ -53,8 +53,8 @@ public class ChatController {
         messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
     }
 
-    @GetMapping
-    public List<ChatLog> getChatLogByContractId(int contractId){
-       return chatService.getMessageListByContractId(contractId);
-    }
+//    @GetMapping
+//    public List<ChatLog> getChatLogByContractId(int contractId){
+//       return chatService.getMessageListByContractId(contractId);
+//    }
 }

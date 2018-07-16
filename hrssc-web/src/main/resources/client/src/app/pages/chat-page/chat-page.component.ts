@@ -36,10 +36,11 @@ export class ChatPageComponent implements OnInit {
       this.username = this.auth.getUserName();
       // this.connect();
       this.chatService.connect(2310);
+      this.listMessage = this.chatService.getMessages();
     }
   }
   getListMessage() {
-    this.chatService.getMessages();
+    this.listMessage = this.chatService.getMessages();
   }
 
   
