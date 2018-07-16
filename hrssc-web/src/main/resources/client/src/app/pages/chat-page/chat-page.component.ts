@@ -38,6 +38,9 @@ export class ChatPageComponent implements OnInit {
       this.chatService.connect(2310);
     }
   }
+  getListMessage() {
+    this.chatService.getMessages();
+  }
 
   
 }

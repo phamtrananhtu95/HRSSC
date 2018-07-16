@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../../../services/chat.service';
+declare var $: any;
 
 @Component({
   selector: 'app-chat-form',
@@ -15,6 +16,7 @@ export class ChatFormComponent implements OnInit {
   }
 
   send() {
+    $( "#messageInput" ).blur();
     this.chatService.sendMessage(this.messageInput);
     this.messageInput = '';
   }
@@ -22,6 +24,7 @@ export class ChatFormComponent implements OnInit {
   handleSubmit(event) {
     if(event.keyCode === 13) {
       this.send();
+      $( "#messageInput" ).blur();
     }
   }
 

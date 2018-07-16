@@ -33,8 +33,9 @@ export class ChatService {
           var messageReceived = JSON.parse(message.body);
           if (messageReceived.type == 'CHAT' && messageReceived.sender != that.username) {
             that.chatMessages.push({
-              content: messageReceived.content
-              
+              content: messageReceived.content,
+              isSent: false,
+              timeSent: that.getTimestamp()
             })
           }
 
@@ -58,7 +59,8 @@ export class ChatService {
     this.chatMessages = this.getMessages();
     this.chatMessages.push({
       content: msg,
-      timeSent: timestamp
+      timeSent: timestamp,
+      isSent: true
       // email: 
     })
 

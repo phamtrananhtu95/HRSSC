@@ -1,5 +1,5 @@
 <ul #scroller class="media-list chat-list content-group">
-    <li class="media" *ngFor="let message of feed">
+    <li *ngFor="let message of feed">
           <app-chat-message [chatMessage]="message"></app-chat-message>
     </li>
 </ul>

@@ -21,7 +21,7 @@ export class ChatFeedComponent implements OnInit, OnChanges, AfterViewChecked {
   }
 
   ngOnChanges(){
-    this.feed = this.chatService.getMessages();
+    this.feed = Object.assign({}, this.chatService.getMessages());
     console.log(this.feed);
   }
 

@@ -9,6 +9,7 @@ export class ChatMessageComponent implements OnInit {
   @Input() chatMessage: any;
   userEmail: string;
   messageContent: string;
+  isSent: boolean;
   time: Date = new Date();
   // isOwnMessage: boolean;
 
@@ -18,6 +19,7 @@ export class ChatMessageComponent implements OnInit {
     this.userEmail = chatMessage.userEmail;
     this.messageContent = chatMessage.content;
     this.time = chatMessage.timeSent;
+    this.isSent = chatMessage.isSent;
   }
 
 
