@@ -81,12 +81,21 @@
             <!-- Term contract -->
             <fieldset>
               <legend class="text-semibold">
-                <i class=" icon-pen position-left"></i>
-                <b>Term of contract</b>
-                <button (click)="onChangeEditMode()">Edit</button>
-                <a class="control-arrow" data-toggle="collapse" data-target="#demo2">
-                  <i class="icon-circle-down2"></i>
-                </a>
+                <div class="row">
+                  <div class="col-md-3">
+                    <i class=" icon-pen position-left"></i>
+                    <b>Term of contract</b>
+                  </div>
+                  <div class="col-md-8 text-right">
+                    <button *ngIf="!isEditMode" style="" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
+                      <i class="icon-pencil6 position-left"></i>Edit</button>
+                  </div>
+                  <div class="col-md-1">
+                    <a class="control-arrow" data-toggle="collapse" data-target="#demo2">
+                      <i class="icon-circle-down2"></i>
+                    </a>
+                  </div>
+                </div>
               </legend>
 
               <div class="collapse in" id="demo2">
@@ -94,7 +103,10 @@
                 <div class="form-group">
                   <div>
                     <label class="col-lg-2 control-label">Start date:</label>
-                    <div class="col-lg-4">
+                    <div *ngIf="!isEditMode" class="col-lg-4">
+                      <label style="margin-top: 7px;">{{humanResource.availableDate | date:'dd/MM/yyyy' }}</label>
+                    </div>
+                    <div *ngIf="isEditMode" class="col-lg-4">
                       <form #myForm="ngForm" novalidate>
                         <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
                           required></my-date-picker>
@@ -107,7 +119,10 @@
                   </div>
                   <div>
                     <label class="col-lg-2 control-label">End date:</label>
-                    <div class="col-lg-4">
+                    <div *ngIf="!isEditMode" class="col-lg-4">
+                      <label style="margin-top: 7px;">{{humanResource.availableDuration | date:'dd/MM/yyyy' }}</label>
+                    </div>
+                    <div *ngIf="isEditMode" class="col-lg-4">
                       <form #myForm="ngForm" novalidate>
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
                           required></my-date-picker>
@@ -118,9 +133,11 @@
 
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Monthly payment:</label>
-                  <div *ngIf="!isEditMode">222222222222</div>
+                  <div *ngIf="!isEditMode" class="col-lg-5">
+                    <label style="margin-top: 7px;">{{humanResource.salary}}</label>
+                  </div>
                   <div *ngIf="isEditMode" class="col-lg-5">
-                    <input type="text" currencyMask [(ngModel)]="humanResource.salary" name="salary" [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}"
+                    <input type="text" currencyMask [(ngModel)]="formContract.contractByContractId.salary" name="salary" [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}"
                       class="form-control">
                   </div>
                   <label class="col-lg-1 control-label">(VND)</label>
@@ -129,7 +146,8 @@
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Addtional terms</label>
                   <div class="col-lg-9">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
+                    <textarea [disabled]="!isEditMode" rows="5" cols="5" class="form-control" placeholder="Enter your message here" name="additionalTerm"
+                    [(ngModel)]="formContract.contractByContractId.additionalTerms"></textarea>
                   </div>
                 </div>
               </div>
@@ -164,7 +182,7 @@
             </fieldset>
 
             <!-- Radio button -->
-            <div class="content">
+            <!-- <div class="content">
               <div class="form-group">
                 <div class="radio">
                   <label>
@@ -178,7 +196,7 @@
                   </label>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="row">
               <div class="col-md-3">
 
@@ -196,7 +214,7 @@
                   <button *ngIf="isEditMode" type="button" class="btn btn-primary">Send Offer
                     <i class="icon-arrow-right14 position-right"></i>
                   </button>
-                  <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm">Accept
+                  <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm" (click)="inviteHumanResource()">Accept
                     <i class="icon-user-check position-right"></i>
                   </button>
 
