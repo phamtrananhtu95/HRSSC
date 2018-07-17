@@ -3,6 +3,7 @@ import { InvitationService } from '../../services/invitation.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Invitation } from '../../models/invitation.model';
 import { Interaction } from '../../models/interaction.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-invitations',
@@ -24,7 +25,8 @@ export class ManageInvitationsComponent implements OnInit {
 
   constructor(
     private invitationService: InvitationService,
-    private authenticateService: AuthenticateService
+    private authenticateService: AuthenticateService,
+    private router: Router
   ) {
     this.userId = this.authenticateService.getUserId();
   }
@@ -67,4 +69,14 @@ export class ManageInvitationsComponent implements OnInit {
     )
   }
 
+  linkToContract(interactionsId) {
+    debugger;
+    this.router.navigate(['job/contract'], {
+      queryParams:
+        {
+          "interactionsId": interactionsId,
+          "composeContract": false
+        }
+    });
+  }
 }

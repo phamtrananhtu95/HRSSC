@@ -87,7 +87,7 @@
                     <b>Term of contract</b>
                   </div>
                   <div class="col-md-8 text-right">
-                    <button *ngIf="!isEditMode" style="" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
+                    <button *ngIf="isEditable && !isEditMode" style="" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
                       <i class="icon-pencil6 position-left"></i>Edit</button>
                   </div>
                   <div class="col-md-1">
@@ -104,7 +104,7 @@
                   <div>
                     <label class="col-lg-2 control-label">Start date:</label>
                     <div *ngIf="!isEditMode" class="col-lg-4">
-                      <label style="margin-top: 7px;">{{humanResource.availableDate | date:'dd/MM/yyyy' }}</label>
+                      <label style="margin-top: 7px;">{{formContract.contractByContractId.startDate | date:'dd/MM/yyyy' }}</label>
                     </div>
                     <div *ngIf="isEditMode" class="col-lg-4">
                       <form #myForm="ngForm" novalidate>
@@ -120,7 +120,7 @@
                   <div>
                     <label class="col-lg-2 control-label">End date:</label>
                     <div *ngIf="!isEditMode" class="col-lg-4">
-                      <label style="margin-top: 7px;">{{humanResource.availableDuration | date:'dd/MM/yyyy' }}</label>
+                      <label style="margin-top: 7px;">{{formContract.contractByContractId.endDate | date:'dd/MM/yyyy' }}</label>
                     </div>
                     <div *ngIf="isEditMode" class="col-lg-4">
                       <form #myForm="ngForm" novalidate>
@@ -134,7 +134,7 @@
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Monthly payment:</label>
                   <div *ngIf="!isEditMode" class="col-lg-5">
-                    <label style="margin-top: 7px;">{{humanResource.salary}}</label>
+                    <label style="margin-top: 7px;">{{formContract.contractByContractId.salary}}</label>
                   </div>
                   <div *ngIf="isEditMode" class="col-lg-5">
                     <input type="text" currencyMask [(ngModel)]="formContract.contractByContractId.salary" name="salary" [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}"
@@ -211,7 +211,7 @@
               </div>
               <div class="col-md-3">
                 <div class="text-right">
-                  <button *ngIf="isEditMode" type="button" class="btn btn-primary">Send Offer
+                  <button *ngIf="isEditMode" type="button" class="btn btn-primary" (click)="sendOffer()">Send Offer
                     <i class="icon-arrow-right14 position-right"></i>
                   </button>
                   <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm" (click)="inviteHumanResource()">Accept

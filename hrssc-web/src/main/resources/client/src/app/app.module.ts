@@ -86,6 +86,7 @@ import { ChatFormComponent } from './pages/chat-page/chat-form/chat-form.compone
 import { ChatService } from './services/chat.service';
 
 import { JobContractComponent } from './pages/job-contract/job-contract.component';
+import { ContractService } from './services/contract.service';
 
 const appRoutes: Routes = [
 
@@ -276,7 +277,7 @@ const appRoutes: Routes = [
     ApplianceService,
     ChatService,
     LocalstoragesService,
-
+    ContractService
   ],
   bootstrap: [AppComponent]
 })
