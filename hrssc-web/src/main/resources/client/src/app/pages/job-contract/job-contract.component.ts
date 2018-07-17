@@ -86,7 +86,7 @@ export class JobContractComponent implements OnInit {
     this.employeeService.getHumanResourceById(this.userId, resourceId).subscribe(
       res => {
         this.humanResource = res;
-        if(!initFormContract){
+        if (!initFormContract) {
           return;
         }
         this.startDate = this.ConvertToDatetime(this.humanResource.availableDate);
@@ -163,6 +163,14 @@ export class JobContractComponent implements OnInit {
         }
       );
     }
+  }
+
+  showChatPopup() {
+    $('#qnimate').addClass('popup-box-on');
+  }
+
+  removeChatBox() {
+    $('#qnimate').removeClass('popup-box-on');
   }
 
   // inviteHumanResource(projectId) {

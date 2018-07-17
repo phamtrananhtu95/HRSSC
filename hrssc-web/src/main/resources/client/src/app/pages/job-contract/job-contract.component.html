@@ -147,7 +147,7 @@
                   <label class="col-lg-3 control-label">Addtional terms</label>
                   <div class="col-lg-9">
                     <textarea [disabled]="!isEditMode" rows="5" cols="5" class="form-control" placeholder="Enter your message here" name="additionalTerm"
-                    [(ngModel)]="formContract.contractByContractId.additionalTerms"></textarea>
+                      [(ngModel)]="formContract.contractByContractId.additionalTerms"></textarea>
                   </div>
                 </div>
               </div>
@@ -175,6 +175,12 @@
                   <label class="col-lg-3 control-label">Send message:</label>
                   <div class="col-lg-9">
                     <input type="text" class="form-control">
+                  </div>
+
+                  <div>
+                    <a id="addClass" (click)="showChatPopup()">
+                      <span class="glyphicon glyphicon-comment"></span> Open in chat </a>
+                    <app-chat-popup></app-chat-popup>
                   </div>
                 </div>
 
