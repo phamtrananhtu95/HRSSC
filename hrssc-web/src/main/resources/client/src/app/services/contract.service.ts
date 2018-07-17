@@ -17,4 +17,9 @@ export class ContractService {
     let url ='contract/change-offer/';
     return this.restService.post(url, formOffer);
   }
+
+  getLogChatById(contractId){
+    let url = 'contract/get-chat-logs/' + contractId;
+    return this.restService.get(url);
+  }
 }

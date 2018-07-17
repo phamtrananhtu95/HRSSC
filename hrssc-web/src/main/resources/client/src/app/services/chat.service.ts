@@ -2,26 +2,31 @@ import { Injectable } from '@angular/core';
 import * as stompjs from 'stompjs'
 import * as SockJS from 'sockjs-client';
 import { AuthenticateService } from './authenticate.service';
+import { ContractService } from './contract.service';
 
 @Injectable()
 export class ChatService {
-  chatMessages=[];
+  chatMessages = [];
   username: any;
   userId: any;
   private stompClient;
   public serverWsUrl = "http://localhost:8080/ws";
   public topic = null;
   public currentSubscription = null;
+  public contractId: any;
 
 
   constructor(
-    private auth: AuthenticateService
-  ) { 
+    private auth: AuthenticateService,
+    private contractService: ContractService
+  ) {
     this.username = this.auth.getUserName();
     this.userId = this.auth.getUserId();
   }
 
   connect(roomId) {
+    this.contractId = roomId;
+
     let ws = new SockJS(this.serverWsUrl);
     this.stompClient = stompjs.over(ws);
     let that = this;
@@ -36,8 +41,8 @@ export class ChatService {
           if (messageReceived.type == 'CHAT' && messageReceived.sender != that.username) {
             that.chatMessages.push({
               content: messageReceived.content,
-              isSent: false,
-              timeSent: that.getTimestamp()
+              timeSent: that.getTimestamp(),
+              userSent: messageReceived.sender
             })
           }
 
@@ -45,7 +50,7 @@ export class ChatService {
       });
       that.stompClient.send(`${that.topic}/addUser`,
         {},
-        JSON.stringify({ sender: that.username, type: 'JOIN', contractId: 434, userId: that.userId })
+        JSON.stringify({ sender: that.username, type: 'JOIN', contractId: roomId, userId: that.userId })
       );
     });
 
@@ -55,6 +60,24 @@ export class ChatService {
     return this.chatMessages;
   }
 
+  getLogChatById(contractId) {
+    this.contractService.getLogChatById(contractId).subscribe(
+      res => {
+        res.forEach(el => {
+          this.chatMessages.push({
+            content: el.messageContent,
+            timeSent: el.sentTime,
+            userSent: el.userByUserId.username
+            // email: 
+          })
+        });
+      },
+      err => {
+
+      }
+    );
+  }
+
   sendMessage(msg) {
     const timestamp = this.getTimestamp();
     // const email = 
@@ -62,16 +85,16 @@ export class ChatService {
     this.chatMessages.push({
       content: msg,
       timeSent: timestamp,
-      isSent: true
+      userSent: this.username
       // email: 
     })
 
-    if(msg && this.stompClient){
+    if (msg && this.stompClient) {
       var chatMessage = {
         sender: this.username,
         content: msg,
         type: 'CHAT',
-        contractId: 434,
+        contractId: this.contractId,
         userId: this.userId
       };
       this.stompClient.send(`${this.topic}/sendMessage`, {}, JSON.stringify(chatMessage));

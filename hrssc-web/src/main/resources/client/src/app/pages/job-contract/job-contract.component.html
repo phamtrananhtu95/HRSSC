@@ -87,7 +87,7 @@
                     <b>Term of contract</b>
                   </div>
                   <div class="col-md-8 text-right">
-                    <button *ngIf="isEditable && !isEditMode" style="" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
+                    <button *ngIf="isEditable && !isEditMode" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
                       <i class="icon-pencil6 position-left"></i>Edit</button>
                   </div>
                   <div class="col-md-1">
@@ -180,7 +180,7 @@
                   <div>
                     <a id="addClass" (click)="showChatPopup()">
                       <span class="glyphicon glyphicon-comment"></span> Open in chat </a>
-                    <app-chat-popup></app-chat-popup>
+                    <app-chat-popup [contractid]="formContract.contractByContractId.id"></app-chat-popup>
                   </div>
                 </div>
 

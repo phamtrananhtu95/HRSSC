@@ -8,6 +8,7 @@ import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-pick
 import { ActivatedRoute, Router } from '@angular/router';
 import { Interaction } from '../../models/interaction.model';
 import { ContractService } from '../../services/contract.service';
+declare var $: any;
 
 @Component({
   selector: 'app-job-contract',
@@ -23,6 +24,7 @@ export class JobContractComponent implements OnInit {
   public isCheckTerm = false;
 
   public userId: number;
+  public contractid: number;
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -67,6 +69,7 @@ export class JobContractComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contractid = this.formContract.contractByContractId.id;
   }
 
   getContractInfo(invitationId) {
@@ -78,6 +81,7 @@ export class JobContractComponent implements OnInit {
         this.endDate = this.ConvertToDatetime(this.formContract.contractByContractId.endDate);
         this.getHumanResourceById(this.formContract.humanResourceId);
         this.getProject(this.formContract.projectId);
+        
       }
     )
   }
@@ -169,10 +173,7 @@ export class JobContractComponent implements OnInit {
     $('#qnimate').addClass('popup-box-on');
   }
 
-  removeChatBox() {
-    $('#qnimate').removeClass('popup-box-on');
-  }
-
+  
   // inviteHumanResource(projectId) {
   //   this.formContract.projectId = this.projectId;
   //   this.formContract.humanResourceId = this.resourceId;

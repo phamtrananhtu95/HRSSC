@@ -47,7 +47,5 @@ export class ChatPageComponent implements OnInit {
     $('#qnimate').addClass('popup-box-on');
   }
 
-  removeChatBox() {
-    $('#qnimate').removeClass('popup-box-on');
-  }
+  
 }
