@@ -88,6 +88,7 @@ import { ChatService } from './services/chat.service';
 import { JobContractComponent } from './pages/job-contract/job-contract.component';
 import { ChatPopupComponent } from './pages/chat-page/chat-popup/chat-popup.component';
 import { ContractService } from './services/contract.service';
+import { ApplianceContractComponent } from './pages/manage-appliances/appliance-contract/appliance-contract.component';
 
 const appRoutes: Routes = [
 
@@ -234,7 +235,8 @@ const appRoutes: Routes = [
     ChatMessageComponent,
     ChatFormComponent,
     JobContractComponent,
-    ChatPopupComponent
+    ChatPopupComponent,
+    ApplianceContractComponent
   ],
   imports: [
     BrowserModule,

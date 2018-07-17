@@ -4,10 +4,26 @@
 <div class="content">
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="panel panel-flat col-md-8">
-      <div class="panel-body">
-        <div class="panel-group">
-          <div class="panel panel-default">
+    <div class="tabbable panel login-form width-400 col-md-8">
+
+      <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+        <li class="active">
+          <a href="#basic-tab1" data-toggle="tab">
+            Appliance
+            <span class="badge badge-info position-right">23</span>
+          </a>
+        </li>
+        <li>
+          <a href="#basic-tab2" data-toggle="tab">
+            Your appliance
+            <span class="badge badge-info position-right">23</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content panel-body">
+        <div class="tab-pane fade in active" id="basic-tab1">
+          <div class="panel panel-flat">
             <div class="panel-body" *ngFor="let apply of listAppliance">
               <a data-toggle="collapse" [attr.data-target]="'#appliance' + apply.id">
                 <div class="media">
@@ -28,7 +44,7 @@
                     <img src="assets/images/FPT.jpg" alt="">
                   </div>
                   <div class="media-body">
-                    
+
                     <a href="#"> {{resourceList.humanResourceByHumanResourceId.fullname}}</a>
                     <i>of</i>
                     <!-- {{resourceList.humanResourceByHumanResourceId.companyId}} -->
@@ -39,13 +55,29 @@
                     <button (click)="selectResource(resourceList, apply.id)" class="btn btn-success">select</button>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
         </div>
+
+        <div class="tab-pane fade" id="basic-tab2">
+          <app-appliance-contract></app-appliance-contract>
+        </div>
       </div>
+
     </div>
+
+    <!-- <div class="panel panel-flat col-md-8">
+      <div class="panel-body">
+        <div class="panel-group">
+          <div class="panel panel-default">
+          </div>
+        </div>
+      </div>
+    </div> -->
+
     <div class="col-md-2"></div>
   </div>
+
 </div>
