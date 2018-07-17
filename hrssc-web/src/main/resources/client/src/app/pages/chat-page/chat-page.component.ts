@@ -43,5 +43,11 @@ export class ChatPageComponent implements OnInit {
     this.listMessage = this.chatService.getMessages();
   }
 
-  
+  showChatPopup() {
+    $('#qnimate').addClass('popup-box-on');
+  }
+
+  removeChatBox() {
+    $('#qnimate').removeClass('popup-box-on');
+  }
 }
