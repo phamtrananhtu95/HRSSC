@@ -67,6 +67,13 @@ export class InviteResourcePopover implements OnInit {
     // }
     viewContract(humanResourceId, projectId) {
         (<any>$("#modal_theme_info")).modal("hide");
-        this.router.navigate(['job/contract'], { queryParams: { "humanResourceId": humanResourceId, "projectId": projectId } });
+        this.router.navigate(['job/contract'], {
+            queryParams:
+                {
+                    "humanResourceId": humanResourceId,
+                    "projectId": projectId,
+                    "composeContract": true
+                }
+        });
     }
 }

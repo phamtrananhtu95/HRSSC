@@ -1,4 +1,5 @@
 export class Interaction {
+    id: number;
     type: string;
     humanResourceId: number;
     projectId: number;
@@ -12,8 +13,10 @@ export class Interaction {
 }
 
 export class ContractByContractId {
+    id: number;
     startDate: number;
     endDate: number;
     salary: number;
     additionalTerms: string;
+    latestEditorId: number;
 }
