@@ -17,11 +17,21 @@ export class InvitationService {
   //   let url = "manage-project/get-invitable-project/" + managerId;
   //   return this.restService.get(url);
 
-    
+
   // }
 
-  acceptInvite(formInvite){
+  acceptInvite(formInvite) {
     let url = "invitation/accept";
     return this.restService.post(url, formInvite);
   }
+
+  loadProjectContract(managerId) {
+    let url = "invitation/get-resource-offers/" + managerId;
+    return this.restService.get(url);
+  }
+
+  // acceptOffer(formContract) {
+  //   let url = "contract/accept-offer/";
+  //   return this.restService.post(url, formContract);
+  // }
 }

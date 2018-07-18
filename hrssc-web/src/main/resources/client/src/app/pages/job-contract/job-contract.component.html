@@ -63,7 +63,7 @@
                         </div>
                         <div class="checkbox" style="padding-left: 10px">
                           <label>
-                            <input [disabled]="isEditMode" type="checkbox" id="checkTerm" [checked]="isCheckTerm" (change)="onValueChangeCheckTerm($event)">
+                            <input [disabled]="isEditMode || !isEditable" type="checkbox" id="checkTerm" [checked]="isCheckTerm" (change)="onValueChangeCheckTerm($event)">
                             <em class="text-danger">Term of agreement</em>
                           </label>
                         </div>
@@ -108,7 +108,7 @@
                     </div>
                     <div *ngIf="isEditMode" class="col-lg-4">
                       <form #myForm="ngForm" novalidate>
-                        <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
+                        <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptionsStart" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
                           required></my-date-picker>
                       </form>
                     </div>
@@ -124,7 +124,7 @@
                     </div>
                     <div *ngIf="isEditMode" class="col-lg-4">
                       <form #myForm="ngForm" novalidate>
-                        <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+                        <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
                           required></my-date-picker>
                       </form>
                     </div>
@@ -178,10 +178,20 @@
                   </div>
 
                   <div>
-                    <a id="addClass" (click)="showChatPopup()">
+                    <!-- <a id="addClass" (click)="showChatPopup()">
                       <span class="glyphicon glyphicon-comment"></span> Open in chat </a>
+                    <app-chat-popup [contractid]="formContract.contractByContractId.id"></app-chat-popup> -->
+
+                  <div style="position: fixed; bottom: 10px; right: 10px;">
+                    <!-- <a id="addClass" (click)="showChatPopup()">
+                      <span class="glyphicon glyphicon-comment"></span> Open in chat </a> -->
+                    <button type="button" class="btn btn-danger btn-labeled btn-labeled-right" (click)="showChatPopup()">
+                      <b>
+                        <i class="icon-menu7"></i>
+                      </b> Chat with manager</button>
                     <app-chat-popup [contractid]="formContract.contractByContractId.id"></app-chat-popup>
                   </div>
+
                 </div>
 
               </div>
@@ -217,10 +227,10 @@
               </div>
               <div class="col-md-3">
                 <div class="text-right">
-                  <button *ngIf="isEditMode" type="button" class="btn btn-primary" (click)="sendOffer()">Send Offer
+                  <button *ngIf="isEditMode" type="button" class="btn btn-primary" (click)="sendOffer()" id="sweet_success_send_invite">Send Offer
                     <i class="icon-arrow-right14 position-right"></i>
                   </button>
-                  <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm" (click)="inviteHumanResource()">Accept
+                  <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm" (click)="acceptOffer()" id="sweet_success_accept_invite">Accept
                     <i class="icon-user-check position-right"></i>
                   </button>
 

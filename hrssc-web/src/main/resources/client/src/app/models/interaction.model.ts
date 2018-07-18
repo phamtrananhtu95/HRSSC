@@ -5,6 +5,7 @@ export class Interaction {
     projectId: number;
     rankingScore: number;
     contractByContractId: ContractByContractId;
+    contractId: number;
     constructor() {
         this.contractByContractId = new ContractByContractId();
     }

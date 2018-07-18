@@ -3,12 +3,13 @@ import { Employee, Project } from '../../models';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Interaction } from '../../models/interaction.model';
+import { Interaction, ContractByContractId } from '../../models/interaction.model';
 import { ContractService } from '../../services/contract.service';
 declare var $: any;
+import { InvitationService } from '../../services/invitation.service';
 
 @Component({
   selector: 'app-job-contract',
@@ -26,24 +27,38 @@ export class JobContractComponent implements OnInit {
   public userId: number;
   public contractid: number;
 
-  public myDatePickerOptions: IMyDpOptions = {
+  // date
+  public today: FormGroup;
+  startDate: any = null;
+  endDate: any = null;
+
+  public myDatePickerOptionsStart: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+    // disableUntil: { year: 2018, month: 7, day: 17 }
+  };
+
+  public myDatePickerOptionsEnd: IMyDpOptions = {
     // other options...
     dateFormat: 'dd/mm/yyyy',
+    // disableUntil: { year: 2018, month: 7, day: 17 }
   };
 
   public isEditMode: boolean;
   public formContract = new Interaction();
-  startDate: any = null;
-  endDate: any = null;
   public composeContract = false;
   public isEditable: boolean;
+  public formOffer = new ContractByContractId();
+
   constructor(
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
     public projectService: ProjectService,
     private route: ActivatedRoute,
     private router: Router,
-    private contractService: ContractService
+    private contractService: ContractService,
+    private invitationService: InvitationService,
+
+    private formBuilder: FormBuilder
   ) {
     this.userId = this.authenticateService.getUserId();
     this.route.queryParams.subscribe(params => {
@@ -70,6 +85,25 @@ export class JobContractComponent implements OnInit {
 
   ngOnInit() {
     this.contractid = this.formContract.contractByContractId.id;
+    (<any>window).sweetAlertMin = true;
+    (<any>window).componentModalsJs = true;
+
+    this.today = this.formBuilder.group({
+      // Empty string or null means no initial value. Can be also specific date for
+      // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
+      // value.
+
+      myDate: [null, Validators.required]
+      // other controls are here...
+    });
+    this.setDisableUntilForStartDate();
+  }
+
+  setDisableUntilForStartDate() {
+    let now = new Date();
+    let optionsStart = JSON.parse(JSON.stringify(this.myDatePickerOptionsStart));
+    optionsStart.disableUntil = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
+    this.myDatePickerOptionsStart = optionsStart;
   }
 
   getContractInfo(invitationId) {
@@ -127,9 +161,15 @@ export class JobContractComponent implements OnInit {
     return dateParse;
   }
 
+
+
   onDateChangedCreate(event: IMyDateModel) {
     this.humanResource.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
     this.formContract.contractByContractId.startDate = event && event.jsdate ? event.jsdate.getTime() : null;
+    let startDate = event.date;
+    let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
+    optionsEnd.disableUntil = startDate;
+    this.myDatePickerOptionsEnd = optionsEnd;
   }
 
   onDateChangedEnd(event: IMyDateModel) {
@@ -167,6 +207,18 @@ export class JobContractComponent implements OnInit {
         }
       );
     }
+  }
+
+  acceptOffer() {
+    this.formOffer.id = this.formContract.contractId;
+    this.formOffer.latestEditorId = this.userId;
+    // console.log("----------" + JSON.stringify(this.formOffer));
+
+    this.contractService.acceptOffer(this.formOffer).subscribe(
+      res => {
+        this.router.navigate(['home']);
+      }
+    );
   }
 
   showChatPopup() {

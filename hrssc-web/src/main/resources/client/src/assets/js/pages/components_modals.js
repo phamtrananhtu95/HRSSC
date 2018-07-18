@@ -290,6 +290,24 @@ let componentModals = setTimeout(function runAgain() {
                 });
             });
 
+            $('#sweet_success_send_invite').on('click', function () {
+                swal({
+                    title: "Send offer success",
+                    text: "Have been send offer success",
+                    confirmButtonColor: "#66BB6A",
+                    type: "success"
+                });
+            });
+
+            $('#sweet_success_accept_invite').on('click', function () {
+                swal({
+                    title: "Accept success",
+                    text: "Have been accept success",
+                    confirmButtonColor: "#66BB6A",
+                    type: "success"
+                });
+            });
+
             // Error alert
             $('#sweet_error').on('click', function () {
                 swal({
