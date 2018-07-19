@@ -30,6 +30,7 @@ public class Job {
     private int status;
     private Contract contractByContractId;
     private Integer contractId;
+    @JsonView(HumanResourceView.history.class)
     private Collection<Feedback> feedbacksById;
 
     @Id

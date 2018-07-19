@@ -9,22 +9,27 @@ import java.util.Objects;
 
 @Entity
 public class Feedback {
-    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private int id;
-    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private double rating;
-    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private String comment;
-    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private long timestamp;
     @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private int userId;
     @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private User userByUserId;
+    @JsonView(HumanResourceView.history.class)
     private Double jobKnowledge;
+    @JsonView(HumanResourceView.history.class)
     private Double workQuality;
+    @JsonView(HumanResourceView.history.class)
     private Double cooperation;
+    @JsonView(HumanResourceView.history.class)
     private Double attendance;
+    @JsonView(HumanResourceView.history.class)
     private Double workAttitude;
     private int jobId;
     private Job jobByJobId;
