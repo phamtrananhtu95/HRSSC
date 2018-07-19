@@ -17,12 +17,6 @@ public class FeedbackController {
     @Autowired
     FeedbackService feedbackService;
 
-    @JsonView(FeedbackView.loadAllview.class)
-    @GetMapping(value = "/loadAll/{humanResourceId}")
-    public List<Feedback> loadAllFeedback(@PathVariable(value = "humanResourceId") int humanResourceId){
-        return feedbackService.loadAllFeedback(humanResourceId);
-    }
-
     @PostMapping(value = "/add")
     public ResponseStatus addFeedback(@RequestBody Feedback feedback) {
         ResponseStatus respon = new ResponseStatus(feedbackService.addFeedback(feedback));
