@@ -20,7 +20,7 @@ public interface HumanResourceService {
 	 * @return list emp
 	 */
 	List<HumanResourceDto> getHumanResources();
-
+	List<HumanResource> getHomeResourceList(int userId);
 	HumanResourceDto getHumanResourceById(int id) throws NotFoundException;
 
 	List<HumanResource> getHumanResourceByManagerId(int managerId);

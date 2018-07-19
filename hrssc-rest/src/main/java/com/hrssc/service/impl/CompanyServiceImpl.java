@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.hrssc.service.CompanyService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,24 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     HumanResourceRepository humanResourceRepository;
 
+    public List<Company> getHomeCompanyList(int userId){
+        User user = userRepository.findById(userId);
+        if(user == null){
+            return null;
+        }
+        List<Company> companyList = companyRepository.findByIdNot(user.getCompanyId());
+        if(companyList == null){
+            return null;
+        }
+        List<Company> resultList = new ArrayList<>();
+        for(int i = companyList.size() -1; i > companyList.size() - 7; i--){
+            if(i == -1){
+                break;
+            }
+            resultList.add(companyList.get(i));
+        }
+        return resultList;
+    }
 
     public Company viewCompanyDetails(int companyId) throws NotFoundException {
         Company detailsCompany = companyRepository.findById(companyId);

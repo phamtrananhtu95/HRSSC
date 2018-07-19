@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HomeView;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.domain.jacksonview.SimilarView;
@@ -23,11 +24,11 @@ public class ProjectRequirements {
     private int projectId;
     private boolean isAssigned;
 
-    @JsonView({ProjectView.ListView.class,ProjectView.details.class,MatchingView.Resource.class})
+    @JsonView({HomeView.Project.class,ProjectView.ListView.class,ProjectView.details.class,MatchingView.Resource.class})
     private Position positionByPositionId;
     private Project projectByProjectId;
 
-    @JsonView({SimilarView.Project.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
+    @JsonView({HomeView.Project.class,SimilarView.Project.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
     private Collection<SkillRequirements> skillRequirementsById;
 
     @Id

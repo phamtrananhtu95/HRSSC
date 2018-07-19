@@ -11,7 +11,7 @@ public interface ProjectManagementService {
     List<Project> getInvitableProjectByManagerId(int resourceId, int userId);
     List<Project> getProjectByManagerId(int managerId);
     List<Job> getJoinedResource(int projectId);
-
+    List<Project> getHomeProjectList(int userId);
     String addProject(Project project);
     void saveProject(Project project);
     void saveSkillRequirements(SkillRequirements skillRequirements);

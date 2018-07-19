@@ -40,6 +40,26 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 	@Autowired
 	UserRepository userRepository;
 
+	public List<HumanResource> getHomeResourceList(int userId){
+		User user = userRepository.findById(userId);
+		if(user == null){
+			return null;
+		}
+		List<HumanResource> resourceList = humanResourceRepository.findByStatusAndCompanyIdNot(Constant.ResourceStatus.AVAILABLE,user.getCompanyId());
+		if(resourceList == null){
+			return null;
+		}
+		List<HumanResource> resultList = new ArrayList<>();
+		for(int i = resourceList.size() -1; i > resourceList.size() - 13; i--){
+			if(i == -1){
+				break;
+			}
+			resultList.add(resourceList.get(i));
+		}
+		return resultList;
+	}
+
+
 	@Override
 	public List<HumanResourceDto> getHumanResources() {
 		List<HumanResourceDto> employeeList = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HomeView;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.domain.jacksonview.SimilarView;
@@ -17,7 +18,7 @@ public class SkillRequirements {
     @JsonView({ProjectView.ListView.class,ProjectView.details.class})
     private int skillId;
 
-    @JsonView({SimilarView.Project.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
+    @JsonView({HomeView.Project.class,SimilarView.Project.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class})
     private Skill skillBySkillId;
     @JsonView({SimilarView.Project.class,ProjectView.ListView.class,ProjectView.Summary.class,ProjectView.details.class,MatchingView.Resource.class})
     private double experience;

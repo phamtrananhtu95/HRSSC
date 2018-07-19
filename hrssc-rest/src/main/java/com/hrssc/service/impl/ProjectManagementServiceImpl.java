@@ -46,6 +46,26 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     @PersistenceContext
     EntityManager em;
 
+
+    public List<Project> getHomeProjectList(int userId){
+        User user = userRepository.findById(userId);
+        if(user == null){
+            return null;
+        }
+        List<Project> projectList = projectRepository.findByRequestStatusAndCompanyIdNot(Constant.RequestStatus.OPENNING,user.getCompanyId());
+        if(projectList == null){
+            return null;
+        }
+        List<Project> resultList = new ArrayList<>();
+        for(int i = projectList.size() -1; i > projectList.size() - 13; i--){
+            if(i == -1){
+                break;
+            }
+            resultList.add(projectList.get(i));
+        }
+        return resultList;
+    }
+
     @Override
     public List<Project> getProjectByManagerId(int managerId) {
         return projectRepository.getProjectByUserId(managerId);

@@ -17,7 +17,9 @@ public class Skill {
             ProjectView.details.class})
     private int id;
 
-    @JsonView({SimilarView.Resource.class,
+    @JsonView({HomeView.Project.class,
+            HomeView.Resource.class,
+            SimilarView.Resource.class,
             SimilarView.Project.class,
             MiscView.ShortView.class,
             MiscView.FormInfo.class,

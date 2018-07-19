@@ -85,6 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/company/**",
                         "/similar/**",
                         "/feedback/**",
+                        "/home/**",
                         "/ws/**",
                         "/chat/**",
                         "/app/**",

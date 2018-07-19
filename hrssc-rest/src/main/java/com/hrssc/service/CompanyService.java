@@ -13,6 +13,7 @@ public interface CompanyService {
     List<Project> viewCompanyProject(int companyId, int userId) throws NotFoundException;
     List<HumanResource> viewCompanyResource(int companyId, int userId)throws NotFoundException;
     String updateCompany(Company company);
+    List<Company> getHomeCompanyList(int userId);
 
 
 
