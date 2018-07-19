@@ -37,7 +37,7 @@ public class ApplianceController {
     }
 
     @JsonView(InvitationView.ListView.class)
-    @GetMapping("/get-project-offers/{managerId}")
+    @GetMapping("/get-resource-offers/{managerId}")
     public List<HumanResource> loadAllResourceAppliance(@PathVariable("managerId") int managerId){
         return  applianceService.loadAllResourceAppliance(managerId);
     }

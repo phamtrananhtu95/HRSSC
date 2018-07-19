@@ -61,7 +61,7 @@ public class ApplianceServiceImpl implements ApplianceService {
             applyInteraction.setHumanResourceId(interaction.getHumanResourceId());
             applyInteraction.setProjectId(interaction.getProjectId());
         }
-        if (applyInteraction.getType() == Constant.InteractionType.INVITE){
+        if (applyInteraction.getType() == Constant.InteractionType.INVITE || applyInteraction.getType() == Constant.InteractionType.APPLY){
             return null;
         }
         applyInteraction.setType(Constant.InteractionType.APPLY);
