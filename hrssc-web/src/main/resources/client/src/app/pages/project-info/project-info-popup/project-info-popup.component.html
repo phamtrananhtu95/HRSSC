@@ -23,7 +23,8 @@
             <i class="text-muted">project</i>
           </div>
           <div class="media-right">
-            <button type="submit" class="btn btn-success" (click)="appliable(x)">Apply</button>
+            <!-- <button type="submit" class="btn btn-success" (click)="appliable(x)">Apply</button> -->
+            <button type="submit" class="btn btn-success" (click)="viewContract(x.resource.id, x.project.id)">Apply</button>            
           </div>
           <hr>
         </div>

@@ -3,7 +3,7 @@ import { EmployeeService } from '../../../services/employee.service';
 import { AuthenticateService } from '../../../services/authenticate.service';
 import { ApplianceService } from '../../../services/appliance.service';
 import { Appliable, Project } from '../../../models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../../services/project.service';
 
 @Component({
@@ -23,7 +23,8 @@ export class ProjectInfoPopupComponent implements OnInit {
     private empService: EmployeeService,
     private auth: AuthenticateService,
     private applyService: ApplianceService,
-    private prjService: ProjectService
+    private prjService: ProjectService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -61,6 +62,8 @@ export class ProjectInfoPopupComponent implements OnInit {
 
       }
     );
+    // console.log("----------" + JSON.stringify(this.listAvailableResource));
+
   }
   appliable(val: any) {
     console.log(val);
@@ -76,6 +79,18 @@ export class ProjectInfoPopupComponent implements OnInit {
       }
     );
 
+  }
+
+  viewContract(humanResourceId, projectId) {
+    (<any>$("#modal_theme_info")).modal("hide");
+    this.router.navigate(['job/contract'], {
+      queryParams:
+        {
+          "humanResourceId": humanResourceId,
+          "projectId": projectId,
+          "composeContract": true
+        }
+    });
   }
 
 }
