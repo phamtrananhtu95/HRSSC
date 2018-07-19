@@ -19,10 +19,17 @@ public class Feedback {
     private long timestamp;
     @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private int userId;
-    private int humanResourceId;
     @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
     private User userByUserId;
-    private HumanResource humanResourceByHumanResourceId;
+    private Double jobKnowledge;
+    private Double workQuality;
+    private Double cooperation;
+    private Double attendance;
+    private Double workAttitude;
+    private int jobId;
+    private Job jobByJobId;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +47,6 @@ public class Feedback {
     public double getRating() {
         return rating;
     }
-
     public void setRating(double rating) {
         this.rating = rating;
     }
@@ -75,15 +81,7 @@ public class Feedback {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "human_resource_id", nullable = false)
-    public int getHumanResourceId() {
-        return humanResourceId;
-    }
 
-    public void setHumanResourceId(int humanResourceId) {
-        this.humanResourceId = humanResourceId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -94,14 +92,13 @@ public class Feedback {
                 Double.compare(feedback.rating, rating) == 0 &&
                 timestamp == feedback.timestamp &&
                 userId == feedback.userId &&
-                humanResourceId == feedback.humanResourceId &&
                 Objects.equals(comment, feedback.comment);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, rating, comment, timestamp, userId, humanResourceId);
+        return Objects.hash(id, rating, comment, timestamp, userId);
     }
 
     @ManyToOne
@@ -114,13 +111,74 @@ public class Feedback {
         this.userByUserId = userByUserId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "human_resource_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    public HumanResource getHumanResourceByHumanResourceId() {
-        return humanResourceByHumanResourceId;
+
+    @Basic
+    @Column(name = "job_knowledge")
+    public Double getJobKnowledge() {
+        return jobKnowledge;
     }
 
-    public void setHumanResourceByHumanResourceId(HumanResource humanResourceByHumanResourceId) {
-        this.humanResourceByHumanResourceId = humanResourceByHumanResourceId;
+    public void setJobKnowledge(Double jobKnowledge) {
+        this.jobKnowledge = jobKnowledge;
+    }
+
+    @Basic
+    @Column(name = "work_quality")
+    public Double getWorkQuality() {
+        return workQuality;
+    }
+
+    public void setWorkQuality(Double workQuality) {
+        this.workQuality = workQuality;
+    }
+
+    @Basic
+    @Column(name = "cooperation")
+    public Double getCooperation() {
+        return cooperation;
+    }
+
+    public void setCooperation(Double cooperation) {
+        this.cooperation = cooperation;
+    }
+
+    @Basic
+    @Column(name = "attendance")
+    public Double getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Double attendance) {
+        this.attendance = attendance;
+    }
+
+    @Basic
+    @Column(name = "work_attitude")
+    public Double getWorkAttitude() {
+        return workAttitude;
+    }
+
+    public void setWorkAttitude(Double workAttitude) {
+        this.workAttitude = workAttitude;
+    }
+
+    @Basic
+    @Column(name = "job_id")
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Job getJobByJobId() {
+        return jobByJobId;
+    }
+
+    public void setJobByJobId(Job jobByJobId) {
+        this.jobByJobId = jobByJobId;
     }
 }

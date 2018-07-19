@@ -26,6 +26,7 @@ public class ChatLog {
     private Contract contractByContractId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -5,6 +5,7 @@ import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.JobView;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -29,6 +30,7 @@ public class Job {
     private int status;
     private Contract contractByContractId;
     private Integer contractId;
+    private Collection<Feedback> feedbacksById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -145,5 +147,14 @@ public class Job {
 
     public void setContractId(Integer contractId) {
         this.contractId = contractId;
+    }
+
+    @OneToMany(mappedBy = "jobByJobId")
+    public Collection<Feedback> getFeedbacksById() {
+        return feedbacksById;
+    }
+
+    public void setFeedbacksById(Collection<Feedback> feedbacksById) {
+        this.feedbacksById = feedbacksById;
     }
 }

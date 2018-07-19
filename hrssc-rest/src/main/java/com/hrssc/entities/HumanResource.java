@@ -33,8 +33,7 @@ public class HumanResource {
 
 
     private int userId;
-    @JsonView(HumanResourceView.details.class)
-    private Collection<Feedback> feedbacksById;
+
 
     @JsonView({SimilarView.Resource.class,ApplianceView.Listview.class,JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
@@ -56,6 +55,7 @@ public class HumanResource {
     
     @JsonView(HumanResourceView.details.class)
     private double avgRating;
+    private Collection<AverageRating> averageRatingsById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -170,14 +170,6 @@ public class HumanResource {
         return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration, companyId, userId);
     }
 
-    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
-    public Collection<Feedback> getFeedbacksById() {
-        return feedbacksById;
-    }
-
-    public void setFeedbacksById(Collection<Feedback> feedbacksById) {
-        this.feedbacksById = feedbacksById;
-    }
 
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
@@ -263,13 +255,14 @@ public class HumanResource {
         this.similarResourcesById_0 = similarResourcesById_0;
     }
 
-    @Basic
-    @Column(name = "avg_rating")
-    public double getAvgRating() {
-        return avgRating;
+
+
+    @OneToMany(mappedBy = "humanResourceByHumanResourceId")
+    public Collection<AverageRating> getAverageRatingsById() {
+        return averageRatingsById;
     }
 
-    public void setAvgRating(double avgRating) {
-        this.avgRating = avgRating;
+    public void setAverageRatingsById(Collection<AverageRating> averageRatingsById) {
+        this.averageRatingsById = averageRatingsById;
     }
 }
