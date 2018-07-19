@@ -8,8 +8,8 @@ export class ProjectService {
     private restService: RestService
   ) { }
 
-  getProjects() {
-      let url = 'ss';
+  getProjects(id) {
+      let url = 'home/project-list/' + id;
       return this.restService.get(url);
   }
 

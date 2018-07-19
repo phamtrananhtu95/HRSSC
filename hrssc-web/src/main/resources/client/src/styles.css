@@ -12,3 +12,14 @@
 .card-footer {
     min-height: 50px;
 }
+
+ng-select.test > div > div.single > div.placeholder{
+    line-height: 40px;
+}
+
+ng-select.test > div.below > div.single{
+    height: 40px; 
+}
+ng-select.test > div.below > div.single > div.toggle{
+    line-height: 40px;
+}

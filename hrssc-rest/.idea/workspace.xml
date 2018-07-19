@@ -19,45 +19,45 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ChatController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ChatController.java">
+      <file leaf-file-name="HumanResourceController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/HumanResourceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="50" column="95" lean-forward="false" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="95" />
+            <state relative-caret-position="667">
+              <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/domain/chat/ChatMessage.java">
+      <file leaf-file-name="HumanResourceService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/HumanResourceService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-145">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="377">
+              <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/ChatService.java">
+      <file leaf-file-name="HumanResourceServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/impl/HumanResourceServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            <state relative-caret-position="638">
+              <caret line="64" column="51" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="51" />
               <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChooseDomainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ChooseDomainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="false" />
+                <marker date="1532024428440" expanded="true" signature="1860:2139" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="2231:2500" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="2584:2659" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="2751:3845" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="3122:3273" ph="//..." />
+                <marker date="1532024428440" expanded="true" signature="3848:3873" ph="@{...}" />
+                <marker date="1532024428440" expanded="true" signature="3940:5633" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="4950:5162" ph="//..." />
+                <marker date="1532024428440" expanded="true" signature="5636:5661" ph="@{...}" />
+                <marker date="1532024428440" expanded="true" signature="5726:7606" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="7674:7843" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="7920:8586" ph="{...}" />
+                <marker date="1532024428440" expanded="true" signature="8638:8765" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -66,13 +66,19 @@
       <file leaf-file-name="CompaniesManagementController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/CompaniesManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="40" column="44" lean-forward="false" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1367#1368#0" expanded="false" />
-                <element signature="e#1433#1434#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="502">
+              <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/HomeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,23 +86,9 @@
       <file leaf-file-name="CompanyController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/CompanyController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="812">
-              <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/impl/ChatServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="696">
+              <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,18 +98,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="145">
               <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContractController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContractController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ContractController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="1363">
+              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebSocketConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/config/WebSocketConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -127,45 +127,59 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/entities/ChatLog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1827">
-              <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+              <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#866#867#0" expanded="false" />
-                <element signature="e#891#892#0" expanded="false" />
-                <element signature="e#924#925#0" expanded="false" />
-                <element signature="e#952#953#0" expanded="false" />
-                <element signature="e#1046#1047#0" expanded="false" />
-                <element signature="e#1077#1078#0" expanded="false" />
-                <element signature="e#1123#1124#0" expanded="false" />
-                <element signature="e#1163#1164#0" expanded="false" />
-                <element signature="e#1259#1260#0" expanded="false" />
-                <element signature="e#1290#1291#0" expanded="false" />
-                <element signature="e#1338#1339#0" expanded="false" />
-                <element signature="e#1378#1379#0" expanded="false" />
-                <element signature="e#1500#1501#0" expanded="false" />
-                <element signature="e#1537#1538#0" expanded="false" />
-                <element signature="e#1597#1598#0" expanded="false" />
-                <element signature="e#1649#1650#0" expanded="false" />
-                <element signature="e#1738#1739#0" expanded="false" />
-                <element signature="e#1767#1768#0" expanded="false" />
-                <element signature="e#1808#1809#0" expanded="false" />
-                <element signature="e#1844#1845#0" expanded="false" />
-                <element signature="e#2596#2597#0" expanded="false" />
-                <element signature="e#2631#2632#0" expanded="false" />
-                <element signature="e#2685#2686#0" expanded="false" />
-                <element signature="e#2733#2734#0" expanded="false" />
-                <element signature="e#2830#2831#0" expanded="false" />
-                <element signature="e#2863#2864#0" expanded="false" />
-                <element signature="e#2912#2913#0" expanded="false" />
-                <element signature="e#2956#2957#0" expanded="false" />
-                <element signature="e#3144#3145#0" expanded="false" />
-                <element signature="e#3187#3188#0" expanded="false" />
+                <marker date="1532024428401" expanded="false" signature="917:928" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="938:944" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="975:986" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="999:1005" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="1011:1067" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="1097:1108" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1124:1130" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="1174:1185" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1210:1216" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="1222:1278" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="1310:1321" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1337:1343" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="1389:1400" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1425:1431" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="1437:1513" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="1551:1562" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1584:1590" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="1648:1659" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1696:1702" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="1708:1762" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="1789:1800" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1814:1820" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="1859:1870" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="1891:1897" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="1949:2350" ph="{...}" />
+                <marker date="1532024428401" expanded="true" signature="2392:2477" ph="{...}" />
+                <marker date="1532024428401" expanded="true" signature="2483:2613" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="2647:2658" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="2678:2684" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="2736:2747" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="2780:2786" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="2792:2850" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="2881:2892" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="2910:2916" ph=" }" />
+                <marker date="1532024428401" expanded="false" signature="2963:2974" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="3003:3009" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="3015:3149" ph="@{...}" />
+                <marker date="1532024428401" expanded="false" signature="3195:3206" ph=" { " />
+                <marker date="1532024428401" expanded="false" signature="3234:3240" ph=" }" />
+                <marker date="1532024428401" expanded="true" signature="3313:3378" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>getHumanResources</find>
+    </findStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="modificationStamps">
@@ -225,9 +239,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -508,6 +521,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1012,12 +1026,18 @@
       <workItem from="1531808952398" duration="1773000" />
       <workItem from="1531818731112" duration="1261000" />
       <workItem from="1531821282917" duration="1481000" />
-      <workItem from="1531834592109" duration="3311000" />
+      <workItem from="1531834592109" duration="5991000" />
+      <workItem from="1531899527843" duration="1255000" />
+      <workItem from="1531920437767" duration="1461000" />
+      <workItem from="1531947582691" duration="626000" />
+      <workItem from="1531985575784" duration="1241000" />
+      <workItem from="1532010868782" duration="2660000" />
+      <workItem from="1532026502424" duration="2334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21474000" />
+    <option name="totallyTimeSpent" value="33731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
@@ -1076,30 +1096,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/config/WebSocketConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/config/SecurityConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1711">
-          <caret line="59" column="26" lean-forward="false" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/ChatService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ChooseDomainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -1114,9 +1110,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,37 +1119,46 @@
         <state relative-caret-position="725">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#866#867#0" expanded="false" />
-            <element signature="e#891#892#0" expanded="false" />
-            <element signature="e#924#925#0" expanded="false" />
-            <element signature="e#952#953#0" expanded="false" />
-            <element signature="e#1046#1047#0" expanded="false" />
-            <element signature="e#1077#1078#0" expanded="false" />
-            <element signature="e#1123#1124#0" expanded="false" />
-            <element signature="e#1163#1164#0" expanded="false" />
-            <element signature="e#1259#1260#0" expanded="false" />
-            <element signature="e#1290#1291#0" expanded="false" />
-            <element signature="e#1338#1339#0" expanded="false" />
-            <element signature="e#1378#1379#0" expanded="false" />
-            <element signature="e#1500#1501#0" expanded="false" />
-            <element signature="e#1537#1538#0" expanded="false" />
-            <element signature="e#1597#1598#0" expanded="false" />
-            <element signature="e#1649#1650#0" expanded="false" />
-            <element signature="e#1738#1739#0" expanded="false" />
-            <element signature="e#1767#1768#0" expanded="false" />
-            <element signature="e#1808#1809#0" expanded="false" />
-            <element signature="e#1844#1845#0" expanded="false" />
-            <element signature="e#2596#2597#0" expanded="false" />
-            <element signature="e#2631#2632#0" expanded="false" />
-            <element signature="e#2685#2686#0" expanded="false" />
-            <element signature="e#2733#2734#0" expanded="false" />
-            <element signature="e#2830#2831#0" expanded="false" />
-            <element signature="e#2863#2864#0" expanded="false" />
-            <element signature="e#2912#2913#0" expanded="false" />
-            <element signature="e#2956#2957#0" expanded="false" />
-            <element signature="e#3144#3145#0" expanded="false" />
-            <element signature="e#3187#3188#0" expanded="false" />
+            <marker date="1532024428401" expanded="false" signature="917:928" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="938:944" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="975:986" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="999:1005" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1011:1067" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1097:1108" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1124:1130" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1174:1185" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1210:1216" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1222:1278" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1310:1321" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1337:1343" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1389:1400" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1425:1431" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1437:1513" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1551:1562" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1584:1590" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1648:1659" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1696:1702" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1708:1762" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1789:1800" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1814:1820" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1859:1870" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1891:1897" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1949:2350" ph="{...}" />
+            <marker date="1532024428401" expanded="true" signature="2392:2477" ph="{...}" />
+            <marker date="1532024428401" expanded="true" signature="2483:2613" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="2647:2658" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="2678:2684" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="2736:2747" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="2780:2786" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="2792:2850" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="2881:2892" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="2910:2916" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="2963:2974" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="3003:3009" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="3015:3149" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="3195:3206" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="3234:3240" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="3313:3378" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1164,9 +1167,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="812">
           <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,9 +1244,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="812">
           <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1322,9 +1321,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="812">
           <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1340,6 +1337,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2175">
           <caret line="91" column="7" lean-forward="false" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1347,6 +1345,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1380,13 +1379,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/HumanResourceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="33" column="19" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/LoadFormInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -1408,17 +1400,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/config/WebSocketConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/config/SecurityConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="92" column="22" lean-forward="true" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,25 +1425,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/CompanyController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ChatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="183">
+          <caret line="39" column="69" lean-forward="false" selection-start-line="39" selection-start-column="69" selection-end-line="39" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/CompaniesManagementController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/domain/chat/ChatMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="40" column="44" lean-forward="false" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1367#1368#0" expanded="false" />
-            <element signature="e#1433#1434#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="58">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1471,53 +1450,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/entities/ChatLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1827">
-          <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#866#867#0" expanded="false" />
-            <element signature="e#891#892#0" expanded="false" />
-            <element signature="e#924#925#0" expanded="false" />
-            <element signature="e#952#953#0" expanded="false" />
-            <element signature="e#1046#1047#0" expanded="false" />
-            <element signature="e#1077#1078#0" expanded="false" />
-            <element signature="e#1123#1124#0" expanded="false" />
-            <element signature="e#1163#1164#0" expanded="false" />
-            <element signature="e#1259#1260#0" expanded="false" />
-            <element signature="e#1290#1291#0" expanded="false" />
-            <element signature="e#1338#1339#0" expanded="false" />
-            <element signature="e#1378#1379#0" expanded="false" />
-            <element signature="e#1500#1501#0" expanded="false" />
-            <element signature="e#1537#1538#0" expanded="false" />
-            <element signature="e#1597#1598#0" expanded="false" />
-            <element signature="e#1649#1650#0" expanded="false" />
-            <element signature="e#1738#1739#0" expanded="false" />
-            <element signature="e#1767#1768#0" expanded="false" />
-            <element signature="e#1808#1809#0" expanded="false" />
-            <element signature="e#1844#1845#0" expanded="false" />
-            <element signature="e#2596#2597#0" expanded="false" />
-            <element signature="e#2631#2632#0" expanded="false" />
-            <element signature="e#2685#2686#0" expanded="false" />
-            <element signature="e#2733#2734#0" expanded="false" />
-            <element signature="e#2830#2831#0" expanded="false" />
-            <element signature="e#2863#2864#0" expanded="false" />
-            <element signature="e#2912#2913#0" expanded="false" />
-            <element signature="e#2956#2957#0" expanded="false" />
-            <element signature="e#3144#3145#0" expanded="false" />
-            <element signature="e#3187#3188#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/impl/ChatServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1525,32 +1462,133 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/domain/chat/ChatMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ChatController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="50" column="95" lean-forward="false" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="95" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/ContractController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="1363">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/config/WebSocketConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/entities/ChatLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1827">
+          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding>
+            <marker date="1532024428401" expanded="false" signature="917:928" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="938:944" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="975:986" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="999:1005" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1011:1067" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1097:1108" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1124:1130" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1174:1185" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1210:1216" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1222:1278" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1310:1321" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1337:1343" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1389:1400" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1425:1431" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1437:1513" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1551:1562" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1584:1590" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1648:1659" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1696:1702" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1708:1762" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="1789:1800" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1814:1820" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="1859:1870" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="1891:1897" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="1949:2350" ph="{...}" />
+            <marker date="1532024428401" expanded="true" signature="2392:2477" ph="{...}" />
+            <marker date="1532024428401" expanded="true" signature="2483:2613" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="2647:2658" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="2678:2684" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="2736:2747" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="2780:2786" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="2792:2850" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="2881:2892" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="2910:2916" ph=" }" />
+            <marker date="1532024428401" expanded="false" signature="2963:2974" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="3003:3009" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="3015:3149" ph="@{...}" />
+            <marker date="1532024428401" expanded="false" signature="3195:3206" ph=" { " />
+            <marker date="1532024428401" expanded="false" signature="3234:3240" ph=" }" />
+            <marker date="1532024428401" expanded="true" signature="3313:3378" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/HumanResourceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/service/impl/HumanResourceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="64" column="51" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="51" />
+          <folding>
+            <marker date="1532024428440" expanded="true" signature="1860:2139" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="2231:2500" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="2584:2659" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="2751:3845" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="3122:3273" ph="//..." />
+            <marker date="1532024428440" expanded="true" signature="3848:3873" ph="@{...}" />
+            <marker date="1532024428440" expanded="true" signature="3940:5633" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="4950:5162" ph="//..." />
+            <marker date="1532024428440" expanded="true" signature="5636:5661" ph="@{...}" />
+            <marker date="1532024428440" expanded="true" signature="5726:7606" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="7674:7843" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="7920:8586" ph="{...}" />
+            <marker date="1532024428440" expanded="true" signature="8638:8765" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/HumanResourceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/CompanyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/CompaniesManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hrssc/rest/HomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="30" />
           <folding />
         </state>
       </provider>

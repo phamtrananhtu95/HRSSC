@@ -4,3 +4,6 @@
 #company:hover{
     cursor: pointer;
 }
+ng-select.test > div.below > div.single{
+    height: 40px !important; 
+}

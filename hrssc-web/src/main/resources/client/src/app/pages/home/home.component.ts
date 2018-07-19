@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
+import { CompaniesService } from '../../services/companies.service';
 
 @Component({
   selector: 'hrssc-home',
@@ -12,42 +13,66 @@ import { ProjectService } from '../../services/project.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public listLocation = [];
 
   public users: User[];
-  public projects: Project[];
-  public companies: Company[];
+  // public projects: Project[];
+  // public companies: Company[];
   public employees: Employee[];
+  public resources = [];
+  public projects = [];
+  public companies = [];
+
 
   public parentTitle = "Home";
+
+  public userId;
 
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
     private prjSerivce: ProjectService,
     private authenticate: AuthenticateService,
+    private companyService: CompaniesService
   ) { }
 
   ngOnInit() {
     if (this.authenticate.checkLogin()) {
-        this.getHumanResource();
-        // this.getProjects();
+      this.userId = this.authenticate.getUserId();
+      this.getHumanResource();
+      this.getCompany();
+        this.getProjects();
     }
 
   }
 
   getHumanResource() {
-    this.employeeService.getEmployees().subscribe(
+    this.resources  =[];
+    this.employeeService.getResource(this.userId).subscribe(
       res => {
-        this.employees = res;
+        this.resources = res;
       },
       err => {
         console.log(err);
       });
   }
   getProjects() {
-    this.prjSerivce.getProjects().subscribe(
+    this.projects = [];
+    this.prjSerivce.getProjects(this.userId).subscribe(
       res => {
+          this.projects = res;
+          console.log(this.projects);
+      },
+      err => {
 
+      }
+    );
+  }
+  getCompany() {
+    this.companies = [];
+    this.companyService.getCompanyByUserId(this.userId).subscribe(
+      res => {
+        this.companies = res;
       },
       err => {
 
@@ -55,17 +80,16 @@ export class HomeComponent implements OnInit {
     );
   }
 
-
   viewResourceDetail(humanResourceId) {
     this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});
   }
 
-  viewProjectDetail(project: Project) {
-    this.router.navigate(['manager/project/info']);
+  viewProjectDetail(projectId) {
+    this.router.navigate(['manager/project/info'], {queryParams:{"id": projectId}});
   }
 
-  viewCompanyDetail(company: Company) {
-    this.router.navigate(['company/info']);
+  viewCompanyDetail(companyId) {
+    this.router.navigate(['company/info'], {queryParams:{"id": companyId}});
   }
 
 }

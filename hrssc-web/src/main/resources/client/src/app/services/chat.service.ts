@@ -29,6 +29,7 @@ export class ChatService {
 
     let ws = new SockJS(this.serverWsUrl);
     this.stompClient = stompjs.over(ws);
+    this.stompClient.debug = null;
     let that = this;
     that.stompClient.connect({}, function () {
       that.topic = `/app/chat/${roomId}`;

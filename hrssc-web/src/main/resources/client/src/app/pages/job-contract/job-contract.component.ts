@@ -48,7 +48,7 @@ export class JobContractComponent implements OnInit {
   public composeContract = false;
   public isEditable: boolean;
   public formOffer = new ContractByContractId();
-
+  public show:boolean = false;
   constructor(
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
@@ -224,7 +224,9 @@ export class JobContractComponent implements OnInit {
   showChatPopup() {
     $('#qnimate').addClass('popup-box-on');
   }
-
+  showChat() {
+    this.show = !this.show;
+  }
   
   // inviteHumanResource(projectId) {
   //   this.formContract.projectId = this.projectId;

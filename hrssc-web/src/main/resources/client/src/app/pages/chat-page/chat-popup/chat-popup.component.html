@@ -1,4 +1,4 @@
-<div class="popup-box chat-popup" id="qnimate">
+<!-- <div class="popup-box chat-popup" id="qnimate">
   <div class="popup-head">
     <div class="popup-head-left pull-left">
       Contact Demo</div>
@@ -78,4 +78,104 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+      <h6 class="panel-title">Contract demo</h6>
+      <div class="heading-elements">
+        <ul class="icons-list">
+          <li>
+            <a data-action="collapse"></a>
+          </li>
+          <li>
+            <a data-action="reload"></a>
+          </li>
+          <li>
+            <a data-action="close"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel-body" >
+      <ul #scroller2 class="media-list chat-list content-group" style="height: 360px;">
+        <li class="media date-step">
+          <span>Monday, Feb 10</span>
+        </li>
+
+        <li *ngFor="let message of feed">
+            <div class="media" *ngIf="!message.userSent.includes(username)">
+              <div class="media-left">
+                <a href="assets/images/placeholder.jpg">
+                  <img src="assets/images/placeholder.jpg" class="img-circle" alt="">
+                </a>
+              </div>
+              <div class="media-body">
+                <div class="media-content">
+                  {{message.content}}
+                </div>
+                <span class="media-annotation display-block mt-10">
+                  {{message.timeSent}}
+                  <a href="#">
+                    <i class="icon-pin-alt position-right text-muted"></i>
+                  </a>
+                </span>
+              </div>
+            </div>
+    
+            <div class="media reversed" *ngIf="message.userSent.includes(username)">
+              <div class="media-body">
+                <div class="media-content">
+                  {{message.content}}
+                </div>
+                <span class="media-annotation display-block mt-10">
+                  {{message.timeSent}}
+                  <a href="#">
+                    <i class="icon-pin-alt position-right text-muted"></i>
+                  </a>
+                </span>
+              </div>
+              <div class="media-right">
+                <a href="assets/images/placeholder.jpg">
+                  <img src="assets/images/placeholder.jpg" class="img-circle" alt="">
+                </a>
+              </div>
+            </div>
+          </li>
+
+      </ul>
+
+      <textarea name="enter-message" [(ngModel)]="messageInput" (keydown)="handleSubmit($event)" class="form-control content-group" rows="3" cols="1" placeholder="Enter your message..."></textarea>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <ul class="icons-list icons-list-extended mt-10">
+            <li>
+              <a href="#" data-popup="tooltip" title="Send photo" data-container="body">
+                <i class="icon-file-picture"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" data-popup="tooltip" title="Send video" data-container="body">
+                <i class="icon-file-video"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" data-popup="tooltip" title="Send file" data-container="body">
+                <i class="icon-file-plus"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 text-right">
+          <button type="button" class="btn bg-teal-400 btn-labeled btn-labeled-right">
+            <b>
+              <i class="icon-circle-right2"></i>
+            </b> Send</button>
+        </div>
+      </div>
+    </div>
+  </div>

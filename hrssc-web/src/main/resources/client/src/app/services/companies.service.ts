@@ -6,6 +6,10 @@ export class CompaniesService {
   constructor(
     private restService: RestService
   ) { }
+  getCompanyByUserId(id) {
+    let url = 'home/company-list/' + id;
+    return this.restService.get(url);
+  }
 
   getCompanies() {
     let url = 'manage-companies/all-requests';
