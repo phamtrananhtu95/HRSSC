@@ -5,6 +5,7 @@ import { ResourceHistory } from '../../../models';
 @Component({
   selector: 'app-history-project',
   templateUrl: './history-project.component.html',
+  styleUrls: ['./history-project.component.css']
 })
 export class HistoryProjectComponent implements OnInit {
 

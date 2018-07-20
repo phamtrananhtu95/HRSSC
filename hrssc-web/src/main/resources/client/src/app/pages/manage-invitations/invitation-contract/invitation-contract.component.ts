@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { InvitationService } from '../../../services/invitation.service';
+import { ApplianceService } from '../../../services/appliance.service';
 import { AuthenticateService } from '../../../services/authenticate.service';
 import { Router } from '@angular/router';
-import { Interaction, ContractByContractId } from '../../../models/interaction.model';
 
 @Component({
-  selector: 'app-appliance-contract',
-  templateUrl: './appliance-contract.component.html',
-  styleUrls: ['./appliance-contract.component.css']
+  selector: 'app-invitation-contract',
+  templateUrl: './invitation-contract.component.html'
 })
-export class ApplianceContractComponent implements OnInit {
+export class InvitationContractComponent implements OnInit {
 
-  public listProject = [];
+  public listContractResource = [];
   public userId: number;
-  public formContract = new ContractByContractId();
   constructor(
-    private invitationService: InvitationService,
+    private applianceService: ApplianceService,
     private authenticateService: AuthenticateService,
     private router: Router
   ) {
@@ -27,10 +24,10 @@ export class ApplianceContractComponent implements OnInit {
   }
 
   loadAllContractProject() {
-    this.invitationService.loadProjectContract(this.userId).subscribe(
+    this.applianceService.loadHumanContract(this.userId).subscribe(
       res => {
-        this.listProject = [];
-        this.listProject = res;
+        this.listContractResource = [];
+        this.listContractResource = res;
       },
       err => {
         console.log(err);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApplianceService } from '../../services/appliance.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { AcceptResource } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-appliances',
@@ -18,7 +19,8 @@ export class ManageAppliancesComponent implements OnInit {
 
   constructor(
     private applyService: ApplianceService,
-    private auth: AuthenticateService
+    private auth: AuthenticateService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -57,5 +59,17 @@ export class ManageAppliancesComponent implements OnInit {
     );
 
     // console.log(this.acceptResource);
+  }
+  
+
+  linkToContract(interactionsId) {
+    debugger;
+    this.router.navigate(['job/contract'], {
+      queryParams:
+        {
+          "interactionsId": interactionsId,
+          "composeContract": false
+        }
+    });
   }
 }

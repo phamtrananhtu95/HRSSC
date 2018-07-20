@@ -19,7 +19,6 @@ export class RatingResourceComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // console.log("user id: " + this.humanResourceId);
         this.employeeService.loadFeedBackResource(5).subscribe(
             res => {
                 this.formFeedbacks = res;
@@ -32,10 +31,5 @@ export class RatingResourceComponent implements OnInit {
                 console.log(err);
             }
         )
-
-
-        // this.formModel.rating = 4.5;
-        // this.formModel.comment = "he is very good!!!";
     }
-
 }

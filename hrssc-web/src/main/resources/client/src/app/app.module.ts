@@ -84,11 +84,13 @@ import { ChatFeedComponent } from './pages/chat-page/chat-feed/chat-feed.compone
 import { ChatMessageComponent } from './pages/chat-page/chat-message/chat-message.component';
 import { ChatFormComponent } from './pages/chat-page/chat-form/chat-form.component';
 import { ChatService } from './services/chat.service';
+import {PopoverModule} from "ngx-popover";
 
 import { JobContractComponent } from './pages/job-contract/job-contract.component';
 import { ChatPopupComponent } from './pages/chat-page/chat-popup/chat-popup.component';
 import { ContractService } from './services/contract.service';
 import { ApplianceContractComponent } from './pages/manage-appliances/appliance-contract/appliance-contract.component';
+import { InvitationContractComponent } from './pages/manage-invitations/invitation-contract/invitation-contract.component';
 
 const appRoutes: Routes = [
 
@@ -236,7 +238,8 @@ const appRoutes: Routes = [
     ChatFormComponent,
     JobContractComponent,
     ChatPopupComponent,
-    ApplianceContractComponent
+    ApplianceContractComponent,
+    InvitationContractComponent
   ],
   imports: [
     BrowserModule,
@@ -254,6 +257,7 @@ const appRoutes: Routes = [
     UiSwitchModule,
     FormWizardModule,
     CurrencyMaskModule,
+    PopoverModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

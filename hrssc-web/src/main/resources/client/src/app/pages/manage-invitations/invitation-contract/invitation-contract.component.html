@@ -1,0 +1,38 @@
+<div class="panel-body" *ngFor="let resource of listContractResource">
+  <a data-toggle="collapse" [attr.data-target]="'#resource' + resource.id">
+    <div class="media">
+      <div class="media-left">
+        <img src="assets/images/avatar.png" alt="">
+      </div>
+      <div class="media-body">
+        {{resource?.fullname}}
+        <p>{{resource?.email}}</p>
+      </div>
+      <div class="media-right text-center">
+        <a href="#">
+          <span>Invitations
+            <span class="label bg-blue-400">{{resource?.countInvite}}</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </a>
+  <!-- data collapse 1 -->
+  <div id="" class="panel-collapse collapse" id="resource{{resource.id}}">
+    <div class="panel-body" *ngFor="let interaction of resource.interactionsById">
+      <div class="media-left">
+        <img src="assets/images/FPT.jpg" alt="">
+      </div>
+      <div class="media-body">
+        <a>{{interaction?.projectByProjectId?.companyByCompanyId?.name}}</a>
+        <i>Invited him </i> to
+        <a href="#"> {{interaction?.projectByProjectId?.title}}</a>
+        <i> project </i>
+      </div>
+      <div class="media-right">
+        <!-- <button class="btn btn-success" (click)="acceptInvite(interaction?.projectByProjectId?.id, invitation?.id)">Accept</button> -->
+        <button class="btn btn-success" (click)="linkToContract(interaction?.id)">Link</button>
+      </div>
+    </div>
+  </div>
+</div>

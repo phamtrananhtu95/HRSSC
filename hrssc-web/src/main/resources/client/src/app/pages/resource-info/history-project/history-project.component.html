@@ -1,68 +1,9 @@
-<!-- <div class="row">
-  <div class="col-lg-12">
-    <div class="panel border-left-lg border-left-danger invoice-grid timeline-content">
-      <div class="panel-footer panel-footer-condensed">
-        <a class="heading-elements-toggle">
-          <i class="icon-more"></i>
-        </a>
-        <div class="heading-elements">
-          <span class="heading-text">
-            <span class="status-mark border-success position-left"></span>
-            <span class="text-semibold">Working history</span>
-          </span>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <h6 class="text-semibold no-margin-top">Full name: </h6>
-            <ul class="list list-unstyled">
-              <li>Company:
-                <span class="text-semibold"></span>
-              </li>
-              <li>Location:
-                <span class="text-semibold"></span>
-              </li>
-              <li>Tel:
-                <span class="text-semibold"></span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-sm-6">
-            <h6 class="text-semibold text-right no-margin-top">$ vnd</h6>
-            <ul class="list list-unstyled text-right">
-              <li>Skill:
-                <span class="text-semibold"></span>
-              </li>
-              <li>Available date:
-                <span class="text-semibold"></span>
-              </li>
-              <li>Duration available:
-                <span class="text-semibold"></span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-</div> -->
-
-<!-- ************************************* -->
-<!-- Custom handle -->
-<div class="panel panel-flat ">
+<!-- <div class="panel panel-flat ">
   <div class="panel-body" *ngFor="let resourceHistory of resourceHistories">
     <ul class="media-list">
-      <!-- <li class="media-header">Team leaders</li> -->
-
       <li class="media">
-
         <div class="media-left">
           <img src="https://img.pokemondb.net/artwork/bulbasaur.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
-
         </div>
         <div class="media-body">
           <div class="media-heading text-semibold">&nbsp;</div>
@@ -70,7 +11,6 @@
             <a>{{resourceHistory?.projectByProjectId?.companyByCompanyId?.name}}</a>
           </div>
           <div class="media-heading text-semibold">&nbsp;</div>
-          <!-- <span class="text-muted">Last.fm</span> -->
         </div>
         <div class="media-right media-middle">
           <ul class="icons-list text-nowrap">
@@ -80,44 +20,16 @@
                 <i class="icon-menu7"></i>
               </a>
             </li>
-
           </ul>
         </div>
         <br>
         <div class="collapse" id="resourceHistory{{resourceHistory.id}}">
-          <!-- <div class="contact-details">
-            <ul class="list-extended list-unstyled list-icons">
-              <li>
-                <i class="icon-pin position-left"></i>
-              </li>
-              <li>
-                <i class="icon-user-tie position-left"></i>Anh Tu</li>
-              <li>
-                <i class="icon-phone position-left"></i> +1(800)431 8996</li>
-              <li>
-                <i class="icon-mail5 position-left"></i>
-                <a href="#">abc@gmail.com</a>
-              </li>
-            </ul>
-          </div> -->
           <div class="row">
             <div class="col-lg-12">
               <div class="panel border-left-lg border-left-danger invoice-grid timeline-content">
-                <!-- <div class="panel-footer panel-footer-condensed">
-                  <a class="heading-elements-toggle">
-                    <i class="icon-more"></i>
-                  </a>
-                  <div class="heading-elements">
-                    <span class="heading-text">
-                      <span class="status-mark border-success position-left"></span>
-                      <span class="text-semibold">Working history</span>
-                    </span>
-                  </div>
-                </div> -->
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-sm-12">
-                      <!-- <h6 class="text-semibold no-margin-top">Full name: </h6> -->
                       <ul class="list list-unstyled">
                         <li>
                           <span class="heading-text">
@@ -160,6 +72,210 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+<!-- ************************************* -->
+<!-- Custom handle -->
+<div class="panel panel-flat ">
+  <div class="panel-body" *ngFor="let resourceHistory of resourceHistories">
+    <ul class="media-list">
+      <!-- <li class="media-header">Team leaders</li> -->
+
+      <li class="media">
+
+        <div class="media-left">
+          <img src="https://img.pokemondb.net/artwork/bulbasaur.jpg" style="width: 70px; height: 70px;" class="img-circle" alt="">
+
+        </div>
+        <div class="media-body">
+          <!-- <div class="media-heading text-semibold row">&nbsp;</div> -->
+          <div class="media-heading text-semibold row">
+            <div class="col-sm-8">
+              <a>Người rating</a> -
+              <a>
+                <b>{{resourceHistory?.projectByProjectId?.companyByCompanyId?.name}}</b>
+              </a>
+            </div>
+            <div class="col-sm-4" [popover]="myPopover" [popoverOnHover]="true" [popoverCloseOnMouseOutside]="true">
+              <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" style="font-size: 15px">
+              </rating>
+
+              <!-- <i class="icon-circle-down2"></i> -->
+            </div>
+            <!-- popover rating detail -->
+            <div>
+              <popover-content #myPopover [closeOnClickOutside]="true" [closeOnMouseOutside]="true">
+                <ul class="list-unstyled" id="popRatingDetail">
+                  <li>
+                    <div>
+                      <label>Name:</label>
+                      <div class="ratingDetail">
+                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        </rating>
+                      </div>
+                    </div>
+                    <!-- <span class="heading-text">
+                      <span class="status-mark border-success position-left"></span>
+                      Project name: &nbsp;
+                      <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true">
+                      </rating>
+                    </span> -->
+                  </li>
+                  <li>
+                    <div>
+                      <label>Name:</label>
+                      <div class="ratingDetail">
+                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        </rating>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <label>Name:</label>
+                      <div class="ratingDetail">
+                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        </rating>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <label>Name:</label>
+                      <div class="ratingDetail">
+                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        </rating>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <label>Name:</label>
+                      <div class="ratingDetail">
+                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        </rating>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </popover-content>
+            </div>
+            <!-- /popover rating detail -->
+          </div>
+          <div class="media-heading text-semibold">Tên project</div>
+          <!-- <span class="text-muted">Last.fm</span> -->
+        </div>
+        <div class="media-right media-middle">
+          <ul class="icons-list text-nowrap">
+            <li> </li>
+            <li>
+              <a data-toggle="collapse" [attr.data-target]="'#resourceHistory' + resourceHistory.id">
+                <i class="icon-menu7"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div style="margin-top: 15px">
+          <textarea disabled rows="3" cols="5" class="form-control" placeholder="Default textarea">aaaaaaa</textarea>
+        </div>
+
+
+        <br>
+        <div class="collapse" id="resourceHistory{{resourceHistory.id}}">
+          <!-- <div class="contact-details">
+            <ul class="list-extended list-unstyled list-icons">
+              <li>
+                <i class="icon-pin position-left"></i>
+              </li>
+              <li>
+                <i class="icon-user-tie position-left"></i>Anh Tu</li>
+              <li>
+                <i class="icon-phone position-left"></i> +1(800)431 8996</li>
+              <li>
+                <i class="icon-mail5 position-left"></i>
+                <a href="#">abc@gmail.com</a>
+              </li>
+            </ul>
+          </div> -->
+          <div class="row">
+
+            <!-- Project info -->
+            <div class="col-lg-12">
+              <div class="panel border-left-lg border-left-danger invoice-grid timeline-content">
+                <!-- <div class="panel-footer panel-footer-condensed">
+                  <a class="heading-elements-toggle">
+                    <i class="icon-more"></i>
+                  </a>
+                  <div class="heading-elements">
+                    <span class="heading-text">
+                      <span class="status-mark border-success position-left"></span>
+                      <span class="text-semibold">Working history</span>
+                    </span>
+                  </div>
+                </div> -->
+                <div class="panel-body">
+                  <div class="row">
+
+                    <div class="col-sm-12">
+                      <h6 class="text-semibold no-margin-top">Project info: </h6>
+                      <ul class="list list-unstyled">
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Project name: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.title}}</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Project type: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.type}}</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Domain: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.domain}}</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Duration: &nbsp;
+                            <span class="text-semibold">..........</span>
+                          </span>
+                        </li>
+                        <!-- <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Joinning date: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.joinedate | date:'dd/MM/yyyy'}}</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="heading-text">
+                            <span class="status-mark border-success position-left"></span>
+                            Leaving date: &nbsp;
+                            <span class="text-semibold">{{resourceHistory?.leaveDate | date:'dd/MM/yyyy'}}</span>
+                          </span>
+                        </li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /project info -->
+
+
           </div>
         </div>
 
