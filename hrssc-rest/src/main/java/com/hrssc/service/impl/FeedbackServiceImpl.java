@@ -28,6 +28,9 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
     JobRepository jobRepository;
 
+    @Autowired
+    AverageRatingRepository averageRatingRepository;
+
 
     public List<Feedback> loadAllFeedback(int resourceId){
         List<Job> jobList = jobRepository.findByHumanResourceIdAndStatus(resourceId, Constant.JobStatus.FINISHED);
@@ -35,6 +38,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         for (Job jobtmp: jobList) {
             List<Feedback> feedbackList = (List<Feedback>) jobtmp.getFeedbacksById();
             if(!feedbackList.isEmpty()){
+                long curentime = System.currentTimeMillis()/1000;
+                jobtmp.setLeaveDate(curentime);
+                long duration = (jobtmp.getLeaveDate() - jobtmp.getJoinedate())/86400;
+                jobtmp.setJoinedate(duration);
                 resultList.addAll(feedbackList);
 
             }
@@ -62,21 +69,66 @@ public class FeedbackServiceImpl implements FeedbackService {
 
         //tim cac job cua resource va loai bo cac job khong co feedback
         List<Job> humanResourceJobList = jobRepository.findByHumanResourceIdAndStatus(humanResource.getId(), Constant.JobStatus.FINISHED);
-        List<Job> calcujobList = null;
+        List<Job> calcujobList = new ArrayList<>();
         for (Job tmp: humanResourceJobList) {
-            if(tmp.getFeedbacksById() != null);
-            calcujobList.add(tmp);
+            if(!tmp.getFeedbacksById().isEmpty()) {
+                calcujobList.add(tmp);
+            }
         }
 
         //Tinh avgrating cho resource
+        AverageRating averageRating = averageRatingRepository.findByHumanResourceId(humanResource.getId());
+        if(averageRating == null){
+            averageRating = new AverageRating();
+            averageRating.setHumanResourceId(humanResource.getId());
+        }
+        if(calcujobList == null){
+            return "SumTinWong!";
+        }
+        if (calcujobList.size() == 1){
+            averageRating.setJobKnowledge(feedback.getJobKnowledge());
+            averageRating.setWorkQuality(feedback.getWorkQuality());
+            averageRating.setCooperation(feedback.getCooperation());
+            averageRating.setAttendance(feedback.getAttendance());
+            averageRating.setWorkAttitude(feedback.getWorkAttitude());
+            averageRating.setAvgRating(feedback.getRating());
+            averageRatingRepository.save(averageRating);
+            return "Success!";
+        }
+        long sumDuration = 0;
+        float sumJK = 0;
+        float sumWQ = 0;
+        float sumCo = 0;
+        float sumAt = 0;
+        float sumWA = 0;
+        float sumRating = 0;
         for (Job tmp : calcujobList) {
            Feedback tmpFb = feedbackRepository.findByJobId(tmp.getId());
+           long tmpduration = (tmp.getLeaveDate() - tmp.getJoinedate())/86400;
+            sumDuration += tmpduration;
+            sumJK += tmpFb.getJobKnowledge();
+            sumWQ += tmpFb.getWorkQuality();
+            sumCo += tmpFb.getCooperation();
+            sumAt += tmpFb.getAttendance();
+            sumWA += tmpFb.getWorkAttitude();
+            sumRating += (float)tmpFb.getRating() * tmpduration;
         }
-
-
-
-
+        int i = calcujobList.size();
+        double jobKnowleadge = sumJK/i;
+        double workQuality = sumWQ/i;
+        double cooperation = sumCo/i;
+        double attendance = sumAt/i;
+        double workAtitude = sumWA/i;
+        double avrRating = sumRating/sumDuration;
+        averageRating.setJobKnowledge((double)Math.round(jobKnowleadge * 100)/100 );
+        averageRating.setWorkQuality((double)Math.round(workQuality * 100)/100 );
+        averageRating.setCooperation((double)Math.round(cooperation * 100)/100 );
+        averageRating.setAttendance((double)Math.round(attendance * 100)/100 );
+        averageRating.setWorkAttitude((double)Math.round(workAtitude * 100)/100 );
+        averageRating.setAvgRating((double)Math.round(avrRating * 100)/100 );
+        averageRatingRepository.save(averageRating);
         return "Success!!";
     }
+
 
 }
