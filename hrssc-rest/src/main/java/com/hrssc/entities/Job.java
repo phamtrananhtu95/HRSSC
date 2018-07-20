@@ -10,27 +10,24 @@ import java.util.Objects;
 
 @Entity
 public class Job {
-    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
+    @JsonView({JobView.JoinedResource.class})
     private int id;
-    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
+    @JsonView({JobView.JoinedResource.class})
     private int humanResourceId;
 
     @JsonView(JobView.JoinedResource.class)
     private HumanResource humanResourceByHumanResourceId;
-    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
+    @JsonView({JobView.JoinedResource.class})
     private long joinedate;
-    @JsonView(HumanResourceView.history.class)
     private long leaveDate;
 
     @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
     private int projectId;
     @JsonView(HumanResourceView.history.class)
     private Project projectByProjectId;
-    @JsonView(HumanResourceView.history.class)
     private int status;
     private Contract contractByContractId;
     private Integer contractId;
-    @JsonView(HumanResourceView.history.class)
     private Collection<Feedback> feedbacksById;
 
     @Id

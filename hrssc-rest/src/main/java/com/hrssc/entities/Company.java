@@ -13,7 +13,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 public class Company {
-    @JsonView({HomeView.Company.class,HumanResourceView.history.class,CompanyView.info.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
+    @JsonView({HomeView.Company.class,CompanyView.info.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
     private int id;
     @JsonView({HomeView.Company.class,HomeView.Project.class,HomeView.Resource.class,SimilarView.Resource.class,SimilarView.Project.class,ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class,FeedbackView.loadAllview.class})
     private String name;

@@ -31,7 +31,9 @@ public class Feedback {
     private Double attendance;
     @JsonView(HumanResourceView.history.class)
     private Double workAttitude;
+    @JsonView(HumanResourceView.history.class)
     private int jobId;
+    @JsonView(HumanResourceView.history.class)
     private Job jobByJobId;
 
 

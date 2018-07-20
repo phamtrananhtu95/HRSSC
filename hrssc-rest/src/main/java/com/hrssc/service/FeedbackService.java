@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FeedbackService {
     String addFeedback (Feedback feedback);
+    List<Feedback> loadAllFeedback(int resourceId);
 }

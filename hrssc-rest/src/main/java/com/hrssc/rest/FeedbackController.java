@@ -3,6 +3,7 @@ package com.hrssc.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.FeedbackView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.Feedback;
 import com.hrssc.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ import java.util.List;
 public class FeedbackController {
     @Autowired
     FeedbackService feedbackService;
+
+    @JsonView(HumanResourceView.history.class)
+    @GetMapping("/loadAllFeedback/{humanresourceId}")
+    public List<Feedback> loadAllFeedback(@PathVariable("humanresourceId") int humanresourceId){
+        return feedbackService.loadAllFeedback(humanresourceId);
+    }
 
     @PostMapping(value = "/add")
     public ResponseStatus addFeedback(@RequestBody Feedback feedback) {

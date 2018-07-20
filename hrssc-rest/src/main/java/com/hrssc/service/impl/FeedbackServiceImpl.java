@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("feedbackService")
@@ -27,6 +28,19 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
     JobRepository jobRepository;
 
+
+    public List<Feedback> loadAllFeedback(int resourceId){
+        List<Job> jobList = jobRepository.findByHumanResourceIdAndStatus(resourceId, Constant.JobStatus.FINISHED);
+        List<Feedback> resultList = new ArrayList<>();
+        for (Job jobtmp: jobList) {
+            List<Feedback> feedbackList = (List<Feedback>) jobtmp.getFeedbacksById();
+            if(!feedbackList.isEmpty()){
+                resultList.addAll(feedbackList);
+
+            }
+        }
+        return resultList;
+    }
 
     @Transactional
     public String addFeedback (Feedback feedback){
