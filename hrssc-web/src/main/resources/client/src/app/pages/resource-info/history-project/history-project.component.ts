@@ -16,7 +16,7 @@ export class HistoryProjectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.employeeService.loadHistoryResource(5).subscribe(
+    this.employeeService.loadHistoryResource(38).subscribe(
       res => {
         this.resourceHistories = res;
       },

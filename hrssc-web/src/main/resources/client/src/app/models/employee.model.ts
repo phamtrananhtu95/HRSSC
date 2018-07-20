@@ -69,6 +69,7 @@ export class ResourceHistory {
     leaveDate: number;
     projectId: number;
     projectByProjectId: ProjectByProjectId;
+    feedbacksById: FeedbacksById;
     status: number;
 }
 
@@ -84,6 +85,18 @@ export class ProjectByProjectId {
 export class CompanyByCompanyId {
     id: number;
     name: string;
+}
+
+export class FeedbacksById {
+    id: number;
+    rating: number;
+    comment: string;
+    timestamp:number;
+    jobKnowledge:number;
+    workQuality:number;
+    cooperation: number;
+    attendance: number;
+    workAttitude: number;
 }
 
 //Similar emp
