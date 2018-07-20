@@ -12,12 +12,12 @@ import java.util.Objects;
 @Data
 @Entity(name="user")
 public class User {
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private int id;
-    @JsonView({UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class,ContractView.ChatLog.class})
+    @JsonView({UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class,ContractView.ChatLog.class,HumanResourceView.history.class})
     private String username;
     private String password;
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private String fullname;
     @JsonView({UserView.overview.class,UserView.details.class})
     private String email;

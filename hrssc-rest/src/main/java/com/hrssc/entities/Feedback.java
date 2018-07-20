@@ -17,9 +17,9 @@ public class Feedback {
     private String comment;
     @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private long timestamp;
-    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private int userId;
-    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({HumanResourceView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})
     private User userByUserId;
     @JsonView(HumanResourceView.history.class)
     private Double jobKnowledge;
