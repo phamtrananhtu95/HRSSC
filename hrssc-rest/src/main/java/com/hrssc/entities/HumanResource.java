@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Data
-@Entity
+@Entity(name = "human_resource")
 @Table(name = "human_resource", schema = "hrssc", catalog = "")
 public class HumanResource {
     @JsonView({HomeView.Resource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})

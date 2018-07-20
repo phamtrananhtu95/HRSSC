@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "project_requirements")
 @Table(name = "project_requirements", schema = "hrssc", catalog = "")
 public class ProjectRequirements {
     @JsonView({ProjectView.ListView.class,ProjectView.details.class})
