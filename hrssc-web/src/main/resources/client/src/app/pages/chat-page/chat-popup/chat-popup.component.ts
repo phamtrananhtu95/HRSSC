@@ -31,13 +31,16 @@ export class ChatPopupComponent implements OnInit, OnChanges, AfterViewChecked {
     }, 1000);
 
     this.username = this.auth.getUserName();
+    
+    // get log chat not change when click button
+    this.chatService.getLogChatById(this.roomId);
 
   }
   ngOnChanges() {
     if (this.contractid) {
       this.roomId = this.contractid
       this.chatService.connect(this.roomId);
-      this.chatService.getLogChatById(this.roomId);
+      // this.chatService.getLogChatById(this.roomId);
     }
   }
   send() {

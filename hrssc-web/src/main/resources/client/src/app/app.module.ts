@@ -91,6 +91,7 @@ import { ChatPopupComponent } from './pages/chat-page/chat-popup/chat-popup.comp
 import { ContractService } from './services/contract.service';
 import { ApplianceContractComponent } from './pages/manage-appliances/appliance-contract/appliance-contract.component';
 import { InvitationContractComponent } from './pages/manage-invitations/invitation-contract/invitation-contract.component';
+import { SearchService } from './services/search.service';
 
 const appRoutes: Routes = [
 
@@ -285,7 +286,8 @@ const appRoutes: Routes = [
     ApplianceService,
     ChatService,
     LocalstoragesService,
-    ContractService
+    ContractService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

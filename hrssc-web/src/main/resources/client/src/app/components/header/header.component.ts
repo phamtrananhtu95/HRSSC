@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { HeaderService } from './header.component.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Observable } from 'rxjs';
+import { ChatService } from '../../services/chat.service';
 
 @Injectable()
 @Component({
@@ -11,10 +12,12 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   private userName: any;
+  public listLogNotify = [];
 
   constructor(
     public header: HeaderService,
-    public authenticateService: AuthenticateService
+    public authenticateService: AuthenticateService,
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
@@ -27,7 +30,12 @@ export class HeaderComponent implements OnInit {
     if(userName){
       this.header.setUserNametoHead(userName);
     }
+
+    // this.chatService.connectNotifyChannel(2310);
+    // this.listLogNotify = this.chatService.getLogNotify();
     
   }
+
+
 
 }

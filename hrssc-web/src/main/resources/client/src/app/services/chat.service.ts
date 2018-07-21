@@ -7,12 +7,15 @@ import { ContractService } from './contract.service';
 @Injectable()
 export class ChatService {
   chatMessages = [];
+  logNotify = [];
   username: any;
   userId: any;
   private stompClient;
+  private stompClientNoti;
   public serverWsUrl = "http://localhost:8080/ws";
   public topic = null;
   public currentSubscription = null;
+  public currentSubNoti = null;
   public contractId: any;
 
 
@@ -29,7 +32,7 @@ export class ChatService {
 
     let ws = new SockJS(this.serverWsUrl);
     this.stompClient = stompjs.over(ws);
-    this.stompClient.debug = null;
+    // this.stompClient.debug = null;
     let that = this;
     that.stompClient.connect({}, function () {
       that.topic = `/app/chat/${roomId}`;
@@ -55,6 +58,62 @@ export class ChatService {
       );
     });
 
+  }
+
+  connectNotifyChannel(roomId){
+
+    let ws = new SockJS(this.serverWsUrl);
+    this.stompClientNoti = stompjs.over(ws);
+    // this.stompClient.debug = null;
+    let that = this;
+    console.log(that.username);
+    that.stompClientNoti.connect({}, function () {
+      that.topic = `/app/notification/${roomId}`;
+      if (that.currentSubNoti) {
+        that.currentSubNoti.unsubscribe();
+      }
+      that.currentSubNoti = that.stompClientNoti.subscribe(`/channel/${roomId}`, (message) => {
+        if (message.body) {
+          var messageReceived = JSON.parse(message.body);
+          if (messageReceived.type == 'CHAT' && messageReceived.sender != that.username) {
+            that.logNotify.push({
+              content: messageReceived.content,
+              timeSent: that.getTimestamp(),
+              userSent: messageReceived.sender
+            })
+          }
+
+        }
+      });
+      that.stompClientNoti.send(`${that.topic}/addUser`,
+        {},
+        JSON.stringify({ sender: that.username, type: 'JOIN' })
+      );
+    });
+  }
+  sendNotify(msg) {
+    const timestamp = this.getTimestamp();
+    // const email = 
+    this.logNotify = this.getLogNotify();
+    this.logNotify.push({
+      content: msg,
+      timeSent: timestamp,
+      userSent: this.username
+      // email: 
+    })
+
+    if (msg && this.stompClientNoti) {
+      var chatMessage = {
+        sender: this.username,
+        content: msg,
+        type: 'CHAT'
+      };
+      this.stompClientNoti.send(`${this.topic}/sendNoti`, {}, JSON.stringify(chatMessage));
+    }
+  }
+
+  getLogNotify() {
+    return this.logNotify;
   }
 
   getMessages() {

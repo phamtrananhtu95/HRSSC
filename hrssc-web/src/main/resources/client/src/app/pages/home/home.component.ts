@@ -6,6 +6,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
 import { CompaniesService } from '../../services/companies.service';
+import { Search } from '../../models/search.model';
 
 @Component({
   selector: 'hrssc-home',
@@ -22,6 +23,8 @@ export class HomeComponent implements OnInit {
   public resources = [];
   public projects = [];
   public companies = [];
+  public searchResourceModel = new Search();
+  public searchProjectModel = new Search();
 
 
   public parentTitle = "Home";
@@ -41,7 +44,7 @@ export class HomeComponent implements OnInit {
       this.userId = this.authenticate.getUserId();
       this.getHumanResource();
       this.getCompany();
-        this.getProjects();
+      this.getProjects();
     }
 
   }
@@ -78,6 +81,28 @@ export class HomeComponent implements OnInit {
 
       }
     );
+  }
+
+  searchResource() {
+    this.searchResourceModel.userId = this.userId;
+    console.log(this.searchResourceModel);
+    this.router.navigate(['search'], {
+      queryParams:
+      {
+        "RuserId": this.searchResourceModel.userId,
+        "Rcompany": this.searchResourceModel.company
+      }
+    });
+  }
+  searchProject() {
+    this.searchProjectModel.userId = this.userId;
+    this.router.navigate(['search'], {
+      queryParams:
+      {
+        "PuserId": this.searchProjectModel.userId,
+        "Pcompany": this.searchProjectModel.company
+      }
+    });
   }
 
   viewResourceDetail(humanResourceId) {
