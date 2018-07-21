@@ -95,8 +95,8 @@
         <div class="media-body">
           <!-- <div class="media-heading text-semibold row">&nbsp;</div> -->
           <div class="media-heading text-semibold row">
-            <div class="col-sm-8">
-              <a>Người rating</a> -
+            <div class="col-sm-8" *ngFor="let a of resourceHistory?.feedbacksById">
+              <a>{{a?.userByUserId?.fullname}}</a> -
               <a>
                 <b>{{resourceHistory?.projectByProjectId?.companyByCompanyId?.name}}</b>
               </a>
@@ -111,11 +111,7 @@
             <div>
               <popover-content #myPopover [closeOnClickOutside]="true" [closeOnMouseOutside]="true">
                 <ul class="list-unstyled" id="popRatingDetail">
-                  <li> :number;
-                      :number;
-                      : number;
-                      : number;
-                      : number;
+                  <li>
                     <div>
                       <label>Job knowledge:</label>
                       <div class="ratingDetail">
