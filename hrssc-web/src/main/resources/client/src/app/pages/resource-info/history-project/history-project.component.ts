@@ -13,17 +13,29 @@ export class HistoryProjectComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
     this.employeeService.loadHistoryResource(38).subscribe(
       res => {
         this.resourceHistories = res;
+    
+
+        this.resourceHistories.forEach(resourceHistory => {
+          resourceHistory.feedbacksById.forEach(feedbackById => {
+              console.log(feedbackById.userByUserId.fullname);
+          });
+      });
+        // console.log("-----" + JSON.stringify(this.resourceHistories));
       },
       err => {
         console.log(err);
       }
     );
+
+    
   }
 
 }

@@ -86,6 +86,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/similar/**",
                         "/feedback/**",
                         "/home/**",
+                        "/search/**",
                         "/ws/**",
                         "/chat/**",
                         "/app/**",
@@ -94,8 +95,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 ).permitAll()
 //                .mvcMatchers("/manage-companies/**").hasAuthority("MANAGE_COMPANIES")
 //                .mvcMatchers("/manage-manager/**").access("hasAuthority('MANAGE_MANAGER')")
-//                .mvcMatchers("/criteria/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
-//                .mvcMatchers("/template/**").access("hasAuthority('EDIT_PERMISSION') or hasAuthority('EDIT_FEEDBACK')")
+//                .mvcMatchers("/manage-project/**").access("hasAuthority('VIEW_RESOURCE') or hasAuthority('EDIT_RESOURCE')")
+//                .mvcMatchers("/humanResource/**").access("hasAuthority('VIEW_RESOURCE') or hasAuthority('EDIT_RESOURCE')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").failureUrl("/login")

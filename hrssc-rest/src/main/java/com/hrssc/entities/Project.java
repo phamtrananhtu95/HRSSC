@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "project")
 public class Project {
     @JsonView({HomeView.Project.class,FeedbackView.projectFeedback.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private int id;

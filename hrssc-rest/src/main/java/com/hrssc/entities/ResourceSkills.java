@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "resource_skills")
 @Table(name = "resource_skills", schema = "hrssc", catalog = "")
 public class ResourceSkills implements Serializable{
     @JsonView({JobView.JoinedResource.class,MatchingView.Project.class,HumanResourceView.overview.class,HumanResourceView.details.class})

@@ -9,7 +9,7 @@ import com.hrssc.domain.jacksonview.SimilarView;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "skill_requirements")
 @Table(name = "skill_requirements", schema = "hrssc", catalog = "")
 public class SkillRequirements {
     @JsonView({ProjectView.ListView.class,ProjectView.details.class})

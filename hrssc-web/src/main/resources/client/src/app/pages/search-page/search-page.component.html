@@ -96,7 +96,7 @@
           </div>
 
           <div class="col-sm-6 text-right">
-            
+
           </div>
         </div>
       </form>
@@ -106,28 +106,135 @@
 
   <!-- Tabs -->
   <ul class="nav nav-lg nav-tabs nav-tabs-bottom search-results-tabs">
-      <li><a href="search_basic.html"><i class="icon-display4 position-left"></i> Website</a></li>
-      <li class="active"><a href="search_users.html"><i class="icon-people position-left"></i> Users</a></li>
-      <li><a href="search_images.html"><i class="icon-image2 position-left"></i> Images</a></li>
-      <li><a href="search_videos.html"><i class="icon-file-play position-left"></i> Videos</a></li>
-      <li class="dropdown pull-right">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="visible-xs-inline-block position-right">Options</span> <span class="caret"></span></a>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else</a></li>
-          <li class="divider"></li>
-          <li><a href="#">One more line</a></li>
-        </ul>
+    <li *ngIf="isResourceSearch" class="active">
+      <a href="search_users.html">
+        <i class="icon-people position-left"></i> Resource</a>
+    </li>
+    <li *ngIf="!isResourceSearch" class="active">
+        <a href="search_users.html">
+          <i class="icon-people position-left"></i> Project</a>
       </li>
-    </ul>
-    <!-- /tabs -->
+    <!-- li for project -->
+    <li class="dropdown pull-right">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-cog3"></i>
+        <span class="visible-xs-inline-block position-right">Options</span>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li>
+          <a href="#">Action</a>
+        </li>
+        <li>
+          <a href="#">Another action</a>
+        </li>
+        <li>
+          <a href="#">Something else</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="#">One more line</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <!-- /tabs -->
 
-    <!-- Search results -->
-    <div class="content-group">
-        <p class="text-muted text-size-small content-group">About 827,000 results (0.34 seconds)</p>
+  <!-- Search results -->
+  <div class="content-group">
+    <p class="text-muted text-size-small content-group">About {{countResult}} results</p>
+    <div class="search-results-list" *ngIf="isResourceSearch">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6" *ngFor="let resource of listResourceSearch">
+          <div class="thumbnail">
+            <div class="thumb thumb-rounded">
+              <img src="assets/images/placeholder.jpg" alt="">
+              <div class="caption-overflow">
+                <span>
+                  <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded">
+                    <i class="icon-plus2"></i>
+                  </a>
+                  <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5">
+                    <i class="icon-link2"></i>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div class="caption text-center">
+              <h6 class="text-semibold no-margin">{{resource.fullname}}
+                <small class="display-block">{{resource?.companyByCompanyId?.name}}</small>
+              </h6>
+              <ul class="icons-list mt-15">
+                <li>
+                  <a href="#" data-popup="tooltip" title="Google Drive">
+                    <i class="icon-google-drive"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-popup="tooltip" title="Twitter">
+                    <i class="icon-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-popup="tooltip" title="Github">
+                    <i class="icon-github"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- /Search results -->
+    <!--  -->
+    <div class="search-results-list" *ngIf="!isResourceSearch">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6" *ngFor="let project of listProjectSearch">
+            <div class="thumbnail">
+              <div class="thumb thumb-rounded">
+                <img src="assets/images/placeholder.jpg" alt="">
+                <div class="caption-overflow">
+                  <span>
+                    <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded">
+                      <i class="icon-plus2"></i>
+                    </a>
+                    <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5">
+                      <i class="icon-link2"></i>
+                    </a>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="caption text-center">
+                <h6 class="text-semibold no-margin">{{project.title}}
+                  <small class="display-block">{{project?.companyByCompanyId?.name}}</small>
+                </h6>
+                <ul class="icons-list mt-15">
+                  <li>
+                    <a href="#" data-popup="tooltip" title="Google Drive">
+                      <i class="icon-google-drive"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-popup="tooltip" title="Twitter">
+                      <i class="icon-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-popup="tooltip" title="Github">
+                      <i class="icon-github"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- /Search results -->
+
 
 </div>
 <!-- /Content area -->
