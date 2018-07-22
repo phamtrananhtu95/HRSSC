@@ -5,6 +5,7 @@ import com.hrssc.entities.*;
 import com.hrssc.repository.*;
 import com.hrssc.service.ProjectManagementService;
 import javassist.NotFoundException;
+import jdk.nashorn.internal.runtime.arrays.IteratorAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.core.Authentication;
@@ -353,6 +354,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         return result;
     }
 
+    @Transactional
     public Project closeFinishedProject(int projectId) throws Exception{
         Project project = projectRepository.findById(projectId);
         if(project== null){
@@ -363,7 +365,10 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         project.setProcessStatus(Constant.ProjectProcess.FINISHED);
         projectRepository.save(project);
         //Xoa interation voi cac ressourc khac
-        interactionRepository.deleteByProjectId(projectId);
+        List<Interaction> interactionList = interactionRepository.findByProjectId(projectId);
+        for (Interaction tmp:interactionList) {
+            interactionRepository.delete(tmp);
+        }
         //Doi job va resource status
         List<Job> jobList = jobRepository.findByProjectId(projectId);
         long leavedate = System.currentTimeMillis()/1000;
