@@ -128,6 +128,7 @@
         <select name="select" class="form-control" name="status" (change)="projectInfo.processStatus=$event.target.value">
           <option value="1" [selected]="projectInfo?.processStatus==1">Pending</option>
           <option value="2" [selected]="projectInfo?.processStatus!=1">On going</option>
+          <option value="3" [selected]="projectInfo?.processStatus!=1">Finish</option>
         </select>
       </div>
     </div>

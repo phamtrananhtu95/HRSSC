@@ -39,4 +39,8 @@ export class RatingComponent implements OnInit {
     // console.log("ec ec: " + JSON.stringify(this.feedbackForm));
   }
 
+  loadHumanOfProject(){
+    
+  }
+
 }
