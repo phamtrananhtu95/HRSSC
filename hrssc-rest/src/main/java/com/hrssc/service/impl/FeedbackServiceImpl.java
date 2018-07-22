@@ -4,6 +4,7 @@ import com.hrssc.domain.Constant;
 import com.hrssc.entities.*;
 import com.hrssc.repository.*;
 import com.hrssc.service.FeedbackService;
+import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         feedback.setTimestamp(timestamp);
         feedbackRepository.save(feedback);
 
+
+        //Tinh avgrating cho resource
         //tim cac job cua resource va loai bo cac job khong co feedback
         List<Job> humanResourceJobList = jobRepository.findByHumanResourceIdAndStatus(humanResource.getId(), Constant.JobStatus.FINISHED);
         List<Job> calcujobList = new ArrayList<>();
@@ -76,7 +79,7 @@ public class FeedbackServiceImpl implements FeedbackService {
             }
         }
 
-        //Tinh avgrating cho resource
+
         AverageRating averageRating = averageRatingRepository.findByHumanResourceId(humanResource.getId());
         if(averageRating == null){
             averageRating = new AverageRating();
@@ -130,5 +133,22 @@ public class FeedbackServiceImpl implements FeedbackService {
         return "Success!!";
     }
 
-
+    public List<Project> loadAllProjectFeedBack(int userId){
+        List<Project> projectList = projectRepository.findByUserIdAndProcessStatus(userId, Constant.ProjectProcess.FINISHED);
+        List<Project> resultList = new ArrayList<>();
+        for (Project tmp: projectList) {
+            List<Job> jobList = jobRepository.findByProjectId(tmp.getId());
+            List<Job> resultJobList = new ArrayList<>();
+            for (Job jobtmp: jobList) {
+                if(jobtmp.getFeedbacksById().isEmpty()){
+                    resultJobList.add(jobtmp);
+                }
+            }
+            if (!resultJobList.isEmpty()){
+                tmp.setJobsById(resultJobList);
+                resultList.add(tmp);
+            }
+        }
+        return resultList;
+    }
 }

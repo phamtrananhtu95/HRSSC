@@ -14,6 +14,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findByCompanyId(int companyid);
     List<Project> findByCompanyIdAndRequestStatus(int companyId, int requestStatus);
     List<Project> findByUserIdAndRequestStatus(int managerId, int status);
+    List<Project> findByUserIdAndProcessStatus(int userId, int status);
 
 
 }

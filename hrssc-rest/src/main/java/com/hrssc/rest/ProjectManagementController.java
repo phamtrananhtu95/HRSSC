@@ -3,6 +3,7 @@ package com.hrssc.rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.ResponseStatus;
+import com.hrssc.domain.jacksonview.FeedbackView;
 import com.hrssc.domain.jacksonview.JobView;
 import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.entities.Interaction;
@@ -94,5 +95,11 @@ public class ProjectManagementController {
             return null;
         }
         return projectManagementService.viewProjectDetails(projectId);
+    }
+
+    @JsonView(FeedbackView.projectFeedback.class)
+    @GetMapping(value = "/change-status-finish/{projectId}")
+    public Project closeFinishedProject(@PathVariable(value = "projectId") int projectId) throws Exception{
+        return projectManagementService.closeFinishedProject(projectId);
     }
 }

@@ -17,6 +17,7 @@ public interface ProjectManagementService {
     void saveSkillRequirements(SkillRequirements skillRequirements);
 
 
+    Project closeFinishedProject(int projectId) throws Exception;
     String updateProject(Project project);
     String updateStatus(Project project);
     Project getProjectById(int id);

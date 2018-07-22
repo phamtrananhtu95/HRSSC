@@ -4,6 +4,7 @@ import com.hrssc.domain.Constant;
 import com.hrssc.entities.*;
 import com.hrssc.repository.*;
 import com.hrssc.service.ProjectManagementService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.core.Authentication;
@@ -350,6 +351,32 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             result = jobRepository.findByProjectIdAndStatus(projectId,Constant.JobStatus.PENDING);
         }
         return result;
+    }
+
+    public Project closeFinishedProject(int projectId) throws Exception{
+        Project project = projectRepository.findById(projectId);
+        if(project== null){
+            throw new NotFoundException("Project Not Found");
+        }
+        //Doi project status
+        project.setRequestStatus(Constant.RequestStatus.CLOSED);
+        project.setProcessStatus(Constant.ProjectProcess.FINISHED);
+        projectRepository.save(project);
+        //Xoa interation voi cac ressourc khac
+        interactionRepository.deleteByProjectId(projectId);
+        //Doi job va resource status
+        List<Job> jobList = jobRepository.findByProjectId(projectId);
+        long leavedate = System.currentTimeMillis()/1000;
+        for (Job tmp:jobList) {
+            HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
+            resource.setStatus(Constant.ResourceStatus.INACTIVE);
+            humanResourceRepository.save(resource);
+            tmp.setLeaveDate(leavedate);
+            tmp.setStatus(Constant.JobStatus.FINISHED);
+            jobRepository.save(tmp);
+        }
+
+        return project;
     }
 }
 

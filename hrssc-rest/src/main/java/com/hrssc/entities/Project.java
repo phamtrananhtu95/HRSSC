@@ -9,9 +9,9 @@ import java.util.Objects;
 
 @Entity
 public class Project {
-    @JsonView({HomeView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({HomeView.Project.class,FeedbackView.projectFeedback.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class, MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private int id;
-    @JsonView({HomeView.Project.class,SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({HomeView.Project.class,FeedbackView.projectFeedback.class,SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String title;
     @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class})
     private String description;
@@ -42,6 +42,7 @@ public class Project {
     private Collection<ProjectRequirements> projectRequirementsById;
     @JsonView(ApplianceView.Listview.class)
     private Collection<Interaction> interactionsById;
+    @JsonView(FeedbackView.projectFeedback.class)
     private Collection<Job> jobsById;
     private Collection<SimilarProject> similarProjectsById;
     private Collection<SimilarProject> similarProjectsById_0;
