@@ -19,17 +19,6 @@ export class RatingResourceComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.employeeService.loadFeedBackResource(5).subscribe(
-            res => {
-                this.formFeedbacks = res;
-                console.log("----------" + JSON.stringify(this.formFeedbacks));
-                this.formFeedbacks.forEach(element => {
-                    console.log(element.userByUserId.fullname);
-                });
-            },
-            err => {
-                console.log(err);
-            }
-        )
+       
     }
 }

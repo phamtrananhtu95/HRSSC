@@ -92,6 +92,7 @@ import { ContractService } from './services/contract.service';
 import { ApplianceContractComponent } from './pages/manage-appliances/appliance-contract/appliance-contract.component';
 import { InvitationContractComponent } from './pages/manage-invitations/invitation-contract/invitation-contract.component';
 import { SearchService } from './services/search.service';
+import { RatingComponent } from './pages/rating/rating.component';
 
 const appRoutes: Routes = [
 
@@ -181,6 +182,11 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
+    path: 'rating',
+    component: RatingComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -240,7 +246,8 @@ const appRoutes: Routes = [
     JobContractComponent,
     ChatPopupComponent,
     ApplianceContractComponent,
-    InvitationContractComponent
+    InvitationContractComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
