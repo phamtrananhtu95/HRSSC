@@ -30,6 +30,7 @@
       <mapping class="com.hrssc.entities.Contract"/>
       <mapping class="com.hrssc.entities.ChatLog"/>
       <mapping class="com.hrssc.entities.AverageRating"/>
+      <mapping class="com.hrssc.entities.ContractVersion"/>
 
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
