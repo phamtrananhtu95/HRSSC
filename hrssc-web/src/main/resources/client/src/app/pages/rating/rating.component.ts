@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Feedback } from '../../models/feedback.model';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rating',
@@ -12,16 +13,19 @@ export class RatingComponent implements OnInit {
 
   public feedbackForm = new Feedback();
   public userId: number;
+  public projectId: number;
 
   constructor(
     private employeeService: EmployeeService,
-    private authenticateService: AuthenticateService
+    private authenticateService: AuthenticateService,
+    private route: ActivatedRoute,
   ) {
     this.userId = this.authenticateService.getUserId();
   }
 
   // public star = 4;
   ngOnInit() {
+    this.projectId = this.route.snapshot.queryParams['projectId'];
   }
 
   feedbackResource() {
@@ -39,8 +43,8 @@ export class RatingComponent implements OnInit {
     // console.log("ec ec: " + JSON.stringify(this.feedbackForm));
   }
 
-  loadHumanOfProject(){
-    
+  loadHumanOfProject() {
+
   }
 
 }

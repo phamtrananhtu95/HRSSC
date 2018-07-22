@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Project, ProjectRequirement } from '../../../models';
 import { ProjectService } from '../../../services/project.service';
 import { IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-project-manager',
@@ -24,6 +25,7 @@ export class InfoProjectManagerComponent implements OnInit {
   public listSkillExp;
   public isPositionUpdate: boolean;
 
+  public status = null;
 
   public listSkill = [];
 
@@ -42,12 +44,14 @@ export class InfoProjectManagerComponent implements OnInit {
 
 
   constructor(
-    private prjService: ProjectService
+    private prjService: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     (<any>window).sweetAlertMin = true;
-        (<any>window).componentModalsJs = true;
+    (<any>window).componentModalsJs = true;
 
     this.loadAllPosition();
 
@@ -63,35 +67,33 @@ export class InfoProjectManagerComponent implements OnInit {
       });
     // this.formPositionModel.positionId = '1';
 
-
   }
 
   ngOnChanges() {
     if (this.project) {
-      this.projectInfo = Object.assign({}, this.project);
-      this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
-      this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
-      if (this.projectInfo.projectRequirementsById) {
-        this.listSkill = [];
-        this.positionList = [];
-        this.projectInfo.projectRequirementsById.forEach(el => {
+        this.projectInfo = Object.assign({}, this.project);
+        this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
+        this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
+        this.status = this.project.processStatus;
+        if (this.projectInfo.projectRequirementsById) {
+          this.listSkill = [];
+          this.positionList = [];
+          this.projectInfo.projectRequirementsById.forEach(el => {
 
-          this.positionList.push({
-            id: this.countId,
-            value: el
-          });
-          this.positionList.forEach(val => {
-            el.positionId = val.value.positionByPositionId.id;
-            el.skillRequirementsById.forEach(element => {
-              element.skillId = element.skillBySkillId.id;
+            this.positionList.push({
+              id: this.countId,
+              value: el
             });
+            this.positionList.forEach(val => {
+              el.positionId = val.value.positionByPositionId.id;
+              el.skillRequirementsById.forEach(element => {
+                element.skillId = element.skillBySkillId.id;
+              });
+            });
+            this.listSkill.push(el.skillRequirementsById);
+            this.countId = this.countId + 1;
           });
-          this.listSkill.push(el.skillRequirementsById);
-          this.countId = this.countId + 1;
-
-        });
-      }
-
+        }
     }
   }
 
@@ -258,6 +260,17 @@ export class InfoProjectManagerComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  viewListHumanOnProject(projectId) {
+    this.prjService.updateProject(this.projectInfo).subscribe(
+      res => {
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
   }
 
   onScroll() {

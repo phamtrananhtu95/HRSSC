@@ -132,17 +132,18 @@
     <div class="col-sm-6">
       <div class="form-group has-feedback">
         <b>Status</b>
-        <select name="select" class="form-control" name="status" (change)="projectInfo.processStatus=$event.target.value">
+        <select name="select" class="form-control" name="status" (change)="projectInfo.processStatus=$event.target.value" [(ngModel)]="status">
           <option value="1" [selected]="projectInfo?.processStatus==1">Pending</option>
           <option value="2" [selected]="projectInfo?.processStatus!=1">On going</option>
-          <option value="3" [selected]="projectInfo?.processStatus!=1">Finish</option>
+          <option value="3" [selected]="projectInfo?.processStatus==3">Finish</option>
         </select>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-2 col-md-offset-5">
-      <button type="submit" class="btn btn-primary" (click)="updatePrj()" id="sweet_success">update</button>
+      <button *ngIf="status!=3" type="submit" class="btn btn-primary" (click)="updatePrj()" id="sweet_success">update</button>
+      <button *ngIf="status==3" type="submit" class="btn btn-danger" (click)="viewListHumanOnProject(projectInfo.id)" id="sweet_success">finish project</button>
     </div>
   </div>
 
