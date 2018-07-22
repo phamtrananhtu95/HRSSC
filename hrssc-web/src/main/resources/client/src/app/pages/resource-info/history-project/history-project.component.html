@@ -82,7 +82,7 @@
 <!-- ************************************* -->
 <!-- Custom handle -->
 <div class="panel panel-flat ">
-  <div class="panel-body" *ngFor="let resourceHistory of resourceHistories">
+  <div class="panel-body" *ngFor="let resourceReview of resourceReviews">
     <ul class="media-list">
       <!-- <li class="media-header">Team leaders</li> -->
 
@@ -96,13 +96,13 @@
           <!-- <div class="media-heading text-semibold row">&nbsp;</div> -->
           <div class="media-heading text-semibold row">
             <div class="col-sm-8">
-              <a>Người rating</a> -
+              <a>{{resourceReview?.userByUserId?.fullname}}</a> -
               <a>
-                <b>{{resourceHistory?.projectByProjectId?.companyByCompanyId?.name}}</b>
+                <b>{{resourceReview?.jobByJobId?.projectByProjectId?.companyByCompanyId?.name}}</b>
               </a>
             </div>
             <div class="col-sm-4" [popover]="myPopover" [popoverOnHover]="true" [popoverCloseOnMouseOutside]="true">
-              <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" style="font-size: 15px">
+              <rating [(ngModel)]="resourceReview.rating" [readonly]="true" style="font-size: 15px">
               </rating>
 
               <!-- <i class="icon-circle-down2"></i> -->
@@ -111,15 +111,11 @@
             <div>
               <popover-content #myPopover [closeOnClickOutside]="true" [closeOnMouseOutside]="true">
                 <ul class="list-unstyled" id="popRatingDetail">
-                  <li> :number;
-                      :number;
-                      : number;
-                      : number;
-                      : number;
+                  <li>
                     <div>
                       <label>Job knowledge:</label>
                       <div class="ratingDetail">
-                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        <rating [(ngModel)]="resourceReview.jobKnowledge" [readonly]="true" fullIcon="◆" emptyIcon="◇">
                         </rating>
                       </div>
                     </div>
@@ -134,7 +130,7 @@
                     <div>
                       <label>Work quality:</label>
                       <div class="ratingDetail">
-                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        <rating [(ngModel)]="resourceReview.workQuality" [readonly]="true" fullIcon="◆" emptyIcon="◇">
                         </rating>
                       </div>
                     </div>
@@ -143,7 +139,7 @@
                     <div>
                       <label>Cooperation:</label>
                       <div class="ratingDetail">
-                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        <rating [(ngModel)]="resourceReview.cooperation" [readonly]="true" fullIcon="◆" emptyIcon="◇">
                         </rating>
                       </div>
                     </div>
@@ -152,7 +148,7 @@
                     <div>
                       <label>Attendance:</label>
                       <div class="ratingDetail">
-                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        <rating [(ngModel)]="resourceReview.attendance" [readonly]="true" fullIcon="◆" emptyIcon="◇">
                         </rating>
                       </div>
                     </div>
@@ -161,7 +157,7 @@
                     <div>
                       <label>Work attitude:</label>
                       <div class="ratingDetail">
-                        <rating [(ngModel)]="resourceHistory.projectByProjectId.star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                        <rating [(ngModel)]="resourceReview.workAttitude" [readonly]="true" fullIcon="◆" emptyIcon="◇">
                         </rating>
                       </div>
                     </div>
@@ -171,14 +167,14 @@
             </div>
             <!-- /popover rating detail -->
           </div>
-          <div class="media-heading text-semibold">Tên project</div>
+          <div class="media-heading text-semibold">{{resourceReview?.jobByJobId?.projectByProjectId?.title}}</div>
           <!-- <span class="text-muted">Last.fm</span> -->
         </div>
         <div class="media-right media-middle">
           <ul class="icons-list text-nowrap">
             <li> </li>
             <li>
-              <a data-toggle="collapse" [attr.data-target]="'#resourceHistory' + resourceHistory.id">
+              <a data-toggle="collapse" [attr.data-target]="'#resourceReview' + resourceReview.id">
                 <i class="icon-menu7"></i>
               </a>
             </li>
@@ -186,12 +182,12 @@
           </ul>
         </div>
         <div style="margin-top: 15px">
-          <textarea disabled rows="3" cols="5" class="form-control" placeholder="Default textarea">aaaaaaa</textarea>
+          <textarea disabled rows="3" cols="5" class="form-control" placeholder="Default textarea">{{resourceReview?.comment}}</textarea>
         </div>
 
 
         <br>
-        <div class="collapse" id="resourceHistory{{resourceHistory.id}}">
+        <div class="collapse" id="resourceReview{{resourceReview.id}}">
           <!-- <div class="contact-details">
             <ul class="list-extended list-unstyled list-icons">
               <li>
@@ -233,28 +229,28 @@
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
                             Project name: &nbsp;
-                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.title}}</span>
+                            <span class="text-semibold">{{resourceReview?.jobByJobId?.projectByProjectId?.title}}</span>
                           </span>
                         </li>
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
                             Project type: &nbsp;
-                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.type}}</span>
+                            <span class="text-semibold">{{resourceReview?.jobByJobId?.projectByProjectId?.type}}</span>
                           </span>
                         </li>
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
                             Domain: &nbsp;
-                            <span class="text-semibold">{{resourceHistory?.projectByProjectId?.domain}}</span>
+                            <span class="text-semibold">{{resourceReview?.jobByJobId?.projectByProjectId?.domain}}</span>
                           </span>
                         </li>
                         <li>
                           <span class="heading-text">
                             <span class="status-mark border-success position-left"></span>
                             Duration: &nbsp;
-                            <span class="text-semibold">..........</span>
+                            <span class="text-semibold">{{resourceReview?.jobByJobId?.joinedate}} day(s)</span>
                           </span>
                         </li>
                         <!-- <li>

@@ -10,20 +10,33 @@ import { ResourceHistory } from '../../../models';
 export class HistoryProjectComponent implements OnInit {
 
   public resourceHistories: ResourceHistory[];
+  public resourceReviews: any;
 
   constructor(
     private employeeService: EmployeeService,
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
-    this.employeeService.loadHistoryResource(38).subscribe(
+    this.employeeService.loadReviewsResource(38).subscribe(
       res => {
-        this.resourceHistories = res;
+        this.resourceReviews = res;
+        console.log("aaaaa: " + JSON.stringify(this.resourceReviews));
+
+      //   this.resourceHistories.forEach(resourceHistory => {
+      //     resourceHistory.feedbacksById.forEach(feedbackById => {
+      //         console.log(feedbackById.userByUserId.fullname);
+      //     });
+      // });
+        // console.log("-----" + JSON.stringify(this.resourceHistories));
       },
       err => {
         console.log(err);
       }
     );
+
+    
   }
 
 }

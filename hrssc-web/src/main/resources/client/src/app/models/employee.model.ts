@@ -69,8 +69,11 @@ export class ResourceHistory {
     leaveDate: number;
     projectId: number;
     projectByProjectId: ProjectByProjectId;
-    feedbacksById: FeedbacksById;
+    feedbacksById: FeedbacksById[];
     status: number;
+    constructor(){
+        this.feedbacksById = [];
+    }
 }
 
 export class ProjectByProjectId {
@@ -97,48 +100,7 @@ export class FeedbacksById {
     cooperation: number;
     attendance: number;
     workAttitude: number;
+    userByUserId: UserByUserId;
+    constructor(){
+    }
 }
-
-//Similar emp
-
-// export class HumanResourceSimilar {
-//     id: number;
-//     similarScore: number;
-//     similarResourceId: number;
-//     humanResourceBySimilarResourceId: HumanResourceBySimilarResourceId;
-// }
-
-// export class HumanResourceBySimilarResourceId {
-//         fullname: string;
-//         email: string;
-//         tel: string;
-//         companyId: number;
-//         salary: number;
-//         "companyByCompanyId": {
-//             "name": "ADS Solution",
-//             "city": "Ho Chi Minh"
-//         },
-//         "resourceSkillsById": [
-//             {
-//                 "skillId": 2,
-//                 "experience": 5,
-//                 "skillBySkillId": {
-//                     "title": "C# .NET"
-//                 }
-//             },
-//             {
-//                 "skillId": 16,
-//                 "experience": 2,
-//                 "skillBySkillId": {
-//                     "title": "Java Spring"
-//                 }
-//             },
-//             {
-//                 "skillId": 26,
-//                 "experience": 6.5,
-//                 "skillBySkillId": {
-//                     "title": "IELTS"
-//                 }
-//             }
-//         ]
-// }

@@ -31,6 +31,7 @@ public class Contract {
     @JsonView(ApplianceView.ContractView.class)
     private User userByLatestEditorId;
     private Collection<ChatLog> chatLogsById;
+    private Collection<ContractVersion> contractVersionsById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -179,5 +180,14 @@ public class Contract {
 
     public void setChatLogsById(Collection<ChatLog> chatLogsById) {
         this.chatLogsById = chatLogsById;
+    }
+
+    @OneToMany(mappedBy = "contractByContractId")
+    public Collection<ContractVersion> getContractVersionsById() {
+        return contractVersionsById;
+    }
+
+    public void setContractVersionsById(Collection<ContractVersion> contractVersionsById) {
+        this.contractVersionsById = contractVersionsById;
     }
 }

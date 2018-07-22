@@ -62,8 +62,8 @@ export class ResourceInfoComponent implements OnInit {
     // this.getHumanResourceById();
 
     // Feedback
-    this.formFeedback.rating = 4.5;
-    this.formFeedback.comment = "he is very good!!!";
+    // this.formFeedback.rating = 4.5;
+    // this.formFeedback.comment = "he is very good!!!";
   }
 
   getHumanResourceById() {
