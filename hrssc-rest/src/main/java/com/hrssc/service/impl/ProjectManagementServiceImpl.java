@@ -366,21 +366,24 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         projectRepository.save(project);
         //Xoa interation voi cac ressourc khac
         List<Interaction> interactionList = interactionRepository.findByProjectId(projectId);
-        for (Interaction tmp:interactionList) {
-            interactionRepository.delete(tmp);
+        if(!interactionList.isEmpty()) {
+            for (Interaction tmp : interactionList) {
+                interactionRepository.delete(tmp);
+            }
         }
         //Doi job va resource status
         List<Job> jobList = jobRepository.findByProjectId(projectId);
         long leavedate = System.currentTimeMillis()/1000;
-        for (Job tmp:jobList) {
-            HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
-            resource.setStatus(Constant.ResourceStatus.INACTIVE);
-            humanResourceRepository.save(resource);
-            tmp.setLeaveDate(leavedate);
-            tmp.setStatus(Constant.JobStatus.FINISHED);
-            jobRepository.save(tmp);
+        if(!jobList.isEmpty()) {
+            for (Job tmp : jobList) {
+                HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
+                resource.setStatus(Constant.ResourceStatus.INACTIVE);
+                humanResourceRepository.save(resource);
+                tmp.setLeaveDate(leavedate);
+                tmp.setStatus(Constant.JobStatus.FINISHED);
+                jobRepository.save(tmp);
+            }
         }
-
         return project;
     }
 }
