@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.FeedbackView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.Feedback;
+import com.hrssc.entities.Job;
 import com.hrssc.entities.Project;
 import com.hrssc.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,9 @@ public class FeedbackController {
         return feedbackService.loadAllProjectFeedBack(userId);
     }
 
+    @JsonView(FeedbackView.resourceFeedback.class)
+    @GetMapping(value = "/load-all-resource/{projectId}")
+    public List<Job> loadReoursceByProject(@PathVariable(value = "projectId") int projectId) throws Exception{
+        return  feedbackService.loadReoursceByProject(projectId);
+    }
 }

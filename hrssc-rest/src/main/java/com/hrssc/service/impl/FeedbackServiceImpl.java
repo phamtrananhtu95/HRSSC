@@ -4,6 +4,7 @@ import com.hrssc.domain.Constant;
 import com.hrssc.entities.*;
 import com.hrssc.repository.*;
 import com.hrssc.service.FeedbackService;
+import javassist.NotFoundException;
 import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -139,13 +140,36 @@ public class FeedbackServiceImpl implements FeedbackService {
         for (Project tmp: projectList) {
             List<Job> jobList = jobRepository.findByProjectId(tmp.getId());
             List<Job> resultJobList = new ArrayList<>();
-            for (Job jobtmp: jobList) {
-                if(jobtmp.getFeedbacksById().isEmpty()){
-                    resultJobList.add(jobtmp);
+            if(!jobList.isEmpty()) {
+                for (Job jobtmp : jobList) {
+                    if (jobtmp.getFeedbacksById().isEmpty()) {
+                        resultJobList.add(jobtmp);
+                    }
+                }
+                if (!resultJobList.isEmpty()) {
+                    tmp.setJobsById(resultJobList);
+                    resultList.add(tmp);
                 }
             }
-            if (!resultJobList.isEmpty()){
-                tmp.setJobsById(resultJobList);
+        }
+        return resultList;
+    }
+
+    public List<Job> loadReoursceByProject(int projectId) throws Exception{
+        Project project = projectRepository.findById(projectId);
+        if(project == null){
+            throw new NotFoundException("Project Not Found!");
+        }
+        if(project.getProcessStatus() != Constant.ProjectProcess.FINISHED){
+            throw new Exception("Project not finish");
+        }
+        List<Job> jobList = jobRepository.findByProjectId(projectId);
+        List<Job> resultList = new ArrayList<>();
+        if(jobList == null){
+           throw new NotFoundException("Project has no job");
+        }
+        for (Job tmp: jobList) {
+            if(tmp.getFeedbacksById().isEmpty() && tmp.getStatus() == Constant.JobStatus.FINISHED){
                 resultList.add(tmp);
             }
         }
