@@ -13,7 +13,8 @@ import { ChatService } from '../../services/chat.service';
 export class HeaderComponent implements OnInit {
   private userName: any;
   public listLogNotify = [];
-
+  public countNotify: number;
+  public interval;
   constructor(
     public header: HeaderService,
     public authenticateService: AuthenticateService,
@@ -23,18 +24,33 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.header.userInfo.subscribe(userName => {
       this.userName = userName;
+      if(this.userName != ""){
+        this.chatService.connectNotifyChannel("notifyRoom", userName);
+      }
+      
     });
 
     // load case!
     let userName = this.authenticateService.getUserName();
     if(userName){
       this.header.setUserNametoHead(userName);
+      
     }
-
-    // this.chatService.connectNotifyChannel(2310);
-    // this.listLogNotify = this.chatService.getLogNotify();
+    this.interval = setInterval(() => {
+      this.listLogNotify = this.chatService.getLogNotify();
+      
+      this.countNotify = this.listLogNotify.length;
+    }, 3000);
+    
+   
     
   }
+  ngOnChanges() {
+    this.listLogNotify = this.chatService.getLogNotify();
+    this.countNotify = this.listLogNotify.length;
+    console.log(this.countNotify);
+  }
+
 
 
 

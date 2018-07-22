@@ -10,6 +10,7 @@ import { Interaction, ContractByContractId } from '../../models/interaction.mode
 import { ContractService } from '../../services/contract.service';
 declare var $: any;
 import { InvitationService } from '../../services/invitation.service';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-job-contract',
@@ -57,6 +58,7 @@ export class JobContractComponent implements OnInit {
     private router: Router,
     private contractService: ContractService,
     private invitationService: InvitationService,
+    private chatService: ChatService,
 
     private formBuilder: FormBuilder
   ) {
@@ -187,10 +189,18 @@ export class JobContractComponent implements OnInit {
   }
 
   sendOffer() {
+    // demo send notify
+    // let msg = "aa";
+    // let sendTo = "hannse1@gmail.com"
+    // this.chatService.sendNotify(msg,sendTo);
+
+
     if (this.composeContract) {
       this.employeeService.inviteHumanResource(this.formContract).subscribe(
         res => {
           this.router.navigate(['home']);
+          // send notify
+          
         },
         err => {
           console.log(err);

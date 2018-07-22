@@ -26,11 +26,17 @@ export class SearchPageComponent implements OnInit {
       if (!params) {
         return;
       }
+      // resource
       this.searchResourceModel.userId = params.RuserId;
       this.searchResourceModel.company = params.Rcompany;
+      this.searchResourceModel.skill = params.Rskill;
+      this.searchResourceModel.location = params.Rlocation;
 
+      // project
       this.searchProjectModel.company = params.Pcompany;
       this.searchProjectModel.userId = params.PuserId;
+      this.searchProjectModel.skill = params.Pskill;
+      this.searchProjectModel.location = params.Plocation;
 
     })
   }
@@ -40,33 +46,37 @@ export class SearchPageComponent implements OnInit {
     this.searchProject();
   }
   searchResource() {
+   
+    if (this.searchResourceModel) {
+      this.searchService.searchByResource(this.searchResourceModel).subscribe(
+        res => {
+          this.isResourceSearch = true;
+          this.listResourceSearch = res;
+          console.log(this.listResourceSearch);
 
-    this.searchService.searchByResource(this.searchResourceModel).subscribe(
-      res => {
-        this.isResourceSearch = true;
-        this.listResourceSearch = res;
-        console.log(this.listResourceSearch);
-        
-        this.countResult = this.listResourceSearch.length;
-      },
-      err => {
+          this.countResult = this.listResourceSearch.length;
+        },
+        err => {
 
-      }
-    );
+        }
+      );
+    }
+
   }
 
   searchProject() {
-    this.searchService.searchByProject(this.searchProjectModel).subscribe(
-      res => {
-        this.isResourceSearch = false;
-        this.listProjectSearch = res;
-        console.log(this.listProjectSearch);
-        
-        this.countResult = this.listProjectSearch.length;
-      },
-      err => {
+    if (this.searchProjectModel) {
+      this.searchService.searchByProject(this.searchProjectModel).subscribe(
+        res => {
+          this.isResourceSearch = false;
+          this.listProjectSearch = res;
+          this.countResult = this.listProjectSearch.length;
+        },
+        err => {
 
-      }
-    );
+        }
+      );
+    }
+
   }
 }

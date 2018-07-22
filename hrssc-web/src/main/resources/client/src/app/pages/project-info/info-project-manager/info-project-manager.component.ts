@@ -27,6 +27,18 @@ export class InfoProjectManagerComponent implements OnInit {
 
   public listSkill = [];
 
+  // domain, type
+  public listDomainOpt;
+  public listTypeOpt;
+  public listDomain = [
+    "Security","Education","Testing","Game","Language"
+  ];
+
+  public listType = [
+    "Web Application","Mobile Application","Desktop Application"
+  ];
+
+
 
 
   constructor(
@@ -38,6 +50,17 @@ export class InfoProjectManagerComponent implements OnInit {
         (<any>window).componentModalsJs = true;
 
     this.loadAllPosition();
+
+    this.listDomainOpt = [];
+      this.listDomain.forEach(domain => {
+          this.listDomainOpt.push({ value: domain.toString(), label: domain })
+      });
+      
+      // 
+      this.listTypeOpt = [];
+      this.listType.forEach(type => {
+          this.listTypeOpt.push({ value: type.toString(), label: type })
+      });
     // this.formPositionModel.positionId = '1';
 
 

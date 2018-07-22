@@ -89,6 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/search/**",
                         "/ws/**",
                         "/chat/**",
+                        "notification/**",
                         "/app/**",
                         "/channel/**",
                         "/contract/**"

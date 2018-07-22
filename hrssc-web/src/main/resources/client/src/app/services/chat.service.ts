@@ -36,9 +36,9 @@ export class ChatService {
     let that = this;
     that.stompClient.connect({}, function () {
       that.topic = `/app/chat/${roomId}`;
-      if (that.currentSubscription) {
-        that.currentSubscription.unsubscribe();
-      }
+      // if (that.currentSubscription) {
+      //   that.currentSubscription.unsubscribe();
+      // }
       that.currentSubscription = that.stompClient.subscribe(`/channel/${roomId}`, (message) => {
         if (message.body) {
           var messageReceived = JSON.parse(message.body);
@@ -60,26 +60,27 @@ export class ChatService {
 
   }
 
-  connectNotifyChannel(roomId){
+  connectNotifyChannel(roomId, username){
 
     let ws = new SockJS(this.serverWsUrl);
     this.stompClientNoti = stompjs.over(ws);
     // this.stompClient.debug = null;
     let that = this;
-    console.log(that.username);
+    console.log(username);
     that.stompClientNoti.connect({}, function () {
       that.topic = `/app/notification/${roomId}`;
-      if (that.currentSubNoti) {
-        that.currentSubNoti.unsubscribe();
-      }
+      // if (that.currentSubNoti) {
+      //   that.currentSubNoti.unsubscribe();
+      // }
       that.currentSubNoti = that.stompClientNoti.subscribe(`/channel/${roomId}`, (message) => {
         if (message.body) {
           var messageReceived = JSON.parse(message.body);
-          if (messageReceived.type == 'CHAT' && messageReceived.sender != that.username) {
+          if (messageReceived.type == 'CHAT' && messageReceived.sender != username) {
             that.logNotify.push({
               content: messageReceived.content,
               timeSent: that.getTimestamp(),
-              userSent: messageReceived.sender
+              userSent: messageReceived.sender,
+              sendTo: messageReceived.sendTo
             })
           }
 
@@ -87,18 +88,19 @@ export class ChatService {
       });
       that.stompClientNoti.send(`${that.topic}/addUser`,
         {},
-        JSON.stringify({ sender: that.username, type: 'JOIN' })
+        JSON.stringify({ sender: username, type: 'JOIN' })
       );
     });
   }
-  sendNotify(msg) {
+  sendNotify(msg, sendTo) {
     const timestamp = this.getTimestamp();
     // const email = 
     this.logNotify = this.getLogNotify();
     this.logNotify.push({
       content: msg,
       timeSent: timestamp,
-      userSent: this.username
+      userSent: this.username,
+      sendTo: sendTo
       // email: 
     })
 
@@ -106,9 +108,10 @@ export class ChatService {
       var chatMessage = {
         sender: this.username,
         content: msg,
-        type: 'CHAT'
+        type: 'CHAT',
+        sendTo: sendTo
       };
-      this.stompClientNoti.send(`${this.topic}/sendNoti`, {}, JSON.stringify(chatMessage));
+      this.stompClientNoti.send(`${this.topic}/sendNotification`, {}, JSON.stringify(chatMessage));
     }
   }
 

@@ -1,6 +1,7 @@
 package com.hrssc.rest;
 
 import com.hrssc.domain.chat.ChatMessage;
+import com.hrssc.domain.chat.NotificationMessage;
 import com.hrssc.listener.WebSocketListener;
 import com.hrssc.service.ChatService;
 import org.slf4j.Logger;
@@ -25,17 +26,17 @@ public class NotificationController {
 
 
     @MessageMapping("/notification/{roomId}/sendNotification")
-    public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
+    public void sendMessage(@DestinationVariable String roomId, @Payload NotificationMessage chatMessage) {
         messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
     }
 
     @MessageMapping("/notification/{roomId}/addUser")
-    public void addUser(@DestinationVariable String roomId, @Payload ChatMessage chatMessage,
+    public void addUser(@DestinationVariable String roomId, @Payload NotificationMessage chatMessage,
                         SimpMessageHeaderAccessor headerAccessor) {
         String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
         if (currentRoomId != null) {
-            ChatMessage leaveMessage = new ChatMessage();
-            leaveMessage.setType(ChatMessage.MessageType.LEAVE);
+            NotificationMessage leaveMessage = new NotificationMessage();
+            leaveMessage.setType(NotificationMessage.MessageType.LEAVE);
             leaveMessage.setSender(chatMessage.getSender());
             messagingTemplate.convertAndSend(format("/channel/%s", currentRoomId), leaveMessage);
         }

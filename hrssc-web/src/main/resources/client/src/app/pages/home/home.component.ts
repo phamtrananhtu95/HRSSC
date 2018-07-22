@@ -23,6 +23,21 @@ export class HomeComponent implements OnInit {
   public resources = [];
   public projects = [];
   public companies = [];
+  public listSkillOpt = [];
+  public listLocationOpt = [
+    {
+      value: "Ho Chi Minh",
+      label: "Ho Chi Minh"
+    },
+    {
+      value: "Ha Noi",
+      label: "Ha Noi"
+    },
+    {
+      value: "Da Nang",
+      label: "Da Nang"
+    },
+  ];
   public searchResourceModel = new Search();
   public searchProjectModel = new Search();
 
@@ -45,6 +60,7 @@ export class HomeComponent implements OnInit {
       this.getHumanResource();
       this.getCompany();
       this.getProjects();
+      this.getSkillList();
     }
 
   }
@@ -64,7 +80,6 @@ export class HomeComponent implements OnInit {
     this.prjSerivce.getProjects(this.userId).subscribe(
       res => {
           this.projects = res;
-          console.log(this.projects);
       },
       err => {
 
@@ -82,7 +97,18 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  getSkillList(){
+    this.employeeService.getSkills().subscribe(
+      res => {
+        this.listSkillOpt = [];
+        res.forEach(el => {
+          this.listSkillOpt.push({ value: el.title, label: el.title });
+        });
 
+      }
+    );
+  }
+  
   searchResource() {
     this.searchResourceModel.userId = this.userId;
     console.log(this.searchResourceModel);
@@ -90,7 +116,9 @@ export class HomeComponent implements OnInit {
       queryParams:
       {
         "RuserId": this.searchResourceModel.userId,
-        "Rcompany": this.searchResourceModel.company
+        "Rcompany": this.searchResourceModel.company,
+        "Rskill": this.searchResourceModel.skill,
+        "Rlocation": this.searchResourceModel.location
       }
     });
   }
@@ -100,7 +128,9 @@ export class HomeComponent implements OnInit {
       queryParams:
       {
         "PuserId": this.searchProjectModel.userId,
-        "Pcompany": this.searchProjectModel.company
+        "Pcompany": this.searchProjectModel.company,
+        "Pskill": this.searchProjectModel.skill,
+        "Plocation": this.searchProjectModel.location
       }
     });
   }
