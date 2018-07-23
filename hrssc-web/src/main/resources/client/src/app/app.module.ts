@@ -85,6 +85,7 @@ import { ChatMessageComponent } from './pages/chat-page/chat-message/chat-messag
 import { ChatFormComponent } from './pages/chat-page/chat-form/chat-form.component';
 import { ChatService } from './services/chat.service';
 import {PopoverModule} from "ngx-popover";
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 import { JobContractComponent } from './pages/job-contract/job-contract.component';
 import { ChatPopupComponent } from './pages/chat-page/chat-popup/chat-popup.component';
@@ -93,6 +94,7 @@ import { ApplianceContractComponent } from './pages/manage-appliances/appliance-
 import { InvitationContractComponent } from './pages/manage-invitations/invitation-contract/invitation-contract.component';
 import { SearchService } from './services/search.service';
 import { RatingComponent } from './pages/rating/rating.component';
+import { FeedbackProjectComponent } from './pages/feedback-project/feedback-project.component';
 
 const appRoutes: Routes = [
 
@@ -187,6 +189,11 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
+    path: 'feedback/project',
+    component: FeedbackProjectComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -247,7 +254,8 @@ const appRoutes: Routes = [
     ChatPopupComponent,
     ApplianceContractComponent,
     InvitationContractComponent,
-    RatingComponent
+    RatingComponent,
+    FeedbackProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -266,6 +274,7 @@ const appRoutes: Routes = [
     FormWizardModule,
     CurrencyMaskModule,
     PopoverModule,
+    ToastModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

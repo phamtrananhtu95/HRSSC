@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { Project, ProjectRequirement } from '../../../models';
 import { ProjectService } from '../../../services/project.service';
 import { IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-info-project-manager',
@@ -47,11 +48,14 @@ export class InfoProjectManagerComponent implements OnInit {
     private prjService: ProjectService,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
+    public toastr: ToastsManager,
+    public vcr: ViewContainerRef
+  ) { 
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
-    (<any>window).sweetAlertMin = true;
-    (<any>window).componentModalsJs = true;
+    // this.reloadLib();
 
     this.loadAllPosition();
 
@@ -68,6 +72,11 @@ export class InfoProjectManagerComponent implements OnInit {
     // this.formPositionModel.positionId = '1';
 
   }
+
+  // reloadLib() {
+  //   (<any>window).sweetAlertMin = true;
+  //   (<any>window).componentModalsJs = true;
+  // }
 
   ngOnChanges() {
     if (this.project) {
@@ -263,6 +272,8 @@ export class InfoProjectManagerComponent implements OnInit {
   }
 
   viewListHumanOnProject(projectId) {
+    this.showSuccess();
+
     this.prjService.updateProjectFinish(projectId).subscribe(
       res => {
         this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
@@ -272,6 +283,10 @@ export class InfoProjectManagerComponent implements OnInit {
       }
     );
 
+  }
+
+  showSuccess() {
+    this.toastr.success('You are awesome!', 'Success!');
   }
 
   onScroll() {

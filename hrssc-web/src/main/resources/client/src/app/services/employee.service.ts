@@ -78,13 +78,18 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
-  feedbackResource(formFeedback){
+  feedbackResource(formFeedback) {
     let url = "feedback/add";
     return this.restService.post(url, formFeedback);
   }
 
-  loadHumanOfProject(projectId){
+  loadHumanOfProject(projectId) {
     let url = "feedback/load-all-resource/" + projectId;
+    return this.restService.get(url);
+  }
+
+  loadProjectNotFeedback(userId) {
+    let url = "feedback/project-feedback/" + userId;
     return this.restService.get(url);
   }
 
