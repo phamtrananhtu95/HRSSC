@@ -32,6 +32,9 @@ public class ContractServiceImpl implements ContractService {
     @Autowired
     ProjectRequirementRepository projectRequirementRepository;
 
+    @Autowired
+    ContractVersionRepository contractVersionRepository;
+
     @Override
     public Interaction loadContract(int interactionId) throws NotFoundException{
         Interaction resultInteraction = interactionRepository.findById(interactionId);
@@ -54,6 +57,16 @@ public class ContractServiceImpl implements ContractService {
         if(dbContract.getLatestEditorId() == contract.getLatestEditorId()){
             return "Permission Not allow!";
         }
+        ContractVersion contractVersion = new ContractVersion();
+        contractVersion.setStartDate(dbContract.getStartDate());
+        contractVersion.setEndDate(dbContract.getEndDate());
+        contractVersion.setSalary(dbContract.getSalary());
+        contractVersion.setAdditionalTerms(dbContract.getAdditionalTerms());
+        contractVersion.setContractId(dbContract.getId());
+        long currenttime  = System.currentTimeMillis()/1000;
+        contractVersion.setDealDate(currenttime);
+        contractVersionRepository.save(contractVersion);
+
         dbContract.setStartDate(contract.getStartDate());
         dbContract.setEndDate(contract.getEndDate());
         dbContract.setSalary(contract.getSalary());

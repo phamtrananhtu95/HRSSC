@@ -1,21 +1,28 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ApplianceView;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "contract_version", schema = "hrssc", catalog = "")
 public class ContractVersion {
+    @JsonView(ApplianceView.ContractView.class)
     private int id;
+    @JsonView(ApplianceView.ContractView.class)
     private long dealDate;
     private long startDate;
     private long endDate;
     private int salary;
     private String additionalTerms;
+    @JsonView(ApplianceView.ContractView.class)
     private int contractId;
     private Contract contractByContractId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;
