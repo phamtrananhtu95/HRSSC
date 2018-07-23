@@ -14,6 +14,7 @@ export class RatingComponent implements OnInit {
   public feedbackForm = new Feedback();
   public userId: number;
   public projectId: number;
+  public listHumanOfProject: any;
 
   constructor(
     private employeeService: EmployeeService,
@@ -25,16 +26,28 @@ export class RatingComponent implements OnInit {
 
   // public star = 4;
   ngOnInit() {
+    this.reloadLibrary();
+
     this.projectId = this.route.snapshot.queryParams['projectId'];
+    this.loadHumanOfProject();
   }
 
-  feedbackResource() {
+  reloadLibrary(){
+    (<any>window).sweetAlertMin = true;
+    (<any>window).componentModalsJs = true;
+  }
+
+  feedbackResource(jobId) {
     this.feedbackForm.userId = this.userId;
-    this.feedbackForm.jobId = 412;
+    this.feedbackForm.jobId = jobId;
     this.employeeService.feedbackResource(this.feedbackForm).subscribe(
       res => {
         // this.reloadHumanList.emit();
-        (<any>$("#modal_default")).modal("hide");
+
+        this.loadHumanOfProject();
+        (<any>$("#humanResource" + jobId)).modal("hide");
+
+        this.feedbackForm = new Feedback();
       },
       err => {
         console.log(err);
@@ -44,7 +57,16 @@ export class RatingComponent implements OnInit {
   }
 
   loadHumanOfProject() {
+    this.employeeService.loadHumanOfProject(this.projectId).subscribe(
+      res => {
+        this.listHumanOfProject = res;
+        // console.log("ec ec: " + JSON.stringify(this.listHumanOfProject));
 
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 }

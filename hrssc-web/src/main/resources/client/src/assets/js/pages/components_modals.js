@@ -308,6 +308,15 @@ let componentModals = setTimeout(function runAgain() {
                 });
             });
 
+            $('#sweet_success_rating').on('click', function () {
+                swal({
+                    title: "Rating success",
+                    text: "Have been accept success",
+                    confirmButtonColor: "#66BB6A",
+                    type: "success"
+                });
+            });
+
             // Error alert
             $('#sweet_error').on('click', function () {
                 swal({

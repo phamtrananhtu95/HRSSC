@@ -83,4 +83,9 @@ export class EmployeeService {
     return this.restService.post(url, formFeedback);
   }
 
+  loadHumanOfProject(projectId){
+    let url = "feedback/load-all-resource/" + projectId;
+    return this.restService.get(url);
+  }
+
 }
