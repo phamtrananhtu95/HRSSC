@@ -33,11 +33,11 @@ export class InfoProjectManagerComponent implements OnInit {
   public listDomainOpt;
   public listTypeOpt;
   public listDomain = [
-    "Security","Education","Testing","Game","Language"
+    "Security", "Education", "Testing", "Game", "Language"
   ];
 
   public listType = [
-    "Web Application","Mobile Application","Desktop Application"
+    "Web Application", "Mobile Application", "Desktop Application"
   ];
 
 
@@ -56,44 +56,44 @@ export class InfoProjectManagerComponent implements OnInit {
     this.loadAllPosition();
 
     this.listDomainOpt = [];
-      this.listDomain.forEach(domain => {
-          this.listDomainOpt.push({ value: domain.toString(), label: domain })
-      });
-      
-      // 
-      this.listTypeOpt = [];
-      this.listType.forEach(type => {
-          this.listTypeOpt.push({ value: type.toString(), label: type })
-      });
+    this.listDomain.forEach(domain => {
+      this.listDomainOpt.push({ value: domain.toString(), label: domain })
+    });
+
+    // 
+    this.listTypeOpt = [];
+    this.listType.forEach(type => {
+      this.listTypeOpt.push({ value: type.toString(), label: type })
+    });
     // this.formPositionModel.positionId = '1';
 
   }
 
   ngOnChanges() {
     if (this.project) {
-        this.projectInfo = Object.assign({}, this.project);
-        this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
-        this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
-        this.status = this.project.processStatus;
-        if (this.projectInfo.projectRequirementsById) {
-          this.listSkill = [];
-          this.positionList = [];
-          this.projectInfo.projectRequirementsById.forEach(el => {
+      this.projectInfo = Object.assign({}, this.project);
+      this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
+      this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
+      this.status = this.project.processStatus;
+      if (this.projectInfo.projectRequirementsById) {
+        this.listSkill = [];
+        this.positionList = [];
+        this.projectInfo.projectRequirementsById.forEach(el => {
 
-            this.positionList.push({
-              id: this.countId,
-              value: el
-            });
-            this.positionList.forEach(val => {
-              el.positionId = val.value.positionByPositionId.id;
-              el.skillRequirementsById.forEach(element => {
-                element.skillId = element.skillBySkillId.id;
-              });
-            });
-            this.listSkill.push(el.skillRequirementsById);
-            this.countId = this.countId + 1;
+          this.positionList.push({
+            id: this.countId,
+            value: el
           });
-        }
+          this.positionList.forEach(val => {
+            el.positionId = val.value.positionByPositionId.id;
+            el.skillRequirementsById.forEach(element => {
+              element.skillId = element.skillBySkillId.id;
+            });
+          });
+          this.listSkill.push(el.skillRequirementsById);
+          this.countId = this.countId + 1;
+        });
+      }
     }
   }
 
@@ -263,14 +263,15 @@ export class InfoProjectManagerComponent implements OnInit {
   }
 
   viewListHumanOnProject(projectId) {
-    this.prjService.updateProject(this.projectInfo).subscribe(
+    this.prjService.updateProjectFinish(projectId).subscribe(
       res => {
+        this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
       },
       err => {
         console.log(err);
       }
     );
-    this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
+
   }
 
   onScroll() {

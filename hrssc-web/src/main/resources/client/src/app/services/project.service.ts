@@ -9,8 +9,8 @@ export class ProjectService {
   ) { }
 
   getProjects(id) {
-      let url = 'home/project-list/' + id;
-      return this.restService.get(url);
+    let url = 'home/project-list/' + id;
+    return this.restService.get(url);
   }
 
 
@@ -64,6 +64,12 @@ export class ProjectService {
 
   getSimilarProject(projectId) {
     let url = 'similar/get-project-list/' + projectId;
+    return this.restService.get(url);
+  }
+
+  // Finish project
+  updateProjectFinish(projectId) {
+    let url = 'manage-project/change-status-finish/' + projectId;
     return this.restService.get(url);
   }
 
