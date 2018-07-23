@@ -166,4 +166,9 @@ public class ContractServiceImpl implements ContractService {
         }
         return "Success!";
     }
+
+    public List<ContractVersion> getContractVersionByContractId(int contractId){
+        List<ContractVersion> resultList  = contractVersionRepository.findByContractId(contractId);
+        return resultList;
+    }
 }

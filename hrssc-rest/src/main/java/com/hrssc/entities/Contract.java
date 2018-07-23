@@ -31,7 +31,6 @@ public class Contract {
     @JsonView(ApplianceView.ContractView.class)
     private User userByLatestEditorId;
     private Collection<ChatLog> chatLogsById;
-    @JsonView(ApplianceView.ContractView.class)
     private Collection<ContractVersion> contractVersionsById;
 
     @Id

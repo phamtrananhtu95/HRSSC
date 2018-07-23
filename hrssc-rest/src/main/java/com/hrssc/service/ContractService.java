@@ -1,8 +1,11 @@
 package com.hrssc.service;
 
 import com.hrssc.entities.Contract;
+import com.hrssc.entities.ContractVersion;
 import com.hrssc.entities.Interaction;
 import javassist.NotFoundException;
+
+import java.util.List;
 
 public interface ContractService {
 
@@ -10,4 +13,5 @@ public interface ContractService {
     String changeOffer(Contract contract);
     String acceptOffer(Contract contract);
     String rejectOffer(Contract contract);
+    List<ContractVersion> getContractVersionByContractId(int contractId);
 }

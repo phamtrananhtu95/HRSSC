@@ -6,6 +6,7 @@ import com.hrssc.domain.jacksonview.ApplianceView;
 import com.hrssc.domain.jacksonview.ContractView;
 import com.hrssc.entities.ChatLog;
 import com.hrssc.entities.Contract;
+import com.hrssc.entities.ContractVersion;
 import com.hrssc.entities.Interaction;
 import com.hrssc.service.ChatService;
 import com.hrssc.service.ContractService;
@@ -54,6 +55,12 @@ public class ContractController {
     @GetMapping("/get-chat-logs/{contractId}")
     public List<ChatLog> getChatLogByContractId(@PathVariable("contractId") int contractId){
         return chatService.getMessageListByContractId(contractId);
+    }
+
+    @JsonView(ContractView.VersionView.class)
+    @GetMapping("/get-version/{contractId}")
+    public List<ContractVersion> getContractVersionBycontracId(@PathVariable(value = "contractId") int contractId){
+        return contractService.getContractVersionByContractId(contractId);
     }
 
 }

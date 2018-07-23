@@ -2,6 +2,7 @@ package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.ApplianceView;
+import com.hrssc.domain.jacksonview.ContractView;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -9,15 +10,20 @@ import java.util.Objects;
 @Entity
 @Table(name = "contract_version", schema = "hrssc", catalog = "")
 public class ContractVersion {
-    @JsonView(ApplianceView.ContractView.class)
+
+    @JsonView(ContractView.VersionView.class)
     private int id;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView(ContractView.VersionView.class)
     private long dealDate;
+    @JsonView(ContractView.VersionView.class)
     private long startDate;
+    @JsonView(ContractView.VersionView.class)
     private long endDate;
+    @JsonView(ContractView.VersionView.class)
     private int salary;
+    @JsonView(ContractView.VersionView.class)
     private String additionalTerms;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView(ContractView.VersionView.class)
     private int contractId;
     private Contract contractByContractId;
 
