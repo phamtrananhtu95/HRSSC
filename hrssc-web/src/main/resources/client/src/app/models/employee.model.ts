@@ -13,8 +13,10 @@ export class Employee {
     userByUserId: UserByUserId;
     skill: string;
     avgRating: number;
+    averageRatingsById: AverageRatingsById[];
     constructor() {
         this.resourceSkillsById = [];
+        this.averageRatingsById = [];
     }
 }
 
@@ -61,6 +63,16 @@ export class UserByUserId {
     id: number;
 }
 
+export class AverageRatingsById {
+    id: number;
+    jobKnowledge: number;
+    workQuality: number;
+    cooperation: number;
+    attendance: number;
+    workAttitude: number;
+    avgRating: number;
+}
+
 // Working history of resource
 export class ResourceHistory {
     id: number;
@@ -71,7 +83,7 @@ export class ResourceHistory {
     projectByProjectId: ProjectByProjectId;
     feedbacksById: FeedbacksById[];
     status: number;
-    constructor(){
+    constructor() {
         this.feedbacksById = [];
     }
 }
@@ -94,13 +106,13 @@ export class FeedbacksById {
     id: number;
     rating: number;
     comment: string;
-    timestamp:number;
-    jobKnowledge:number;
-    workQuality:number;
+    timestamp: number;
+    jobKnowledge: number;
+    workQuality: number;
     cooperation: number;
     attendance: number;
     workAttitude: number;
     userByUserId: UserByUserId;
-    constructor(){
+    constructor() {
     }
 }

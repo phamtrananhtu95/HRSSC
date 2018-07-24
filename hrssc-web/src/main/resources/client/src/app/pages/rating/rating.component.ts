@@ -60,7 +60,7 @@ export class RatingComponent implements OnInit {
     this.employeeService.loadHumanOfProject(this.projectId).subscribe(
       res => {
         this.listHumanOfProject = res;
-        // console.log("ec ec: " + JSON.stringify(this.listHumanOfProject));
+        console.log("ec ec: " + JSON.stringify(this.listHumanOfProject));
 
       },
       err => {

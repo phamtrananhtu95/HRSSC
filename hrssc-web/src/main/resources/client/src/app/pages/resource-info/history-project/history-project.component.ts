@@ -19,7 +19,7 @@ export class HistoryProjectComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.employeeService.loadReviewsResource(38).subscribe(
+    this.employeeService.loadReviewsResource(8).subscribe(
       res => {
         this.resourceReviews = res;
         console.log("aaaaa: " + JSON.stringify(this.resourceReviews));

@@ -17,15 +17,18 @@ import { Feedback } from '../../models/feedback.model';
 export class ResourceInfoComponent implements OnInit {
   public humanResource = new Employee();
   public skillList: string;
-  // public avaliableDate: any;
   public userByUserId: number;
   public isOwnManager: boolean;
-
   public userId: number;
   public resourceId: number;
 
   // Feedback
-  public formFeedback = new Feedback();
+  public jobKnowledge: number;
+  public workQuality: number;
+  public cooperation: number;
+  public attendance: number;
+  public workAttitude: number;
+
   @ViewChild(ProjectMatchingComponent) projectMatchingComponent: ProjectMatchingComponent;  //call event child
 
 
@@ -75,8 +78,20 @@ export class ResourceInfoComponent implements OnInit {
         this.humanResource = res;
         this.userByUserId = this.humanResource.userByUserId.id;
         this.isOwnManager = this.userId === this.userByUserId;
+        
+        this.humanResource.averageRatingsById.forEach(element => {
+          this.jobKnowledge = element.jobKnowledge;
+          this.workQuality = element.workQuality;
+          this.cooperation = element.cooperation;
+          this.attendance = element.attendance;
+          this.workAttitude = element.workAttitude;
 
-        console.log(this.isOwnManager);
+          // let ecec = this.ratingDetailHuman.jobKnowledge;
+          // console.log("aaaaaaaa"+JSON.stringify(this.ratingDetailHuman));
+        });
+
+        // this.ratingDetailHuman = this.humanResource.averageRatingsById;
+
         // console.log(this.humanResource.availableDate);
         // console.log("----------" + JSON.stringify(this.humanResource));
         let skills = [];
