@@ -7,9 +7,10 @@ import com.hrssc.entities.Project;
 import java.util.List;
 
 public interface FeedbackService {
-    String addFeedback (Feedback feedback);
+    Feedback addFeedback (Feedback feedback) throws Exception;
     List<Feedback> loadAllFeedback(int resourceId);
     List<Project> loadAllProjectFeedBack(int userId);
     List<Job> loadReoursceByProject(int projectId) throws Exception;
+    String calculateAvrRating(int resourceId, Feedback feedback);
 
     }

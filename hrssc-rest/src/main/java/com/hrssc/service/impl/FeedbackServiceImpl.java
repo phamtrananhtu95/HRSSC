@@ -9,6 +9,8 @@ import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,9 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
     AverageRatingRepository averageRatingRepository;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
 
     public List<Feedback> loadAllFeedback(int resourceId){
         List<Job> jobList = jobRepository.findByHumanResourceIdAndStatus(resourceId, Constant.JobStatus.FINISHED);
@@ -52,26 +57,29 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Transactional
-    public String addFeedback (Feedback feedback){
+    public Feedback addFeedback (Feedback feedback) throws Exception{
         Job checkjob = jobRepository.findById(feedback.getJobId());
         if(checkjob == null || checkjob.getStatus() != Constant.JobStatus.FINISHED){
-            return "Job not exist or not yet finish!";
+            throw new NotFoundException("Job not exist or not yet finish! ");
+        //    return "Job not exist or not yet finish!";
         }
         HumanResource humanResource = humanResourceRepository.getById(checkjob.getHumanResourceId());
         if (humanResource == null){
-            return "Resource not exist!";
+            throw new NotFoundException("Resource not exist!");
+        //    return "Resource not exist!";
         }
         //Tinh rating +save feedback
         double rating = (feedback.getJobKnowledge()*3 + feedback.getWorkQuality()*3 + feedback.getCooperation()*2
                         +feedback.getAttendance() + feedback.getWorkAttitude())/10 ;
-        feedback.setRating(rating);
+       feedback.setRating(rating);
         long timestamp = System.currentTimeMillis()/1000;
         feedback.setTimestamp(timestamp);
         feedbackRepository.save(feedback);
+        return feedback;
+      }
 
-
-        //Tinh avgrating cho resource
-        //tim cac job cua resource va loai bo cac job khong co feedback
+    public String calculateAvrRating(int resourceId, Feedback feedback){
+        HumanResource humanResource = humanResourceRepository.getById(resourceId);
         List<Job> humanResourceJobList = jobRepository.findByHumanResourceIdAndStatus(humanResource.getId(), Constant.JobStatus.FINISHED);
         List<Job> calcujobList = new ArrayList<>();
         for (Job tmp: humanResourceJobList) {
@@ -107,8 +115,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         float sumWA = 0;
         float sumRating = 0;
         for (Job tmp : calcujobList) {
-           Feedback tmpFb = feedbackRepository.findByJobId(tmp.getId());
-           long tmpduration = (tmp.getLeaveDate() - tmp.getJoinedate())/86400;
+            Feedback tmpFb = feedbackRepository.findByJobId(tmp.getId());
+            long tmpduration = (tmp.getLeaveDate() - tmp.getJoinedate())/86400;
             sumDuration += tmpduration;
             sumJK += tmpFb.getJobKnowledge();
             sumWQ += tmpFb.getWorkQuality();

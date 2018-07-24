@@ -7,6 +7,7 @@ import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.entities.Feedback;
 import com.hrssc.entities.Job;
 import com.hrssc.entities.Project;
+import com.hrssc.repository.JobRepository;
 import com.hrssc.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class FeedbackController {
     @Autowired
     FeedbackService feedbackService;
 
+    @Autowired
+    JobRepository jobRepository;
+
     @JsonView(HumanResourceView.history.class)
     @GetMapping("/loadAllFeedback/{humanresourceId}")
     public List<Feedback> loadAllFeedback(@PathVariable(value = "humanresourceId") int humanresourceId){
@@ -27,8 +31,10 @@ public class FeedbackController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseStatus addFeedback(@RequestBody Feedback feedback) {
-        ResponseStatus respon = new ResponseStatus(feedbackService.addFeedback(feedback));
+    public ResponseStatus addFeedback(@RequestBody Feedback feedback) throws Exception {
+        Feedback newfeedback = feedbackService.addFeedback(feedback);
+        Job job = jobRepository.findById(feedback.getJobId());
+        ResponseStatus respon = new ResponseStatus(feedbackService.calculateAvrRating(job.getHumanResourceId(),newfeedback));
         return respon;
     }
 
