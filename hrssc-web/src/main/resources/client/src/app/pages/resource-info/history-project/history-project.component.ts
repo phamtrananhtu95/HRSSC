@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
-import { ResourceHistory } from '../../../models';
+import { ResourceHistory, Employee } from '../../../models';
 
 @Component({
   selector: 'app-history-project',
@@ -9,6 +9,7 @@ import { ResourceHistory } from '../../../models';
 })
 export class HistoryProjectComponent implements OnInit {
 
+  @Input() resourceId: number; 
   public resourceHistories: ResourceHistory[];
   public resourceReviews: any;
 
@@ -19,7 +20,8 @@ export class HistoryProjectComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.employeeService.loadReviewsResource(8).subscribe(
+    // console.log("tui ne" + this.resourceId)
+    this.employeeService.loadReviewsResource(this.resourceId).subscribe(
       res => {
         this.resourceReviews = res;
         console.log("aaaaa: " + JSON.stringify(this.resourceReviews));
