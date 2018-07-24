@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
       label: "Da Nang"
     },
   ];
-  public searchResourceModel = new Search();
+  public searchModel = new Search();
   public searchProjectModel = new Search();
 
 
@@ -109,31 +109,31 @@ export class HomeComponent implements OnInit {
     );
   }
   
-  searchResource() {
-    this.searchResourceModel.userId = this.userId;
-    console.log(this.searchResourceModel);
+  search() {
+    this.searchModel.userId = this.userId;
+    console.log(this.searchModel);
     this.router.navigate(['search'], {
       queryParams:
       {
-        "RuserId": this.searchResourceModel.userId,
-        "Rcompany": this.searchResourceModel.company,
-        "Rskill": this.searchResourceModel.skill,
-        "Rlocation": this.searchResourceModel.location
+        "userId": this.searchModel.userId,
+        "company": this.searchModel.company,
+        "skill": this.searchModel.skill,
+        "location": this.searchModel.location
       }
     });
   }
-  searchProject() {
-    this.searchProjectModel.userId = this.userId;
-    this.router.navigate(['search'], {
-      queryParams:
-      {
-        "PuserId": this.searchProjectModel.userId,
-        "Pcompany": this.searchProjectModel.company,
-        "Pskill": this.searchProjectModel.skill,
-        "Plocation": this.searchProjectModel.location
-      }
-    });
-  }
+  // searchProject() {
+  //   this.searchProjectModel.userId = this.userId;
+  //   this.router.navigate(['search'], {
+  //     queryParams:
+  //     {
+  //       "PuserId": this.searchProjectModel.userId,
+  //       "Pcompany": this.searchProjectModel.company,
+  //       "Pskill": this.searchProjectModel.skill,
+  //       "Plocation": this.searchProjectModel.location
+  //     }
+  //   });
+  // }
 
   viewResourceDetail(humanResourceId) {
     this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});

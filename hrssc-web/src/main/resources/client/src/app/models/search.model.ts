@@ -6,5 +6,6 @@ export class Search{
     constructor() {
         this.location = "All";
         this.skill = "All";
+        this.company = "";
     }
 }

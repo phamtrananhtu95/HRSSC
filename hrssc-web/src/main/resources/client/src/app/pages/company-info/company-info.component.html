@@ -59,13 +59,13 @@
           </a>
         </li>
         <li>
-          <a href="#manageApply" data-toggle="tab">
+          <a href="#openingProjectTab" data-toggle="tab">
             <i class="icon-calendar3 position-left"></i> Openning project
             <span class="badge badge-success badge-inline position-right">23</span>
           </a>
         </li>
         <li>
-          <a href="#manageInvite" data-toggle="tab">
+          <a href="#availableResourceTab" data-toggle="tab">
             <i class="icon-calendar3 position-left"></i> Available resource
             <span class="badge badge-success badge-inline position-right">10</span>
           </a>
@@ -176,8 +176,8 @@
           </div>
 
 
-          <!-- Manage Apply -->
-          <div class="tab-pane fade" id="manageApply">
+          <!-- Opening Project -->
+          <div class="tab-pane fade" id="openingProjectTab">
             <!-- Available hours -->
             <div class="panel panel-flat">
               <div class="panel-heading">
@@ -190,17 +190,42 @@
                     <li>
                       <a data-action="reload"></a>
                     </li>
-                    <li>
-                      <a data-action="close"></a>
-                    </li>
                   </ul>
                 </div>
               </div>
 
               <div class="panel-body">
-                <div class="chart-container">
-                  <div class="chart has-fixed-height" id="plans"></div>
-                </div>
+                <table class="table datatable-basic table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Created Date</th>
+                      <th>Matched</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let project of openProjects" (click)="viewOpenProject(project.id)">
+                      <td>{{project.title}}</td>
+                      <td>{{project.type}}</td>
+                      <td>{{project.createDate}}</td>
+                      <td></td>
+                      <td>
+                        <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'">
+                          {{project.processStatus == 1 ? "PENDING" : "ON GOING"}}</span>
+                      </td>
+                      <td class="btn-r-e">
+                        <button type="submit" class="btn">
+                          <i class="icon-pencil"></i>
+                        </button>
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
               </div>
             </div>
             <!-- /available hours -->
@@ -235,7 +260,7 @@
 
 
           <!-- Manage Invite -->
-          <div class="tab-pane fade" id="manageInvite">
+          <div class="tab-pane fade" id="availableResourceTab">
 
             <!-- Profile info -->
             <div class="panel panel-flat">

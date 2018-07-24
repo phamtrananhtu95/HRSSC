@@ -23,5 +23,10 @@ ng-select.test > div.below > div.single{
 ng-select.test > div.below > div.single > div.toggle{
     line-height: 40px;
 }
-
+ng-select.test > div > div.single > div.value{
+    line-height: 40px;
+}
+ng-select.test > div > div.single > div.clear {
+    line-height: 40px;
+}
 

@@ -35,4 +35,13 @@ export class CompaniesService {
     let url = 'company/update';
     return this.restService.post(url, company);
   }
+
+  getOpeningProject(userId, companyId) {
+    let url = 'company/project-list/'+ userId+ '/'+ companyId;
+    return this.restService.get(url);
+  }
+  getAvailableResource(userId, companyId) {
+    let url = 'company/resource-list/'+userId +'/' + companyId;
+    return this.restService.get(url);
+  }
 }

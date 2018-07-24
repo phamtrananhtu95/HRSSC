@@ -11,7 +11,9 @@ import { Company } from '../../models';
 })
 export class CompanyInfoComponent implements OnInit {
   public companyId: number;
+  public userId: number;
   public company;
+  public openProjects = [];
 
   constructor(
     private auth: AuthenticateService,
@@ -23,7 +25,9 @@ export class CompanyInfoComponent implements OnInit {
   ngOnInit() {
     if (this.auth.checkLogin()) {
       this.companyId = this.route.snapshot.queryParams['id'];
+      this.userId = this.auth.getUserId();
       this.getCompanyInfo();
+      this.getOpeningProject(this.userId, this.companyId);
     }
   }
 
@@ -38,5 +42,15 @@ export class CompanyInfoComponent implements OnInit {
       }
     );
   }
+  getOpeningProject(userId, companyId){
+    this.companyService.getOpeningProject(userId, companyId).subscribe(
+      res => {
+        this.openProjects = res;
+        console.log(this.openProjects);
+      },
+      err => {
 
+      }
+    );
+  }
 }
