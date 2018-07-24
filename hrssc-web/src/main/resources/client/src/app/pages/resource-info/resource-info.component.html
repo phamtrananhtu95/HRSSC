@@ -107,24 +107,61 @@
                 <b>Available date: {{humanResource.availableDate | date:'dd/MM/yyyy'}}</b>
               </h4>
               <!-- rating -->
-              <div class="rating-block" style="position: absolute; bottom: -25%;">
-                <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button> -->
+              <div class="rating-block" style="position: absolute; bottom: -25%;" [popover]="myPopover" [popoverOnHover]="true" [popoverCloseOnMouseOutside]="true">
                 <rating [(ngModel)]="humanResource.avgRating" [readonly]="true" style="font-size: 20px;">
                 </rating>
+              </div>
+              <!-- popover rating detail -->
+              <div>
+                <popover-content #myPopover [closeOnClickOutside]="true" [closeOnMouseOutside]="true">
+                  <ul class="list-unstyled" id="popRatingDetail">
+                    <li>
+                      <div>
+                        <label>Job knowledge:</label>
+                        <div class="ratingDetail">
+                          <rating [(ngModel)]="star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                          </rating>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <label>Work quality:</label>
+                        <div class="ratingDetail">
+                          <rating [(ngModel)]="star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                          </rating>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <label>Cooperation:</label>
+                        <div class="ratingDetail">
+                          <rating [(ngModel)]="star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                          </rating>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <label>Attendance:</label>
+                        <div class="ratingDetail">
+                          <rating [(ngModel)]="star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                          </rating>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <label>Work attitude:</label>
+                        <div class="ratingDetail">
+                          <rating [(ngModel)]="star" [readonly]="true" fullIcon="◆" emptyIcon="◇">
+                          </rating>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </popover-content>
               </div>
             </div>
             <div class="media-right media-middle">

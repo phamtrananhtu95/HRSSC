@@ -33,6 +33,7 @@ export class ResourceInfoComponent implements OnInit {
   public projects: ProjectMatch[];
   public formModel: Interaction;
   public isEmptyProject = false;
+  public star = 4;
 
   constructor(
     private router: Router,
@@ -49,7 +50,7 @@ export class ResourceInfoComponent implements OnInit {
       this.resourceId = this.route.snapshot.queryParams['id'];
       this.userId = this.authenticateService.getUserId();
       this.getHumanResourceById();
-      
+
       // console.log("param------" + param.id)
     });
   }

@@ -1,3 +1,11 @@
 .thumbnail{
     margin-bottom: 0px;
 }
+
+.ratingDetail{
+    margin-top: -15px;
+}
+
+#popRatingDetail{
+    width: 124px;
+}
