@@ -1,17 +1,27 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "average_rating", schema = "hrssc", catalog = "")
 public class AverageRating {
+    @JsonView(HumanResourceView.details.class)
     private int id;
+    @JsonView(HumanResourceView.details.class)
     private Double jobKnowledge;
+    @JsonView(HumanResourceView.details.class)
     private Double workQuality;
+    @JsonView(HumanResourceView.details.class)
     private Double cooperation;
+    @JsonView(HumanResourceView.details.class)
     private Double attendance;
+    @JsonView(HumanResourceView.details.class)
     private Double workAttitude;
+    @JsonView(HumanResourceView.details.class)
     private Double avgRating;
     private int humanResourceId;
     private HumanResource humanResourceByHumanResourceId;

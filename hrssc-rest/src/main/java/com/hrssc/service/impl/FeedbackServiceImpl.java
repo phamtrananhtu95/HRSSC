@@ -130,6 +130,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         averageRating.setAttendance((double)Math.round(attendance * 100)/100 );
         averageRating.setWorkAttitude((double)Math.round(workAtitude * 100)/100 );
         averageRating.setAvgRating((double)Math.round(avrRating * 100)/100 );
+        humanResource.setAvgRating((double)Math.round(avrRating * 100)/100 );
+        humanResourceRepository.save(humanResource);
         averageRatingRepository.save(averageRating);
         return "Success!!";
     }

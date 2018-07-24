@@ -53,8 +53,9 @@ public class HumanResource {
     private Collection<SimilarResource> similarResourcesById;
     private Collection<SimilarResource> similarResourcesById_0;
     
-    @JsonView(HumanResourceView.details.class)
+    @JsonView({HumanResourceView.details.class,HumanResourceView.history.class})
     private double avgRating;
+    @JsonView(HumanResourceView.details.class)
     private Collection<AverageRating> averageRatingsById;
 
     @Id
