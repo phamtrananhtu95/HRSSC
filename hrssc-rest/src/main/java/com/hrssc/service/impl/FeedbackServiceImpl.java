@@ -104,6 +104,8 @@ public class FeedbackServiceImpl implements FeedbackService {
             averageRating.setAttendance(feedback.getAttendance());
             averageRating.setWorkAttitude(feedback.getWorkAttitude());
             averageRating.setAvgRating(feedback.getRating());
+            humanResource.setAvgRating(feedback.getRating());
+            humanResourceRepository.save(humanResource);
             averageRatingRepository.save(averageRating);
             return "Success!";
         }
