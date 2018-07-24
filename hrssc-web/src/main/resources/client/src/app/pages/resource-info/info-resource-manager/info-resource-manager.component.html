@@ -25,7 +25,8 @@
         <div class="col-sm-6">
             <div class="form-group has-feedback">
                 <b>Salary</b>
-                <input type="text" [(ngModel)]="resourceInfo.salary" class="form-control">
+                <input type="text" [(ngModel)]="resourceInfo.salary" class="form-control"
+                currencyMask [options]="{ align: 'left', prefix: 'đ', thousands: '.', precision: 0}">
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
                 <!-- <input type="text" [(ngModel)]="resourceInfo.availableDate" class="form-control"> -->
 
                 <form #myForm="ngForm" novalidate>
-                    <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
+                    <my-date-picker style="z-index: 99;" name="mydate" [options]="myDatePickerOptionsStart" [(ngModel)]="startDate" (dateChanged)="onDateChangedCreate($event)"
                         required></my-date-picker>
                 </form>
             </div>
@@ -46,7 +47,7 @@
             <div class="form-group has-feedback">
                 <b>End duration</b>
                 <form #myForm="ngForm" novalidate>
-                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+                    <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
                         required></my-date-picker>
                 </form>
                 <!-- <input type="text" [(ngModel)]="resourceInfo.availableDuration" class="form-control"> -->

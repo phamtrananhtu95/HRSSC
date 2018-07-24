@@ -32,6 +32,13 @@ export class InfoResourceManagerComponent implements OnInit {
         position: ["middle", "center"],
     };
 
+    public myDatePickerOptionsStart: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
+    public myDatePickerOptionsEnd: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
+
     constructor(
         private employeeService: EmployeeService,
 
@@ -62,10 +69,24 @@ export class InfoResourceManagerComponent implements OnInit {
         (<any>window).componentModalsJs = true;
 
         this.getSkillOpts();
+        this.setDisableUntilForStartDate();
+    }
+
+    setDisableUntilForStartDate() {
+        let now = new Date();
+        let optionsStart = JSON.parse(JSON.stringify(this.myDatePickerOptionsStart));
+        optionsStart.disableUntil = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
+        this.myDatePickerOptionsStart = optionsStart;
     }
 
     onDateChangedCreate(event: IMyDateModel) {
+        // this.resourceInfo.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
+
         this.resourceInfo.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
+        let startDate = event.date;
+        let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
+        optionsEnd.disableUntil = startDate;
+        this.myDatePickerOptionsEnd = optionsEnd;
     }
 
     onDateChangedEnd(event: IMyDateModel) {

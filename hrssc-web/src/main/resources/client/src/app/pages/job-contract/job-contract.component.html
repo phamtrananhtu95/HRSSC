@@ -134,7 +134,7 @@
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Monthly payment:</label>
                   <div *ngIf="!isEditMode" class="col-lg-5">
-                    <label style="margin-top: 7px;">{{formContract.contractByContractId.salary}}</label>
+                    <label style="margin-top: 7px;" >{{formContract.contractByContractId.salary | number:'.0-2'}}</label>
                   </div>
                   <div *ngIf="isEditMode" class="col-lg-5">
                     <input type="text" currencyMask [(ngModel)]="formContract.contractByContractId.salary" name="salary" [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}"
@@ -154,7 +154,7 @@
             </fieldset>
 
             <!-- Dealing message -->
-            <fieldset>
+            <!-- <fieldset>
               <legend class="text-semibold">
                 <i class="icon-reading position-left"></i>
                 <b>Dealing message</b>
@@ -181,7 +181,7 @@
 
                 </div>
               </div>
-            </fieldset>
+            </fieldset> -->
 
             <!-- Radio button -->
             <!-- <div class="content">

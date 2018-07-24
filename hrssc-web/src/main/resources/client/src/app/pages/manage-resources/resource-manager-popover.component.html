@@ -298,7 +298,8 @@
                                     <div class="col-sm-6">
                                         <b>Salary</b>
                                         <div class="form-group has-feedback">
-                                            <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $">
+                                            <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $"
+                                            currencyMask [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}">
                                             <div class="form-control-feedback">
                                                 <i class="icon-coins text-muted"></i>
                                             </div>
@@ -318,7 +319,7 @@
                                         <b>Start date</b>
                                         <div class="form-group has-feedback">
                                             <form #myForm="ngForm" novalidate>
-                                                <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
+                                                <my-date-picker name="mydate" [options]="myDatePickerOptionsStart" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
                                             </form>
                                         </div>
                                     </div>
@@ -327,7 +328,7 @@
                                         <b>End date</b>
                                         <div class="form-group has-feedback">
                                             <form #myForm="ngForm" novalidate>
-                                                <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
+                                                <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
                                             </form>
                                         </div>
                                     </div>

@@ -29,7 +29,11 @@ export class ResourceManagerPopoverComponent implements OnInit {
     public isChangeTab = false;
     public isEndChangeTab = false;
 
-    public myDatePickerOptions: IMyDpOptions = {
+    public myDatePickerOptionsStart: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
+
+    public myDatePickerOptionsEnd: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
     };
 
@@ -56,6 +60,14 @@ export class ResourceManagerPopoverComponent implements OnInit {
         this.formModel.companyId = this.authenticateService.getCompanyId();
         this.formModel.userId = this.authenticateService.getUserId();
 
+        this.setDisableUntilForStartDate();
+    }
+
+    setDisableUntilForStartDate() {
+        let now = new Date();
+        let optionsStart = JSON.parse(JSON.stringify(this.myDatePickerOptionsStart));
+        optionsStart.disableUntil = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
+        this.myDatePickerOptionsStart = optionsStart;
     }
 
     addNewResource() {
@@ -117,7 +129,13 @@ export class ResourceManagerPopoverComponent implements OnInit {
     }
 
     onDateChangedCreate(event: IMyDateModel) {
+        // this.formModel.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
+
         this.formModel.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
+        let startDate = event.date;
+        let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
+        optionsEnd.disableUntil = startDate;
+        this.myDatePickerOptionsEnd = optionsEnd;
     }
 
     onDateChangedEnd(event: IMyDateModel) {
