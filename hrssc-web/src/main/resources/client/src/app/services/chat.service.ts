@@ -29,20 +29,21 @@ export class ChatService {
 
   connect(roomId) {
     this.contractId = roomId;
-
+    let username = this.auth.getUserName();
+    let userId = this.auth.getUserId();
     let ws = new SockJS(this.serverWsUrl);
     this.stompClient = stompjs.over(ws);
     // this.stompClient.debug = null;
     let that = this;
     that.stompClient.connect({}, function () {
       that.topic = `/app/chat/${roomId}`;
-      // if (that.currentSubscription) {
-      //   that.currentSubscription.unsubscribe();
-      // }
+      if (that.currentSubscription) {
+        that.currentSubscription.unsubscribe();
+      }
       that.currentSubscription = that.stompClient.subscribe(`/channel/${roomId}`, (message) => {
         if (message.body) {
           var messageReceived = JSON.parse(message.body);
-          if (messageReceived.type == 'CHAT' && messageReceived.sender != that.username) {
+          if (messageReceived.type == 'CHAT' && messageReceived.sender != username) {
             that.chatMessages.push({
               content: messageReceived.content,
               timeSent: that.getTimestamp(),
@@ -54,7 +55,7 @@ export class ChatService {
       });
       that.stompClient.send(`${that.topic}/addUser`,
         {},
-        JSON.stringify({ sender: that.username, type: 'JOIN', contractId: roomId, userId: that.userId })
+        JSON.stringify({ sender: username, type: 'JOIN', contractId: roomId, userId: userId })
       );
     });
 
@@ -93,6 +94,7 @@ export class ChatService {
     });
   }
   sendNotify(msg, sendTo) {
+    
     const timestamp = this.getTimestamp();
     // const email = 
     this.logNotify = this.getLogNotify();
@@ -142,23 +144,25 @@ export class ChatService {
   }
 
   sendMessage(msg) {
+    let username = this.auth.getUserName();
+    let userId = this.auth.getUserId();
     const timestamp = this.getTimestamp();
     // const email = 
     this.chatMessages = this.getMessages();
     this.chatMessages.push({
       content: msg,
       timeSent: timestamp,
-      userSent: this.username
+      userSent: username
       // email: 
     })
 
     if (msg && this.stompClient) {
       var chatMessage = {
-        sender: this.username,
+        sender: username,
         content: msg,
         type: 'CHAT',
         contractId: this.contractId,
-        userId: this.userId
+        userId: userId
       };
       this.stompClient.send(`${this.topic}/sendMessage`, {}, JSON.stringify(chatMessage));
     }
