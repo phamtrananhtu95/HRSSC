@@ -12,7 +12,6 @@ import { EmployeeService } from '../../services/employee.service';
 export class SearchPageComponent implements OnInit {
   public searchResourceModel = new Search();
   public listResourceSearch = [];
-  public isResourceSearch: boolean;
   public countResource: number;
   public countProject: number;
 
@@ -35,6 +34,8 @@ export class SearchPageComponent implements OnInit {
       label: "Da Nang"
     },
   ];
+
+  public viewProjectModel:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -75,6 +76,13 @@ export class SearchPageComponent implements OnInit {
     this.getSkillList();
   }
   search() {
+    
+    if(this.searchModel.skill == undefined){
+      this.searchModel.skill = "";
+    }
+    if(this.searchModel.location == undefined) {
+      this.searchModel.location = "";
+    }
     this.searchResource(this.searchModel);
     this.searchProject(this.searchModel);
   }
@@ -84,8 +92,9 @@ export class SearchPageComponent implements OnInit {
     if (this.searchResourceModel) {
       this.searchService.searchByResource(model).subscribe(
         res => {
-          this.isResourceSearch = true;
+          
           this.listResourceSearch = res;
+
           this.countResource = this.listResourceSearch.length;
         },
         err => {
@@ -95,13 +104,17 @@ export class SearchPageComponent implements OnInit {
     }
 
   }
+  viewDetailResource(id){
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});
+  }
 
   searchProject(model: any) {
     if (this.searchProjectModel) {
       this.searchService.searchByProject(model).subscribe(
         res => {
-          this.isResourceSearch = false;
+          console.log(res);
           this.listProjectSearch = res;
+          this.viewProjectModel = this.listProjectSearch[0];
           this.countProject = this.listProjectSearch.length;
         },
         err => {
@@ -109,7 +122,15 @@ export class SearchPageComponent implements OnInit {
         }
       );
     }
+  }
+  viewProject(project) {
 
+    this.viewProjectModel = project;
+    console.log(this.viewProjectModel);
+    
+  }
+  viewDetailProject(projectId){
+    this.router.navigate(['manager/project/info'], {queryParams:{"id": projectId}});
   }
   getSkillList(){
     this.employeeService.getSkills().subscribe(

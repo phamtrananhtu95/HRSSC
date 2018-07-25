@@ -25,48 +25,48 @@
 
   <!-- Search field -->
   <div class="panel panel-flat">
-      <div class="panel-heading">
-        <h5 class="panel-title">Search</h5>
-        <div class="heading-elements">
-          <ul class="icons-list">
-            <li>
-              <a data-action="collapse"></a>
-            </li>
+    <div class="panel-heading">
+      <h5 class="panel-title">Search</h5>
+      <div class="heading-elements">
+        <ul class="icons-list">
+          <li>
+            <a data-action="collapse"></a>
+          </li>
 
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel-body">
-        <div class="input-group content-group col-md-12">
-          <div class="col-md-6">
-            <div class="has-feedback has-feedback-left">
-              <input type="text" [(ngModel)]="searchModel.company" class="form-control input-xlg" value="" placeholder="Company name">
-              <div class="form-control-feedback">
-                <i class="icon-search4 text-muted text-size-base"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-
-            <div class="col-md-5">
-              <ng-select class="test" [allowClear]="true" [(ngModel)]="searchModel.skill" [options]="listSkillOpt" placeholder="Select Skill">
-              </ng-select>
-            </div>
-            <div class="col-md-5">
-              <ng-select class="test" [allowClear]="true" [(ngModel)]="searchModel.location" [options]="listLocationOpt" placeholder="Select Location">
-              </ng-select>
-            </div>
-            <div class="col-md-2">
-              <div class="input-group-btn">
-                <button type="submit" (click)="search()" class="btn btn-primary btn-xlg">Search</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        </ul>
       </div>
     </div>
+
+    <div class="panel-body">
+      <div class="input-group content-group col-md-12">
+        <div class="col-md-6">
+          <div class="has-feedback has-feedback-left">
+            <input type="text" [(ngModel)]="searchModel.company" class="form-control input-xlg" value="" placeholder="Company name">
+            <div class="form-control-feedback">
+              <i class="icon-search4 text-muted text-size-base"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <div class="col-md-5">
+            <ng-select class="test" [allowClear]="true" [(ngModel)]="searchModel.skill" [options]="listSkillOpt" placeholder="Select Skill">
+            </ng-select>
+          </div>
+          <div class="col-md-5">
+            <ng-select class="test" [allowClear]="true" [(ngModel)]="searchModel.location" [options]="listLocationOpt" placeholder="Select Location">
+            </ng-select>
+          </div>
+          <div class="col-md-2">
+            <div class="input-group-btn">
+              <button type="submit" (click)="search()" class="btn btn-primary btn-xlg">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
   <!-- /search field -->
 
   <!-- Tabs -->
@@ -77,9 +77,9 @@
           <i class="icon-people position-left"></i> Resource</a>
       </li>
       <li class="">
-          <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">
-            <i class="icon-stack3 position-left"></i> Project</a>
-        </li>
+        <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">
+          <i class="icon-stack3 position-left"></i> Project</a>
+      </li>
       <!-- li for project -->
       <li class="dropdown pull-right">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -106,31 +106,32 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="highlighted-justified-tab1">
-          <div class="content-group">
-            <p class="text-muted text-size-small content-group">About {{countResource}} results</p>
-            <div class="search-results-list">
-              <div class="row">
-                <div class="col-lg-3 col-sm-6" *ngFor="let resource of listResourceSearch">
-                  <div class="thumbnail">
-                    <div class="thumb thumb-rounded">
-                      <img src="assets/images/placeholder.jpg" alt="">
-                      <div class="caption-overflow">
-                        <span>
-                          <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded">
-                            <i class="icon-plus2"></i>
-                          </a>
-                          <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5">
-                            <i class="icon-link2"></i>
-                          </a>
-                        </span>
-                      </div>
+        <div class="content-group">
+          <p class="text-muted text-size-small content-group">About {{countResource}} results</p>
+          <div class="search-results-list">
+            <div class="row">
+              <div class="col-lg-3 col-sm-6" *ngFor="let resource of listResourceSearch">
+                <div class="thumbnail">
+                  <div class="thumb thumb-rounded">
+                    <img src="assets/images/avatar2.png" alt="">
+                    <div class="caption-overflow">
+                      <span>
+                        <a (click)="viewDetailResource(resource.id)" class="btn text-white btn-flat btn-icon ml-5">
+                          See Detail
+                        </a>
+                      </span>
                     </div>
-        
-                    <div class="caption text-center">
-                      <h6 class="text-semibold no-margin">{{resource.fullname}}
-                        <small class="display-block">{{resource?.companyByCompanyId?.name}}</small>
-                      </h6>
-                      <ul class="icons-list mt-15">
+                  </div>
+
+                  <div class="caption text-center">
+                    <h5 class="text-semibold no-margin">{{resource.fullname}}
+                      <small class="display-block">{{resource?.companyByCompanyId?.name}}</small>
+                      <small class="display-block">
+                        <b *ngFor="let x of resource.resourceSkillsById">{{x.skillBySkillId.title}}, </b>
+                      </small>
+                    </h5>
+
+                    <!-- <ul class="icons-list mt-15">
                         <li>
                           <a href="#" data-popup="tooltip" title="Google Drive">
                             <i class="icon-google-drive"></i>
@@ -146,18 +147,123 @@
                             <i class="icon-github"></i>
                           </a>
                         </li>
-                      </ul>
-                    </div>
+                      </ul> -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
       <div class="tab-pane" id="highlighted-justified-tab2">
         <div class="content-group">
-            <p class="text-muted text-size-small content-group">About {{countProject}} results</p>
-            <div class="search-results-list">
+          <div class="row">
+            <div class="col-lg-9">
+              <p class="text-muted text-size-small content-group">About {{countProject}} results</p>
+              <ul class="media-list media-list-linked media-list-bordered">
+                <li class="media" *ngFor="let project of listProjectSearch">
+                  <a (click)="viewProject(project)" class="media-link">
+                    <div class="media-left">
+                      <div class="thumb">
+                        <a>
+                          <img src="assets/images/evolable-asia-logo-170-151.png" class="img-responsive img-rounded media-preview" alt="">
+
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="media-body">
+                      <h6 class="media-heading">
+                        <a (click)="viewDetailProject(project.id)">{{project.title}}</a>
+                      </h6>
+                      <ul class="list-inline list-inline-separate text-muted">
+                        <li>
+                          <i class="icon-book-play position-left"></i> {{project.type}}</li>
+                      </ul>
+                      {{project.description}}
+                    </div>
+                  </a>
+                </li>
+              </ul>
+
+              <!-- pagination -->
+              <!-- <div class="text-center pt-10 pb-10">
+                <ul class="pagination pagination-flat">
+                  <li class="disabled">
+                    <a href="#">&larr;</a>
+                  </li>
+                  <li class="active">
+                    <a href="#">1</a>
+                  </li>
+                  <li>
+                    <a href="#">2</a>
+                  </li>
+                  <li>
+                    <a href="#">3</a>
+                  </li>
+                  <li>
+                    <a href="#">4</a>
+                  </li>
+                  <li>
+                    <span>...</span>
+                  </li>
+                  <li>
+                    <a href="#">58</a>
+                  </li>
+                  <li>
+                    <a href="#">59</a>
+                  </li>
+                  <li>
+                    <a href="#">&rarr;</a>
+                  </li>
+                </ul>
+              </div> -->
+            </div>
+            <div class="col-lg-3">
+              <div class="panel panel-body">
+                <div class="content-group">
+                  <div class="thumb">
+                    <a href="#">
+                      <img src="assets/images/placeholder.jpg" class="img-responsive img-rounded" alt="">
+                      <span class="zoom-image">
+                        <i class="icon-play3"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+
+                <h5 class="text-semibold">{{viewProjectModel?.title}}
+                  <small class="display-block"></small>
+                </h5>
+                <p class="content-group">{{viewProjectModel?.description}}
+                </p>
+
+                <ul class="list content-group">
+                  <li>
+                    <span class="text-semibold">Company:</span>
+                    <a href="#">{{viewProjectModel?.companyByCompanyId?.name}}</a>
+                  </li>
+                  <li>
+                    <span class="text-semibold">Location:</span> {{viewProjectModel?.companyByCompanyId?.city}}</li>
+                  <li>
+                    <span class="text-semibold">Type:</span>
+                    <a href="#">{{viewProjectModel?.type}}</a>
+                  </li>
+                  <li>
+                    <span class="text-semibold">Skill require:</span>
+                  </li>
+                  <li>
+                    <span class="text-semibold">Date start:</span> June 1, 2015</li>
+                </ul>
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- <div class="search-results-list">
               <div class="row">
                 <div class="col-lg-3 col-sm-6" *ngFor="let project of listProjectSearch">
                   <div class="thumbnail">
@@ -200,13 +306,13 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
         </div>
-        
+
       </div>
     </div>
   </div>
-  
+
   <!-- /tabs -->
 
 </div>
