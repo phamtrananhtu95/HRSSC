@@ -17,19 +17,11 @@
 
         <table class="table datatable-basic table-hover">
             <thead>
-
-
-                <!-- <th>#</th>
-                <th>Full Name</th>
-                <th>Skill</th>
-                <th>Status</th>
-                <th>Matched</th> -->
-
               <tr>
                 <th>Full Name</th>
                 <th>Skill</th>
                 <th>Tel</th>
-                <th>Matched</th>
+                <th>Email</th>
                 <th>Status</th>
                 <th>Working on project</th>
               </tr>
@@ -40,105 +32,16 @@
                 <td>{{humanResources.fullname}}</td>
                 <td>{{humanResources.skill}}</td>
                 <td>{{humanResources.tel}}</td>
-                <td>0</td>
+                <td>{{humanResources.email}}</td>
                 <td><span class="label" [ngClass]="humanResources.status == 1 ? 'bg-blue-400' : 'btn-danger'">
                   {{humanResources.status == 1 ? "Activated" : "Inactive"}}</span>
                 </td>
                 <td class="text-center"> 
-                  <!-- ABC project -->
+
                 </td>
               </tr>
-<!--              
-              <tr>
-                  <td>Nguyen Thai Thien</td>
-                  <td>Java, Javascript</td>
-                  <td>01649405555</td>
-                  <td><span class="label bg-blue-400">2</span></td>
-                  <td><span class="label label-success">Available</span></td>
-                  <td class="text-center">
-                    
-                  </td>
-                </tr>
-
-                <tr>
-                    <td>Nguyen Nhat Ha</td>
-                    <td>PHP, Python</td>
-                    <td>01649409999</td>
-                    <td>0</td>
-                    <td><span class="label label-default">Inactive</span></td>
-                    <td class="text-center">
-                      
-                    </td>
-                  </tr>
-              -->
-             
             </tbody>
           </table>
-
-      <!-- <div class="tabbable">
-        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-          <li class="active">
-            <a href="#highlighted-justified-tab1" data-toggle="tab" aria-expanded="false">Available</a>
-          </li>
-          <li class="">
-            <a href="#highlighted-justified-tab2" data-toggle="tab" aria-expanded="true">Inactive</a>
-          </li>
-          <li class="">
-            <a href="#highlighted-justified-tab3" data-toggle="tab" aria-expanded="true">Busy</a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div class="tab-pane active" id="highlighted-justified-tab1">
-            <div class="panel panel-flat">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Full Name</th>
-                      <th>Skill</th>
-                      <th>Status</th>
-                      <th>Matched</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let resource of resources">
-                    <tr>
-                      <td>{{resource.id}}</td>
-                      <td>{{resource.name}}</td>
-                      <td>{{resource.skill}}</td>
-                      <td>{{resource.status}}</td>
-                      <td>{{resource.matched}}</td>
-                      <td class="btn-r-e">
-                        <button type="button" class="btn">
-                          <i class="icon-pencil"></i>
-                        </button>
-                      </td>
-                      <td class="btn-r-e">
-                        <button type="button" class="btn">
-                          <i class="icon-trash"></i>
-                        </button>
-                      </td>
-
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-pane" id="highlighted-justified-tab2">
-            Inactive resource.
-          </div>
-
-          <div class="tab-pane" id="highlighted-justified-tab3">
-            Busy resource
-          </div>
-        </div>
-
-       
-      </div> -->
 
        <app-resource-manager-popover [isEditForm]="isEditForm" [editManagerModel]="editManagerModel"
        (reloadManagerList)="getHumanResourceByManagerId()">
