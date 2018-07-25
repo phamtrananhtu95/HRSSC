@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./feedback-project.component.css']
 })
 export class FeedbackProjectComponent implements OnInit {
+  public parentTitle = "Home";
+  public title = " - Feedback";
+  public titleLink = " / Feedback";
 
+  // =============================
   public userId: number;
   public projectNotFeedback: any;
   public jobCount;

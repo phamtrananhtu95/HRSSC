@@ -195,28 +195,28 @@ export class JobContractComponent implements OnInit {
     this.chatService.sendNotify(msg,sendTo);
 
 
-    // if (this.composeContract) {
-    //   this.employeeService.inviteHumanResource(this.formContract).subscribe(
-    //     res => {
-    //       this.router.navigate(['home']);
-    //       // send notify
+    if (this.composeContract) {
+      this.employeeService.inviteHumanResource(this.formContract).subscribe(
+        res => {
+          this.router.navigate(['home']);
+          // send notify
           
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     }
-    //   );
-    // } else {
-    //   this.formContract.contractByContractId.latestEditorId = this.userId;
-    //   this.contractService.changeOffer(this.formContract.contractByContractId).subscribe(
-    //     res => {
-    //       this.router.navigate(['manager/invitation']);
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     }
-    //   );
-    // }
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } else {
+      this.formContract.contractByContractId.latestEditorId = this.userId;
+      this.contractService.changeOffer(this.formContract.contractByContractId).subscribe(
+        res => {
+          this.router.navigate(['manager/invitation']);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   acceptOffer() {

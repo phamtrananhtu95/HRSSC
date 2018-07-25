@@ -14,7 +14,9 @@ export class ManageInvitationsComponent implements OnInit {
 
   public parentTitle = "Home";
   public title = " - Manage resources";
-  public subTitle = " - Invite";
+  public subTitle = " - Invitations";
+
+  public titleLink = " / Invitation";  
   // --------------------------------
 
   public userId: number;

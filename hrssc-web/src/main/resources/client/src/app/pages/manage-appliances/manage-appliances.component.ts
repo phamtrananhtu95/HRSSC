@@ -11,8 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ManageAppliancesComponent implements OnInit {
   public parentTitle = "Home";
-  public title = " - Manage resources";
+  public title = " - Manage project";
   public subTitle = " - Appliance";
+  public titleLink = " / Appliance";
+
+  // ===================
   public userId: number;
   public listAppliance = [];
   public acceptResource: AcceptResource;

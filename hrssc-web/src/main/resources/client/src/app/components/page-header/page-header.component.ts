@@ -10,14 +10,14 @@ export class PageHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() subTitle: string;
 
-  // private parentTitle: String;
-  // private subTitle: String;
+  // @Input() parentLink: string;
+  @Input() titleLink: string;
+  @Input() subTitleLink: string;
   constructor(
-    // private titleService: TitleService
+
   ) { }
 
   ngOnInit() {
-    // this.parentTitle = this.titleService.parentTitle;
-    // this.subTitle = this.titleService.subTitle;
+
   }
 }

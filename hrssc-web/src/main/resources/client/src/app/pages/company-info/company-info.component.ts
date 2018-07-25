@@ -10,6 +10,11 @@ import { Company } from '../../models';
   styleUrls: ['./company-info.component.css']
 })
 export class CompanyInfoComponent implements OnInit {
+  public parentTitle = "Home";
+  public title = " - Company info";
+  public titleLink = " / Compani info";
+
+  // ==========================
   public companyId: number;
   public userId: number;
   public company;

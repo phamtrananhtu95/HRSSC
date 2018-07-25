@@ -8,6 +8,12 @@ declare var $: any;
   styleUrls: ['./admin-manage-company.component.css']
 })
 export class AdminManageCompanyComponent implements OnInit {
+
+  public parentTitle = "Home";
+  public title = " - Manage company";
+  public subTitle = " - Companies";
+  public titleLink = " / Companies";
+  // =============================
   public companies;
 
   constructor(

@@ -10,7 +10,12 @@ import { AuthenticateService } from '../../services/authenticate.service';
   styleUrls: ['./chef-manage-account-manager.component.css']
 })
 export class ChefManageAccountManagerComponent implements OnInit {
+  public parentTitle = "Home";
+  public title = " - Manage manager";
+  public subTitle = " - Manager account";
+  public titleLink = " / Manager account";
 
+  // ===============================
   public managers: Manager[];
   public companyId;
   public isEditForm: boolean;

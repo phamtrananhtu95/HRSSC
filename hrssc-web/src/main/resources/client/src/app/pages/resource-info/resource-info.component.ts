@@ -15,6 +15,11 @@ import { Feedback } from '../../models/feedback.model';
   styleUrls: ['./resource-info.component.css']
 })
 export class ResourceInfoComponent implements OnInit {
+  public parentTitle = "Home";
+  public title = " - Information";
+  public titleLink = " / Resource info";
+
+  // ============================
   public humanResource = new Employee();
   public skillList: string;
   public userByUserId: number;

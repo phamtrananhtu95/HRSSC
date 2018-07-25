@@ -10,7 +10,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./rating.component.css']
 })
 export class RatingComponent implements OnInit {
+  public parentTitle = "Home";
+  public title = " - Feedback";
+  // public subTitle = " - Resource";
+  public titleLink = " / Feedback";
 
+  // =============================
   public feedbackForm = new Feedback();
   public userId: number;
   public projectId: number;

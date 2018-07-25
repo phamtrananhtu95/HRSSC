@@ -21,8 +21,11 @@ export class ManageProjectsComponent implements OnInit {
   createDate: any = { date: { year: 2018, month: 10, day: 9 } };
   endDate: any = { date: { year: 2018, month: 10, day: 9 } };
   public parentTitle = "Home";
-  public title = " - Manage projects";
+  public title = " - Manage project";
   public subTitle = " - Project";
+  public titleLink = " / Project";
+
+  // =================
   public projects;
   public positions;
   positionSelected: Number;

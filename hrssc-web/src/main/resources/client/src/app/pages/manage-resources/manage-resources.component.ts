@@ -14,6 +14,8 @@ export class ManageResourcesComponent implements OnInit {
   public parentTitle = "Home";
   public title = " - Manage resources";
   public subTitle = " - Resource";
+  public titleLink = " / Resources";
+  
   
   public humanResource: Employee[];
   // public humanResource = new Array<Employee>();

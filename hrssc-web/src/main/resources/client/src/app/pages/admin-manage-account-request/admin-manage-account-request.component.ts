@@ -8,6 +8,12 @@ import { Register } from '../../models/register.model';
   styleUrls: ['./admin-manage-account-request.component.css']
 })
 export class AdminManageAccountRequestComponent implements OnInit {
+  public parentTitle = "Home";
+  public title = " - Manage Company";
+  public subTitle = " - Manage request";
+  public titleLink = " / Manage request";
+
+  // ================
   companies: Register[] = [];
   constructor(
     private companiesService: CompaniesService
