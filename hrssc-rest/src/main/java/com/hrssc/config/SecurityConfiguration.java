@@ -90,6 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                         "/ws/**",
                         "/chat/**",
                         "notification/**",
+                        "notification-log/**",
                         "/app/**",
                         "/channel/**",
                         "/contract/**"

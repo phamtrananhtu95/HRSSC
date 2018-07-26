@@ -14,7 +14,7 @@ import java.util.Objects;
 public class User {
     @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private int id;
-    @JsonView({UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class,ContractView.ChatLog.class,HumanResourceView.history.class})
+    @JsonView({NotificationView.class,UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class,ContractView.ChatLog.class,HumanResourceView.history.class})
     private String username;
     private String password;
     @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class,HumanResourceView.history.class})

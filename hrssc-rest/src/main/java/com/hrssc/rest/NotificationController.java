@@ -4,6 +4,7 @@ import com.hrssc.domain.chat.ChatMessage;
 import com.hrssc.domain.chat.NotificationMessage;
 import com.hrssc.listener.WebSocketListener;
 import com.hrssc.service.ChatService;
+import com.hrssc.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,14 @@ public class NotificationController {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
+    @Autowired
+    private NotificationService notificationService;
 
 
     @MessageMapping("/notification/{roomId}/sendNotification")
-    public void sendMessage(@DestinationVariable String roomId, @Payload NotificationMessage chatMessage) {
-        messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
+    public void sendMessage(@DestinationVariable String roomId, @Payload NotificationMessage notificationData) {
+        notificationService.saveNoti(notificationData);
+        messagingTemplate.convertAndSend(format("/channel/%s", roomId), notificationData);
     }
 
     @MessageMapping("/notification/{roomId}/addUser")

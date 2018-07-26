@@ -1,19 +1,35 @@
 package com.hrssc.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.NotificationView;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Notification {
+    @JsonView(NotificationView.class)
     private int id;
+    @JsonView(NotificationView.class)
     private String type;
+    @JsonView(NotificationView.class)
     private int userId;
+    @JsonView(NotificationView.class)
     private int humanResourceId;
+    @JsonView(NotificationView.class)
     private int projectId;
+    @JsonView(NotificationView.class)
     private boolean isRead;
+    @JsonView(NotificationView.class)
     private User userByUserId;
+    @JsonView(NotificationView.class)
     private HumanResource humanResourceByHumanResourceId;
+    @JsonView(NotificationView.class)
     private Project projectByProjectId;
+    @JsonView(NotificationView.class)
+    private String content;
+    @JsonView(NotificationView.class)
+    private long date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -123,5 +139,25 @@ public class Notification {
 
     public void setProjectByProjectId(Project projectByProjectId) {
         this.projectByProjectId = projectByProjectId;
+    }
+
+    @Basic
+    @Column(name = "content", nullable = false, length = 200)
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Basic
+    @Column(name = "date", nullable = false)
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 }

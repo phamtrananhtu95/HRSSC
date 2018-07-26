@@ -16,7 +16,7 @@ public class HumanResource {
     private int id;
     @JsonView({HomeView.Resource.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private String fullname;
-    @JsonView({HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
+    @JsonView({NotificationView.class,HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
     private int status;
     @JsonView({SimilarView.Resource.class,FeedbackView.resourceFeedback.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String email;

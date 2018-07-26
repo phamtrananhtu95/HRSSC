@@ -60,6 +60,15 @@ public class Constant {
 		public static final int ON_GOING = 2;
 		public static final int FINISHED = 3;
 	}
+	public class NotificationType{
+		public static final String APPLY = "Apply";
+		public static final String INVITE = "Invite";
+		public static final String OFFER_DEALING = "Offer Dealing";
+		public static final String FEEDBACK_PENDING = "Feedback Pending";
+		public static final String FEEDBACK_COMMITTED = "Feedback Committed";
+		public static final String RESOURCE_RELEASED = "Resource Released";
+
+	}
 
 	public static final int MANAGER_ROLE_ID = 3;
 	public static final String COMMA = ",";

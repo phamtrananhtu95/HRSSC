@@ -11,6 +11,42 @@ public class NotificationMessage {
     private String content;
     private String sender;
     private String sendTo;
+    private String notiType;
+    private int projectId;
+    private int resourceId;
+    private int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getNotiType() {
+        return notiType;
+    }
+
+    public void setNotiType(String notiType) {
+        this.notiType = notiType;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
 
     public MessageType getMessageType() {
         return messageType;
