@@ -126,6 +126,7 @@ export class ChatService {
   }
 
   getLogChatById(contractId) {
+    this.chatMessages = [];
     this.contractService.getLogChatById(contractId).subscribe(
       res => {
         res.forEach(el => {
