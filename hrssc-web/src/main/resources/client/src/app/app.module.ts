@@ -95,6 +95,7 @@ import { InvitationContractComponent } from './pages/manage-invitations/invitati
 import { SearchService } from './services/search.service';
 import { RatingComponent } from './pages/rating/rating.component';
 import { FeedbackProjectComponent } from './pages/feedback-project/feedback-project.component';
+import { NotificationService } from './services/notification.service';
 
 const appRoutes: Routes = [
 
@@ -303,7 +304,8 @@ const appRoutes: Routes = [
     ChatService,
     LocalstoragesService,
     ContractService,
-    SearchService
+    SearchService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

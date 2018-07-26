@@ -12,6 +12,7 @@ import { ChatService } from '../../services/chat.service';
 })
 export class HeaderComponent implements OnInit {
   private userName: any;
+  public userId: number;
   public listLogNotify = [];
   public countNotify: number;
   public interval;
@@ -26,21 +27,26 @@ export class HeaderComponent implements OnInit {
       this.userName = userName;
       if(this.userName != ""){
         this.chatService.connectNotifyChannel("notifyRoom", userName);
+       
       }
       
     });
-
+    this.userId = this.authenticateService.getUserId();
+    this.chatService.getLogNotifyByReceiveId(this.userId);
     // load case!
     let userName = this.authenticateService.getUserName();
     if(userName){
       this.header.setUserNametoHead(userName);
-      
     }
+    
+
     this.interval = setInterval(() => {
       this.listLogNotify = this.chatService.getLogNotify();
       
       this.countNotify = this.listLogNotify.length;
     }, 3000);
+
+    
     
    
     

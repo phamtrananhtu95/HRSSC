@@ -3,6 +3,7 @@ import * as stompjs from 'stompjs'
 import * as SockJS from 'sockjs-client';
 import { AuthenticateService } from './authenticate.service';
 import { ContractService } from './contract.service';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class ChatService {
@@ -21,7 +22,8 @@ export class ChatService {
 
   constructor(
     private auth: AuthenticateService,
-    private contractService: ContractService
+    private contractService: ContractService,
+    private notifyService: NotificationService
   ) {
     this.username = this.auth.getUserName();
     this.userId = this.auth.getUserId();
@@ -61,7 +63,7 @@ export class ChatService {
 
   }
 
-  connectNotifyChannel(roomId, username){
+  connectNotifyChannel(roomId, username) {
 
     let ws = new SockJS(this.serverWsUrl);
     this.stompClientNoti = stompjs.over(ws);
@@ -80,8 +82,10 @@ export class ChatService {
             that.logNotify.push({
               content: messageReceived.content,
               timeSent: that.getTimestamp(),
-              userSent: messageReceived.sender,
-              sendTo: messageReceived.sendTo
+              notiType: messageReceived.notiType,
+              projectId: messageReceived.projectId,
+              resourceId: messageReceived.resourceId,
+              userId: messageReceived.userId
             })
           }
 
@@ -93,28 +97,62 @@ export class ChatService {
       );
     });
   }
-  sendNotify(msg, sendTo) {
-    
-    const timestamp = this.getTimestamp();
+  sendNotify(msg, notiType, projectId, resourceId, userId) {
+
+    // const timestamp = this.getTimestamp();
     // const email = 
-    this.logNotify = this.getLogNotify();
-    this.logNotify.push({
-      content: msg,
-      timeSent: timestamp,
-      userSent: this.username,
-      sendTo: sendTo
-      // email: 
-    })
+    // this.logNotify = this.getLogNotify();
+    // this.logNotify.push({
+    //   content: msg,
+    //   timeSent: timestamp,
+    //   // userSent: this.username,
+    //   // sendTo: sendTo,
+    //   notiType: notiType,
+    //   projectId: projectId,
+    //   resourceId: resourceId,
+    //   userId: userId
+
+    //   // email: 
+    // })
+
+
 
     if (msg && this.stompClientNoti) {
-      var chatMessage = {
+      var notifyMessage = {
         sender: this.username,
         content: msg,
         type: 'CHAT',
-        sendTo: sendTo
+        // sendTo: sendTo,
+        notiType: notiType,
+        projectId: projectId,
+        resourceId: resourceId,
+        userId: userId
+
       };
-      this.stompClientNoti.send(`${this.topic}/sendNotification`, {}, JSON.stringify(chatMessage));
+      this.stompClientNoti.send(`${this.topic}/sendNotification`, {}, JSON.stringify(notifyMessage));
     }
+  }
+
+  getLogNotifyByReceiveId(userId) {
+    this.logNotify = [];
+    this.notifyService.getLogNotify(userId).subscribe(
+      res => {
+        res.forEach(el => {
+          this.logNotify.push({
+            content: el.content,
+            timeSent: el.date,
+            // sendTo: el.userByUserId.username,
+            notiType: el.type,
+            projectId: el.projectId,
+            resourceId: el.humanResourceId,
+            userId: el.userId
+          })
+        });
+      },
+      err => {
+
+      }
+    );
   }
 
   getLogNotify() {

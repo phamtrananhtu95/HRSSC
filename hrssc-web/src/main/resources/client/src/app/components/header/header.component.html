@@ -140,7 +140,7 @@
 
         <ul class="media-list dropdown-content-body width-350">
           <li *ngFor="let noti of listLogNotify">
-            <div class="media" *ngIf="noti.sendTo.includes(userName)">
+            <div class="media" *ngIf="noti.userId === userId">
               <div class="media-left">
                 <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm">
                   <i class="icon-git-pull-request"></i>
@@ -149,7 +149,7 @@
 
               <div class="media-body">
                 {{noti.content}}
-                <a href="#">{{noti.timeSent}}</a> sendTo:{{noti.sendTo}}
+                <!-- <a href="#">{{noti.timeSent}}</a> sendTo:{{noti.sendTo}} -->
                 <div class="media-annotation">4 minutes ago</div>
               </div>
             </div>

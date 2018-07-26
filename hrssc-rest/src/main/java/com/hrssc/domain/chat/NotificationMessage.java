@@ -10,7 +10,6 @@ public class NotificationMessage {
     private MessageType messageType;
     private String content;
     private String sender;
-    private String sendTo;
     private String notiType;
     private int projectId;
     private int resourceId;
@@ -80,11 +79,5 @@ public class NotificationMessage {
         this.sender = sender;
     }
 
-    public String getSendTo() {
-        return sendTo;
-    }
 
-    public void setSendTo(String sendTo) {
-        this.sendTo = sendTo;
-    }
 }

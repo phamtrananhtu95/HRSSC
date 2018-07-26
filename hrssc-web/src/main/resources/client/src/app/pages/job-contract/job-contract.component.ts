@@ -49,7 +49,7 @@ export class JobContractComponent implements OnInit {
   public composeContract = false;
   public isEditable: boolean;
   public formOffer = new ContractByContractId();
-  public show:boolean = false;
+  public show: boolean = false;
   constructor(
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
@@ -117,7 +117,7 @@ export class JobContractComponent implements OnInit {
         this.endDate = this.ConvertToDatetime(this.formContract.contractByContractId.endDate);
         this.getHumanResourceById(this.formContract.humanResourceId);
         this.getProject(this.formContract.projectId);
-        
+
       }
     )
   }
@@ -189,18 +189,26 @@ export class JobContractComponent implements OnInit {
   }
 
   sendOffer() {
-    // demo send notify
-    let msg = "aa";
-    let sendTo = "abc@abc.com"
-    this.chatService.sendNotify(msg,sendTo);
+    // let msg = "has been Invite";
+    // let notiType = "Invite";
+    // let userId = this.humanResource.userByUserId.id;
 
+    // this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
 
     if (this.composeContract) {
       this.employeeService.inviteHumanResource(this.formContract).subscribe(
         res => {
+          // noti for invitation
+          let companyName = this.project.companyByCompanyId.name
+          let notiType = "Invite";
+          let msg = companyName +" "+notiType+ " "+ this.humanResource.fullname+" to "+this.project.title+" project";
+          
+          let userId = this.humanResource.userByUserId.id;
+          this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
+
           this.router.navigate(['home']);
           // send notify
-          
+
         },
         err => {
           console.log(err);
@@ -237,7 +245,7 @@ export class JobContractComponent implements OnInit {
   showChat() {
     this.show = !this.show;
   }
-  
+
   // inviteHumanResource(projectId) {
   //   this.formContract.projectId = this.projectId;
   //   this.formContract.humanResourceId = this.resourceId;
