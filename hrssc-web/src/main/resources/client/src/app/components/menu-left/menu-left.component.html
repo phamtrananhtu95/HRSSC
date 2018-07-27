@@ -13,7 +13,7 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li>
+      <li [hidden]="!checkRoleUI('manageResources')">
         <a href="#">
           <i class="icon-users"></i>
           <span>Manage resources</span>
@@ -36,7 +36,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li [hidden]="!checkRoleUI('manageProject')">
         <a href="#">
           <i class="icon-stack2"></i>
           <span>Manage project</span>
@@ -55,7 +55,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li [hidden]="!checkRoleUI('feedBack')">
         <a href="#">
           <i class="icon-medal-star"></i>
           <span>Feedback</span>
@@ -71,7 +71,7 @@
         </ul>
       </li>
 
-      <li>
+      <li [hidden]="!checkRoleUI('manageCompany')">
         <a href="#">
           <i class="icon-home7"></i>
           <span>Manage company</span>
@@ -92,7 +92,7 @@
       </li>
 
       <!-- Chef -->
-      <li>
+      <li [hidden]="!checkRoleUI('manageManager')">
         <a href="#">
           <i class="icon-users4"></i>
           <span>Manage manager</span>
