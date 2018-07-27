@@ -72,7 +72,8 @@ export class InviteResourcePopover implements OnInit {
                 {
                     "humanResourceId": humanResourceId,
                     "projectId": projectId,
-                    "composeContract": true
+                    "composeContract": true,
+                    "isInvite": true,
                 }
         });
     }

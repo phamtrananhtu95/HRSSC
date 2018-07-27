@@ -73,4 +73,9 @@ export class ProjectService {
     return this.restService.get(url);
   }
 
+  //Apply
+  applyResource(form){
+    let url = "appliance/apply/"
+    return this.restService.post(url, form);
+  }
 }

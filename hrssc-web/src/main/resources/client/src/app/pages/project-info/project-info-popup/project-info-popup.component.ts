@@ -88,7 +88,8 @@ export class ProjectInfoPopupComponent implements OnInit {
         {
           "humanResourceId": humanResourceId,
           "projectId": projectId,
-          "composeContract": true
+          "composeContract": true,
+          "isInvite": false,
         }
     });
   }

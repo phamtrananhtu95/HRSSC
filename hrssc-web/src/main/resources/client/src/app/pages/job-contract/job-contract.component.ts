@@ -21,8 +21,8 @@ export class JobContractComponent implements OnInit {
 
   public humanResource = new Employee();
   public project: any;
-  // public skillList: string;
-  // public avaliableDate: any;
+  public contractOpts;
+
   public isCheckTerm = false;
 
   public userId: number;
@@ -35,13 +35,10 @@ export class JobContractComponent implements OnInit {
 
   public myDatePickerOptionsStart: IMyDpOptions = {
     dateFormat: 'dd/mm/yyyy',
-    // disableUntil: { year: 2018, month: 7, day: 17 }
   };
 
   public myDatePickerOptionsEnd: IMyDpOptions = {
-    // other options...
     dateFormat: 'dd/mm/yyyy',
-    // disableUntil: { year: 2018, month: 7, day: 17 }
   };
 
   public isEditMode: boolean;
@@ -50,6 +47,11 @@ export class JobContractComponent implements OnInit {
   public isEditable: boolean;
   public formOffer = new ContractByContractId();
   public show: boolean = false;
+
+
+  // Call api invite or apply
+  public isInvite = false;
+  public
   constructor(
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
@@ -69,6 +71,9 @@ export class JobContractComponent implements OnInit {
       }
 
       this.composeContract = params.composeContract === 'true';
+
+      // 
+      this.isInvite = params.isInvite === 'true';
       if (this.composeContract) {
         this.isEditMode = true;
         this.isEditable = true;
@@ -99,6 +104,7 @@ export class JobContractComponent implements OnInit {
       // other controls are here...
     });
     this.setDisableUntilForStartDate();
+    this.getcontractOpts();
   }
 
   setDisableUntilForStartDate() {
@@ -163,8 +169,6 @@ export class JobContractComponent implements OnInit {
     return dateParse;
   }
 
-
-
   onDateChangedCreate(event: IMyDateModel) {
     this.humanResource.availableDate = event && event.jsdate ? event.jsdate.getTime() : null;
     this.formContract.contractByContractId.startDate = event && event.jsdate ? event.jsdate.getTime() : null;
@@ -193,27 +197,48 @@ export class JobContractComponent implements OnInit {
     // let notiType = "Invite";
     // let userId = this.humanResource.userByUserId.id;
 
+    // demo send notify
+    // let msg = "aa";
+    // let sendTo = "abc@abc.com"
+    // this.chatService.sendNotify(msg, sendTo);
+
     // this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
 
     if (this.composeContract) {
-      this.employeeService.inviteHumanResource(this.formContract).subscribe(
-        res => {
-          // noti for invitation
-          let companyName = this.project.companyByCompanyId.name
-          let notiType = "Invite";
-          let msg = companyName +" "+notiType+ " "+ this.humanResource.fullname+" to "+this.project.title+" project";
-          
-          let userId = this.humanResource.userByUserId.id;
-          this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
 
-          this.router.navigate(['home']);
-          // send notify
+      if (this.isInvite) {
+        // console.log("invite á em");
+        this.employeeService.inviteHumanResource(this.formContract).subscribe(
+          res => {
+            // noti for invitation
+            let companyName = this.project.companyByCompanyId.name
+            let notiType = "Invite";
+            let msg = companyName + " " + notiType + " " + this.humanResource.fullname + " to " + this.project.title + " project";
 
-        },
-        err => {
-          console.log(err);
-        }
-      );
+            let userId = this.humanResource.userByUserId.id;
+            this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
+
+            this.router.navigate(['home']);
+            // send notify
+
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+      else {
+        // console.log("aply á em");
+
+        this.projectService.applyResource(this.formContract).subscribe(
+          res => {
+            this.router.navigate(['home']);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
     } else {
       this.formContract.contractByContractId.latestEditorId = this.userId;
       this.contractService.changeOffer(this.formContract.contractByContractId).subscribe(
@@ -237,6 +262,37 @@ export class JobContractComponent implements OnInit {
         this.router.navigate(['home']);
       }
     );
+  }
+
+  getcontractOpts() {
+    // contractid
+    this.contractService.loadContractVersions(803).subscribe(
+      res => {
+        this.contractOpts = [];
+        var version = 0;
+        res.forEach(contractVer => {
+          // var dealDateParse = parseInt(contractVer.dealDate);
+          // var date = new Date(dealDateParse);
+          var dateConvert = this.ConvertToDatetime(contractVer.dealDate * 1000);
+          var dd = dateConvert.date.day;
+          var mm = dateConvert.date.month;
+          var yyyy = dateConvert.date.year;
+          version = version + 1;
+          var today = 'Version ' + version + ': ' + dd + '/' + mm + '/' + yyyy;
+
+
+          console.log("deal:-----------" + version + " " + contractVer.dealDate);
+          console.log("Deal date-----------" + JSON.stringify(dateConvert));
+
+          this.contractOpts.push({ value: contractVer.id.toString(), label: today });
+        });
+        // console.log("contract-----------" + JSON.stringify(this.contractOpts));
+      },
+      err => {
+        console.log(err);
+      }
+    )
+
   }
 
   showChatPopup() {

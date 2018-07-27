@@ -28,4 +28,9 @@ export class ContractService {
     let url = "contract/accept-offer/";
     return this.restService.post(url, formContract);
   }
+
+  loadContractVersions(contractId){
+    let url = "contract/get-version/" + contractId;
+    return this.restService.get(url);
+  }
 }

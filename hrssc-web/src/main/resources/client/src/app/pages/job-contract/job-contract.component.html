@@ -18,7 +18,7 @@
               <legend class="text-semibold">
                 <i class="icon-file-text2 position-left"></i>
                 <b>Parties</b>
-                <a class="control-arrow" data-toggle="collapse" data-target="#demo1">
+                <a class="control-arrow" data-toggle="collapse" data-target="#demo1" style="margin-right: 25px;">
                   <i class="icon-circle-down2"></i>
                 </a>
               </legend>
@@ -86,11 +86,24 @@
                     <i class=" icon-pen position-left"></i>
                     <b>Term of contract</b>
                   </div>
-                  <div class="col-md-8 text-right">
-                    <button *ngIf="isEditable && !isEditMode" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
-                      <i class="icon-pencil6 position-left"></i>Edit</button>
+                  <div class="col-md-8 row">
+                    <div class="col-lg-3">
+                      <button *ngIf="isEditable && !isEditMode" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
+                        <i class="icon-pencil6 position-left"></i>Edit</button>
+                    </div>
+                    <div class="col-lg-6" *ngIf="isEditMode">
+                      <ng-select [options]="contractOpts" placeholder="Select contract version"></ng-select>
+                    </div>
+
+                    <div class="col-lg-3" *ngIf="isEditMode">
+                      <button type="button" class="btn btn-default btn-xs">
+                        <b>
+                          <i class="icon-reload-alt"></i>
+                        </b> Revert</button>
+
+                    </div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-1 text-right">
                     <a class="control-arrow" data-toggle="collapse" data-target="#demo2">
                       <i class="icon-circle-down2"></i>
                     </a>
@@ -134,7 +147,7 @@
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Monthly payment:</label>
                   <div *ngIf="!isEditMode" class="col-lg-5">
-                    <label style="margin-top: 7px;" >{{formContract.contractByContractId.salary | number:'.0-2'}}</label>
+                    <label style="margin-top: 7px;">{{formContract.contractByContractId.salary | number:'.0-2'}}</label>
                   </div>
                   <div *ngIf="isEditMode" class="col-lg-5">
                     <input type="text" currencyMask [(ngModel)]="formContract.contractByContractId.salary" name="salary" [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}"
@@ -241,12 +254,12 @@
         </div>
 
       </div> -->
-      
+
       <app-chat-popup *ngIf="show" [contractid]="formContract.contractByContractId.id"></app-chat-popup>
-      
+
     </div>
     <div id="chat-button" (click)="showChat()">
-        <a>CONNECT CHAT</a>
+      <a>CONNECT CHAT</a>
     </div>
   </div>
   <!-- /fieldset legend -->
