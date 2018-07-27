@@ -162,6 +162,8 @@ public class ContractServiceImpl implements ContractService {
             if(rejectInteraction != null){
                 interactionRepository.deleteById(rejectInteraction.getId());
             }
+            List<ContractVersion> contractVersionList = contractVersionRepository.findByContractId(rejectContract.getId());
+            contractVersionRepository.deleteAll(contractVersionList);
             contractRepository.deleteById(rejectContract.getId());
         }
         return "Success!";

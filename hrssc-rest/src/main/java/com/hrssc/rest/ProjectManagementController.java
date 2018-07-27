@@ -102,4 +102,25 @@ public class ProjectManagementController {
     public Project closeFinishedProject(@PathVariable(value = "projectId") int projectId) throws Exception{
         return projectManagementService.closeFinishedProject(projectId);
     }
+
+    @GetMapping(value = "/release-resource/{jobId}/{userId}")
+    public ResponseStatus releaseResource(@PathVariable(value = "jobId")  int jobId,
+                                          @PathVariable(value = "userId") int userId){
+        if (!authorizationService.checkRoleRelease(jobId, userId)){
+            return null;
+        }
+        ResponseStatus responseStatus = new ResponseStatus(projectManagementService.releaseResource(jobId));
+        return responseStatus;
+    }
+
+    @GetMapping(value = "/reject-resource/{jobId}/{userId}")
+    public ResponseStatus rejectResource(@PathVariable(value = "jobId") int jobId,
+                                         @PathVariable(value = "userId") int userId){
+        if(!authorizationService.checkRoleReject(jobId, userId)){
+            return null;
+        }
+        ResponseStatus responseStatus = new ResponseStatus(projectManagementService.rejectResource(jobId));
+        return responseStatus;
+    }
+
 }

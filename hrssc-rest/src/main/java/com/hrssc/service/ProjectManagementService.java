@@ -24,5 +24,6 @@ public interface ProjectManagementService {
     Project viewProjectDetails(int id);
     boolean isProjectFull(int projectId);
     String closeProject(int projectId);
-
+    String releaseResource(int jobId);
+    String rejectResource(int jobId);
 }

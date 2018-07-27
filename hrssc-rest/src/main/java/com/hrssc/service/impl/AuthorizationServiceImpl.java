@@ -2,9 +2,11 @@ package com.hrssc.service.impl;
 
 import com.hrssc.domain.Constant;
 import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Job;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.User;
 import com.hrssc.repository.HumanResourceRepository;
+import com.hrssc.repository.JobRepository;
 import com.hrssc.repository.ProjectRepository;
 import com.hrssc.repository.UserRepository;
 import com.hrssc.service.AuthorizationService;
@@ -27,6 +29,9 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Autowired
     HumanResourceRepository resourceRepo;
+
+    @Autowired
+    JobRepository jobRepository;
 
     @Override
     public boolean checkProject(int projectId, int userId){
@@ -132,5 +137,52 @@ public class AuthorizationServiceImpl implements AuthorizationService {
             }
         }
         return true;
+    }
+
+    public boolean checkRoleRelease(int jobId, int userId){
+        User user = userRepo.findById(userId);
+        if (user == null) {
+            return false;
+        }
+        if (user.getRoleId() == Constant.UserRole.ADMIN){
+            return true;
+        }
+        Job job = jobRepository.findById(jobId);
+        if(job == null){
+            return false;
+        }
+        Project project = projectRepo.findById(job.getProjectId());
+        if (project == null){
+            return false;
+        }
+        if (user.getRoleId() == Constant.UserRole.CHIEF && user.getCompanyId() == project.getCompanyId()){
+            return true;
+        }
+        if (project.getUserId() == userId){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkRoleReject(int jobId, int userId){
+        User user = userRepo.findById(userId);
+        if (user == null) {
+            return false;
+        }
+        Job job = jobRepository.findById(jobId);
+        if(job == null){
+            return false;
+        }
+        Project project = projectRepo.findById(job.getProjectId());
+        if (project == null){
+            return false;
+        }
+        if (user.getRoleId() == Constant.UserRole.CHIEF && user.getCompanyId() == project.getCompanyId()){
+            return true;
+        }
+        if (project.getUserId() == userId){
+            return true;
+        }
+        return false;
     }
 }
