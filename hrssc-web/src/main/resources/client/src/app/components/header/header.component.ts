@@ -12,7 +12,7 @@ import { ChatService } from '../../services/chat.service';
 })
 export class HeaderComponent implements OnInit {
   private userName: any;
-  public userId: number;
+  public userId: any;
   public listLogNotify = [];
   public countNotify: number;
   public interval;
@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.header.userInfo);
+    
     this.header.userInfo.subscribe(userName => {
       this.userName = userName;
       if(this.userName != ""){
@@ -31,8 +33,14 @@ export class HeaderComponent implements OnInit {
       }
       
     });
-    this.userId = this.authenticateService.getUserId();
-    this.chatService.getLogNotifyByReceiveId(this.userId);
+    this.header.userInfoId.subscribe(userId => {
+      this.userId = userId;
+      if(this.userId != ""){
+        this.chatService.getLogNotifyByReceiveId(userId);
+      }
+    })
+    // this.userId = this.authenticateService.getUserId();
+    // this.chatService.getLogNotifyByReceiveId(this.userId);
     // load case!
     let userName = this.authenticateService.getUserName();
     if(userName){

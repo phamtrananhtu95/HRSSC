@@ -34,7 +34,9 @@ export class AuthenticateService {
 
   saveUserInfo(userInfo: any){
     let username = userInfo ? userInfo.username : null;
+    let userId = userInfo ? userInfo.id : null;
     this.header.setUserNametoHead(username);
+    this.header.setUserIdToHead(userId);
     this.session.saveInLocal(this.USER_INFOR, userInfo);
   }
 

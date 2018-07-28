@@ -12,8 +12,10 @@ export class HeaderService {
 
   // tạo base event
   private userSource = new BehaviorSubject("");
+  private userIdSource = new BehaviorSubject("");
   // lắng nghe event
   userInfo = this.userSource.asObservable();
+  userInfoId = this.userIdSource.asObservable();
   constructor() {
   }
 
@@ -24,5 +26,8 @@ export class HeaderService {
   // bắn event
   setUserNametoHead(userName: string) {
     this.userSource.next(userName);
+  }
+  setUserIdToHead(userId: string) {
+    this.userIdSource.next(userId);
   }
 }
