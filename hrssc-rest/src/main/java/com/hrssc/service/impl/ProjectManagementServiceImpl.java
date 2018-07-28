@@ -45,6 +45,12 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     @Autowired
     JobRepository jobRepository;
 
+    @Autowired
+    ContractRepository contractRepository;
+
+    @Autowired
+    ContractVersionRepository contractVersionRepository;
+
     @PersistenceContext
     EntityManager em;
 
@@ -385,6 +391,49 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
             }
         }
         return project;
+    }
+
+    @Transactional
+    public String releaseResource(int jobId){
+        Job job = jobRepository.findById(jobId);
+        if(job == null){
+            return "Job Not Found";
+        }
+        HumanResource resource = humanResourceRepository.getById(job.getHumanResourceId());
+        if (resource == null){
+            return "Resource not found";
+        }
+        //sua job status
+        job.setStatus(Constant.JobStatus.FINISHED);
+        jobRepository.save(job);
+
+        //Release resource
+        resource.setStatus(Constant.ResourceStatus.INACTIVE);
+        humanResourceRepository.save(resource);
+        return "Success";
+    }
+
+    @Transactional
+    public String rejectResource(int jobId){
+        Job job = jobRepository.findById(jobId);
+        if(job == null){
+            return "Job Not Found";
+        }
+        HumanResource resource = humanResourceRepository.getById(job.getHumanResourceId());
+        if (resource == null){
+            return "Resource not found";
+        }
+        //Xoa job
+        jobRepository.deleteById(job.getId());
+        //Xoa Contract + ContractVersion
+        List<ContractVersion> contractVersionList = contractVersionRepository.findByContractId(job.getContractId());
+        contractVersionRepository.deleteAll(contractVersionList);
+        contractRepository.deleteById(job.getContractId());
+
+        //Sua resource status
+        resource.setStatus(Constant.ResourceStatus.INACTIVE);
+        humanResourceRepository.save(resource);
+        return "Success!";
     }
 }
 

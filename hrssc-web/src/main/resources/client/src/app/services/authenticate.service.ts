@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { SessionsService } from './sessions.service';
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { HeaderService } from '../components/header/header.component.service';
 
 @Injectable()
@@ -11,6 +11,14 @@ export class AuthenticateService {
   public USER_INFOR = "user-info";
   public HAS_LOGIN = "has-login";
   public username = "";
+
+  // Authen UI
+  public roleUI = {
+    1: ["manageCompany"],
+    2: ["manageResources", "manageProject", "feedBack", "manageManager"],
+    3: ["manageResources", "manageProject", "feedBack"]
+  };
+
   constructor(
     private session: SessionsService,
     private router: Router,
@@ -18,7 +26,7 @@ export class AuthenticateService {
   ) { }
 
 
-  setLogin(value: boolean){
+  setLogin(value: boolean) {
     console.log(value);
     this.session.saveInLocal(this.HAS_LOGIN, value);
   }
@@ -32,7 +40,7 @@ export class AuthenticateService {
     return false;
   }
 
-  saveUserInfo(userInfo: any){
+  saveUserInfo(userInfo: any) {
     let username = userInfo ? userInfo.username : null;
     let userId = userInfo ? userInfo.id : null;
     this.header.setUserNametoHead(username);
@@ -40,24 +48,40 @@ export class AuthenticateService {
     this.session.saveInLocal(this.USER_INFOR, userInfo);
   }
 
-  getUserInfo(){
+  getUserInfo() {
     return this.session.getFromLocal(this.USER_INFOR);
   }
 
-  getUserName(){
-    let userInfo = this.getUserInfo();   
+  getUserName() {
+    let userInfo = this.getUserInfo();
     return userInfo ? userInfo.username : null;
   }
 
-  getUserId(){
+  getUserId() {
     let userInfo = this.getUserInfo();
     return userInfo ? userInfo.id : null;
   }
 
-  getCompanyId(){
+  getCompanyId() {
     let userInfo = this.getUserInfo();
     return userInfo ? userInfo.companyID : null;
   }
-  
+
+  getRoleId() {
+    let userInfo = this.getUserInfo();
+    return userInfo ? userInfo.roleID : null;
+  }
+
+  checkRole(subMenu) {
+    let roleID =this.getRoleId();
+    if (subMenu && roleID) {
+      let listSubMenu = this.roleUI[roleID];
+      if (listSubMenu && listSubMenu.length > 0) {
+        return listSubMenu.indexOf(subMenu) > -1;
+      }
+    }
+    return false;
+  }
+
 
 }

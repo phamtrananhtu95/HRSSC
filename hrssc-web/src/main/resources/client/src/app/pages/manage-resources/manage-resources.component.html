@@ -11,41 +11,42 @@
   </div>
 
 
-  
+
   <div class="panel panel-flat">
     <div class="panel-body">
 
-        <table class="table datatable-basic table-hover">
-            <thead>
-              <tr>
-                <th>Full Name</th>
-                <th>Skill</th>
-                <th>Tel</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Working on project</th>
-              </tr>
-            </thead>
-            <tbody>
-            
-              <tr *ngFor="let humanResources of humanResource" (click)="viewHumanResourceDetail(humanResources.id)">
-                <td>{{humanResources.fullname}}</td>
-                <td>{{humanResources.skill}}</td>
-                <td>{{humanResources.tel}}</td>
-                <td>{{humanResources.email}}</td>
-                <td><span class="label" [ngClass]="humanResources.status == 1 ? 'bg-blue-400' : 'btn-danger'">
-                  {{humanResources.status == 1 ? "Activated" : "Inactive"}}</span>
-                </td>
-                <td class="text-center"> 
+      <table class="table datatable-basic table-hover">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Skill</th>
+            <th>Tel</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <tr *ngFor="let humanResources of humanResource" (click)="viewHumanResourceDetail(humanResources.id)">
+            <td>{{humanResources.fullname}}</td>
+            <td>{{humanResources.skill}}</td>
+            <td>{{humanResources.tel}}</td>
+            <td>{{humanResources.email}}</td>
+            <td>
+              <span class="label" [ngClass]="humanResources.status == 1 ? 'bg-blue-400' : 'btn-danger'">
+                {{humanResources.status == 1 ? "Activated" : "Inactive"}}</span>
+            </td>
+            <td class="text-center">
+              <button type="button" class="btn btn-link">
+                <i class="icon-cross2 position-left"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-       <app-resource-manager-popover [isEditForm]="isEditForm" [editManagerModel]="editManagerModel"
-       (reloadManagerList)="getHumanResourceByManagerId()">
-       </app-resource-manager-popover>
+      <app-resource-manager-popover [isEditForm]="isEditForm" [editManagerModel]="editManagerModel" (reloadManagerList)="getHumanResourceByManagerId()">
+      </app-resource-manager-popover>
     </div>
   </div>
 </div>

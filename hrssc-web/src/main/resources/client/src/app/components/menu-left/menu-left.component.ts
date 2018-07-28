@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { MenuLeftService } from './menu-left.component.service';
+import { AuthenticateService } from '../../services/authenticate.service';
 
 @Injectable()
 @Component({
@@ -9,10 +10,18 @@ import { MenuLeftService } from './menu-left.component.service';
   providers:[MenuLeftService]
 })
 export class MenuLeftComponent implements OnInit {
-  constructor(menu: MenuLeftService) {
+  constructor(
+    menu: MenuLeftService,
+    private authenticateService: AuthenticateService
+  ) {
    }
 
    ngOnInit() {
+    (<any>window).appJsLoad = true;
+  }
+
+  checkRoleUI(subMenu){
+    return this.authenticateService.checkRole(subMenu);
   }
 
 }
