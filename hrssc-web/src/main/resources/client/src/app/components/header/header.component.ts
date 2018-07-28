@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
       this.userName = userName;
       if(this.userName != ""){
         this.chatService.connectNotifyChannel("notifyRoom", userName);
-       
       }
       
     });
@@ -45,6 +44,11 @@ export class HeaderComponent implements OnInit {
     let userName = this.authenticateService.getUserName();
     if(userName){
       this.header.setUserNametoHead(userName);
+    }
+
+    let userId = this.authenticateService.getUserId();
+    if(userId){
+      this.header.setUserIdToHead(userId);
     }
     
 

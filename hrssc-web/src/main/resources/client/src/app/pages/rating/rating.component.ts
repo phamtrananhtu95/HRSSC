@@ -45,19 +45,22 @@ export class RatingComponent implements OnInit {
   feedbackResource(jobId) {
     this.feedbackForm.userId = this.userId;
     this.feedbackForm.jobId = jobId;
-    this.employeeService.feedbackResource(this.feedbackForm).subscribe(
-      res => {
-        // this.reloadHumanList.emit();
 
-        this.loadHumanOfProject();
-        (<any>$("#humanResource" + jobId)).modal("hide");
+    console.log(this.feedbackForm);
+    
+    // this.employeeService.feedbackResource(this.feedbackForm).subscribe(
+    //   res => {
+    //     // this.reloadHumanList.emit();
 
-        this.feedbackForm = new Feedback();
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    //     this.loadHumanOfProject();
+    //     (<any>$("#humanResource" + jobId)).modal("hide");
+
+    //     this.feedbackForm = new Feedback();
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
     // console.log("ec ec: " + JSON.stringify(this.feedbackForm));
   }
 

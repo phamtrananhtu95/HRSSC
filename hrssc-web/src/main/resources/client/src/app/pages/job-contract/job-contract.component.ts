@@ -232,6 +232,13 @@ export class JobContractComponent implements OnInit {
 
         this.projectService.applyResource(this.formContract).subscribe(
           res => {
+            // noti for appliances
+            let companyName = this.humanResource.companyByCompanyId.name;
+            let notiType = "Apply";
+            let msg = this.humanResource.fullname + " of " + companyName + "want to " + notiType + " " + " to " + this.project.title + " project";
+            let userId = this.project.userId;
+            this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
+
             this.router.navigate(['home']);
           },
           err => {
@@ -243,6 +250,14 @@ export class JobContractComponent implements OnInit {
       this.formContract.contractByContractId.latestEditorId = this.userId;
       this.contractService.changeOffer(this.formContract.contractByContractId).subscribe(
         res => {
+
+          // OFFER_DEALING
+          let companyName = this.project.companyByCompanyId.name;
+          let notiType = "Offer Dealing";
+          let userId = this.humanResource.userByUserId.id;
+          let msg = "New " + notiType + " of " + companyName + " company at " + this.project.title + " project";
+          this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
+
           this.router.navigate(['manager/invitation']);
         },
         err => {

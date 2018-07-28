@@ -34,11 +34,11 @@ export class InfoProjectManagerComponent implements OnInit {
   public listDomainOpt;
   public listTypeOpt;
   public listDomain = [
-    "Security", "Education", "Testing", "Game", "Language"
+    "Security", "Education", "Testing", "Game", "Language","E-commerce", "Hardware Driver", "Communication", "Financial"
   ];
 
   public listType = [
-    "Web Application", "Mobile Application", "Desktop Application"
+    "Web Application", "Mobile Application", "Desktop Application", "Embedded Application", "Console Game Application"
   ];
 
 

@@ -120,6 +120,7 @@ export class ManageProjectsComponent implements OnInit {
         this.projects = res;
         this.projects.forEach(element => {
           element.createDate = this.ConvertToDatetime(element.createDate);
+          element.endDate = this.ConvertToDatetime(element.endDate);
         });
       },
       err => {

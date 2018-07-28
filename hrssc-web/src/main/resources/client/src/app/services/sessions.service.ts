@@ -14,7 +14,6 @@ export class SessionsService {
   }
 
   getFromLocal(key): any {
-    console.log('recieved= key:' + key);
     return this.storage.get(key);
   }
 }

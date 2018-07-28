@@ -17,8 +17,9 @@
           <tr>
             <th>Name</th>
             <th>Type</th>
-            <th>Created Date</th>
-            <th>Matched</th>
+            <th>Domain</th>
+            <th>Start date</th>
+            <th>End date</th>
             <th>Status</th>
             <th></th>
           </tr>
@@ -27,8 +28,9 @@
           <tr *ngFor="let project of projects" (click)="viewProjectDetail(project.id)">
             <td>{{project.title}}</td>
             <td>{{project.type}}</td>
+            <td>{{project.domain}}</td>
             <td>{{project.createDate}}</td>
-            <td></td>
+            <td>{{project.endDate}}</td>
             <td>
               <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'">
                 {{project.processStatus == 1 ? "PENDING" : "ON GOING"}}</span>

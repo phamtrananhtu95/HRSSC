@@ -41,6 +41,7 @@ export class ProjectInfoComponent implements OnInit {
     this.project = new Project();
     this.prjService.getProjectByProjectId(this.userId, this.projectId).subscribe(
       res => {
+        this.skillList = "";
         this.project = res;
         this.userIdByProjectId = this.project.userId;
         this.isManager = this.userId === this.userIdByProjectId;
