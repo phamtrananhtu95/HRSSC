@@ -104,7 +104,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 prjReq = projectRequirementRepository.save(prjReq);
                 for (SkillRequirements skr : prjReq.getSkillRequirementsById()) {
                     skr.setProjectRequirementsId(prjReq.getId());
-                    saveSkillRequirements(skr);
+                    skillRequirementsRepository.save(skr);
                 }
             }
 
@@ -120,10 +120,6 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         projectRepository.save(project);
     }
 
-    @Override
-    public void saveSkillRequirements(SkillRequirements skillRequirements) {
-        skillRequirementsRepository.save(skillRequirements);
-    }
 
 
     @Transactional

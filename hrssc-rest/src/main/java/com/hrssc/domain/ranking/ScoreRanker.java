@@ -238,16 +238,16 @@ public class ScoreRanker {
             SkillRequirements requirementSkill = (SkillRequirements) similarEntry.getValue();
             double temp = resourceSkill.getExperience() / requirementSkill.getExperience();
             if(temp == 1){
-                multipler *=2.3;
+                multipler *=2.2;
             }
             if(temp > 1 && temp <= 1.3){
-                multipler *= 1.7;
+                multipler *= 1.5;
             }
             if(temp > 1.3 && temp <= 1.6){
-                multipler *= 1.4;
+                multipler *= 1.2;
             }
-            if(temp < 1){
-                multipler *= temp;
+            if(temp < 1 && temp > 0.8){
+                multipler *= 1.2;
             }
 
         }

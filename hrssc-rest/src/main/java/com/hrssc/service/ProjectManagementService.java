@@ -14,7 +14,7 @@ public interface ProjectManagementService {
     List<Project> getHomeProjectList(int userId);
     String addProject(Project project);
     void saveProject(Project project);
-    void saveSkillRequirements(SkillRequirements skillRequirements);
+
 
 
     Project closeFinishedProject(int projectId) throws Exception;
