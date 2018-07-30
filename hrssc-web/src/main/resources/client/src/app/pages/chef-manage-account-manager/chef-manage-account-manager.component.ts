@@ -27,6 +27,9 @@ export class ChefManageAccountManagerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    (<any>window).datatables = true;
+    (<any>window).select2 = true;
+    (<any>window).datatablesBasic = true;
     this.companyId = this.authenticateService.getCompanyId();
 
     // this.companyId = 10;

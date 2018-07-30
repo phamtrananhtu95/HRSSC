@@ -3,6 +3,8 @@ import { Feedback } from '../../models/feedback.model';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ActivatedRoute } from '@angular/router';
+import { humanResourceById } from '../../models/resourceMatched.model';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-rating',
@@ -25,6 +27,7 @@ export class RatingComponent implements OnInit {
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
     private route: ActivatedRoute,
+    private chatService: ChatService
   ) {
     this.userId = this.authenticateService.getUserId();
   }
@@ -37,38 +40,45 @@ export class RatingComponent implements OnInit {
     this.loadHumanOfProject();
   }
 
-  reloadLibrary(){
+  reloadLibrary() {
     (<any>window).sweetAlertMin = true;
     (<any>window).componentModalsJs = true;
   }
 
-  feedbackResource(jobId) {
+  feedbackResource(humanResource) {
+
     this.feedbackForm.userId = this.userId;
-    this.feedbackForm.jobId = jobId;
+    this.feedbackForm.jobId = humanResource.id;
 
-    console.log(this.feedbackForm);
-    
-    // this.employeeService.feedbackResource(this.feedbackForm).subscribe(
-    //   res => {
-    //     // this.reloadHumanList.emit();
+    let companyName = humanResource.humanResourceByHumanResourceId.companyByCompanyId.name;
 
-    //     this.loadHumanOfProject();
-    //     (<any>$("#humanResource" + jobId)).modal("hide");
+    this.employeeService.feedbackResource(this.feedbackForm).subscribe(
+      res => {
+        // this.reloadHumanList.emit();
+        
+        // Noti for feedback
+        let notiType = "Feedback Committed";
+        let msg = "Feedback";
+        let userId = humanResource.humanResourceByHumanResourceId.userByUserId.id;
+        this.chatService.sendNotify(msg, notiType, this.projectId, humanResource.humanResourceId, userId);
 
-    //     this.feedbackForm = new Feedback();
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
-    // console.log("ec ec: " + JSON.stringify(this.feedbackForm));
+        this.loadHumanOfProject();
+        (<any>$("#humanResource" + humanResource.id)).modal("hide");
+
+        this.feedbackForm = new Feedback();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log("ec ec: " + JSON.stringify(this.feedbackForm));
   }
 
   loadHumanOfProject() {
     this.employeeService.loadHumanOfProject(this.projectId).subscribe(
       res => {
         this.listHumanOfProject = res;
-        console.log("ec ec: " + JSON.stringify(this.listHumanOfProject));
+        console.log(this.listHumanOfProject);
 
       },
       err => {

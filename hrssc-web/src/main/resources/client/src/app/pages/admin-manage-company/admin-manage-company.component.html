@@ -11,22 +11,22 @@
     <div class="panel panel-flat">
       <div class="panel-body">
 
-        <table class="table datatable-basic">
+        <table class="table datatable-basic table-hover">
           <thead>
             <tr>
+              <th>#</th>
               <th>Company Name</th>
               <th>Address</th>
-              <th>City</th>
               <th>Tel</th>
               <th>Email</th>
               <th>Status</th>
             </tr>
           </thead>
-          <tbody *ngFor="let x of companies" (click)="viewCompanyDetail(x.id)">
-            <tr >
+          <tbody>
+            <tr *ngFor="let x of companies;let i = index" (click)="viewCompanyDetail(x.id)">
+              <td>{{i+1}}</td>
               <td>{{x.name}}</td>
               <td>{{x.address}}</td>
-              <td>{{x.city}}</td>
               <td>{{x.tel}}</td>
               <td>{{x.email}}</td>
               <td>

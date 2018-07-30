@@ -12,7 +12,7 @@ import java.util.Objects;
 @Data
 @Entity(name="user")
 public class User {
-    @JsonView({UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({FeedbackView.resourceFeedback.class,UserView.overview.class,HumanResourceView.details.class,ProjectView.details.class,UserView.details.class,FeedbackView.loadAllview.class})
     private int id;
     @JsonView({NotificationView.class,UserView.overview.class,UserView.details.class,FeedbackView.loadAllview.class,ContractView.ChatLog.class,HumanResourceView.history.class})
     private String username;

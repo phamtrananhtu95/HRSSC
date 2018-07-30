@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
       this.listLogNotify = this.chatService.getLogNotify();
       
       this.countNotify = this.listLogNotify.length;
-    }, 3000);
+    }, 2000);
 
     
     
