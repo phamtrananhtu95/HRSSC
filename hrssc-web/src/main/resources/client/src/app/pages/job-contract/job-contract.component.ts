@@ -21,6 +21,7 @@ export class JobContractComponent implements OnInit {
 
   public humanResource = new Employee();
   public project: any;
+  public contractVersion: any;
   public contractOpts;
 
   public isCheckTerm = false;
@@ -51,7 +52,7 @@ export class JobContractComponent implements OnInit {
 
   // Call api invite or apply
   public isInvite = false;
-  public
+  public currentVersionInfo: ContractByContractId;
   constructor(
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
@@ -91,7 +92,6 @@ export class JobContractComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contractid = this.formContract.contractByContractId.id;
     (<any>window).sweetAlertMin = true;
     (<any>window).componentModalsJs = true;
 
@@ -104,7 +104,6 @@ export class JobContractComponent implements OnInit {
       // other controls are here...
     });
     this.setDisableUntilForStartDate();
-    this.getcontractOpts();
   }
 
   setDisableUntilForStartDate() {
@@ -118,12 +117,12 @@ export class JobContractComponent implements OnInit {
     this.contractService.getContractInfo(invitationId).subscribe(
       res => {
         this.formContract = res;
+        this.contractid = this.formContract.contractByContractId.id;
         this.isEditable = this.formContract.contractByContractId.latestEditorId !== this.userId;
-        this.startDate = this.ConvertToDatetime(this.formContract.contractByContractId.startDate);
-        this.endDate = this.ConvertToDatetime(this.formContract.contractByContractId.endDate);
+        this.convertDateForPicker();
         this.getHumanResourceById(this.formContract.humanResourceId);
         this.getProject(this.formContract.projectId);
-
+        this.currentVersionInfo = JSON.parse(JSON.stringify(this.formContract.contractByContractId));
       }
     )
   }
@@ -190,9 +189,11 @@ export class JobContractComponent implements OnInit {
   onChangeEditMode() {
     this.isEditMode = !this.isEditMode;
     this.isCheckTerm = false;
+    this.getcontractOpts();
   }
 
   sendOffer() {
+    debugger;
     // let msg = "has been Invite";
     // let notiType = "Invite";
     // let userId = this.humanResource.userByUserId.id;
@@ -281,26 +282,39 @@ export class JobContractComponent implements OnInit {
 
   getcontractOpts() {
     // contractid
-    this.contractService.loadContractVersions(803).subscribe(
+    this.contractService.loadContractVersions(this.contractid).subscribe(
       res => {
         this.contractOpts = [];
-        var version = 0;
-        res.forEach(contractVer => {
-          // var dealDateParse = parseInt(contractVer.dealDate);
+        for(let i = res.length - 1; i >=0 ; i--){
+          let contractVer = res[i];
+                    // var dealDateParse = parseInt(contractVer.dealDate);
           // var date = new Date(dealDateParse);
           var dateConvert = this.ConvertToDatetime(contractVer.dealDate * 1000);
           var dd = dateConvert.date.day;
           var mm = dateConvert.date.month;
           var yyyy = dateConvert.date.year;
-          version = version + 1;
-          var today = 'Version ' + version + ': ' + dd + '/' + mm + '/' + yyyy;
+          var today = 'Version ' + (res.length-i) + ': ' + dd + '/' + mm + '/' + yyyy;
 
+          // console.log("deal:-----------" + version + " " + contractVer.dealDate);
+          // console.log("Deal date-----------" + JSON.stringify(dateConvert));
 
-          console.log("deal:-----------" + version + " " + contractVer.dealDate);
-          console.log("Deal date-----------" + JSON.stringify(dateConvert));
+          this.contractOpts.push({ value: contractVer, label: today });
+        }
+        // res.forEach(contractVer => {
+        //   // var dealDateParse = parseInt(contractVer.dealDate);
+        //   // var date = new Date(dealDateParse);
+        //   var dateConvert = this.ConvertToDatetime(contractVer.dealDate * 1000);
+        //   var dd = dateConvert.date.day;
+        //   var mm = dateConvert.date.month;
+        //   var yyyy = dateConvert.date.year;
+        //   version = version + 1;
+        //   var today = 'Version ' + version + ': ' + dd + '/' + mm + '/' + yyyy;
 
-          this.contractOpts.push({ value: contractVer.id.toString(), label: today });
-        });
+        //   // console.log("deal:-----------" + version + " " + contractVer.dealDate);
+        //   // console.log("Deal date-----------" + JSON.stringify(dateConvert));
+
+        //   this.contractOpts.push({ value: contractVer, label: today });
+        // });
         // console.log("contract-----------" + JSON.stringify(this.contractOpts));
       },
       err => {
@@ -308,6 +322,10 @@ export class JobContractComponent implements OnInit {
       }
     )
 
+  }
+
+  changeContractVersion() {
+    window.alert("hihi");
   }
 
   showChatPopup() {
@@ -335,4 +353,22 @@ export class JobContractComponent implements OnInit {
   //   }
   // )
   // }
+
+  loadContractByVersion(){
+    this.formContract.contractByContractId.additionalTerms = this.contractVersion.additionalTerms;
+    this.formContract.contractByContractId.salary = this.contractVersion.salary;
+    this.formContract.contractByContractId.startDate = this.contractVersion.startDate;
+    this.formContract.contractByContractId.endDate = this.contractVersion.endDate;
+    this.convertDateForPicker();
+  }
+
+  revertVersionInfo(){
+    this.formContract.contractByContractId = JSON.parse(JSON.stringify(this.currentVersionInfo));
+    this.convertDateForPicker();
+  }
+
+  private convertDateForPicker(){
+    this.startDate = this.ConvertToDatetime(this.formContract.contractByContractId.startDate);
+    this.endDate = this.ConvertToDatetime(this.formContract.contractByContractId.endDate);
+  }
 }

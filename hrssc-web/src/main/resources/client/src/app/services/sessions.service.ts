@@ -9,11 +9,15 @@ export class SessionsService {
 
 
   saveInLocal(key, val): void {
-    console.log('recieved= key:' + key + 'value:' + val);
+    // console.log('recieved= key:' + key + 'value:' + val);
     this.storage.set(key, val);
   }
 
   getFromLocal(key): any {
+
+
+    // console.log('recieved= key:' + key);
+
     return this.storage.get(key);
   }
 }

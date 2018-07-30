@@ -37,8 +37,57 @@
         </div>
       </div>
       <div class="media-right media-middle">
-        <span class="label label-primary">Joined</span>
+        <!-- <span class="label label-primary">Joined</span> -->
+
+        <button type="button" class="btn btn-danger btn-xs" style="margin-top: 10px" data-toggle="modal" data-target="#modal_small"
+          (click)="releaseResource(x.id, x.projectId)">
+          <i class="icon-cross2 position-left"></i>Release</button>
       </div>
+
+      <!-- Small modal -->
+      <div id="modal_small" class="modal fade">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h5 class="modal-title">Chọn trạng thái resource with this project</h5>
+            </div>
+
+            <div class="modal-body">
+              
+              <!-- Radio button -->
+            <div class="">
+              <div class="form-group">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="unstyled-radio-left" checked="checked"> chưa tham gia vào dự án
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="unstyled-radio-left"> đang tham gia vào dự án
+                  </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                      <input type="radio" name="unstyled-radio-left"> đã kết thúc hợp đồng
+                    </label>
+                  </div>
+              </div>
+            </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger">Release</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /small modal -->
     </li>
   </ul>
 </div>

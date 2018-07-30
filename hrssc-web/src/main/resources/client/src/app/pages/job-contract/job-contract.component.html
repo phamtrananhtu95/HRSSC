@@ -92,11 +92,14 @@
                         <i class="icon-pencil6 position-left"></i>Edit</button>
                     </div>
                     <div class="col-lg-6" *ngIf="isEditMode">
-                      <ng-select [options]="contractOpts" placeholder="Select contract version"></ng-select>
+                      <ng-select [options]="contractOpts" (selected)="loadContractByVersion()" [(ngModel)]="contractVersion" name="contractVer" placeholder="Select contract version"></ng-select>
+                      <p>
+                        Selected contract: {{contractVersion | json}}
+                      </p>
                     </div>
 
                     <div class="col-lg-3" *ngIf="isEditMode">
-                      <button type="button" class="btn btn-default btn-xs">
+                      <button type="button" class="btn btn-default btn-xs" (click)="revertVersionInfo()">
                         <b>
                           <i class="icon-reload-alt"></i>
                         </b> Revert</button>
