@@ -93,9 +93,9 @@
                     </div>
                     <div class="col-lg-6" *ngIf="isEditMode">
                       <ng-select [options]="contractOpts" (selected)="loadContractByVersion()" [(ngModel)]="contractVersion" name="contractVer" placeholder="Select contract version"></ng-select>
-                      <p>
+                      <!-- <p>
                         Selected contract: {{contractVersion | json}}
-                      </p>
+                      </p> -->
                     </div>
 
                     <div class="col-lg-3" *ngIf="isEditMode">

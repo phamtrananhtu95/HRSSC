@@ -211,6 +211,7 @@ export class JobContractComponent implements OnInit {
 
       if (this.isInvite) {
         // console.log("invite á em");
+        this.formContract.contractByContractId.latestEditorId = this.userId;
         this.employeeService.inviteHumanResource(this.formContract).subscribe(
           res => {
             // noti for invitation
@@ -235,13 +236,6 @@ export class JobContractComponent implements OnInit {
 
         this.projectService.applyResource(this.formContract).subscribe(
           res => {
-            // noti for appliances
-            let companyName = this.humanResource.companyByCompanyId.name;
-            let notiType = "Apply";
-            let msg = this.humanResource.fullname + " of " + companyName + "want to " + notiType + " " + " to " + this.project.title + " project";
-            let userId = this.project.userId;
-            this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
-
             this.router.navigate(['home']);
           },
           err => {

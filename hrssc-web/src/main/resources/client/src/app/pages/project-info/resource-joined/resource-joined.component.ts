@@ -14,6 +14,8 @@ export class ResourceJoinedComponent implements OnInit {
   public listResourceJoined = [];
   public userId: number;
 
+  public isKick = false;
+
   constructor(
     private route: ActivatedRoute,
     private prjService: ProjectService,
@@ -40,13 +42,31 @@ export class ResourceJoinedComponent implements OnInit {
     );
   }
 
+  releaseOrKick() {
+    this.isKick = true;
+    // console.log("aaaaaaaaaaa"+this.isRelease);
+  }
+
   releaseResource(jobId, projectId) {
-    // this.prjService.releaseResource(jobId, this.userId).subscribe(
-    //   res => {
-    //     this.getJoinedResource();
-    //     // this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
-    //   }
-    // )
-    // console.log(this.userId + "jobId: " + jobId);
+    if (this.isKick == true) {
+      // console.log("is kick");
+      this.prjService.kickresource(jobId, this.userId).subscribe(
+        res => {
+          this.getJoinedResource();
+          // this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
+        }
+      )
+    }
+    else {
+      // console.log("not kick");
+      this.prjService.releaseResource(jobId, this.userId).subscribe(
+        res => {
+          this.getJoinedResource();
+          // this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
+        }
+      )
+      console.log(this.userId + "jobId: " + jobId);
+    }
+
   }
 }
