@@ -12,6 +12,6 @@ public interface ContractService {
     Interaction loadContract(int interactionId) throws NotFoundException;
     String changeOffer(Contract contract);
     String acceptOffer(Contract contract);
-    String rejectOffer(Contract contract);
+    String rejectOffer(int contractId);
     List<ContractVersion> getContractVersionByContractId(int contractId);
 }

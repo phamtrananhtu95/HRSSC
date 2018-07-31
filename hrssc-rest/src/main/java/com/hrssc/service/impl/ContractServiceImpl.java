@@ -152,8 +152,8 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public String rejectOffer(Contract contract){
-        Contract rejectContract = contractRepository.findById(contract.getId());
+    public String rejectOffer(int contractId){
+        Contract rejectContract = contractRepository.findById(contractId);
         if (rejectContract != null){
             if(rejectContract.isAccepted()){
                 return "Cant remove accepted contract!";
