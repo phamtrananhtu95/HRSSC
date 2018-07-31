@@ -60,7 +60,7 @@
               <div class="form-group">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="unstyled-radio-left" checked="checked"> chưa tham gia vào dự án
+                    <input type="radio" name="unstyled-radio-left" (change)="isKick = !isKick"> chưa tham gia vào dự án
                   </label>
                 </div>
 
@@ -82,7 +82,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger">Release</button>
+              <button type="button" class="btn btn-danger" (click)="releaseResource(1,2)">Release</button>
             </div>
           </div>
         </div>
