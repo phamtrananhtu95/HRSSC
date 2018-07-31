@@ -10,7 +10,7 @@
       </div>
       <div class="media-right text-center">
         <a href="#">
-          <span>Invitations
+          <span>Appliances
             <span class="label bg-blue-400">{{resource?.countInvite}}</span>
           </span>
         </a>
@@ -24,14 +24,14 @@
         <img src="assets/images/FPT.jpg" alt="">
       </div>
       <div class="media-body">
-        <a>{{interaction?.projectByProjectId?.companyByCompanyId?.name}}</a>
-        <i>Invited him </i> to
+        
         <a href="#"> {{interaction?.projectByProjectId?.title}}</a>
-        <i> project </i>
+        <i> project of</i>
+        <a>{{interaction?.projectByProjectId?.companyByCompanyId?.name}}</a>
       </div>
       <div class="media-right">
         <!-- <button class="btn btn-success" (click)="acceptInvite(interaction?.projectByProjectId?.id, invitation?.id)">Accept</button> -->
-        <button class="btn btn-success" (click)="linkToContract(interaction?.id)">Link</button>
+        <button class="btn btn-success" (click)="linkToContract(interaction?.id)">Link to contract</button>
       </div>
     </div>
   </div>

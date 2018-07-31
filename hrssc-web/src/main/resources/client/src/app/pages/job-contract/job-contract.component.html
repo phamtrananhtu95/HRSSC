@@ -64,7 +64,7 @@
                         <div class="checkbox" style="padding-left: 10px">
                           <label>
                             <input [disabled]="isEditMode || !isEditable" type="checkbox" id="checkTerm" [checked]="isCheckTerm" (change)="onValueChangeCheckTerm($event)">
-                            <em class="text-danger">Term of agreement</em>
+                            <em class="text-danger">I agree with project's term</em>
                           </label>
                         </div>
                         <!-- <div class="media-right media-middle">
@@ -91,14 +91,14 @@
                       <button *ngIf="isEditable && !isEditMode" (click)="onChangeEditMode()" class="btn border-slate text-slate-800 btn-flat position-right">
                         <i class="icon-pencil6 position-left"></i>Edit</button>
                     </div>
-                    <div class="col-lg-6" *ngIf="isEditMode">
+                    <div class="col-lg-6" *ngIf="isEditMode && !composeContract">
                       <ng-select [options]="contractOpts" (selected)="loadContractByVersion()" [(ngModel)]="contractVersion" name="contractVer" placeholder="Select contract version"></ng-select>
                       <!-- <p>
                         Selected contract: {{contractVersion | json}}
                       </p> -->
                     </div>
 
-                    <div class="col-lg-3" *ngIf="isEditMode">
+                    <div class="col-lg-3" *ngIf="isEditMode && !composeContract">
                       <button type="button" class="btn btn-default btn-xs" (click)="revertVersionInfo()">
                         <b>
                           <i class="icon-reload-alt"></i>

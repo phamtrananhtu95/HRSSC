@@ -103,6 +103,18 @@
           </li>
         </ul>
       </li>
+
+      <li [hidden]="!checkRoleUI('manageCompanyInfo')">
+        <a href="#">
+          <i class="icon-users4"></i>
+          <span>Manage your company</span>
+        </a>
+        <ul>
+          <li>
+            <a [routerLink]="['company/info']">Manage company info</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

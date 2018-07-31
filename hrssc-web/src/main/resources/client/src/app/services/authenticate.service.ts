@@ -15,7 +15,7 @@ export class AuthenticateService {
   // Authen UI
   public roleUI = {
     1: ["manageCompany"],
-    2: ["manageResources", "manageProject", "feedBack", "manageManager"],
+    2: ["manageResources", "manageProject", "feedBack", "manageManager", "manageCompanyInfo"],
     3: ["manageResources", "manageProject", "feedBack"]
   };
 
