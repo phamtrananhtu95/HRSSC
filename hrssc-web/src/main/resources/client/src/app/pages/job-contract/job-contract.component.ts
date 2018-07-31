@@ -388,6 +388,6 @@ export class JobContractComponent implements OnInit {
       },
       err => {
         console.log(err);
-      }
+      })
     }
 }

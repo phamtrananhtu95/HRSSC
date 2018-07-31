@@ -34,8 +34,8 @@ export class ContractService {
     return this.restService.get(url);
   }
 
-  cancelOffer() {
-    let url = "contract/get-version/" + contractId;
+  cancelOffer(contractId) {
+    let url = "contract/reject-offer/" + contractId;
     return this.restService.get(url);
   }
 }
