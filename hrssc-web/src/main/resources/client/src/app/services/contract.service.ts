@@ -29,7 +29,12 @@ export class ContractService {
     return this.restService.post(url, formContract);
   }
 
-  loadContractVersions(contractId){
+  loadContractVersions(contractId) {
+    let url = "contract/get-version/" + contractId;
+    return this.restService.get(url);
+  }
+
+  cancelOffer() {
     let url = "contract/get-version/" + contractId;
     return this.restService.get(url);
   }

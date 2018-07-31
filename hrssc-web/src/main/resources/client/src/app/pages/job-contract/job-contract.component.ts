@@ -380,4 +380,14 @@ export class JobContractComponent implements OnInit {
     this.startDate = this.ConvertToDatetime(this.formContract.contractByContractId.startDate);
     this.endDate = this.ConvertToDatetime(this.formContract.contractByContractId.endDate);
   }
+
+  cancelOffer() {
+    this.contractService.cancelOffer(this.contractid).subscribe(
+      res => {
+        this.router.navigate(['home']);
+      },
+      err => {
+        console.log(err);
+      }
+    }
 }
