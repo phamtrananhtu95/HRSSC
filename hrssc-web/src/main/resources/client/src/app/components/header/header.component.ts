@@ -50,26 +50,15 @@ export class HeaderComponent implements OnInit {
     if(userId){
       this.header.setUserIdToHead(userId);
     }
-    
-
     this.interval = setInterval(() => {
       this.listLogNotify = this.chatService.getLogNotify();
       
       this.countNotify = this.listLogNotify.length;
     }, 2000);
-
-    
-    
-   
-    
   }
   ngOnChanges() {
     this.listLogNotify = this.chatService.getLogNotify();
     this.countNotify = this.listLogNotify.length;
     console.log(this.countNotify);
   }
-
-
-
-
 }

@@ -116,6 +116,8 @@ export class JobContractComponent implements OnInit {
   getContractInfo(invitationId) {
     this.contractService.getContractInfo(invitationId).subscribe(
       res => {
+        console.log(res);
+
         this.formContract = res;
         this.contractid = this.formContract.contractByContractId.id;
         this.isEditable = this.formContract.contractByContractId.latestEditorId !== this.userId;
@@ -248,6 +250,7 @@ export class JobContractComponent implements OnInit {
         );
       }
     } else {
+      let notiUserid = this.formContract.contractByContractId.latestEditorId;
       this.formContract.contractByContractId.latestEditorId = this.userId;
       this.contractService.changeOffer(this.formContract.contractByContractId).subscribe(
         res => {
@@ -255,9 +258,8 @@ export class JobContractComponent implements OnInit {
           // OFFER_DEALING
           let companyName = this.project.companyByCompanyId.name;
           let notiType = "Offer Dealing";
-          let userId = this.humanResource.userByUserId.id;
           let msg = "New " + notiType + " of " + companyName + " company at " + this.project.title + " project";
-          this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
+          this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, notiUserid);
 
           this.router.navigate(['manager/invitation']);
         },
@@ -271,10 +273,17 @@ export class JobContractComponent implements OnInit {
   acceptOffer() {
     this.formOffer.id = this.formContract.contractId;
     this.formOffer.latestEditorId = this.userId;
-    // console.log("----------" + JSON.stringify(this.formOffer));
+    // console.log("----------" + JSON.stringify(this.formOffer));));
+    let notiUserid = this.formContract.contractByContractId.latestEditorId;
+
+
 
     this.contractService.acceptOffer(this.formOffer).subscribe(
       res => {
+        let companyName = this.project.companyByCompanyId.name;
+        let notiType = "Accept offer";
+        let msg = "Accept offer";
+        this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, notiUserid);
         this.router.navigate(['home']);
       }
     );
@@ -285,15 +294,15 @@ export class JobContractComponent implements OnInit {
     this.contractService.loadContractVersions(this.contractid).subscribe(
       res => {
         this.contractOpts = [];
-        for(let i = res.length - 1; i >=0 ; i--){
+        for (let i = res.length - 1; i >= 0; i--) {
           let contractVer = res[i];
-                    // var dealDateParse = parseInt(contractVer.dealDate);
+          // var dealDateParse = parseInt(contractVer.dealDate);
           // var date = new Date(dealDateParse);
           var dateConvert = this.ConvertToDatetime(contractVer.dealDate * 1000);
           var dd = dateConvert.date.day;
           var mm = dateConvert.date.month;
           var yyyy = dateConvert.date.year;
-          var today = 'Version ' + (res.length-i) + ': ' + dd + '/' + mm + '/' + yyyy;
+          var today = 'Version ' + (res.length - i) + ': ' + dd + '/' + mm + '/' + yyyy;
 
           // console.log("deal:-----------" + version + " " + contractVer.dealDate);
           // console.log("Deal date-----------" + JSON.stringify(dateConvert));
@@ -354,7 +363,7 @@ export class JobContractComponent implements OnInit {
   // )
   // }
 
-  loadContractByVersion(){
+  loadContractByVersion() {
     this.formContract.contractByContractId.additionalTerms = this.contractVersion.additionalTerms;
     this.formContract.contractByContractId.salary = this.contractVersion.salary;
     this.formContract.contractByContractId.startDate = this.contractVersion.startDate;
@@ -362,12 +371,12 @@ export class JobContractComponent implements OnInit {
     this.convertDateForPicker();
   }
 
-  revertVersionInfo(){
+  revertVersionInfo() {
     this.formContract.contractByContractId = JSON.parse(JSON.stringify(this.currentVersionInfo));
     this.convertDateForPicker();
   }
 
-  private convertDateForPicker(){
+  private convertDateForPicker() {
     this.startDate = this.ConvertToDatetime(this.formContract.contractByContractId.startDate);
     this.endDate = this.ConvertToDatetime(this.formContract.contractByContractId.endDate);
   }

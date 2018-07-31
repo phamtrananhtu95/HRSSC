@@ -128,9 +128,9 @@
                 data-target="#modal_theme_info">
                 Apply
               </button>
-              <span *ngIf="isManager" style="font-size: 12px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : 'border-danger text-danger-600'"
+              <span *ngIf="isManager" style="font-size: 12px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : project.processStatus == 2 ? 'border-danger text-danger-600' : 'border-slate text-slate-600'"
                 class="label label-flat">
-                {{project.processStatus == 1 ? "PENDING" : "ON_GOING"}}</span>
+                {{project.processStatus == 1 ?  "PENDING" : project.processStatus == 2 ? "On_Going" : "FINISH"}}</span>
             </div>
           </div>
         </div>
