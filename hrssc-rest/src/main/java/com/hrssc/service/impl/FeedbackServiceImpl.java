@@ -9,6 +9,7 @@ import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.Math;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -34,6 +35,12 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Autowired
     AverageRatingRepository averageRatingRepository;
+
+    @Autowired
+    ContractRepository contractRepository;
+
+    @Autowired
+    ProjectRequirementRepository projectRequirementRepository;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -88,7 +95,6 @@ public class FeedbackServiceImpl implements FeedbackService {
             }
         }
 
-
         AverageRating averageRating = averageRatingRepository.findByHumanResourceId(humanResource.getId());
         if(averageRating == null){
             averageRating = new AverageRating();
@@ -104,8 +110,6 @@ public class FeedbackServiceImpl implements FeedbackService {
             averageRating.setAttendance(feedback.getAttendance());
             averageRating.setWorkAttitude(feedback.getWorkAttitude());
             averageRating.setAvgRating(feedback.getRating());
-            humanResource.setAvgRating(feedback.getRating());
-            humanResourceRepository.save(humanResource);
             averageRatingRepository.save(averageRating);
             return "Success!";
         }
@@ -115,35 +119,85 @@ public class FeedbackServiceImpl implements FeedbackService {
         float sumCo = 0;
         float sumAt = 0;
         float sumWA = 0;
-        float sumRating = 0;
         for (Job tmp : calcujobList) {
             Feedback tmpFb = feedbackRepository.findByJobId(tmp.getId());
             long tmpduration = (tmp.getLeaveDate() - tmp.getJoinedate())/86400;
             sumDuration += tmpduration;
-            sumJK += tmpFb.getJobKnowledge();
-            sumWQ += tmpFb.getWorkQuality();
-            sumCo += tmpFb.getCooperation();
-            sumAt += tmpFb.getAttendance();
-            sumWA += tmpFb.getWorkAttitude();
-            sumRating += (float)tmpFb.getRating() * tmpduration;
+            sumJK += tmpFb.getJobKnowledge()* tmpduration;
+            sumWQ += tmpFb.getWorkQuality()* tmpduration;
+            sumCo += tmpFb.getCooperation()* tmpduration;
+            sumAt += tmpFb.getAttendance()* tmpduration;
+            sumWA += tmpFb.getWorkAttitude()* tmpduration;
         }
-        int i = calcujobList.size();
-        double jobKnowleadge = sumJK/i;
-        double workQuality = sumWQ/i;
-        double cooperation = sumCo/i;
-        double attendance = sumAt/i;
-        double workAtitude = sumWA/i;
-        double avrRating = sumRating/sumDuration;
+        double jobKnowleadge = sumJK/sumDuration;
+        double workQuality = sumWQ/sumDuration;
+        double cooperation = sumCo/sumDuration;
+        double attendance = sumAt/sumDuration;
+        double workAtitude = sumWA/sumDuration;
+        double avrRating = (jobKnowleadge * 3 + workQuality *3 + cooperation * 2 + attendance + workAtitude)/10;
         averageRating.setJobKnowledge((double)Math.round(jobKnowleadge * 100)/100 );
         averageRating.setWorkQuality((double)Math.round(workQuality * 100)/100 );
         averageRating.setCooperation((double)Math.round(cooperation * 100)/100 );
         averageRating.setAttendance((double)Math.round(attendance * 100)/100 );
         averageRating.setWorkAttitude((double)Math.round(workAtitude * 100)/100 );
         averageRating.setAvgRating((double)Math.round(avrRating * 100)/100 );
-        humanResource.setAvgRating((double)Math.round(avrRating * 100)/100 );
-        humanResourceRepository.save(humanResource);
         averageRatingRepository.save(averageRating);
         return "Success!!";
+    }
+
+    public String calculateRanking(int resourceId, Feedback feedback){
+        HumanResource humanResource = humanResourceRepository.getById(resourceId);
+
+        Job job = jobRepository.findById(feedback.getJobId());
+        Contract contract = contractRepository.findById((int)job.getContractId());
+        long duration = (contract.getEndDate() - contract.getStartDate())/86400;
+        if (duration <= 0){
+            return "Sua contract startDate < endDate";
+        }
+        double exprience = 0;
+        double count = 0;
+        int count2 = 0;
+        List<SkillRequirements> skillRequirementsList = new ArrayList<>();
+        List<ProjectRequirements> projectRequirementsList = projectRequirementRepository.findByProjectId(job.getProjectId());
+        for (ProjectRequirements tmp: projectRequirementsList) {
+            skillRequirementsList.addAll(tmp.getSkillRequirementsById());
+        }
+        for (SkillRequirements tmpSR: skillRequirementsList) {
+            if(tmpSR.getExperience() < 20) {
+                count2++;
+                count += tmpSR.getExperience();
+            }
+        }
+        if(count2 != 0) {
+            exprience = count / skillRequirementsList.size();
+        }
+        if(exprience == 0){
+            return "Check project requirement and skillrequirement";
+        }
+
+        double jobscore = 1000 + (duration - 90) * 5 + (exprience - 2) * 50;
+        double humanScore = 900;
+        if(humanResource.getAvgRating() != 0){
+            humanScore = humanResource.getAvgRating();
+        }
+        float expect = expectScore(jobscore, humanResource.getAvgRating());
+        double actualScore = 0;
+        double K = 10 + 10 * (3 - feedback.getRating());
+        if(feedback.getRating() == 3){
+            K = 10;
+            actualScore = 0.5;
+        }
+        if (feedback.getRating() > 3){
+            K = 10 + 10 * (feedback.getRating() - 3);
+            actualScore = 1;
+        }
+
+        humanScore = humanScore + K * (actualScore - expect);
+        int i = (int) Math.round(humanScore);
+        humanResource.setAvgRating(i);
+
+        humanResourceRepository.save(humanResource);
+        return "Success";
     }
 
     public List<Project> loadAllProjectFeedBack(int userId){
@@ -186,5 +240,9 @@ public class FeedbackServiceImpl implements FeedbackService {
             }
         }
         return resultList;
+    }
+    public float expectScore(double jobScore, double humanScore)
+    {
+        return (float) (1.0 * 1.0 / (1 + 1.0 * Math.pow(10, 1.0 * (jobScore - humanScore) / 400)));
     }
 }

@@ -35,6 +35,7 @@ public class FeedbackController {
         Feedback newfeedback = feedbackService.addFeedback(feedback);
         Job job = jobRepository.findById(feedback.getJobId());
         ResponseStatus respon = new ResponseStatus(feedbackService.calculateAvrRating(job.getHumanResourceId(),newfeedback));
+        feedbackService.calculateRanking(job.getHumanResourceId(), newfeedback);
         return respon;
     }
 

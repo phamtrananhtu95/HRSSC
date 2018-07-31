@@ -12,5 +12,5 @@ public interface FeedbackService {
     List<Project> loadAllProjectFeedBack(int userId);
     List<Job> loadReoursceByProject(int projectId) throws Exception;
     String calculateAvrRating(int resourceId, Feedback feedback);
-
+    String calculateRanking(int resourceId, Feedback feedback);
     }
