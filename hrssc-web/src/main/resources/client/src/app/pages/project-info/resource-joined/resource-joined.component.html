@@ -39,8 +39,7 @@
       <div class="media-right media-middle">
         <!-- <span class="label label-primary">Joined</span> -->
 
-        <button type="button" class="btn btn-danger btn-xs" style="margin-top: 10px" data-toggle="modal" data-target="#modal_small"
-          (click)="releaseResource(x.id, x.projectId)">
+        <button type="button" class="btn btn-danger btn-xs" style="margin-top: 10px" data-toggle="modal" data-target="#modal_small">
           <i class="icon-cross2 position-left"></i>Release</button>
       </div>
 
@@ -82,7 +81,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger" (click)="releaseResource(1,2)">Release</button>
+              <button type="button" class="btn btn-danger" (click)="releaseResource(x.id)">Release</button>
             </div>
           </div>
         </div>
