@@ -45,9 +45,9 @@ public class ContractController {
         return response;
     }
 
-    @PostMapping("/reject-offer/")
-    public ResponseStatus rejectOffer(@RequestBody Contract contract){
-        ResponseStatus response = new ResponseStatus(contractService.rejectOffer(contract));
+    @GetMapping("/reject-offer/{contractId}")
+    public ResponseStatus rejectOffer(@PathVariable(value = "contractId") int contractId){
+        ResponseStatus response = new ResponseStatus(contractService.rejectOffer(contractId));
         return response;
     }
 

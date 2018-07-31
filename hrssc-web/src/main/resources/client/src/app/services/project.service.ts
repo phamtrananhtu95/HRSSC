@@ -87,7 +87,7 @@ export class ProjectService {
 
   // Kick resource
   kickresource(jobId, userId) {
-    let url = "reject-resource/" + jobId + "/" + userId;
+    let url = "manage-project/reject-resource/" + jobId + "/" + userId;
     return this.restService.get(url);
   }
 }

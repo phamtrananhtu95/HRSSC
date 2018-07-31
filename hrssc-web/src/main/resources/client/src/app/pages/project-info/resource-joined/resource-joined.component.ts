@@ -47,13 +47,13 @@ export class ResourceJoinedComponent implements OnInit {
     // console.log("aaaaaaaaaaa"+this.isRelease);
   }
 
-  releaseResource(jobId, projectId) {
+  releaseResource(jobId) {
     if (this.isKick == true) {
       // console.log("is kick");
       this.prjService.kickresource(jobId, this.userId).subscribe(
         res => {
           this.getJoinedResource();
-          // this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
+          (<any>$("#modal_small")).modal("hide");
         }
       )
     }
@@ -62,6 +62,7 @@ export class ResourceJoinedComponent implements OnInit {
       this.prjService.releaseResource(jobId, this.userId).subscribe(
         res => {
           this.getJoinedResource();
+          (<any>$("#modal_small")).modal("hide");
           // this.router.navigate(['rating'], { queryParams: { "projectId": projectId } });
         }
       )
