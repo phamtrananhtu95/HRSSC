@@ -3,6 +3,7 @@ package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.jacksonview.ApplianceView;
+import com.hrssc.domain.jacksonview.ContractView;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -10,16 +11,16 @@ import java.util.Objects;
 
 @Entity
 public class Contract {
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
     private int id;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
     private long createdDate;
     private Long acceptedDate;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
     private long startDate;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
     private long endDate;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
     private int salary;
     @JsonView(ApplianceView.ContractView.class)
     private String additionalTerms;

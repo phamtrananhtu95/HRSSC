@@ -12,4 +12,5 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
     List<Job> findByProjectId(int projectId);
     List<Job> findByProjectIdAndStatus(int projectId, int status);
     List<Job> findByHumanResourceIdAndStatus(int resourceId, int status);
+    List<Job> findByHumanResourceId(int resourceId);
 }

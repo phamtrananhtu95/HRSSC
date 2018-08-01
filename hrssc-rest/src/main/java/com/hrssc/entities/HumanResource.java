@@ -14,9 +14,9 @@ import java.util.Objects;
 public class HumanResource {
     @JsonView({HomeView.Resource.class,FeedbackView.projectFeedback.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private int id;
-    @JsonView({HomeView.Resource.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
+    @JsonView({ContractView.overview.class,HomeView.Resource.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private String fullname;
-    @JsonView({NotificationView.class,HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
+    @JsonView({ContractView.overview.class,NotificationView.class,HumanResourceView.overview.class,HumanResourceView.details.class,UserView.details.class})
     private int status;
     @JsonView({SimilarView.Resource.class,FeedbackView.resourceFeedback.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String email;

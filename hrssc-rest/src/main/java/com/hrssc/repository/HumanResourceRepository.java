@@ -27,6 +27,7 @@ public interface HumanResourceRepository extends JpaRepository<HumanResource, In
     List<HumanResource> findByCompanyId(int companyId);
     List<HumanResource> findByCompanyIdAndStatus(int companyId, int status);
     List<HumanResource> findByUserIdAndStatus(int userId, int status);
+    List<HumanResource> findByUserId(int userId);
 
 
     @Query("SELECT resource FROM human_resource resource " +

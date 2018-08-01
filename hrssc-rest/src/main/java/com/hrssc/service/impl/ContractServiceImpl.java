@@ -182,18 +182,19 @@ public class ContractServiceImpl implements ContractService {
         return resultList;
     }
 
-    public String endContract(int jobId){
+    @Transactional
+    public boolean endContract(int jobId, int userId){
         Job job = jobRepository.findById(jobId);
         if(job == null){
-            return "Job Not Found";
+            return false;
         }
         HumanResource resource = humanResourceRepository.getById(job.getHumanResourceId());
         if (resource == null){
-            return "Resource not found";
+            return false;
         }
         Project project = projectRepository.findById(job.getProjectId());
         if(project == null){
-            return "Project not found";
+            return false;
         }
 
         job.setStatus(Constant.JobStatus.CANCEL);
@@ -206,6 +207,35 @@ public class ContractServiceImpl implements ContractService {
 
         resource.setStatus(Constant.ResourceStatus.INACTIVE);
         humanResourceRepository.save(resource);
-        return "Success";
+        if(project.getUserId() == userId) {
+            return true;
+        }
+        return false;
+    }
+
+    public List<Job> loadAllContractResource(int userId){
+        List<Job> jobList = new ArrayList<>();
+
+        List<HumanResource> resourceList = humanResourceRepository.findByUserId(userId);
+        if (!resourceList.isEmpty()) {
+            for (HumanResource tmp : resourceList) {
+                jobList.addAll(jobRepository.findByHumanResourceId(tmp.getId()));
+            }
+        }
+        return jobList;
+    }
+
+    public List<Job> loadAllContractProject(int userId){
+        List<Job> jobList = new ArrayList<>();
+
+        List<Project> projectList = projectRepository.findByUserId(userId);
+        if (!projectList.isEmpty()){
+            for (Project tmp: projectList) {
+                jobList.addAll(jobRepository.findByProjectId(tmp.getId()));
+            }
+        }
+
+        return jobList;
+
     }
 }

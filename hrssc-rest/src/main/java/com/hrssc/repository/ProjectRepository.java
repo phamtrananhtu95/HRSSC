@@ -18,6 +18,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findByCompanyIdAndRequestStatus(int companyId, int requestStatus);
     List<Project> findByUserIdAndRequestStatus(int managerId, int status);
     List<Project> findByUserIdAndProcessStatus(int userId, int status);
+    List<Project> findByUserId(int userId);
 
     @Query("SELECT prj FROM project prj " +
             "WHERE prj.companyId <>:companyId " +

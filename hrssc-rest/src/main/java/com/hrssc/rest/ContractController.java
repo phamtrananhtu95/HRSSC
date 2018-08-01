@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.ApplianceView;
 import com.hrssc.domain.jacksonview.ContractView;
-import com.hrssc.entities.ChatLog;
-import com.hrssc.entities.Contract;
-import com.hrssc.entities.ContractVersion;
-import com.hrssc.entities.Interaction;
+import com.hrssc.entities.*;
 import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.ChatService;
 import com.hrssc.service.ContractService;
@@ -68,11 +65,23 @@ public class ContractController {
     }
 
     @GetMapping("/cancel-contract/{jobId}/{userId}")
-    public String cancelContract(@PathVariable(value = "jobId") int jobId,
+    public boolean cancelContract(@PathVariable(value = "jobId") int jobId,
                                  @PathVariable(value = "userId") int userId){
         if(!authorizationService.checkRoleReject(jobId, userId)){
-            return null;
+            return false;
         }
-        return contractService.endContract(jobId);
+        return contractService.endContract(jobId, userId);
+    }
+
+    @JsonView()
+    @GetMapping("/load-all-resource-contract/{userId}")
+    public List<Job> loadResourceContract(@PathVariable(value = "userId") int userId){
+        return contractService.loadAllContractResource(userId);
+    }
+
+
+    @GetMapping("/load-all-project-contract/{userId}")
+    public List<Job> loadProjectContract(@PathVariable(value = "userId") int userId){
+        return contractService.loadAllContractProject(userId);
     }
 }

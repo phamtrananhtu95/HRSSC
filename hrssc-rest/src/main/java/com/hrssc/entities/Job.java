@@ -1,6 +1,7 @@
 package com.hrssc.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.ContractView;
 import com.hrssc.domain.jacksonview.FeedbackView;
 import com.hrssc.domain.jacksonview.HumanResourceView;
 import com.hrssc.domain.jacksonview.JobView;
@@ -11,23 +12,25 @@ import java.util.Objects;
 
 @Entity
 public class Job {
-    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class})
+    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private int id;
-    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class})
+    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private int humanResourceId;
 
-    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class})
+    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private HumanResource humanResourceByHumanResourceId;
     @JsonView({JobView.JoinedResource.class,HumanResourceView.history.class,FeedbackView.projectFeedback.class})
     private long joinedate;
     private long leaveDate;
 
-    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class})
+    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class,ContractView.overview.class})
     private int projectId;
-    @JsonView(HumanResourceView.history.class)
+    @JsonView({HumanResourceView.history.class,ContractView.overview.class})
     private Project projectByProjectId;
     private int status;
+    @JsonView(ContractView.overview.class)
     private Contract contractByContractId;
+    @JsonView(ContractView.overview.class)
     private Integer contractId;
     private Collection<Feedback> feedbacksById;
 
