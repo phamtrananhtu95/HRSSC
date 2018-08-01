@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("contractService")
@@ -136,6 +137,13 @@ public class ContractServiceImpl implements ContractService {
         }
 
         List<Job> listJob = jobRepository.findByProjectId(project.getId());
+        List<Job> checkList = new ArrayList<>();
+        for (Job tmp: listJob) {
+            if(tmp.getStatus() == Constant.JobStatus.CANCEL){
+                checkList.add(tmp);
+            }
+        }
+        listJob.removeAll(checkList);
         //Full thi doi status, xoa interaction + contract cua project;
         if(countSlot == listJob.size()){
             project.setRequestStatus(Constant.RequestStatus.CLOSED);
@@ -172,5 +180,32 @@ public class ContractServiceImpl implements ContractService {
     public List<ContractVersion> getContractVersionByContractId(int contractId){
         List<ContractVersion> resultList  = contractVersionRepository.findByContractId(contractId);
         return resultList;
+    }
+
+    public String endContract(int jobId){
+        Job job = jobRepository.findById(jobId);
+        if(job == null){
+            return "Job Not Found";
+        }
+        HumanResource resource = humanResourceRepository.getById(job.getHumanResourceId());
+        if (resource == null){
+            return "Resource not found";
+        }
+        Project project = projectRepository.findById(job.getProjectId());
+        if(project == null){
+            return "Project not found";
+        }
+
+        job.setStatus(Constant.JobStatus.CANCEL);
+        long currentTime = System.currentTimeMillis()/1000;
+        job.setLeaveDate(currentTime);
+        jobRepository.save(job);
+
+        project.setRequestStatus(Constant.RequestStatus.OPENNING);
+        projectRepository.save(project);
+
+        resource.setStatus(Constant.ResourceStatus.INACTIVE);
+        humanResourceRepository.save(resource);
+        return "Success";
     }
 }

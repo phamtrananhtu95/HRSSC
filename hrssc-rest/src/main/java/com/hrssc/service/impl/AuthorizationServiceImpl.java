@@ -177,10 +177,20 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         if (project == null){
             return false;
         }
+
         if (user.getRoleId() == Constant.UserRole.CHIEF && user.getCompanyId() == project.getCompanyId()){
             return true;
         }
-        if (project.getUserId() == userId){
+
+        HumanResource resource = resourceRepo.getById(job.getHumanResourceId());
+        if (resource == null){
+            return false;
+        }
+        if (user.getRoleId() == Constant.UserRole.CHIEF && user.getCompanyId() == resource.getCompanyId()){
+            return true;
+        }
+
+        if (project.getUserId() == userId || resource.getUserId() == userId){
             return true;
         }
         return false;

@@ -59,6 +59,7 @@ public class Constant {
 		public static final int PENDING = 1;
 		public static final int ON_GOING = 2;
 		public static final int FINISHED = 3;
+		public static final int CANCEL = 4;
 	}
 	public class NotificationType{
 		public static final String APPLY = "Apply";

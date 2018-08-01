@@ -14,4 +14,5 @@ public interface ContractService {
     String acceptOffer(Contract contract);
     String rejectOffer(int contractId);
     List<ContractVersion> getContractVersionByContractId(int contractId);
+    String endContract(int jobId);
 }

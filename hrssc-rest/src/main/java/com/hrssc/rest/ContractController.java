@@ -8,6 +8,7 @@ import com.hrssc.entities.ChatLog;
 import com.hrssc.entities.Contract;
 import com.hrssc.entities.ContractVersion;
 import com.hrssc.entities.Interaction;
+import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.ChatService;
 import com.hrssc.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class ContractController {
 
     @Autowired
     ChatService chatService;
+
+    @Autowired
+    AuthorizationService authorizationService;
 
     @JsonView(ApplianceView.ContractView.class)
     @GetMapping("/get-contract/{interactionId}")
@@ -63,4 +67,12 @@ public class ContractController {
         return contractService.getContractVersionByContractId(contractId);
     }
 
+    @GetMapping("/cancel-contract/{jobId}/{userId}")
+    public String cancelContract(@PathVariable(value = "jobId") int jobId,
+                                 @PathVariable(value = "userId") int userId){
+        if(!authorizationService.checkRoleReject(jobId, userId)){
+            return null;
+        }
+        return contractService.endContract(jobId);
+    }
 }
