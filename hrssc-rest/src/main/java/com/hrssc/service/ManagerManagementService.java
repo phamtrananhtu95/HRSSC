@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.hrssc.domain.dto.ManagerDto;
 import com.hrssc.domain.dto.UserDto;
+import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Project;
 import com.hrssc.entities.User;
 import javassist.NotFoundException;
 
@@ -43,4 +45,6 @@ public interface ManagerManagementService {
 	User viewManagerDetails(int id) throws NotFoundException;
 
 	List<ManagerDto> getManagersByCompanyId(int companyId);
+	List<HumanResource> getManagerResource(int userId);
+	List<Project> getManagerProject(int userId);
 }

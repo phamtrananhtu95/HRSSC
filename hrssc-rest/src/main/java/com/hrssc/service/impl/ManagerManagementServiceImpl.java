@@ -1,7 +1,11 @@
 package com.hrssc.service.impl;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Project;
 import com.hrssc.entities.User;
+import com.hrssc.repository.HumanResourceRepository;
+import com.hrssc.repository.ProjectRepository;
 import com.hrssc.repository.UserRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,13 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+
+	@Autowired
+    private ProjectRepository projectRepository;
+
+	@Autowired
+    private HumanResourceRepository humanResourceRepository;
 
 	public User getManagerById(int id) {
         User user = userRepository.findByIdAndRoleId(id,Constant.UserRole.MANAGER);
@@ -120,5 +131,12 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 			return userDetails;
 
 	}
+
+	public List<HumanResource> getManagerResource(int userId){
+        return humanResourceRepository.findByUserIdAndStatus(userId,Constant.ResourceStatus.AVAILABLE);
+    }
+    public List<Project> getManagerProject(int userId){
+        return projectRepository.findByUserIdAndRequestStatus(userId,Constant.RequestStatus.OPENNING);
+    }
 
 }

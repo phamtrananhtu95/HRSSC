@@ -1,7 +1,11 @@
 package com.hrssc.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.jacksonview.HumanResourceView;
+import com.hrssc.domain.jacksonview.ProjectView;
 import com.hrssc.domain.jacksonview.UserView;
+import com.hrssc.entities.HumanResource;
+import com.hrssc.entities.Project;
 import com.hrssc.entities.User;
 
 import java.util.List;
@@ -69,4 +73,17 @@ public class ManagerManagementController {
 	public User viewManagerDetails(@PathVariable("UserId") int userId) throws NotFoundException {
 			return userService.viewManagerDetails(userId);
 	}
+
+	@JsonView(HumanResourceView.overview.class)
+	@GetMapping(value = "/resource-list/{userId}")
+	public List<HumanResource> getManagerResources(@PathVariable(value = "userId") int userId){
+		return userService.getManagerResource(userId);
+	}
+
+	@JsonView(ProjectView.ListView.class)
+	@GetMapping(value = "/project-list/{userId}")
+	public List<Project> getManagerProjects(@PathVariable(value = "userId") int userId){
+		return userService.getManagerProject(userId);
+	}
 }
+
