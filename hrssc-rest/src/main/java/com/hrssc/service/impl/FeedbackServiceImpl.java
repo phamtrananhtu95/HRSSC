@@ -47,13 +47,11 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 
     public List<Feedback> loadAllFeedback(int resourceId){
-        List<Job> jobList = jobRepository.findByHumanResourceIdAndStatus(resourceId, Constant.JobStatus.FINISHED);
+        List<Job> jobList = jobRepository.findByHumanResourceId(resourceId);
         List<Feedback> resultList = new ArrayList<>();
         for (Job jobtmp: jobList) {
             List<Feedback> feedbackList = (List<Feedback>) jobtmp.getFeedbacksById();
             if(!feedbackList.isEmpty()){
-                long curentime = System.currentTimeMillis()/1000;
-                jobtmp.setLeaveDate(curentime);
                 long duration = (jobtmp.getLeaveDate() - jobtmp.getJoinedate())/86400;
                 jobtmp.setJoinedate(duration);
                 resultList.addAll(feedbackList);
@@ -66,7 +64,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Transactional
     public Feedback addFeedback (Feedback feedback) throws Exception{
         Job checkjob = jobRepository.findById(feedback.getJobId());
-        if(checkjob == null || checkjob.getStatus() != Constant.JobStatus.FINISHED){
+        if(checkjob == null || checkjob.getStatus() == Constant.JobStatus.PENDING || checkjob.getStatus() == Constant.JobStatus.ON_GOING){
             throw new NotFoundException("Job not exist or not yet finish! ");
         //    return "Job not exist or not yet finish!";
         }
