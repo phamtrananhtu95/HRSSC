@@ -12,7 +12,7 @@ import { Company } from '../../models';
 export class CompanyInfoComponent implements OnInit {
   public parentTitle = "Home";
   public title = " - Company info";
-  public titleLink = " / Compani info";
+  public titleLink = " / Company info";
 
   // ==========================
   public companyId: number;

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ManagerDto {
+	private Integer id;
 	private String fullname;
 	private String password;
 	private String username;
@@ -23,6 +24,7 @@ public class ManagerDto {
 	private Integer companyId;
 	
 	public ManagerDto(User user) {
+		this.id = user.getId();
 		this.fullname = user.getFullname();
 		this.username = user.getUsername();
 		this.email = user.getEmail();
