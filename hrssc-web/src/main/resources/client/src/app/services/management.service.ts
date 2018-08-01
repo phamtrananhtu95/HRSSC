@@ -21,4 +21,9 @@ export class ManagementService {
     let url = 'manage-manager/update';
     return this.restService.post(url, manager);
   }
+
+  getManagerById(id) {
+    let url = 'manage-manager/details/' + id;
+    return this.restService.get(url);
+  }
 }

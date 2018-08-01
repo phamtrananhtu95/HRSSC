@@ -96,6 +96,7 @@ import { SearchService } from './services/search.service';
 import { RatingComponent } from './pages/rating/rating.component';
 import { FeedbackProjectComponent } from './pages/feedback-project/feedback-project.component';
 import { NotificationService } from './services/notification.service';
+import { ManagerInfoComponent } from './pages/chef-manage-account-manager/manager-info/manager-info.component';
 
 const appRoutes: Routes = [
 
@@ -160,6 +161,11 @@ const appRoutes: Routes = [
     data: { title: 'Resource info for nomal user watch' }
   },
   {
+    path: 'chief/manage/manager-info',
+    component: ManagerInfoComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
     path: 'admin/manage/company',
     component: AdminManageCompanyComponent,
     data: { title: 'Resource info for nomal user watch' }
@@ -194,6 +200,7 @@ const appRoutes: Routes = [
     component: FeedbackProjectComponent,
     data: { title: 'Resource info for nomal user watch' }
   },
+
   {
     path: '',
     redirectTo: '/home',
@@ -256,7 +263,8 @@ const appRoutes: Routes = [
     ApplianceContractComponent,
     InvitationContractComponent,
     RatingComponent,
-    FeedbackProjectComponent
+    FeedbackProjectComponent,
+    ManagerInfoComponent
   ],
   imports: [
     BrowserModule,

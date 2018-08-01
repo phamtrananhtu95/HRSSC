@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ManagementService } from '../../services/management.service';
 import { User } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chef-manage-account-manager',
@@ -23,7 +24,8 @@ export class ChefManageAccountManagerComponent implements OnInit {
 
   constructor(
     private managementService: ManagementService,
-    private authenticateService: AuthenticateService
+    private authenticateService: AuthenticateService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -69,5 +71,11 @@ export class ChefManageAccountManagerComponent implements OnInit {
     this.isEditForm = true;
     this.editManagerModel = manager;
     this.editManagerModel.companyId = this.companyId;
+  }
+
+  viewManagerDetail(id){
+    // console.log(id);
+    
+    this.router.navigate(['chief/manage/manager-info'], { queryParams: { "id": id } });
   }
 }

@@ -33,7 +33,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let manager of managers">
+            <tr *ngFor="let manager of managers" (click)="viewManagerDetail(manager.id)">
               <td>
                 <!-- <a href="">FPT Software</a> -->
                 {{manager.fullname}}

@@ -55,10 +55,10 @@ export class RatingComponent implements OnInit {
     this.employeeService.feedbackResource(this.feedbackForm).subscribe(
       res => {
         // this.reloadHumanList.emit();
-        
+
         // Noti for feedback
         let notiType = "Feedback Committed";
-        let msg = "Feedback";
+        let msg = "Feedback ";
         let userId = humanResource.humanResourceByHumanResourceId.userByUserId.id;
         this.chatService.sendNotify(msg, notiType, this.projectId, humanResource.humanResourceId, userId);
 
