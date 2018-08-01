@@ -196,7 +196,10 @@ public class ContractServiceImpl implements ContractService {
         if(project == null){
             return false;
         }
-
+        boolean check = false;
+        if (job.getStatus() == Constant.JobStatus.ON_GOING){
+            check = true;
+        }
         job.setStatus(Constant.JobStatus.CANCEL);
         long currentTime = System.currentTimeMillis()/1000;
         job.setLeaveDate(currentTime);
@@ -208,7 +211,7 @@ public class ContractServiceImpl implements ContractService {
         resource.setStatus(Constant.ResourceStatus.INACTIVE);
         humanResourceRepository.save(resource);
         if(project.getUserId() == userId) {
-            return true;
+            return check;
         }
         return false;
     }

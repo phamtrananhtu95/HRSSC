@@ -73,13 +73,13 @@ public class ContractController {
         return contractService.endContract(jobId, userId);
     }
 
-    @JsonView()
+    @JsonView(ContractView.overview.class)
     @GetMapping("/load-all-resource-contract/{userId}")
     public List<Job> loadResourceContract(@PathVariable(value = "userId") int userId){
         return contractService.loadAllContractResource(userId);
     }
 
-
+    @JsonView(ContractView.overview.class)
     @GetMapping("/load-all-project-contract/{userId}")
     public List<Job> loadProjectContract(@PathVariable(value = "userId") int userId){
         return contractService.loadAllContractProject(userId);
