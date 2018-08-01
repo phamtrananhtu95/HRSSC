@@ -33,6 +33,7 @@ export class ResourceInfoComponent implements OnInit {
   public cooperation: number;
   public attendance: number;
   public workAttitude: number;
+  public avgRating: number;
 
   @ViewChild(ProjectMatchingComponent) projectMatchingComponent: ProjectMatchingComponent;  //call event child
 
@@ -90,6 +91,7 @@ export class ResourceInfoComponent implements OnInit {
           this.cooperation = element.cooperation;
           this.attendance = element.attendance;
           this.workAttitude = element.workAttitude;
+          this.avgRating = element.avgRating;
 
           // let ecec = this.ratingDetailHuman.jobKnowledge;
           // console.log("aaaaaaaa"+JSON.stringify(this.ratingDetailHuman));
