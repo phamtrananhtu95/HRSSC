@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Company } from '../../../models';
 import { CompaniesService } from '../../../services/companies.service';
 
@@ -9,6 +9,7 @@ import { CompaniesService } from '../../../services/companies.service';
 })
 export class CompanyProfileComponent implements OnInit {
   @Input() company: Company;
+  @Output() reloadCompanyInfo: EventEmitter<any> = new EventEmitter();
 
   public companiesInfo: Company;
 
@@ -31,6 +32,7 @@ export class CompanyProfileComponent implements OnInit {
   updateCompany() {
     this.companyService.updateCompany(this.companiesInfo).subscribe(
       res => {
+        this.reloadCompanyInfo.emit();
       },
       err => {
 

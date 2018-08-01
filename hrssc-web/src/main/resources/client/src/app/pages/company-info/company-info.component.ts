@@ -25,15 +25,28 @@ export class CompanyInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private companyService: CompaniesService
 
-  ) { }
-
-  ngOnInit() {
-    if (this.auth.checkLogin()) {
+  ) {
+    this.route.queryParams.subscribe(param => {
       this.companyId = this.route.snapshot.queryParams['id'];
+      if(this.companyId == undefined){
+          this.companyId = this.auth.getCompanyId();        
+      }
       this.userId = this.auth.getUserId();
       this.getCompanyInfo();
       this.getOpeningProject(this.userId, this.companyId);
-    }
+    });
+   }
+
+  ngOnInit() {
+    // if (this.auth.checkLogin()) {
+    //   this.companyId = this.route.snapshot.queryParams['id'];
+    //   if(this.companyId == undefined){
+    //       this.companyId = this.auth.getCompanyId();        
+    //   }
+    //   this.userId = this.auth.getUserId();
+    //   this.getCompanyInfo();
+    //   this.getOpeningProject(this.userId, this.companyId);
+    // }
   }
 
   getCompanyInfo(){
@@ -51,7 +64,6 @@ export class CompanyInfoComponent implements OnInit {
     this.companyService.getOpeningProject(userId, companyId).subscribe(
       res => {
         this.openProjects = res;
-        console.log(this.openProjects);
       },
       err => {
 

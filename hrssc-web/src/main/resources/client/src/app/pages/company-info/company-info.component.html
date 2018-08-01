@@ -465,7 +465,7 @@
 
           <!-- Update Profile updateProfile -->
           <div class="tab-pane fade" id="updateProfile">
-            <app-company-profile [company]="company"></app-company-profile>
+            <app-company-profile (reloadCompanyInfo)="getCompanyInfo()"  [company]="company"></app-company-profile>
           </div>
         </div>
       </div>

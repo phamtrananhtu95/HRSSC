@@ -64,7 +64,7 @@ export class ProjectSimilarComponent implements OnInit {
 
   navigateProject(id) {
     this.router.navigate(['manager/project/info'], { queryParams: { "id": id } });
-    window.location.reload();
+    // window.location.reload();
   }
 
   removeDuplicateUsingSet(arr) {

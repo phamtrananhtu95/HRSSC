@@ -27,14 +27,20 @@ export class ProjectInfoComponent implements OnInit {
     private auth: AuthenticateService,
     private prjService: ProjectService,
     private empService: EmployeeService
-  ) { }
-
-  ngOnInit() {
-    if (this.auth.checkLogin()) {
-      this.projectId = this.route.snapshot.queryParams['id'];
+  ) { 
+    this.route.queryParams.subscribe(param => {
+      this.projectId= this.route.snapshot.queryParams['id'];
       this.userId = this.auth.getUserId();
       this.getProjectById();
-    }
+    });
+  }
+
+  ngOnInit() {
+    // if (this.auth.checkLogin()) {
+    //   this.projectId = this.route.snapshot.queryParams['id'];
+    //   this.userId = this.auth.getUserId();
+    //   this.getProjectById();
+    // }
   }
 
   getProjectById() {
