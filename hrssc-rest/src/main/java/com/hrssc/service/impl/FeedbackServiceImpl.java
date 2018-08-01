@@ -121,7 +121,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         float sumWA = 0;
         for (Job tmp : calcujobList) {
             Feedback tmpFb = feedbackRepository.findByJobId(tmp.getId());
-            long tmpduration = (tmp.getLeaveDate() - tmp.getJoinedate())/86400;
+            Contract tmpContract = contractRepository.findById((int)tmp.getContractId());
+            long tmpduration = (tmpContract.getEndDate() - tmpContract.getStartDate())/86400;
             sumDuration += tmpduration;
             sumJK += tmpFb.getJobKnowledge()* tmpduration;
             sumWQ += tmpFb.getWorkQuality()* tmpduration;
@@ -154,7 +155,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         if (duration <= 0){
             return "Sua contract startDate < endDate";
         }
-        double exprience = 0;
+        double experience = 0;
         double count = 0;
         int count2 = 0;
         List<SkillRequirements> skillRequirementsList = new ArrayList<>();
@@ -169,26 +170,26 @@ public class FeedbackServiceImpl implements FeedbackService {
             }
         }
         if(count2 != 0) {
-            exprience = count / skillRequirementsList.size();
+            experience = count / count2;
         }
-        if(exprience == 0){
-            return "Check project requirement and skillrequirement";
+        if(experience == 0){
+            return "Check project requirement and skill requirement";
         }
 
-        double jobscore = 1000 + (duration - 90) * 5 + (exprience - 2) * 50;
+        double jobScore = 1000 + (duration - 90) * 5 + (experience - 1) * 50;
         double humanScore = 900;
         if(humanResource.getAvgRating() != 0){
             humanScore = humanResource.getAvgRating();
         }
-        float expect = expectScore(jobscore, humanResource.getAvgRating());
+        float expect = expectScore(jobScore, humanScore);
         double actualScore = 0;
-        double K = 10 + 10 * (3 - feedback.getRating());
+        double K = 10 + 20 * (3 - feedback.getRating());
         if(feedback.getRating() == 3){
             K = 10;
             actualScore = 0.5;
         }
         if (feedback.getRating() > 3){
-            K = 10 + 10 * (feedback.getRating() - 3);
+            K = 10 + 20 * (feedback.getRating() - 3);
             actualScore = 1;
         }
 

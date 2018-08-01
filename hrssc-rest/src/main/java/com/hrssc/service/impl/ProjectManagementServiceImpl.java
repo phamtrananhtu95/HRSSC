@@ -403,6 +403,14 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         job.setStatus(Constant.JobStatus.FINISHED);
         jobRepository.save(job);
 
+        //Contract
+        Contract contract = contractRepository.findById((int)job.getContractId());
+        long currentTime = System.currentTimeMillis()/1000;
+        if(currentTime < contract.getEndDate()){
+            contract.setEndDate(currentTime);
+        }
+        contractRepository.save(contract);
+
         //Release resource
         resource.setStatus(Constant.ResourceStatus.INACTIVE);
         humanResourceRepository.save(resource);
