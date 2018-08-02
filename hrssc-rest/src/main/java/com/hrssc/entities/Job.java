@@ -17,7 +17,7 @@ public class Job {
     @JsonView({JobView.JoinedResource.class,ContractView.detail.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private int humanResourceId;
 
-    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
+    @JsonView({JobView.JoinedResource.class,ContractView.detail.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private HumanResource humanResourceByHumanResourceId;
     @JsonView({JobView.JoinedResource.class,HumanResourceView.history.class,FeedbackView.projectFeedback.class})
     private long joinedate;
@@ -25,7 +25,7 @@ public class Job {
 
     @JsonView({HumanResourceView.history.class,ContractView.detail.class,JobView.JoinedResource.class,ContractView.overview.class})
     private int projectId;
-    @JsonView({HumanResourceView.history.class,ContractView.overview.class})
+    @JsonView({HumanResourceView.history.class,ContractView.detail.class,ContractView.overview.class})
     private Project projectByProjectId;
     @JsonView({ContractView.overview.class,ContractView.detail.class})
     private int status;

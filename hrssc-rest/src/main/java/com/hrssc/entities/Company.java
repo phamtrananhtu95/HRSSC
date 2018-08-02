@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Company {
     @JsonView({HomeView.Company.class,FeedbackView.projectFeedback.class,CompanyView.info.class,MatchingView.Resource.class,MatchingView.Project.class,ProjectView.details.class,HumanResourceView.details.class})
     private int id;
-    @JsonView({ContractView.overview.class,HomeView.Company.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,HomeView.Project.class,HomeView.Resource.class,SimilarView.Resource.class,SimilarView.Project.class,ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({ContractView.overview.class,ContractView.detail.class,HomeView.Company.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,HomeView.Project.class,HomeView.Resource.class,SimilarView.Resource.class,SimilarView.Project.class,ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class,FeedbackView.loadAllview.class})
     private String name;
     @JsonView(CompanyView.info.class)
     private String address;
