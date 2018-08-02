@@ -27,6 +27,7 @@ public class Job {
     private int projectId;
     @JsonView({HumanResourceView.history.class,ContractView.overview.class})
     private Project projectByProjectId;
+    @JsonView(ContractView.overview.class)
     private int status;
     @JsonView(ContractView.overview.class)
     private Contract contractByContractId;
