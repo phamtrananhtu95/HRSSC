@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractService } from '../../services/contract.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-resource-contract',
@@ -19,6 +20,7 @@ export class ManageResourceContractComponent implements OnInit {
 
   constructor(
     private contractService: ContractService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,16 @@ export class ManageResourceContractComponent implements OnInit {
         this.resourceContracts = res;
       }
     );
+  }
+
+  viewContractDetail(jobId) {
+    this.router.navigate(['manage/contract/view'], { queryParams: { "id": jobId } });
+
+    // this.contractService.loadContractInfo(jobId).subscribe(
+    //   res => {
+    //     this.router.navigate(['manager/contract/view'], { queryParams: { "id": jobId } });
+    //   }
+    // )
   }
 
 }

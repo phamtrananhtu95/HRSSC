@@ -79,22 +79,23 @@
             <th>Start date</th>
             <th>End date</th>
             <th>Status</th>
-            <th>#</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
 
-          <tr *ngFor="let resourceContract of resourceContracts" (click)="viewHumanResourceDetail(humanResources.id)">
+          <tr *ngFor="let resourceContract of resourceContracts">
             <td>{{resourceContract?.humanResourceByHumanResourceId?.fullname}}</td>
             <td>{{resourceContract?.projectByProjectId?.title}}</td>
             <td>{{resourceContract?.contractByContractId?.startDate | date:'dd/MM/yyyy' }}</td>
             <td>{{resourceContract?.contractByContractId?.endDate | date:'dd/MM/yyyy' }}</td>
             <td>
-              <span class="label">
-                aaa</span>
+              <span class="label" [ngClass]="resourceContract.status == 1 ? 'bg-blue-400' : resourceContract.status == 2 ? 'bg-green-400' : resourceContract.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
+                {{resourceContract.status == 1 ? "PENDING" : resourceContract.status == 2 ? "ON GOING" : resourceContract.status == 3 ? "FINISH"
+                : "CANCEL"}}</span>
             </td>
-            <td class="text-left">
-                
+            <td class="text-center" (click)="viewContractDetail(resourceContract.id)">
+              <i class="icon-eye"></i>
             </td>
           </tr>
         </tbody>

@@ -44,4 +44,10 @@ export class ContractService {
     let url = "contract/load-all-resource-contract/" + managerId;
     return this.restService.get(url);
   }
+
+  // Load contract info (just for view)
+  loadContractInfo(jobId) {
+    let url = 'contract/get-contract/' + jobId;
+    return this.restService.get(url);
+  }
 }
