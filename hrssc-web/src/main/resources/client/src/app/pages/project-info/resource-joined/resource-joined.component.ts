@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../../services/project.service';
 import { AuthenticateService } from '../../../services/authenticate.service';
+import { Feedback } from '../../../models/feedback.model';
+import { EmployeeService } from '../../../services/employee.service';
+import { ChatService } from '../../../services/chat.service';
 
 @Component({
   selector: 'app-resource-joined',
@@ -13,6 +16,7 @@ export class ResourceJoinedComponent implements OnInit {
   public projectId: number;
   public listResourceJoined = [];
   public userId: number;
+  public feedbackForm = new Feedback();
 
   public isKick = false;
 
@@ -21,6 +25,8 @@ export class ResourceJoinedComponent implements OnInit {
     private prjService: ProjectService,
     private authen: AuthenticateService,
     private router: Router,
+    private employeeService: EmployeeService,
+    private chatService: ChatService
   ) {
     this.userId = this.authen.getUserId();
   }
@@ -41,6 +47,50 @@ export class ResourceJoinedComponent implements OnInit {
       }
     );
   }
+
+  cancelHumanResource(jobId) {
+    this.prjService.cancelHumanResource(jobId, this.userId).subscribe(
+      res => {
+        if (res == true) {
+
+          (<any>$("#ratingHumanResource")).modal("show");
+        } else {
+          this.getJoinedResource();
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  feedbackResource(jobId) {
+
+    this.feedbackForm.userId = this.userId;
+    this.feedbackForm.jobId = jobId;
+
+    // let companyName = humanResource.humanResourceByHumanResourceId.companyByCompanyId.name;
+
+    this.employeeService.feedbackResource(this.feedbackForm).subscribe(
+      res => {
+
+        // Noti for feedback
+        // let notiType = "Feedback Committed";
+        // let msg = "Feedback";
+        // let userId = humanResource.humanResourceByHumanResourceId.userByUserId.id;
+        // this.chatService.sendNotify(msg, notiType, this.projectId, humanResource.humanResourceId, userId);
+
+        this.getJoinedResource();
+        (<any>$("#ratingHumanResource")).modal("hide");
+        this.feedbackForm = new Feedback();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  // backup
 
   releaseOrKick() {
     this.isKick = true;

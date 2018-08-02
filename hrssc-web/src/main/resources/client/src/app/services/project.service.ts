@@ -79,7 +79,13 @@ export class ProjectService {
     return this.restService.post(url, form);
   }
 
-  // Release resource
+  // Cancel resource chính
+  cancelHumanResource(jobId, userId) {
+    let url = "contract/cancel-contract/" + jobId + "/" + userId;
+    return this.restService.get(url);
+  }
+
+  // Release resource 1
   releaseResource(jobId, userId) {
     let url = "manage-project/release-resource/" + jobId + "/" + userId;
     return this.restService.get(url);

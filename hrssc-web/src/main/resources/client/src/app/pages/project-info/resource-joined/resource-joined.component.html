@@ -37,14 +37,111 @@
         </div>
       </div>
       <div class="media-right media-middle">
-        <!-- <span class="label label-primary">Joined</span> -->
 
-        <button type="button" class="btn btn-danger btn-xs" style="margin-top: 10px" data-toggle="modal" data-target="#modal_small">
+        <button type="button" class="btn btn-danger btn-xs" style="margin-top: 10px" (click)="cancelHumanResource(x.id)">
           <i class="icon-cross2 position-left"></i>Release</button>
+        <!-- 
+        <button type="button" class="btn btn-danger btn-xs" style="margin-top: 10px" data-toggle="modal" data-target="#modal_small">
+          <i class="icon-cross2 position-left"></i>Release</button> -->
       </div>
 
+      <!-- Human modal -->
+      <div id="ratingHumanResource" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h5 class="modal-title text-semibold">Feedback - {{x.humanResourceByHumanResourceId.fullname}}</h5>
+            </div>
+
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                  <div class="form-group has-feedback">
+                    <h6>Job knowledge: </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <rating [(ngModel)]="feedbackForm.jobKnowledge" style="font-size: 15px">
+                  </rating>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                  <div class="form-group has-feedback">
+                    <h6>Work quality: </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <rating [(ngModel)]="feedbackForm.workQuality" style="font-size: 15px">
+                  </rating>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                  <div class="form-group has-feedback">
+                    <h6>Cooperation: </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <rating [(ngModel)]="feedbackForm.cooperation" style="font-size: 15px">
+                  </rating>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                  <div class="form-group has-feedback">
+                    <h6>Attendance: </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <rating [(ngModel)]="feedbackForm.attendance" style="font-size: 15px">
+                  </rating>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                  <div class="form-group has-feedback">
+                    <h6>Work attitude: </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <rating [(ngModel)]="feedbackForm.workAttitude" style="font-size: 15px">
+                  </rating>
+                </div>
+              </div>
+
+              <div class="">
+                <h6 style="margin-left: 15px">Comment</h6>
+                <textarea rows="3" cols="5" class="form-control" [(ngModel)]="feedbackForm.comment" placeholder="Default textarea"></textarea>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+              <button id="sweet_success_rating" type="button" class="btn btn-primary" (click)="feedbackResource(x.id)">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Human modal -->
+
       <!-- Small modal -->
-      <div id="modal_small" class="modal fade">
+      <!-- <div id="modal_small" class="modal fade">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
@@ -54,7 +151,6 @@
 
             <div class="modal-body">
               
-              <!-- Radio button -->
             <div class="">
               <div class="form-group">
                 <div class="radio">
@@ -85,7 +181,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- /small modal -->
     </li>
   </ul>

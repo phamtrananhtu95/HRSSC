@@ -97,6 +97,7 @@ import { RatingComponent } from './pages/rating/rating.component';
 import { FeedbackProjectComponent } from './pages/feedback-project/feedback-project.component';
 import { NotificationService } from './services/notification.service';
 import { ManagerInfoComponent } from './pages/chef-manage-account-manager/manager-info/manager-info.component';
+import { ManageContractComponent } from './pages/manage-contract/manage-contract.component';
 
 const appRoutes: Routes = [
 
@@ -202,6 +203,11 @@ const appRoutes: Routes = [
   },
 
   {
+    path: 'manage/contract',
+    component: ManageContractComponent,
+    data: { title: 'Resource info for nomal user watch' }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -264,7 +270,8 @@ const appRoutes: Routes = [
     InvitationContractComponent,
     RatingComponent,
     FeedbackProjectComponent,
-    ManagerInfoComponent
+    ManagerInfoComponent,
+    ManageContractComponent
   ],
   imports: [
     BrowserModule,
