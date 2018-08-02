@@ -11,23 +11,24 @@ import java.util.Objects;
 
 @Entity
 public class Contract {
-    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class,ContractView.detail.class})
     private int id;
-    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class,ContractView.detail.class})
     private long createdDate;
+    @JsonView(ContractView.detail.class)
     private Long acceptedDate;
-    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class,ContractView.detail.class})
     private long startDate;
-    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class,ContractView.detail.class})
     private long endDate;
-    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class})
+    @JsonView({ApplianceView.ContractView.class,ContractView.overview.class,ContractView.detail.class})
     private int salary;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.detail.class})
     private String additionalTerms;
     private boolean isAccepted;
     private Collection<Interaction> interactionsById;
     private Collection<Job> jobsById;
-    @JsonView(ApplianceView.ContractView.class)
+    @JsonView({ApplianceView.ContractView.class,ContractView.detail.class})
     private Integer latestEditorId;
     @JsonView(ApplianceView.ContractView.class)
     private User userByLatestEditorId;

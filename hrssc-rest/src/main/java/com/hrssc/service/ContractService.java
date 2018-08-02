@@ -11,6 +11,7 @@ import java.util.List;
 public interface ContractService {
 
     Interaction loadContract(int interactionId) throws NotFoundException;
+    Job loadJobContract(int jobId) throws NotFoundException;
     String changeOffer(Contract contract);
     String acceptOffer(Contract contract);
     String rejectOffer(int contractId);

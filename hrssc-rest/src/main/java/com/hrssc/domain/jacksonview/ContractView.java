@@ -4,4 +4,5 @@ public class ContractView {
     public static class ChatLog{}
     public static class VersionView{}
     public static class overview{}
+    public static class detail{}
 }

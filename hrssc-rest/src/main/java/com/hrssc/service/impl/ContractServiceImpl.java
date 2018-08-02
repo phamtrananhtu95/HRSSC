@@ -45,6 +45,17 @@ public class ContractServiceImpl implements ContractService {
         return resultInteraction;
     }
 
+    public Job loadJobContract(int jobId) throws NotFoundException{
+        Job resultJob = jobRepository.findById(jobId);
+        if(resultJob == null){
+            throw new NotFoundException("Job not found");
+        }
+        if(resultJob.getContractId() == null){
+            throw new NotFoundException("No contract for job");
+        }
+        return resultJob;
+    }
+
     @Override
     public String changeOffer(Contract contract){
         Contract dbContract = contractRepository.findById(contract.getId());

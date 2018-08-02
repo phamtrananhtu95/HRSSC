@@ -12,9 +12,9 @@ import java.util.Objects;
 
 @Entity
 public class Job {
-    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
+    @JsonView({JobView.JoinedResource.class,ContractView.detail.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private int id;
-    @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
+    @JsonView({JobView.JoinedResource.class,ContractView.detail.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private int humanResourceId;
 
     @JsonView({JobView.JoinedResource.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
@@ -23,15 +23,15 @@ public class Job {
     private long joinedate;
     private long leaveDate;
 
-    @JsonView({HumanResourceView.history.class,JobView.JoinedResource.class,ContractView.overview.class})
+    @JsonView({HumanResourceView.history.class,ContractView.detail.class,JobView.JoinedResource.class,ContractView.overview.class})
     private int projectId;
     @JsonView({HumanResourceView.history.class,ContractView.overview.class})
     private Project projectByProjectId;
-    @JsonView(ContractView.overview.class)
+    @JsonView({ContractView.overview.class,ContractView.detail.class})
     private int status;
-    @JsonView(ContractView.overview.class)
+    @JsonView({ContractView.overview.class,ContractView.detail.class})
     private Contract contractByContractId;
-    @JsonView(ContractView.overview.class)
+    @JsonView({ContractView.overview.class,ContractView.detail.class})
     private Integer contractId;
     private Collection<Feedback> feedbacksById;
 

@@ -8,6 +8,7 @@ import com.hrssc.entities.*;
 import com.hrssc.service.AuthorizationService;
 import com.hrssc.service.ChatService;
 import com.hrssc.service.ContractService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,5 +84,11 @@ public class ContractController {
     @GetMapping("/load-all-project-contract/{userId}")
     public List<Job> loadProjectContract(@PathVariable(value = "userId") int userId){
         return contractService.loadAllContractProject(userId);
+    }
+
+    @JsonView(ContractView.detail.class)
+    @GetMapping("/get-job-contract/{jobId}")
+    public Job loadJobContract(@PathVariable(value = "jobId") int jobId) throws NotFoundException {
+        return contractService.loadJobContract(jobId);
     }
 }
