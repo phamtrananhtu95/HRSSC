@@ -24,13 +24,13 @@
         <li>
           <a href="#managerProject" data-toggle="tab">
             <i class="icon-calendar3 position-left"></i> Manage project
-            <span class="badge badge-success badge-inline position-right">23</span>
+            <span class="badge badge-success badge-inline position-right">{{countProject}}</span>
           </a>
         </li>
         <li>
           <a href="#manageResource" data-toggle="tab">
             <i class="icon-calendar3 position-left"></i> Manage resource
-            <span class="badge badge-success badge-inline position-right">10</span>
+            <span class="badge badge-success badge-inline position-right">{{countResource}}</span>
           </a>
         </li>
 
@@ -74,7 +74,7 @@
                           <li>
                             <a data-action="reload"></a>
                           </li>
-                          
+
                         </ul>
                       </div>
                     </div>
@@ -99,12 +99,12 @@
                             <input type="text" class="form-control">
                           </div>
                           <div class="col-md-6">
-                            
+
                           </div>
                         </div>
                       </div>
 
-                     
+
 
                       <div class="form-group">
                         <div class="row">
@@ -125,7 +125,7 @@
 
 
 
-                      
+
 
                       <div class="text-right">
                         <button type="submit" class="btn btn-primary" (click)="updateCompany()" id="sweet_success">Save
@@ -136,82 +136,162 @@
                   </div>
                 </div>
                 <!-- /Overview company -->
-
-
-                <!-- Skill Set -->
-                <!-- <div class="timeline-row">
-                  <div class="timeline-icon">
-                    <img src="assets/images/placeholder.jpg" alt="">
-                  </div>
-
-                  <div class="panel panel-flat timeline-content">
-                    <div class="panel-heading">
-                      <h6 class="panel-title">Account settings</h6>
-                      <div class="heading-elements">
-                        <ul class="icons-list">
-                          <li>
-                            <a data-action="collapse"></a>
-                          </li>
-                          <li>
-                            <a data-action="reload"></a>
-                          </li>
-                          <li>
-                            <a data-action="close"></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                
-                    <div class="panel-body">
-                      <form action="#">
-                        <div class="form-group">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <label>Username</label>
-                              <input type="text" value="Kopyov" readonly="readonly" class="form-control">
-                            </div>
-                
-                            <div class="col-md-6">
-                              <label>Current password</label>
-                              <input type="password" value="password" readonly="readonly" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                
-                        <div class="form-group">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <label>New password</label>
-                              <input type="password" placeholder="Enter new password" class="form-control">
-                            </div>
-                
-                            <div class="col-md-6">
-                              <label>Repeat password</label>
-                              <input type="password" placeholder="Repeat new password" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                
-                       
-                
-                        <div class="text-right">
-                          <button type="submit" class="btn btn-primary">Save
-                            <i class="icon-arrow-right14 position-right"></i>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-
-                  </div>
-                </div> -->
               </div>
             </div>
             <!-- /timeline -->
           </div>
           <div class="tab-pane fade" id="managerProject">
+            <div class="timeline timeline-left content-group">
+              <div class="timeline-container">
+                <div class="timeline-row">
+                  <div class="timeline-icon">
+                    <div class="bg-warning-400">
+                      <i class="icon-cash3"></i>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6" *ngFor="let project of listProject">
+                      <div class="panel border-left-lg border-left-danger invoice-grid timeline-content" [ngClass]="project.processStatus == 1 ? 'border-left-lg border-left-success' : project.processStatus == 2 ? 'border-left-lg border-left-danger' : 'border-left-lg border-left-slate'">
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <h6 (click)="viewProjectDetail(project.id)" class="text-semibold no-margin-top">{{project.title}}</h6>
+                              <ul class="list list-unstyled">
+                                <li>Type: &nbsp;{{project.type}}</li>
+                                <li>Start date:
+                                  <span class="text-semibold">{{project.createDate}}</span>
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <h6 class="text-semibold text-right no-margin-top">&nbsp; </h6>
+                              <ul class="list list-unstyled text-right">
+                                <li>Domain:
+                                  <span class="text-semibold">{{project.domain}}</span>
+                                </li>
+                                <li class="dropdown">
+                                  Status: &nbsp;
+                                  <a *ngIf="project.processStatus == 2" class="label bg-danger-400 dropdown-toggle">
+                                    On Going &nbsp;
+                                    <i class="icon-spinner2 spinner"></i>
+                                  </a>
+
+                                  <a *ngIf="project.processStatus == 1" class="label bg-success-400 dropdown-toggle">
+                                    Pending &nbsp;
+                                    <i class="icon-alarm"></i>
+                                  </a>
+
+                                  <a *ngIf="project.processStatus == 3" class="label bg-slate-400 dropdown-toggle">
+                                    Finish &nbsp;
+                                    <i class="icon-checkmark3"></i>
+                                  </a>
+
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="panel-footer panel-footer-condensed">
+                          <div class="heading-elements">
+                            <span class="heading-text">
+                              <span class="status-mark border-danger position-left"></span> End:
+                              <span class="text-semibold">{{project.endDate}}</span>
+                            </span>
+                            <span class="heading-text pull-right">
+                              <span class="status-mark border-danger position-left"></span> Duration:
+                              <span class="text-semibold">{{project.duration}} months</span>
+                            </span>
+                            <!-- <ul class="list-inline list-inline-condensed heading-text pull-right">
+                              <li>
+                                <a href="#" class="text-default" data-toggle="modal" data-target="#invoice">
+                                  <i class="icon-eye8"></i>
+                                </a>
+                              </li>
+                              <li class="dropdown">
+                                <a href="#" class="text-default dropdown-toggle" data-toggle="dropdown">
+                                  <i class="icon-menu7"></i>
+                                  <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                  <li>
+                                    <a href="#">
+                                      <i class="icon-printer"></i> Print invoice</a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <i class="icon-file-download"></i> Download invoice</a>
+                                  </li>
+                                  <li class="divider"></li>
+                                  <li>
+                                    <a href="#">
+                                      <i class="icon-file-plus"></i> Edit invoice</a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <i class="icon-cross2"></i> Remove invoice</a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
           </div>
-          <div class="tab-pane fade" id="manageResource"></div>
+          <div class="tab-pane fade" id="manageResource">
+            <div class="timeline timeline-left content-group">
+              <div class="timeline-container">
+                <div class="timeline-row">
+                  <div class="timeline-icon">
+                    <a href="#">
+                      <img src="assets/images/placeholder.jpg" alt="">
+                    </a>
+                  </div>
+                  <div class="panel panel-flat timeline-content">
+                    <div class="panel-body">
+                      <table class="table datatable-basic table-hover">
+                        <thead>
+                          <tr>
+                            <th>Full Name</th>
+                            <th>Skill</th>
+                            <th>Tel</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let humanResources of listResource" (click)="viewHumanResourceDetail(humanResources.id)">
+                            <td>{{humanResources.fullname}}</td>
+                            <td></td>
+                            <td>{{humanResources.tel}}</td>
+                            <td>{{humanResources.email}}</td>
+                            <td>
+                              <span class="label" [ngClass]="humanResources.status == 1 ? 'bg-blue-400' : 'btn-danger'">
+                                {{humanResources.status == 1 ? "Activated" : "Inactive"}}</span>
+                            </td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -229,8 +309,8 @@
               <i class="icon-location4"></i> HCM</small> -->
           </h6>
           <span style="font-size: 12px;" [ngClass]="manager.status == 1 ? 'border-success text-success-600' : 'border-slate text-slate-600'"
-                class="label label-flat">
-                {{manager.status == 1 ?  "ACTIVATED" : "DEACTIVATED"}}</span>
+            class="label label-flat">
+            {{manager.status == 1 ? "ACTIVATED" : "DEACTIVATED"}}</span>
         </div>
       </div>
       <!-- /user thumbnail -->

@@ -110,9 +110,9 @@
               <h4>
                 <b>Skill: {{skillList}}</b>
               </h4>
-              <h4>
+              <!-- <h4>
                 <b>Number: ?</b>
-              </h4>
+              </h4> -->
               <h4>
                 <b>
                   <i class="icon-location4"></i> Location:{{project?.companyByCompanyId?.city}}</b>
@@ -124,7 +124,7 @@
 
             </div>
             <div class="media-right media-middle">
-              <button *ngIf="!isManager" type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()" data-toggle="modal"
+              <button *ngIf="!isManager && !isChief" type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()" data-toggle="modal"
                 data-target="#modal_theme_info">
                 Apply
               </button>

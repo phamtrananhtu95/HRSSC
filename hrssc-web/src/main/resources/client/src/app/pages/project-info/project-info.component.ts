@@ -15,7 +15,9 @@ export class ProjectInfoComponent implements OnInit {
   public project;
   public skillList = "";
   public isManager: boolean;
+  public isChief = false;
   public userId: number;
+  public companyID: number;
   public projectId: number;
   public userIdByProjectId: number;
   @ViewChild(ResourceMatchingComponent) resourceMatchingComponent: ResourceMatchingComponent
@@ -31,6 +33,7 @@ export class ProjectInfoComponent implements OnInit {
     this.route.queryParams.subscribe(param => {
       this.projectId= this.route.snapshot.queryParams['id'];
       this.userId = this.auth.getUserId();
+      this.companyID = this.auth.getCompanyId();
       this.getProjectById();
     });
   }
@@ -51,6 +54,12 @@ export class ProjectInfoComponent implements OnInit {
         this.project = res;
         this.userIdByProjectId = this.project.userId;
         this.isManager = this.userId === this.userIdByProjectId;
+
+        if(this.isManager == false){
+          if(this.companyID === this.project.companyByCompanyId.id){
+            this.isChief = true;
+          }
+        }
         this.project.projectRequirementsById.forEach(el => {
           el.skillRequirementsById.forEach(el2 => {
             this.skillList = this.skillList + el2.skillBySkillId.title + ", ";

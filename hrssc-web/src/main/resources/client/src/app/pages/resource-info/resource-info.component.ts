@@ -24,7 +24,9 @@ export class ResourceInfoComponent implements OnInit {
   public skillList: string;
   public userByUserId: number;
   public isOwnManager: boolean;
+  public isChief = false;
   public userId: number;
+  public companyID: number;
   public resourceId: number;
 
   // Feedback
@@ -58,6 +60,7 @@ export class ResourceInfoComponent implements OnInit {
       //Reload
       this.resourceId = this.route.snapshot.queryParams['id'];
       this.userId = this.authenticateService.getUserId();
+      this.companyID = this.authenticateService.getCompanyId();
       this.getHumanResourceById();
 
       // console.log("param------" + param.id)
@@ -84,6 +87,12 @@ export class ResourceInfoComponent implements OnInit {
         this.humanResource = res;
         this.userByUserId = this.humanResource.userByUserId.id;
         this.isOwnManager = this.userId === this.userByUserId;
+
+        if(this.isOwnManager == false){
+          if(this.companyID === this.humanResource.companyByCompanyId.id){
+            this.isChief = true;
+          }
+        }
         
         this.humanResource.averageRatingsById.forEach(element => {
           this.jobKnowledge = element.jobKnowledge;

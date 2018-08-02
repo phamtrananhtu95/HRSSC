@@ -26,4 +26,13 @@ export class ManagementService {
     let url = 'manage-manager/details/' + id;
     return this.restService.get(url);
   }
+
+  getListProjectByManagerId(id) {
+    let url = 'manage-manager/project-list/' + id;
+    return this.restService.get(url);
+  }
+  getListResourceByManagerId(id) {
+    let url = 'manage-manager/resource-list/' + id;
+    return this.restService.get(url);
+  }
 }
