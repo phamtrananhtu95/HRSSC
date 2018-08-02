@@ -38,4 +38,10 @@ export class ContractService {
     let url = "contract/reject-offer/" + contractId;
     return this.restService.get(url);
   }
+
+  // load resource contract
+  loadResourceContract(managerId) {
+    let url = "contract/load-all-resource-contract/" + managerId;
+    return this.restService.get(url);
+  }
 }

@@ -122,9 +122,24 @@
           <span>Manage contract</span>
         </a>
         <ul>
-          <li>
+          <!-- <li>
             <a [routerLink]="['manage/contract']">Manage contracts</a>
+          </li> -->
+          <li>
+            <a [routerLink]="['manage/resource/contract']">
+              <span>Manage resource contracts
+              </span>
+            </a>
           </li>
+          <li class="navigation-divider"></li>
+          <li>
+            <a [routerLink]="['manage/project/contract']">
+              <span>Manage project contracts
+                <!-- <span class="label bg-blue-400">4</span> -->
+              </span>
+            </a>
+          </li>
+
         </ul>
       </li>
     </ul>
