@@ -124,9 +124,10 @@
             <div class="row">
               <div class="col-md-3">
 
-                <button *ngIf="isShowButton" type="button" class="btn btn-danger" (click)="cancelHumanResource(contractDetail.id)">Cancel contract
-                  <i class="icon-cross3 position-right"></i>
-                </button>
+                Status:
+                <span class="label" [ngClass]="contractDetail?.status == 1 ? 'bg-blue-400' : contractDetail?.status == 2 ? 'bg-green-400' : contractDetail?.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
+                  {{contractDetail?.status == 1 ? "PENDING" : contractDetail?.status == 2 ? "ON GOING" : contractDetail?.status == 3 ? "FINISH"
+                  : "CANCEL"}}</span>
               </div>
               <div class="col-md-5">
                 <div class="text-right">
@@ -134,10 +135,12 @@
                 </div>
               </div>
               <div class="col-md-4">
-                Status:
-                <span class="label" [ngClass]="contractDetail?.status == 1 ? 'bg-blue-400' : contractDetail?.status == 2 ? 'bg-green-400' : contractDetail?.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
-                  {{contractDetail?.status == 1 ? "PENDING" : contractDetail?.status == 2 ? "ON GOING" : contractDetail?.status == 3 ? "FINISH"
-                  : "CANCEL"}}</span>
+                <span class="label border-left-danger label-striped">
+                  <a>
+                    <b>Contract's chat log</b>
+                  </a>
+                </span>
+
               </div>
             </div>
 
