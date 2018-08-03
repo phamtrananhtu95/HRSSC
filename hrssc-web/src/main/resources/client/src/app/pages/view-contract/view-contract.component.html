@@ -18,7 +18,7 @@
               <legend class="text-semibold">
                 <i class="icon-file-text2 position-left"></i>
                 <b>Parties</b>
-                
+
               </legend>
 
               <div class="collapse in" id="demo1">
@@ -31,10 +31,10 @@
                         </div>
 
                         <div class="media-body">
-                          <h6 class="media-heading">Resource:
+                          <h6 class="media-heading">{{contractDetail?.humanResourceByHumanResourceId?.fullname}}
                             <a></a>
                           </h6>
-                          <span class="label border-left-primary label-striped">company name</span>
+                          <span class="label border-left-primary label-striped">{{contractDetail?.humanResourceByHumanResourceId?.companyByCompanyId?.name}}</span>
                         </div>
                         <label>
                           &nbsp;
@@ -51,10 +51,10 @@
                         </div>
 
                         <div class="media-body">
-                          <h6 class="media-heading">Project:
+                          <h6 class="media-heading">{{contractDetail?.projectByProjectId?.title}}
                             <a></a>
                           </h6>
-                          <span class="label border-left-primary label-striped">company name</span>
+                          <span class="label border-left-primary label-striped">{{contractDetail?.projectByProjectId?.companyByCompanyId?.name}}</span>
                         </div>
                         <label>
                           &nbsp;
@@ -82,58 +82,62 @@
                   <div>
                     <label class="col-lg-2 control-label">Start date:</label>
                     <div class="col-lg-4">
-                      <label style="margin-top: 7px;">123</label>
+                      <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.startDate | date:'dd/MM/yyyy' }}</label>
                     </div>
-
-
-                    <!-- <div class="col-lg-4">
-                        <input type="text" class="form-control" placeholder="Eugene Kopyov">
-                      </div> -->
                   </div>
                   <div>
                     <label class="col-lg-2 control-label">End date:</label>
                     <div class="col-lg-4">
-                      <label style="margin-top: 7px;">123</label>
+                      <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.endDate | date:'dd/MM/yyyy' }}</label>
                     </div>
-
-
-                    <!-- <div class="col-lg-4">
-                          <input type="text" class="form-control" placeholder="Eugene Kopyov">
-                        </div> -->
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Monthly payment:</label>
                   <div class="col-lg-5">
-                    <label style="margin-top: 7px;">20000000</label>
+                    <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.salary | number:'.0-2'}}</label>
                   </div>
-                  <label class="col-lg-1 control-label">(VND)</label>
+                  <label class="col-lg-2 control-label text-bold">(VND)</label>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-3 control-label">Addtional terms</label>
+                  <div class="col-lg-3">
+                    <label class="control-label">Additional terms: </label>
+                  </div>
+
                   <div class="col-lg-9">
-                    <textarea disabled rows="5" cols="5" class="form-control" placeholder="Enter your message here" name="additionalTerm"></textarea>
+                    <p class="text-bold">{{contractDetail?.contractByContractId?.additionalTerms}}</p>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Accepted date:</label>
+                  <div class="col-lg-9">
+                    <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.acceptedDate | date:'dd/MM/yyyy' }}</label>
+                  </div>
+                </div>
+
               </div>
             </fieldset>
 
             <div class="row">
               <div class="col-md-3">
 
-                <button type="button" class="btn btn-danger" (click)="cancelOffer()">Cancel Offer
+                <button *ngIf="isShowButton" type="button" class="btn btn-danger" (click)="cancelHumanResource(contractDetail.id)">Cancel contract
                   <i class="icon-cross3 position-right"></i>
                 </button>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <div class="text-right">
 
                 </div>
               </div>
-              <div class="col-md-3">
-                1234
+              <div class="col-md-4">
+                Status:
+                <span class="label" [ngClass]="contractDetail?.status == 1 ? 'bg-blue-400' : contractDetail?.status == 2 ? 'bg-green-400' : contractDetail?.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
+                  {{contractDetail?.status == 1 ? "PENDING" : contractDetail?.status == 2 ? "ON GOING" : contractDetail?.status == 3 ? "FINISH"
+                  : "CANCEL"}}</span>
               </div>
             </div>
 
@@ -147,3 +151,98 @@
   </div>
   <!-- /fieldset legend -->
 </div>
+
+<!-- Human modal -->
+<div id="ratingHumanResource" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h5 class="modal-title text-semibold">Feedback - </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <div class="form-group has-feedback">
+              <h6>Job knowledge: </h6>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <rating [(ngModel)]="feedbackForm.jobKnowledge" style="font-size: 15px">
+            </rating>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <div class="form-group has-feedback">
+              <h6>Work quality: </h6>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <rating [(ngModel)]="feedbackForm.workQuality" style="font-size: 15px">
+            </rating>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <div class="form-group has-feedback">
+              <h6>Cooperation: </h6>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <rating [(ngModel)]="feedbackForm.cooperation" style="font-size: 15px">
+            </rating>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <div class="form-group has-feedback">
+              <h6>Attendance: </h6>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <rating [(ngModel)]="feedbackForm.attendance" style="font-size: 15px">
+            </rating>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <div class="form-group has-feedback">
+              <h6>Work attitude: </h6>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <rating [(ngModel)]="feedbackForm.workAttitude" style="font-size: 15px">
+            </rating>
+          </div>
+        </div>
+
+        <div class="">
+          <h6 style="margin-left: 15px">Comment</h6>
+          <textarea rows="3" cols="5" class="form-control" [(ngModel)]="feedbackForm.comment" placeholder="Default textarea"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+        <button id="sweet_success_rating" type="button" class="btn btn-primary" (click)="feedbackResource(x.id)">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Human modal -->

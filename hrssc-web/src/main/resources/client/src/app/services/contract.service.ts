@@ -47,7 +47,13 @@ export class ContractService {
 
   // Load contract info (just for view)
   loadContractInfo(jobId) {
-    let url = 'contract/get-contract/' + jobId;
+    let url = 'contract/get-job-contract/' + jobId;
+    return this.restService.get(url);
+  }
+
+  // Cancel contract
+  cancelHumanResource(jobId, userId) {
+    let url = "contract/cancel-contract/" + jobId + "/" + userId;
     return this.restService.get(url);
   }
 }
