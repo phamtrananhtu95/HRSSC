@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "job")
 public class Job {
     @JsonView({JobView.JoinedResource.class,ContractView.detail.class,FeedbackView.projectFeedback.class,FeedbackView.resourceFeedback.class,ContractView.overview.class})
     private int id;

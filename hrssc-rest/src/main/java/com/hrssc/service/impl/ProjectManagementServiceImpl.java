@@ -349,10 +349,11 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Override
     public List<Job> getJoinedResource(int projectId){
-        List<Job> result =  jobRepository.findByProjectIdAndStatus(projectId,Constant.JobStatus.ON_GOING);
-        if(result.size() == 0){
-            result = jobRepository.findByProjectIdAndStatus(projectId,Constant.JobStatus.PENDING);
-        }
+//        List<Job> result =  jobRepository.findByProjectIdAndStatus(projectId,Constant.JobStatus.ON_GOING);
+//        if(result.size() == 0){
+//            result = jobRepository.findByProjectIdAndStatus(projectId,Constant.JobStatus.PENDING);
+//        }
+        List<Job> result =  jobRepository.getJoinedResource(projectId);
         return result;
     }
 

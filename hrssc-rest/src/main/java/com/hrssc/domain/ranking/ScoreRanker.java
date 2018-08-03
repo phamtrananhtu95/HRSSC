@@ -60,6 +60,7 @@ public class ScoreRanker {
     public ScoreRanker(){}
 
 
+    //FIND SIMILAR RESOURCES
     private Map<ResourceSkills,ResourceSkills> findResourceSimilarSkills(HumanResource firstResource, HumanResource secondResource){
         Map<ResourceSkills,ResourceSkills> similarSkills = new HashMap<>();
         for(ResourceSkills skillA: firstResource.getResourceSkillsById()){
@@ -141,6 +142,8 @@ public class ScoreRanker {
     }
 
 
+
+    //FIND SIMILAR PROJECT
     private Map<SkillRequirements,SkillRequirements> findProjectSimilarSkills(Project firstProject, Project secondProject){
         Map<SkillRequirements,SkillRequirements> similarSkills = new HashMap<>();
         List<SkillRequirements> skillListA = new ArrayList<>();
@@ -215,6 +218,9 @@ public class ScoreRanker {
         return skill + type + domain + salary;
     }
 
+
+
+    //FIND MATCHING PROJECT - HUMAN RESOURCE
     private Map<ResourceSkills,SkillRequirements> findSimilarSkills(HumanResource resource, Project project){
         Map<ResourceSkills,SkillRequirements> skrMap = new HashMap<>();
         for(ProjectRequirements prjReq: project.getProjectRequirementsById()){
@@ -254,33 +260,39 @@ public class ScoreRanker {
         return this.getBaseSkillScore() * multipler;
     }
     private double calculateDomainScore(HumanResource resource, Project project){
+
         if(resource.getJobsById() == null){
             return 0;
         }
+        double result = 0;
+        String[] projectDomainList = project.getDomain().split(",");
         for(Job job: resource.getJobsById()){
            String rscDomain = job.getProjectByProjectId().getDomain();
-           if(rscDomain.equals(project.getDomain())){
-               return baseDomainScore;
+           for(String projectDomain: projectDomainList){
+               if(rscDomain.equals(projectDomain)){
+                   result += this.getBaseDomainScore();
+               }
            }
+
         }
-        return 0;
+        return result;
 
     }
     private double calculateTypeScore(HumanResource resource, Project project){
         if(resource.getJobsById() == null){
             return 0;
         }
+        double result = 0;
+        String[] projectTypeList = project.getType().split(",");
         for(Job job: resource.getJobsById()){
             String rscDomain = job.getProjectByProjectId().getType();
             if(rscDomain.equals(project.getType())){
-                return baseTypeScore;
+               result += this.getBaseTypeScore();
             }
         }
-        return 0;
+        return result;
     }
-    private double calculateSalaryScore(){
-        return 0;
-    }
+
     private double calculateSimilarityScore(HumanResource resource, Project project){
         double skill = calculateSkillScore(findSimilarSkills(resource,project));
         if(skill == 0){
@@ -288,15 +300,14 @@ public class ScoreRanker {
         }
         double type = calculateTypeScore(resource,project);
         double domain = calculateDomainScore(resource,project);
-        double salary = calculateSalaryScore();
-        return skill + type + domain + salary;
+        return skill + type + domain;
     }
     public double rankingScore(HumanResource resource, Project project){
         double similarity = calculateSimilarityScore(resource,project);
         if(similarity == 0){
             return 0;
         }
-        double rating = 0;
+        double rating = resource.getAvgRating();
         return similarity * similarityMultipler + rating * ratingMultipler;
     }
 }
