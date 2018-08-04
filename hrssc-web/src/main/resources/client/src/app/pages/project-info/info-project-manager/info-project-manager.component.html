@@ -46,7 +46,7 @@
       <div class="form-group has-feedback">
         <b>Start date</b>
         <form #myForm="ngForm" novalidate>
-          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
+          <my-date-picker name="mydate" [options]="myDatePickerOptionsStart" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
             required></my-date-picker>
         </form>
       </div>
@@ -55,7 +55,7 @@
       <div class="form-group has-feedback">
         <b>End date</b>
         <form #myForm="ngForm" novalidate>
-          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+          <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
             required></my-date-picker>
         </form>
       </div>

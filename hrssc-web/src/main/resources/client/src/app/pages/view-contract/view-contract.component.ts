@@ -76,5 +76,8 @@ export class ViewContractComponent implements OnInit {
       }
     );
   }
-
+  viewLogChatContract(id) {
+    console.log("");
+    
+  }
 }

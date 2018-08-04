@@ -49,13 +49,20 @@ export class ManageProjectsComponent implements OnInit {
 
   public countId = 0;
   public listDomain = [
-    "Security","Education","Testing"
+    "Security", "Education", "Testing", "Game", "Language", "E-commerce", "Hardware Driver", "Communication", "Financial", "Transportation", "Communicating", "Government", "Management"
   ];
 
   public listType = [
-    "Web Application","Mobile","Desktop Application"
+    "Web Application", "Mobile Application", "Desktop Application", "Embedded Application", "Console Game Application"
   ];
 
+  public myDatePickerOptionsStart: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+  };
+
+  public myDatePickerOptionsEnd: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+  };
 
   constructor(
     private auth: AuthenticateService,
@@ -67,7 +74,8 @@ export class ManageProjectsComponent implements OnInit {
     (<any>window).datatables = true;
     (<any>window).select2 = true;
     (<any>window).datatablesBasic = true;
-    
+
+    this.setDisableUntilForStartDate();
     // this.projects = new projectList().projects;
     if (this.auth.checkLogin()) {
       // let userInfo = this.auth.getUserInfo();
@@ -82,13 +90,13 @@ export class ManageProjectsComponent implements OnInit {
       // 
       this.listDomainOpt = [];
       this.listDomain.forEach(domain => {
-          this.listDomainOpt.push({ value: domain.toString(), label: domain })
+        this.listDomainOpt.push({ value: domain.toString(), label: domain })
       });
-      
+
       // 
       this.listTypeOpt = [];
       this.listType.forEach(type => {
-          this.listTypeOpt.push({ value: type.toString(), label: type })
+        this.listTypeOpt.push({ value: type.toString(), label: type })
       });
       // 
       // this.formPositionModel.positionId = '1';
@@ -104,10 +112,15 @@ export class ManageProjectsComponent implements OnInit {
     }
   }
 
-  
+
 
   onDateChangedCreate(event: IMyDateModel) {
     this.formModel.createDate = event && event.jsdate ? event.jsdate.getTime() : null;
+    let startDate = event.date;
+    let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
+    optionsEnd.disableUntil = startDate;
+    this.myDatePickerOptionsEnd = optionsEnd;
+
   }
   onDateChangedEnd(event: IMyDateModel) {
     this.formModel.endDate = event && event.jsdate ? event.jsdate.getTime() : null;
@@ -151,7 +164,7 @@ export class ManageProjectsComponent implements OnInit {
 
   ConvertToDatetime(dateValue) {
     var date = new Date(parseFloat(dateValue));
-    var dateParse = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     return dateParse;
   }
   loadSkillByPositionId(id) {
@@ -211,11 +224,11 @@ export class ManageProjectsComponent implements OnInit {
       }
     });
     this.skillOpt.forEach(skils => {
-        this.formPositionModel.skillRequirementsById.forEach(el => {
-          if(el.skillId == skils.value){
-            el.skillTitle = skils.label;
-          }
-        });
+      this.formPositionModel.skillRequirementsById.forEach(el => {
+        if (el.skillId == skils.value) {
+          el.skillTitle = skils.label;
+        }
+      });
     });
     // console.log(this.skillOpt);
     // console.log(this.formPositionModel.skillRequirementsById);
@@ -237,6 +250,14 @@ export class ManageProjectsComponent implements OnInit {
 
     // ver 2
 
+  }
+
+
+  setDisableUntilForStartDate() {
+    let now = new Date();
+    let optionsStart = JSON.parse(JSON.stringify(this.myDatePickerOptionsStart));
+    optionsStart.disableUntil = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
+    this.myDatePickerOptionsStart = optionsStart;
   }
 
   editPosition(val: any) {

@@ -140,7 +140,7 @@
                                                 <i class="icon-droplets"></i>
                                               </div> -->
                                   <form #myForm="ngForm" novalidate>
-                                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="createDate" (dateChanged)="onDateChangedCreate($event)"
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptionsStart" (dateChanged)="onDateChangedCreate($event)"
                                       required></my-date-picker>
                                   </form>
                                   {{formModel.createDate}}
@@ -152,7 +152,7 @@
                                                 <i class="icon-droplets"></i>
                                               </div> -->
                                   <form #myForm="ngForm" novalidate>
-                                    <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" (dateChanged)="onDateChangedEnd($event)"
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" (dateChanged)="onDateChangedEnd($event)"
                                       required></my-date-picker>
                                   </form>
                                   {{formModel.endDate}}

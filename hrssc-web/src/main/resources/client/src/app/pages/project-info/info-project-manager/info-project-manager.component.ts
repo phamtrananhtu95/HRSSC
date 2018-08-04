@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { Project, ProjectRequirement } from '../../../models';
 import { ProjectService } from '../../../services/project.service';
-import { IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
+import { IMyDateModel, IMyDpOptions } from 'angular4-datepicker/src/my-date-picker';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -34,7 +34,7 @@ export class InfoProjectManagerComponent implements OnInit {
   public listDomainOpt;
   public listTypeOpt;
   public listDomain = [
-    "Security", "Education", "Testing", "Game", "Language", "E-commerce", "Hardware Driver", "Communication", "Financial"
+    "Security", "Education", "Testing", "Game", "Language", "E-commerce", "Hardware Driver", "Communication", "Financial", "Transportation", "Communicating", "Government", "Management"
   ];
 
   public listType = [
@@ -42,6 +42,14 @@ export class InfoProjectManagerComponent implements OnInit {
   ];
   public projectDomain: any;
   public projectType: any;
+
+
+  public myDatePickerOptionsStart: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+  };
+  public myDatePickerOptionsEnd: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+  };
 
 
   constructor(
@@ -58,6 +66,7 @@ export class InfoProjectManagerComponent implements OnInit {
     // this.reloadLib();
 
     this.loadAllPosition();
+    this.setDisableUntilForStartDate();
 
     this.listDomainOpt = [];
     this.listDomain.forEach(domain => {
@@ -171,26 +180,23 @@ export class InfoProjectManagerComponent implements OnInit {
         }
       });
     });
-    // }
+    
+  }
 
-
-    // val.forEach(val => {
-    //   this.listSkillExp.forEach(el => {
-    //     this.formPositionModel.skillRequirementsById.push(el);
-    //     // if (el.id === val) {
-    //     //   var tmp = {
-    //     //     skillId: el.id,
-    //     //     title: el.title,
-    //     //     positionId: el.positionId
-
-    //     //   }
-    //     //   this.formPositionModel.skillRequirementsById.push(tmp);
-    //     // }
-    //   });
-    // });
+  setDisableUntilForStartDate() {
+    let now = new Date();
+    let optionsStart = JSON.parse(JSON.stringify(this.myDatePickerOptionsStart));
+    optionsStart.disableUntil = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
+    this.myDatePickerOptionsStart = optionsStart;
   }
   onDateChangedCreate(event: IMyDateModel) {
     this.projectInfo.createDate = event && event.jsdate ? event.jsdate.getTime() : null;
+
+    let startDate = event.date;
+    let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
+    optionsEnd.disableUntil = startDate;
+    this.myDatePickerOptionsEnd = optionsEnd;
+
   }
   onDateChangedEnd(event: IMyDateModel) {
     this.projectInfo.endDate = event && event.jsdate ? event.jsdate.getTime() : null;
