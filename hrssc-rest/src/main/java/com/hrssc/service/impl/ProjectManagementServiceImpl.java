@@ -376,7 +376,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         }
         //Doi job va resource status
         List<Job> jobList = jobRepository.findByProjectId(projectId);
-        long leavedate = System.currentTimeMillis()/1000;
+        long leavedate = System.currentTimeMillis();
         if(!jobList.isEmpty()) {
             for (Job tmp : jobList) {
                 HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
@@ -406,7 +406,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
         //Contract
         Contract contract = contractRepository.findById((int)job.getContractId());
-        long currentTime = System.currentTimeMillis()/1000;
+        long currentTime = System.currentTimeMillis();
         if(currentTime < contract.getEndDate()){
             contract.setEndDate(currentTime);
         }

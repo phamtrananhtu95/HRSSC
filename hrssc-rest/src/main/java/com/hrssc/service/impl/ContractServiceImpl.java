@@ -75,7 +75,7 @@ public class ContractServiceImpl implements ContractService {
         contractVersion.setSalary(dbContract.getSalary());
         contractVersion.setAdditionalTerms(dbContract.getAdditionalTerms());
         contractVersion.setContractId(dbContract.getId());
-        long currenttime  = System.currentTimeMillis()/1000;
+        long currenttime  = System.currentTimeMillis();
         contractVersion.setDealDate(currenttime);
         contractVersionRepository.save(contractVersion);
 
@@ -110,7 +110,7 @@ public class ContractServiceImpl implements ContractService {
         if(project.getRequestStatus() == Constant.RequestStatus.REMOVED || project.getRequestStatus() == Constant.RequestStatus.CLOSED){
             return "Project full or remove!";
         }
-        long curentdate =  System.currentTimeMillis()/1000;
+        long curentdate =  System.currentTimeMillis();
 
         // Save job
         Job newjob = new Job();
@@ -212,7 +212,7 @@ public class ContractServiceImpl implements ContractService {
             check = true;
         }
         job.setStatus(Constant.JobStatus.CANCEL);
-        long currentTime = System.currentTimeMillis()/1000;
+        long currentTime = System.currentTimeMillis();
         job.setLeaveDate(currentTime);
         jobRepository.save(job);
 

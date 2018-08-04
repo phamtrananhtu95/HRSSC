@@ -50,7 +50,7 @@ public class InvitationServiceImpl implements InvitationService {
 
         //Lưu Contract
         Contract contract = interaction.getContractByContractId();
-        contract.setCreatedDate(System.currentTimeMillis()/1000);
+        contract.setCreatedDate(System.currentTimeMillis());
 
 
         if(interactionEntity != null){
@@ -138,7 +138,7 @@ public class InvitationServiceImpl implements InvitationService {
         Job job = new Job();
         job.setHumanResourceId(invitation.getHumanResourceId());
         job.setProjectId(invitation.getProjectId());
-        job.setJoinedate(System.currentTimeMillis()/1000);
+        job.setJoinedate(System.currentTimeMillis());
 
         if(job.getJoinedate() < project.getCreateDate()){
             job.setStatus(Constant.JobStatus.PENDING);

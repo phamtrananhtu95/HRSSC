@@ -52,7 +52,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         for (Job jobtmp: jobList) {
             List<Feedback> feedbackList = (List<Feedback>) jobtmp.getFeedbacksById();
             if(!feedbackList.isEmpty()){
-                long duration = (jobtmp.getLeaveDate() - jobtmp.getJoinedate())/86400;
+                long duration = (jobtmp.getLeaveDate() - jobtmp.getJoinedate())/86400000;
                 jobtmp.setJoinedate(duration);
                 resultList.addAll(feedbackList);
 
@@ -77,7 +77,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         double rating = (feedback.getJobKnowledge()*3 + feedback.getWorkQuality()*3 + feedback.getCooperation()*2
                         +feedback.getAttendance() + feedback.getWorkAttitude())/10 ;
        feedback.setRating(rating);
-        long timestamp = System.currentTimeMillis()/1000;
+        long timestamp = System.currentTimeMillis();
         feedback.setTimestamp(timestamp);
         feedbackRepository.save(feedback);
         return feedback;
@@ -120,7 +120,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         for (Job tmp : calcujobList) {
             Feedback tmpFb = feedbackRepository.findByJobId(tmp.getId());
             Contract tmpContract = contractRepository.findById((int)tmp.getContractId());
-            long tmpduration = (tmpContract.getEndDate() - tmpContract.getStartDate())/86400;
+            long tmpduration = (tmpContract.getEndDate() - tmpContract.getStartDate())/86400000;
             sumDuration += tmpduration;
             sumJK += tmpFb.getJobKnowledge()* tmpduration;
             sumWQ += tmpFb.getWorkQuality()* tmpduration;
@@ -149,7 +149,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
         Job job = jobRepository.findById(feedback.getJobId());
         Contract contract = contractRepository.findById((int)job.getContractId());
-        long duration = (contract.getEndDate() - contract.getStartDate())/86400;
+        long duration = (contract.getEndDate() - contract.getStartDate())/86400000;
         if (duration <= 0){
             return "Sua contract startDate < endDate";
         }

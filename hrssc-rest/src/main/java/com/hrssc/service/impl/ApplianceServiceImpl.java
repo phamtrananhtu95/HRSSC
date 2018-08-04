@@ -71,7 +71,7 @@ public class ApplianceServiceImpl implements ApplianceService {
         }
         Contract applyContract = interaction.getContractByContractId();
         if(dbContract.getCreatedDate() == 0) {
-            long createdate = System.currentTimeMillis() / 1000;
+            long createdate = System.currentTimeMillis();
             dbContract.setCreatedDate(createdate);
         }
         dbContract.setSalary(applyContract.getSalary());
@@ -127,7 +127,7 @@ public class ApplianceServiceImpl implements ApplianceService {
         if(humanResource.getStatus() == Constant.ResourceStatus.BUSY || humanResource.getStatus() == Constant.ResourceStatus.INACTIVE){
             return "Resource busy or inactive";
         }
-        long joindate = System.currentTimeMillis()/1000;
+        long joindate = System.currentTimeMillis();
 
         Job newJob = new Job();
 
@@ -138,7 +138,7 @@ public class ApplianceServiceImpl implements ApplianceService {
         newJob.setContractId(interaction.getContractId());
         Contract dbContract = contractRepository.findById((int) interaction.getContractId());
         dbContract.setAccepted(true);
-        long acceptedDate = System.currentTimeMillis()/1000;
+        long acceptedDate = System.currentTimeMillis();
         dbContract.setAcceptedDate(acceptedDate);
         contractRepository.save(dbContract);
         jobRepository.save(newJob);
