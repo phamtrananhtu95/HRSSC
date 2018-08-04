@@ -108,7 +108,6 @@ public class ScoreRanker {
                      result+= this.baseDomainScore;
                  }
              }
-
         }
         return result;
     }
@@ -221,6 +220,58 @@ public class ScoreRanker {
 
 
     //FIND MATCHING PROJECT - HUMAN RESOURCE
+    private double timeScore(HumanResource resource, Project project){
+        long rs = resource.getAvailableDate();
+        long re = resource.getAvailableDuration();
+
+        long ps = project.getCreateDate();
+        long pe = project.getEndDate();
+
+        long pwd = 0;
+        long pd = pe-ps;
+
+
+        if(rs > ps && re < pe){
+            pwd = re - rs;
+        }
+        if(rs > ps && re > pe){
+            pwd = pe - rs;
+        }
+        if(rs < ps && re < pe){
+            pwd = re - ps;
+        }
+        if(rs < ps && re > pe){
+            pwd = pe - ps;
+        }
+
+        if(rs == ps && re < pe){
+            pwd = re - rs;
+        }
+        if(rs == ps && re > pe){
+            pwd = pe - rs;
+        }
+        if(rs < ps && re == pe){
+            pwd = re - ps;
+        }
+        if(rs > ps && re == pe){
+            pwd = re - rs;
+        }
+        if(rs == ps && re == pe){
+            pwd = pe - ps;
+        }
+
+        double timeRatio = pwd /pd;
+
+        if(timeRatio == 1){
+            return 5;
+        }else if(timeRatio < 1 && timeRatio >= 0.8){
+            return 3;
+        }else if(timeRatio < 0.8 && timeRatio >= 0.5){
+            return 1;
+        }
+        return 0;
+    }
+
     private Map<ResourceSkills,SkillRequirements> findSimilarSkills(HumanResource resource, Project project){
         Map<ResourceSkills,SkillRequirements> skrMap = new HashMap<>();
         for(ProjectRequirements prjReq: project.getProjectRequirementsById()){
@@ -259,6 +310,57 @@ public class ScoreRanker {
         }
         return this.getBaseSkillScore() * multipler;
     }
+    private double calculateTimeScore(HumanResource resource, Project project){
+        long rs = resource.getAvailableDate();
+        long re = resource.getAvailableDuration();
+
+        long ps = project.getCreateDate();
+        long pe = project.getEndDate();
+
+        long pwd = 0;
+        long pd = pe-ps;
+
+
+        if(rs > ps && re < pe){
+            pwd = re - rs;
+        }
+        if(rs > ps && re > pe){
+            pwd = pe - rs;
+        }
+        if(rs < ps && re < pe){
+            pwd = re - ps;
+        }
+        if(rs < ps && re > pe){
+            pwd = pe - ps;
+        }
+
+        if(rs == ps && re < pe){
+            pwd = re - rs;
+        }
+        if(rs == ps && re > pe){
+            pwd = pe - rs;
+        }
+        if(rs < ps && re == pe){
+            pwd = re - ps;
+        }
+        if(rs > ps && re == pe){
+            pwd = re - rs;
+        }
+        if(rs == ps && re == pe){
+            pwd = pe - ps;
+        }
+
+        double timeRatio = pwd /pd;
+
+        if(timeRatio == 1){
+            return 5;
+        }else if(timeRatio < 1 && timeRatio >= 0.8){
+            return 3;
+        }else if(timeRatio < 0.8 && timeRatio >= 0.5){
+            return 1;
+        }
+        return 0;
+    }
     private double calculateDomainScore(HumanResource resource, Project project){
 
         if(resource.getJobsById() == null){
@@ -285,10 +387,13 @@ public class ScoreRanker {
         double result = 0;
         String[] projectTypeList = project.getType().split(",");
         for(Job job: resource.getJobsById()){
-            String rscDomain = job.getProjectByProjectId().getType();
-            if(rscDomain.equals(project.getType())){
-               result += this.getBaseTypeScore();
+            String rscType = job.getProjectByProjectId().getType();
+            for(String projecType:projectTypeList){
+                if(rscType.equals(projecType)){
+                    result += this.getBaseTypeScore();
+                }
             }
+
         }
         return result;
     }
@@ -298,6 +403,10 @@ public class ScoreRanker {
         if(skill == 0){
             return 0;
         }
+//        double time = calculateTimeScore(resource, project);
+//        if(time == 0){
+//            return 0;
+//        }
         double type = calculateTypeScore(resource,project);
         double domain = calculateDomainScore(resource,project);
         return skill + type + domain;
