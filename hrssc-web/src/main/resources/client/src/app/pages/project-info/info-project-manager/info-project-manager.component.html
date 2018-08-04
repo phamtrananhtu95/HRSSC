@@ -19,9 +19,8 @@
     <div class="col-sm-6">
       <div class="form-group has-feedback">
         <b>Domain</b>
-        <ng-select [options]="listDomainOpt" [multiple]=true [(ngModel)]="projectInfo.domain" style="z-index: 99;">
+        <ng-select [options]="listDomainOpt" [multiple]=true [(ngModel)]="projectDomain" style="z-index: 99;">
         </ng-select>
-
         <!-- <input type="text" [(ngModel)]="projectInfo.domain" class="form-control"> -->
       </div>
     </div>
@@ -36,7 +35,7 @@
     <div class="col-sm-6">
       <div class="form-group has-feedback">
         <b>Type</b>
-        <ng-select [options]="listTypeOpt" [multiple]=true [(ngModel)]="projectInfo.type" style="z-index: 89;">
+        <ng-select [options]="listTypeOpt" [multiple]=true [(ngModel)]="projectType" style="z-index: 89;">
         </ng-select>
         <!-- <input type="text" [(ngModel)]="projectInfo.type" class="form-control"> -->
       </div>

@@ -34,14 +34,14 @@ export class InfoProjectManagerComponent implements OnInit {
   public listDomainOpt;
   public listTypeOpt;
   public listDomain = [
-    "Security", "Education", "Testing", "Game", "Language","E-commerce", "Hardware Driver", "Communication", "Financial"
+    "Security", "Education", "Testing", "Game", "Language", "E-commerce", "Hardware Driver", "Communication", "Financial"
   ];
 
   public listType = [
     "Web Application", "Mobile Application", "Desktop Application", "Embedded Application", "Console Game Application"
   ];
-
-
+  public projectDomain: any;
+  public projectType: any;
 
 
   constructor(
@@ -50,7 +50,7 @@ export class InfoProjectManagerComponent implements OnInit {
     private router: Router,
     public toastr: ToastsManager,
     public vcr: ViewContainerRef
-  ) { 
+  ) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -81,6 +81,13 @@ export class InfoProjectManagerComponent implements OnInit {
   ngOnChanges() {
     if (this.project) {
       this.projectInfo = Object.assign({}, this.project);
+
+      if (JSON.stringify(this.projectInfo) != "{}") {
+        this.projectDomain = this.projectInfo.domain.split(',');
+        this.projectType = this.projectInfo.type.split(',');
+      }
+
+
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
       this.status = this.project.processStatus;
@@ -257,7 +264,10 @@ export class InfoProjectManagerComponent implements OnInit {
       listPosition.push(el.value);
     });
     this.projectInfo.projectRequirementsById = listPosition;
-    console.log(this.projectInfo);
+
+
+    this.projectInfo.domain = this.projectDomain.toString();
+    this.projectInfo.type = this.projectType.toString();
 
     this.prjService.updateProject(this.projectInfo).subscribe(
       res => {
