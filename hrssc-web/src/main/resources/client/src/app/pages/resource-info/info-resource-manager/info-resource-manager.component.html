@@ -25,8 +25,7 @@
         <div class="col-sm-6">
             <div class="form-group has-feedback">
                 <b>Salary</b>
-                <input type="text" [(ngModel)]="resourceInfo.salary" class="form-control"
-                currencyMask [options]="{ align: 'left', prefix: 'đ', thousands: '.', precision: 0}">
+                <input type="text" [(ngModel)]="resourceInfo.salary" class="form-control" currencyMask [options]="{ align: 'left', prefix: 'đ', thousands: '.', precision: 0}">
             </div>
         </div>
     </div>
@@ -114,11 +113,14 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group has-feedback">
-                <label>Status</label>
-                <select name="select" class="form-control" name="status" (change)="resourceInfo.status=$event.target.value">
+                <label class="text-bold">Status</label>
+                <select *ngIf="!isBusy" name="select" class="form-control" name="status" (change)="resourceInfo.status=$event.target.value">
                     <option value="1" [selected]="resourceInfo?.status==1">Available</option>
-                    <option value="2" [selected]="resourceInfo?.status!=1">Inactive</option>
+                    <option value="2" [selected]="resourceInfo?.status==2">Inactive</option>
+                    <!-- <option value="3" disabled [selected]="resourceInfo?.status==3">Busy</option> -->
                 </select>
+
+                <span *ngIf="isBusy" class="label bg-danger-400" > Busy </span>
             </div>
         </div>
     </div>

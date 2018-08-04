@@ -39,6 +39,8 @@ export class InfoResourceManagerComponent implements OnInit {
         dateFormat: 'dd/mm/yyyy',
     };
 
+    public isBusy: boolean;
+
     constructor(
         private employeeService: EmployeeService,
 
@@ -70,6 +72,13 @@ export class InfoResourceManagerComponent implements OnInit {
 
         this.getSkillOpts();
         this.setDisableUntilForStartDate();
+
+        if (this.humanResource.status == 3) {
+            this.isBusy = true;
+        } else {
+            this.isBusy = false;
+        }
+        // console.log("abc: " + this.isBusy);
     }
 
     setDisableUntilForStartDate() {

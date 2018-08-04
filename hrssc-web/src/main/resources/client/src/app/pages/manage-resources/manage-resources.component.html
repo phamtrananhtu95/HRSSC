@@ -32,12 +32,14 @@
             <td>{{humanResources.tel}}</td>
             <td>{{humanResources.email}}</td>
             <td>
-              <span class="label" [ngClass]="humanResources.status == 1 ? 'bg-blue-400' : 'btn-danger'">
-                {{humanResources.status == 1 ? "Activated" : "Inactive"}}</span>
+              <span class="label" [ngClass]="humanResources.status == 1 ? 'bg-green-400' : humanResources.status == 2 ? 'bg-blue-400' : 'btn-danger'">
+                {{humanResources.status == 1 ? "Activated" : humanResources.status == 2 ? "Inactivate" : "Busy"}}</span>
+
             </td>
             <td class="text-center">
               <button type="button" class="btn btn-link">
-                <i class="icon-cross2 position-left"></i></button>
+                <i class="icon-cross2 position-left"></i>
+              </button>
             </td>
           </tr>
         </tbody>

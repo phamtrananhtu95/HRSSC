@@ -16,7 +16,8 @@ import { Feedback } from '../../models/feedback.model';
 })
 export class ResourceInfoComponent implements OnInit {
   public parentTitle = "Home";
-  public title = " - Information";
+  public title = " - Resource";
+  public subTitle = " - Information";
   public titleLink = " / Resource info";
 
   // ============================

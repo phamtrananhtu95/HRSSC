@@ -12,6 +12,14 @@ import { EmployeeService } from '../../services/employee.service';
   styleUrls: ['./project-info.component.css']
 })
 export class ProjectInfoComponent implements OnInit {
+
+  public parentTitle = "Home";
+  public title = " - Project";
+  public subTitle = " - Information";
+  public titleLink = " / Project info";
+
+  // ============================
+
   public project;
   public skillList = "";
   public isManager: boolean;
