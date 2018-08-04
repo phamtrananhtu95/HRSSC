@@ -77,7 +77,6 @@ export class ViewContractComponent implements OnInit {
     );
   }
   viewLogChatContract(id) {
-    console.log("");
-    
+    this.router.navigate(['inbox/contract'], { queryParams: { "id": id } });
   }
 }

@@ -1,7 +1,7 @@
-<div class="media" *ngIf="!isSent">
+<div class="media" *ngIf="!userSent.includes(userEmail)">
   <div class="media-left">
     <a href="assets/images/placeholder.jpg">
-      <img src="assets/images/placeholder.jpg" class="img-circle" alt="">
+      <img src="assets/images/avatar.png" class="img-circle" alt="">
     </a>
   </div>
   <div class="media-body">
@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div class="media reversed" *ngIf="isSent" >
+<div class="media reversed" *ngIf="userSent.includes(userEmail)" >
   <div class="media-body">
     <div class="media-content">
       {{messageContent}}
@@ -31,7 +31,7 @@
   </div>
   <div class="media-right">
     <a href="assets/images/placeholder.jpg">
-      <img src="assets/images/placeholder.jpg" class="img-circle" alt="">
+      <img src="assets/images/avatar2.png" class="img-circle" alt="">
     </a>
   </div>
 </div>

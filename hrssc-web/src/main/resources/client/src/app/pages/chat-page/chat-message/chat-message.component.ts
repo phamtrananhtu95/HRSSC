@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthenticateService } from '../../../services/authenticate.service';
 
 @Component({
   selector: 'app-chat-message',
@@ -6,20 +7,30 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./chat-message.component.css']
 })
 export class ChatMessageComponent implements OnInit {
-  @Input() chatMessage: any;
+  @Input() chatMessage;
   userEmail: string;
   messageContent: string;
+  userSent: string;
   isSent: boolean;
   time: Date = new Date();
   // isOwnMessage: boolean;
 
-  constructor() { }
+  constructor(
+    private auth: AuthenticateService
+  ) { }
 
   ngOnInit(chatMessage = this.chatMessage) {
-    this.userEmail = chatMessage.userEmail;
+    
+
+    this.userEmail = this.auth.getUserName();
+    console.log(this.userEmail);
+    
     this.messageContent = chatMessage.content;
     this.time = chatMessage.timeSent;
-    this.isSent = chatMessage.isSent;
+    this.userSent = chatMessage.userSent;
+    // this.isSent = chatMessage.isSent;
+
+
   }
 
 

@@ -19,8 +19,8 @@ export class ChatFormComponent implements OnInit {
 
   send() {
     // $( "#messageInput" ).blur();
-    this.chatService.sendMessage(this.messageInput);
-    this.reloadListMessage.emit();
+    // this.chatService.sendMessage(this.messageInput);
+    // this.reloadListMessage.emit();
     this.messageInput = '';
   }
 

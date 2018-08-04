@@ -4,7 +4,7 @@
     <div class="page-title">
       <h4>
         <i class="icon-arrow-left52 position-left"></i>
-        <span class="text-semibold">Conversation</span> - Options</h4>
+        <span class="text-semibold">Log</span> - Contract</h4>
     </div>
   </div>
 
@@ -15,9 +15,9 @@
           <i class="icon-home2 position-left"></i> Home</a>
       </li>
       <li>
-        <a href="chat_options.html">Conversation</a>
+        <a href="chat_options.html">Log</a>
       </li>
-      <li class="active">Options</li>
+      <li class="active">Contract</li>
     </ul>
 
   </div>
@@ -28,19 +28,19 @@
   <div class="row">
     <div class="col-lg-9">
       <h6 class="content-group text-semibold">
-        Chat inside tabs
+        Log Contract
         <small class="display-block">Place conversation inside tabs or pills</small>
       </h6>
       <div class="tabbable tab-content-bordered content-group-lg">
         <ul class="nav nav-tabs nav-lg nav-tabs-highlight">
           <li class="active">
             <a href="#james" data-toggle="tab">
-              <img src="assets/images/placeholder.jpg" alt="" class="img-circle tab-img position-left"> Thien Ho
+              <img src="assets/images/avatar.png" alt="" class="img-circle tab-img position-left"> Contract No.{{contractId}}
               <span class="status-mark position-right border-danger"></span>
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="#william" data-toggle="tab">
               <img src="assets/images/placeholder.jpg" alt="" class="img-circle tab-img position-left"> Nhat Ha
               <span class="status-mark position-right border-success"></span>
@@ -59,7 +59,7 @@
               <img src="assets/images/placeholder.jpg" alt="" class="img-circle tab-img position-left"> Cong Phuc
               <span class="status-mark position-right border-grey-300"></span>
             </a>
-          </li>
+          </li> -->
 
 
         </ul>
@@ -68,21 +68,20 @@
           <div class="tab-pane fade in active has-padding" id="james">
             <app-chat-feed [feed]="listMessage"></app-chat-feed>
 
-            <app-chat-form (reloadListMessage)="getListMessage()"></app-chat-form>
+            <!-- <app-chat-form (reloadListMessage)="getListMessage()"></app-chat-form> -->
 
-            <a id="addClass" (click)="showChatPopup()">
+            <!-- <a id="addClass" (click)="showChatPopup()">
               <span class="glyphicon glyphicon-comment"></span> Open in chat </a>
 
               <app-chat-popup></app-chat-popup>
-            
+             -->
 
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-3">
-      <div class="sidebar-default sidebar-content">
-        <!-- Search messages -->
+      <!-- <div class="sidebar-default sidebar-content">
         <div class="sidebar-category">
           <div class="category-title">
             <span>Search messages</span>
@@ -104,9 +103,7 @@
             </form>
           </div>
         </div>
-        <!-- /search messages -->
 
-        <!-- lastest message -->
         <div class="sidebar-category">
           <div class="category-title">
             <span>Latest messages</span>
@@ -181,8 +178,7 @@
             </ul>
           </div>
         </div>
-        <!-- lastest message -->
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

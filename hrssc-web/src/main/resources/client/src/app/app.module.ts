@@ -184,7 +184,7 @@ const appRoutes: Routes = [
     data: { title: 'Search page' }
   },
   {
-    path: 'inbox/user',
+    path: 'inbox/contract',
     component: ChatPageComponent,
     data: { title: 'Inbox' }
 
