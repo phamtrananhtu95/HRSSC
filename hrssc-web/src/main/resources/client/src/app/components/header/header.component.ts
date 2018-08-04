@@ -3,6 +3,8 @@ import { HeaderService } from './header.component.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Observable } from 'rxjs';
 import { ChatService } from '../../services/chat.service';
+import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 @Component({
@@ -16,25 +18,34 @@ export class HeaderComponent implements OnInit {
   public listLogNotify = [];
   public countNotify: number;
   public interval;
+
+  // logout
+  model: any = {};
+  loading = false;
+  error = '';
+
   constructor(
     public header: HeaderService,
     public authenticateService: AuthenticateService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private loginService: LoginService,
+    private router: Router,
+
   ) { }
 
   ngOnInit() {
     console.log(this.header.userInfo);
-    
+
     this.header.userInfo.subscribe(userName => {
       this.userName = userName;
-      if(this.userName != ""){
+      if (this.userName != "") {
         this.chatService.connectNotifyChannel("notifyRoom", userName);
       }
-      
+
     });
     this.header.userInfoId.subscribe(userId => {
       this.userId = userId;
-      if(this.userId != ""){
+      if (this.userId != "") {
         this.chatService.getLogNotifyByReceiveId(userId);
       }
     })
@@ -42,17 +53,17 @@ export class HeaderComponent implements OnInit {
     // this.chatService.getLogNotifyByReceiveId(this.userId);
     // load case!
     let userName = this.authenticateService.getUserName();
-    if(userName){
+    if (userName) {
       this.header.setUserNametoHead(userName);
     }
 
     let userId = this.authenticateService.getUserId();
-    if(userId){
+    if (userId) {
       this.header.setUserIdToHead(userId);
     }
     this.interval = setInterval(() => {
       this.listLogNotify = this.chatService.getLogNotify();
-      
+
       this.countNotify = this.listLogNotify.length;
     }, 2000);
   }
@@ -60,5 +71,11 @@ export class HeaderComponent implements OnInit {
     this.listLogNotify = this.chatService.getLogNotify();
     this.countNotify = this.listLogNotify.length;
     console.log(this.countNotify);
+  }
+
+  logout() {
+    this.authenticateService.deleteUserInfo();
+    this.authenticateService.setLogin(false);
+    this.router.navigate(['login']);
   }
 }

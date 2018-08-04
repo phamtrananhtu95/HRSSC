@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractService } from '../../services/contract.service';
 import { Router } from '@angular/router';
+import { AuthenticateService } from '../../services/authenticate.service';
 
 @Component({
   selector: 'app-manage-resource-contract',
@@ -17,11 +18,15 @@ export class ManageResourceContractComponent implements OnInit {
   // =============================
 
   public resourceContracts: any[];
+  public userId: number;
 
   constructor(
     private contractService: ContractService,
     private router: Router,
-  ) { }
+    private authen: AuthenticateService,
+  ) {
+    this.userId = this.authen.getUserId();
+  }
 
   ngOnInit() {
     (<any>window).datatables = true;
@@ -34,7 +39,7 @@ export class ManageResourceContractComponent implements OnInit {
   }
 
   loadResourceContract() {
-    this.contractService.loadResourceContract(16).subscribe(
+    this.contractService.loadResourceContract(this.userId).subscribe(
       res => {
         this.resourceContracts = res;
       }

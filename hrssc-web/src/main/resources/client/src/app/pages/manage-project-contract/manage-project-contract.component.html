@@ -1,3 +1,40 @@
-<p>
-  manage-project-contract works!
-</p>
+<app-page-header [parentTitle]="parentTitle" [title]="title" [titleLink]="titleLink"></app-page-header>
+
+
+<div class="col-md-12" id="main">
+
+  <div class="panel panel-flat">
+    <div class="panel-body">
+
+      <table class="table datatable-basic table-hover">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Resource Name</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let projectContract of projectContracts">
+            <td>{{projectContract?.projectByProjectId?.title}}</td>
+            <td>{{projectContract?.humanResourceByHumanResourceId?.fullname}}</td>
+            <td>{{projectContract?.contractByContractId?.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{projectContract?.contractByContractId?.endDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <span class="label" [ngClass]="projectContract.status == 1 ? 'bg-blue-400' : projectContract.status == 2 ? 'bg-green-400' : projectContract.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
+                {{projectContract.status == 1 ? "PENDING" : projectContract.status == 2 ? "ON GOING" : projectContract.status == 3 ? "FINISH"
+                : "CANCEL"}}</span>
+            </td>
+            <td class="text-center" (click)="viewContractDetail(projectContract.id)">
+              <i class="icon-eye"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

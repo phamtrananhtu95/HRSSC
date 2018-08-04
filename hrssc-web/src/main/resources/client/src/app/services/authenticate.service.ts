@@ -48,6 +48,10 @@ export class AuthenticateService {
     this.session.saveInLocal(this.USER_INFOR, userInfo);
   }
 
+  deleteUserInfo(){
+    this.session.saveInLocal(this.USER_INFOR, null);    
+  }
+
   getUserInfo() {
     return this.session.getFromLocal(this.USER_INFOR);
   }
