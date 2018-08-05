@@ -31,7 +31,7 @@ public class HumanResource {
     @JsonView({SimilarView.Resource.class,ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class})
     private double salary;
     private int userId;
-    @JsonView({HumanResourceView.details.class,HomeView.Resource.class})
+    @JsonView({ContractView.overview.class,ContractView.detail.class,HomeView.Resource.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,InvitationView.ListView.class,HumanResourceView.overview.class, MatchingView.Project.class,UserView.details.class, HumanResourceView.details.class,ProjectView.details.class})
     private String avatar;
     @JsonView({HomeView.Resource.class,ContractView.detail.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,ApplianceView.Listview.class,JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
