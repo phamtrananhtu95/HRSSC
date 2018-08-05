@@ -30,11 +30,9 @@ public class HumanResource {
     private int companyId;
     @JsonView({SimilarView.Resource.class,ApplianceView.Listview.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class})
     private double salary;
-
-
     private int userId;
-
-
+    @JsonView({HumanResourceView.details.class,HomeView.Resource.class})
+    private String avatar;
     @JsonView({HomeView.Resource.class,ContractView.detail.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,ApplianceView.Listview.class,JobView.JoinedResource.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class})
     private Company companyByCompanyId;
 
@@ -57,6 +55,7 @@ public class HumanResource {
     private double avgRating;
     @JsonView(HumanResourceView.details.class)
     private Collection<AverageRating> averageRatingsById;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -171,7 +170,6 @@ public class HumanResource {
         return Objects.hash(id, fullname, status, email, tel, availableDate, availableDuration, companyId, userId);
     }
 
-
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
     public Company getCompanyByCompanyId() {
@@ -256,8 +254,6 @@ public class HumanResource {
         this.similarResourcesById_0 = similarResourcesById_0;
     }
 
-
-
     @OneToMany(mappedBy = "humanResourceByHumanResourceId")
     public Collection<AverageRating> getAverageRatingsById() {
         return averageRatingsById;
@@ -265,5 +261,15 @@ public class HumanResource {
 
     public void setAverageRatingsById(Collection<AverageRating> averageRatingsById) {
         this.averageRatingsById = averageRatingsById;
+    }
+
+    @Basic
+    @Column(name = "avatar")
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

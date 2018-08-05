@@ -143,7 +143,7 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 			humanResource.setCompanyId(humanResourceSkill.getCompanyId());
 			humanResource.setUserId(humanResourceSkill.getUserId());
 			humanResource.setSalary(humanResourceSkill.getSalary());
-
+			humanResource.setAvatar("assets/images/avatar2.png");
 			humanResourceRepository.save(humanResource);
 
 			HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());

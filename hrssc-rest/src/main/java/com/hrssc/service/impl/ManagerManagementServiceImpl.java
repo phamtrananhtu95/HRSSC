@@ -89,6 +89,7 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		if (!this.checkExistingEmail(user.getEmail())) {
+
 			user.setStatus(Constant.ManagerStatus.ACTIVATED);
 			user.setFirstLogin(true);
 			user.setRoleId(Constant.UserRole.MANAGER);
