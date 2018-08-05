@@ -20,6 +20,10 @@ export class AdminManageAccountRequestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getRequestCompanies();
+  }
+
+  getRequestCompanies() {
     this.companiesService.getCompanies()
       .subscribe(
         res => {
@@ -34,6 +38,7 @@ export class AdminManageAccountRequestComponent implements OnInit {
     this.companiesService.acceptCompany(companyId)
       .subscribe(
         res => {
+          this.getRequestCompanies();
           console.log(res);
         },
         err => {

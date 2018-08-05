@@ -6,6 +6,7 @@ import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-pick
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import * as jQuery from 'jquery';
+import { ToastsManager } from 'ng2-toastr';
 declare var $: any;
 
 @Component({
@@ -43,8 +44,9 @@ export class InfoResourceManagerComponent implements OnInit {
 
     constructor(
         private employeeService: EmployeeService,
+        private _fb: FormBuilder,
+        private toastr: ToastsManager,
 
-        private _fb: FormBuilder
     ) { }
 
     ngOnChanges() {
@@ -174,6 +176,11 @@ export class InfoResourceManagerComponent implements OnInit {
                 window.clearInterval(scrollToTop);
             }
         }, 16);
+    }
+
+    // Alert
+    showSuccess() {
+        this.toastr.success('You are awesome!', 'Success!');
     }
 
 }

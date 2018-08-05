@@ -283,8 +283,8 @@ let componentModals = setTimeout(function runAgain() {
             // Success alert
             $('#sweet_success').on('click', function () {
                 swal({
-                    title: "Update success",
-                    text: "Have been update success",
+                    title: "Action success",
+                    text: "Action have been success",
                     confirmButtonColor: "#66BB6A",
                     type: "success"
                 });
