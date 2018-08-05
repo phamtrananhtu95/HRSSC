@@ -100,6 +100,7 @@ import { ManagerInfoComponent } from './pages/chef-manage-account-manager/manage
 import { ManageResourceContractComponent } from './pages/manage-resource-contract/manage-resource-contract.component';
 import { ManageProjectContractComponent } from './pages/manage-project-contract/manage-project-contract.component';
 import { ViewContractComponent } from './pages/view-contract/view-contract.component';
+import { CompanyInfoOverviewComponent } from './pages/company-info/company-info-overview/company-info-overview.component';
 
 const appRoutes: Routes = [
 
@@ -284,7 +285,8 @@ const appRoutes: Routes = [
     ManagerInfoComponent,
     ManageResourceContractComponent,
     ManageProjectContractComponent,
-    ViewContractComponent
+    ViewContractComponent,
+    CompanyInfoOverviewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,167 @@
+<div class="timeline timeline-left content-group">
+    <div class="timeline-container">
+
+      <!-- Company Overview -->
+      <div class="timeline-row">
+        <div class="timeline-icon">
+          <a href="#">
+            <img src="assets/images/placeholder.jpg" alt="">
+          </a>
+        </div>
+
+        <div class="panel panel-flat timeline-content">
+          <div class="panel-heading">
+            <h3 class="panel-title">Overview Company</h3>
+            <div class="heading-elements">
+              <!-- <span class="heading-text">
+                <i class="icon-history position-left text-success"></i> Updated 3 hours ago</span> -->
+
+              <!-- <ul class="icons-list">
+                <li>
+                  <a data-action="reload"></a>
+                </li>
+              </ul> -->
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="chart-container">
+              <!-- <h3>The leading provider of software outsourcing services in Vietnam</h3>
+              <p>Established in 1999, ranking in Top 100 Global Outsourcing, recognized as Top Best IT Company To Work in
+                Vietnam (2014), FPT Software is a global software company with presence in US, Japan, EU, Asia Pacific
+                and Australia. </p>
+              <p>FPT Software staff take pride in fair competition with work quality equal to that of the world’s 500 biggest
+                companies’ staff in central area of technology such as Mobility, Cloud Computing, Big Data..
+              </p>
+              <p>Annually, thousands of staff have gone on business trips overseas.</p>
+              <p>FPT Software‘s members consist of Vietnam, US, Japan, EU, Slovakia, Singapore, Myanmar‘s citizens. Though
+                from different origins, they all share the common mission of turning FPT Software into one of the world’s
+                leading software companies</p> -->
+              {{companyInfo.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Overview company -->
+
+
+      <!-- Skill Set -->
+      <div class="timeline-row">
+        <div class="timeline-icon">
+          <img src="assets/images/placeholder.jpg" alt="">
+        </div>
+
+        <div class="panel panel-flat timeline-content">
+          <div class="panel-heading">
+            <h3 class="panel-title">Our Key Skills</h3>
+            <div class="heading-elements">
+              <!-- <span class="heading-text"> -->
+              <!-- <i class="icon-history position-left text-success"></i> Updated 3 hours ago</span> -->
+
+              <!-- <ul class="icons-list">
+                <li>
+                  <a data-action="reload"></a>
+                </li>
+              </ul> -->
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <button class="btn btn-flat border-grey">Java </button>
+            <button class="btn btn-flat border-grey">C# </button>
+            <button class="btn btn-flat border-grey">English </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- project available -->
+      <div class="timeline-row">
+        <div class="timeline-icon">
+          <img src="assets/images/placeholder.jpg" alt="">
+        </div>
+        <div class="panel panel-flat timeline-content">
+          <div class="panel-heading">
+            <h3 class="panel-title">Project available</h3>
+            <div class="heading-elements">
+              <!-- <span class="heading-text"> -->
+              <!-- <i class="icon-history position-left text-success"></i> Updated 3 hours ago</span> -->
+
+              <!-- <ul class="icons-list">
+                <li>
+                  <a data-action="reload"></a>
+                </li>
+              </ul> -->
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-6" *ngFor="let project of projectAvailable">
+                <div class="panel-body media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img src="assets/images/FPT.jpg" class="img-circle" alt="">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h6 class="media-heading text-semibold">{{project.title}}</h6>
+                    <p><b>Type</b>: {{project.type}}</p>
+                    <p>{{project.description}}</p>
+                  </div>
+                </div>
+              </div>
+              
+              
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- resource available -->
+      <div class="timeline-row">
+          <div class="timeline-icon">
+              <img src="assets/images/placeholder.jpg" alt="">
+            </div>
+            <div class="panel panel-flat timeline-content">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Resource available</h3>
+                  <div class="heading-elements">
+                    <!-- <span class="heading-text"> -->
+                    <!-- <i class="icon-history position-left text-success"></i> Updated 3 hours ago</span> -->
+  
+                    <!-- <ul class="icons-list">
+                      <li>
+                        <a data-action="reload"></a>
+                      </li>
+                    </ul> -->
+                  </div>
+                </div>
+  
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6" *ngFor="let resource of resourceAvai">
+                      <div class="panel-body media">
+                        <div class="media-left">
+                          <a href="#">
+                            <img src="assets/images/avatar.png" class="img-circle" alt="">
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h6 class="media-heading text-semibold">{{resource.fullname}}</h6>
+                          <p><i>Tel:</i> {{resource.tel}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>
+  
+                </div>
+  
+              </div>
+      </div>
+    </div>
+  </div>
