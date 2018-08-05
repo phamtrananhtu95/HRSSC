@@ -11,6 +11,8 @@ import com.hrssc.domain.Constant;
 import com.hrssc.domain.dto.HumanResourceSkillDTO;
 import com.hrssc.entities.*;
 import com.hrssc.repository.*;
+import com.hrssc.service.MatchingService;
+import com.hrssc.service.SimilarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.core.Authentication;
@@ -39,6 +41,12 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	private MatchingService matchingService;
+
+	@Autowired
+	private SimilarService similarService;
 
 	public List<HumanResource> getHomeResourceList(int userId){
 		User user = userRepository.findById(userId);
@@ -82,6 +90,14 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 		return new HumanResourceDto().getHumanResource(humanResource.get());
 	}
 
+	public HumanResource getHumanResourceByEmail(String email){
+		try{
+			return humanResourceRepository.findByEmail(email);
+		}catch (IncorrectResultSizeDataAccessException e){
+			Logger.getLogger(HumanResourceService.class.getName()).log(Level.INFO,e.toString());
+			return null;
+		}
+	}
 	@Override
 	public List<HumanResource> getHumanResourceByManagerId(int managerId) {
 		return humanResourceRepository.getHumanResourcesByUserId(managerId);

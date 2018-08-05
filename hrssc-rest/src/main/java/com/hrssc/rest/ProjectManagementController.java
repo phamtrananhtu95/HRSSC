@@ -58,10 +58,10 @@ public class ProjectManagementController {
 
     @PostMapping(value = "/add")
     public ResponseStatus addProject(@RequestBody Project project){
-        ResponseStatus response = new ResponseStatus(projectManagementService.addProject(project));
+        project = projectManagementService.addProject(project);
         matchingService.matchProject(project.getId());
         similarService.findSimilarProject(project.getId());
-       return response;
+        return new ResponseStatus("Successfully Add Project.");
     }
 
     @PostMapping(value = "/update")

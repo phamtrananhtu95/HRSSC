@@ -20,9 +20,10 @@ public interface HumanResourceService {
 	 * @return list emp
 	 */
 	List<HumanResourceDto> getHumanResources();
+
 	List<HumanResource> getHomeResourceList(int userId);
 	HumanResourceDto getHumanResourceById(int id) throws NotFoundException;
-
+	HumanResource getHumanResourceByEmail(String email);
 	List<HumanResource> getHumanResourceByManagerId(int managerId);
 	List<HumanResource> getAppliableResourceById(int projectId,int userId);
 

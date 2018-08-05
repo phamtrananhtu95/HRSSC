@@ -81,8 +81,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Transactional
     @Override
-    public String addProject(Project project) {
-        try {
+    public Project addProject(Project project) {
             Project prj = new Project();
             prj.setTitle(project.getTitle());
             prj.setDescription(project.getDescription());
@@ -108,11 +107,8 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 }
             }
 
-            return "Successfully Added a Project.";
-        } catch (IncorrectResultSizeDataAccessException e) {
-            Logger.getLogger(ProjectManagementServiceImpl.class.getName()).log(Level.INFO, e.toString());
-            return "Project has existed, add project failed.";
-        }
+            return prj;
+
     }
 
     @Override

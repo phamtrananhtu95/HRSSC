@@ -12,7 +12,7 @@ public interface ProjectManagementService {
     List<Project> getProjectByManagerId(int managerId);
     List<Job> getJoinedResource(int projectId);
     List<Project> getHomeProjectList(int userId);
-    String addProject(Project project);
+    Project addProject(Project project);
     void saveProject(Project project);
 
 

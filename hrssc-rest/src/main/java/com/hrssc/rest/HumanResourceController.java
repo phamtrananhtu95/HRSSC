@@ -73,6 +73,7 @@ public class HumanResourceController {
 	@PostMapping(value = "/add")
 	public ResponseStatus addHumanResource(@RequestBody HumanResource humanResource) {
 		ResponseStatus response = new ResponseStatus(humanResourceService.addHumanResource(humanResource));
+		humanResource = humanResourceService.getHumanResourceByEmail(humanResource.getEmail());
 		if(humanResource.getStatus() == Constant.ResourceStatus.AVAILABLE){
 			matchingService.matchResource(humanResource.getId());
 			similarService.findSimilarResource(humanResource.getId());
