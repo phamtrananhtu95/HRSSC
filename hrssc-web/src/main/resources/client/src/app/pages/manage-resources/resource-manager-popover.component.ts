@@ -60,6 +60,9 @@ export class ResourceManagerPopoverComponent implements OnInit {
         this.formModel.companyId = this.authenticateService.getCompanyId();
         this.formModel.userId = this.authenticateService.getUserId();
 
+        // Set default status for resource when addnew
+        this.formModel.status = 2;
+
         this.setDisableUntilForStartDate();
     }
 
@@ -144,7 +147,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
 
     onValueChangeStatus($event) {
         this.formModel.status = $event ? 1 : 2;
-        // console.log(this.formModel);
+        // console.log("bbbbbbbbbb"+ JSON.stringify(this.formModel));
     }
 
     nextTab() {
