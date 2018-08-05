@@ -7,6 +7,7 @@ import * as jQuery from 'jquery';
 import { skill } from '../../models/skill.model';
 import { EmployeeService } from '../../services/employee.service';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
+import { NgForm } from '@angular/forms';
 // import { UiSwitchModule } from 'ngx-ui-switch';
 
 declare var $: any;
@@ -36,6 +37,9 @@ export class ResourceManagerPopoverComponent implements OnInit {
     public myDatePickerOptionsEnd: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
     };
+
+    // validate
+    public isValidFormSubmitted = false;
 
     constructor(
         private managementService: ManagementService,
@@ -73,27 +77,24 @@ export class ResourceManagerPopoverComponent implements OnInit {
         this.myDatePickerOptionsStart = optionsStart;
     }
 
-    addNewResource() {
+    addNewResource(form: NgForm) {
+        this.isValidFormSubmitted = false;
+        if (form.invalid) {
+            return;
+        }
+        this.isValidFormSubmitted = true;
+        
         this.formModel.resourceSkillsById = this.skills;
         this.employeeService.addHumanResource(this.formModel).subscribe(
             res => {
                 this.reloadManagerList.emit();
                 (<any>$("#modal_default")).modal("hide");
+                // this.formModel = new EmployeeRequest();
             },
             err => {
                 console.log(err);
             }
         )
-        console.log(this.formModel);
-        // this.managementService.addManager(this.formModel).subscribe(
-        //     res => {
-        //         this.reloadManagerList.emit();
-        //         (<any>$("#modal_small")).modal("hide");
-        //     },
-        //     err => {
-        //         console.log(err);
-        //     }
-        // );
     }
     testClick() {
         alert(123);

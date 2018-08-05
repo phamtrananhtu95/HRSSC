@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers:[RegisterService]
+  providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -29,10 +29,10 @@ export class RegisterComponent implements OnInit {
     public header: HeaderService,
     private registerService: RegisterService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() { 
-    
+  ngOnInit() {
+
     this.menu.hideMenu(true);
     this.header.hideHeader(true);
   }
@@ -56,5 +56,9 @@ export class RegisterComponent implements OnInit {
       }, error => {
         this.error = error;
       });
+  }
+
+  redirectLoginPage() {
+    this.router.navigate(['login']);
   }
 }
