@@ -65,22 +65,22 @@
               </h4> -->
               <h4>
                 <b>
-                  <i class="icon-location4"></i> Location:{{project?.companyByCompanyId?.city}}</b>
+                  Location:{{project?.companyByCompanyId?.city}}</b>
               </h4>
               <h4>
                 <b>
-                  <i class="glyphicon glyphicon-calendar"></i> 5 days ago</b>
+                  5 days ago</b>
               </h4>
 
             </div>
             <div class="media-right media-middle">
-              <button *ngIf="!isManager && !isChief" type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()" data-toggle="modal"
-                data-target="#modal_theme_info">
+              <button *ngIf="!isManager && !isChief" type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()"
+                data-toggle="modal" data-target="#modal_theme_info">
                 Apply
               </button>
               <span *ngIf="isManager" style="font-size: 12px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : project.processStatus == 2 ? 'border-danger text-danger-600' : 'border-slate text-slate-600'"
                 class="label label-flat">
-                {{project.processStatus == 1 ?  "PENDING" : project.processStatus == 2 ? "On_Going" : "FINISH"}}</span>
+                {{project.processStatus == 1 ? "PENDING" : project.processStatus == 2 ? "On_Going" : "FINISH"}}</span>
             </div>
           </div>
         </div>
@@ -89,31 +89,31 @@
 
       <!-- Tabbed form -->
       <div *ngIf="isManager" class="tabbable panel login-form width-400">
-          <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-            <li class="active">
-              <a href="#basic-tab1" data-toggle="tab">
-                <h6>Info</h6>
-              </a>
-            </li>
-            <li>
-              <a href="#basic-tab2" data-toggle="tab">
-                <h6>Resource Joined</h6>
-              </a>
-            </li>
-          </ul>
-  
-          <div class="tab-content panel-body">
-            <div class="tab-pane fade in active" id="basic-tab1">
-                <div class="col-md-12">
-                    <app-info-project-manager (reloadProject)="getProjectById()" (reloadMatchingResource)="reloadMatchingResource()" [project]="project"></app-info-project-manager>
-                  </div>
-            </div>
-  
-            <div class="tab-pane fade" id="basic-tab2">
-              <app-resource-joined></app-resource-joined>
+        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+          <li class="active">
+            <a href="#basic-tab1" data-toggle="tab">
+              <h6>Info</h6>
+            </a>
+          </li>
+          <li>
+            <a href="#basic-tab2" data-toggle="tab">
+              <h6>Resource Joined</h6>
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content panel-body">
+          <div class="tab-pane fade in active" id="basic-tab1">
+            <div class="col-md-12">
+              <app-info-project-manager (reloadProject)="getProjectById()" (reloadMatchingResource)="reloadMatchingResource()" [project]="project"></app-info-project-manager>
             </div>
           </div>
+
+          <div class="tab-pane fade" id="basic-tab2">
+            <app-resource-joined></app-resource-joined>
+          </div>
         </div>
+      </div>
 
       <div *ngIf="!isManager" class="panel panel-flat">
         <div class="panel-body">
