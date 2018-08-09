@@ -22,8 +22,9 @@ public class SchedulingService {
     ProjectManagementService projectManagementService;
 
     Logger logger = Logger.getLogger(SchedulingService.class.getName());
-    //@Scheduled(fixedRate = 1000*60*5)
-    private void updateProjectStatus(){
+    //@Scheduled(fixedRate = 1000*60*60*24)
+    //@Scheduled(cron = "0 30 6 * * ?)
+    private void updateProjectStatus() throws Exception{
         List<Project> pendingProjectList = projectRepository.findByProcessStatusNot(Constant.ProjectProcess.FINISHED);
         if(pendingProjectList != null && pendingProjectList.size() == 0){
             return;
@@ -32,11 +33,16 @@ public class SchedulingService {
             long currentTime = System.currentTimeMillis();
             long projectEndTime = pendingProject.getEndDate();
             if(currentTime > projectEndTime){
-                pendingProject.setProcessStatus(Constant.ProjectProcess.FINISHED);
-                projectManagementService.updateProject(pendingProject);
+
+                projectManagementService.closeFinishedProject(pendingProject.getId());
                 logger.log(Level.INFO, "Successfully updated project to FINISHED. Project ID:" +pendingProject.getId());
             }
         }
+    }
+
+    @Scheduled(cron = "0 30 6 * * ?") // At 6:30:00 everyday
+    private void checkJobDate(){
+
     }
 
 }
