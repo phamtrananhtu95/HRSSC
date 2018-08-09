@@ -79,6 +79,7 @@ public class SimilarServiceImpl implements SimilarService {
             List<SimilarResource> similarList = new ArrayList<>();
             ScoreRanker sr = new ScoreRanker(5.0,1.0,1.0,0.7,0.3);
             for(HumanResource matchResource: matchingList){
+
                 double similarScore = sr.calculateResourceSimilarScore(resource,matchResource);
                 if(similarScore > 0){
                     SimilarResource similar = new SimilarResource();
