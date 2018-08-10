@@ -148,6 +148,10 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 	@Override
 	public String addHumanResource(HumanResource humanResourceSkill) {
 		try {
+			HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
+			if(hm != null){
+				return "email existed!";
+			}
 			HumanResource humanResource = new HumanResource();
 			humanResource.setFullname(humanResourceSkill.getFullname());
 //			humanResource.setStatus(Constant.ResourceStatus.INACTIVE);
@@ -162,7 +166,7 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 			humanResource.setAvatar("assets/images/avatar2.png");
 			humanResourceRepository.save(humanResource);
 
-			HumanResource hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
+			hm = humanResourceRepository.findByEmail(humanResourceSkill.getEmail());
 
 			List<ResourceSkills> resourceSkillsList = (List<ResourceSkills>) humanResourceSkill.getResourceSkillsById();
 			for (ResourceSkills tmp : resourceSkillsList) {
@@ -261,5 +265,18 @@ public class HumanResourceServiceImpl implements HumanResourceService{
 	public List<Job> viewHumanresourceHistory(int id){
 		List<Job> resultJob = jobRepository.findByHumanResourceIdAndStatus(id, Constant.JobStatus.FINISHED);
 		return resultJob;
+	}
+
+	public String removedResource(int resourceId){
+		HumanResource humanResource = humanResourceRepository.getById(resourceId);
+		if(humanResource == null){
+			return "Human resource not found!";
+		}
+		if(humanResource.getStatus() == Constant.ResourceStatus.BUSY){
+			return "Human resource is working on a project! End contract and try again!";
+		}
+		humanResource.setStatus(Constant.ResourceStatus.REMOVED);
+		humanResourceRepository.save(humanResource);
+		return "Success";
 	}
 }

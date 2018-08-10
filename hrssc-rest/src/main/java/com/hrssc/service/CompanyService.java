@@ -14,7 +14,7 @@ public interface CompanyService {
     List<HumanResource> viewCompanyResource(int companyId, int userId)throws NotFoundException;
     String updateCompany(Company company);
     List<Company> getHomeCompanyList(int userId);
-
+    String deactiveCompany(int companyId);
 
 
 }

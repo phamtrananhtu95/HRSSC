@@ -24,8 +24,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findById(int id);
 
+	List<User> findByCompanyId(int companyId);
 
 	User findByIdAndRoleId(int id, int roleId);
+
+	User findByCompanyIdAndRoleId(int companyId,int roleId);
 
 	@Query(value = "SELECT u FROM user u WHERE u.companyId=:companyId AND u.roleId=:managerRoleId")
 	List<User> getByCompanyIdAndRoleId(@Param(value = "companyId") int companyId,

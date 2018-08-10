@@ -1,9 +1,11 @@
 package com.hrssc.service.impl;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.entities.Company;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Project;
 import com.hrssc.entities.User;
+import com.hrssc.repository.CompanyRepository;
 import com.hrssc.repository.HumanResourceRepository;
 import com.hrssc.repository.ProjectRepository;
 import com.hrssc.repository.UserRepository;
@@ -39,6 +41,9 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
 
 	@Autowired
     private HumanResourceRepository humanResourceRepository;
+
+	@Autowired
+	CompanyRepository companyRepository;
 
 	public User getManagerById(int id) {
         User user = userRepository.findByIdAndRoleId(id,Constant.UserRole.MANAGER);
@@ -139,5 +144,33 @@ public class ManagerManagementServiceImpl implements ManagerManagementService {
     public List<Project> getManagerProject(int userId){
         return projectRepository.findByUserIdAndRequestStatus(userId,Constant.RequestStatus.OPENNING);
     }
+
+    public String deactiveManager(int managerId){
+		User user = userRepository.findById(managerId);
+		if(user == null){
+			return "User not found!";
+		}
+		User chief = userRepository.findByCompanyIdAndRoleId(user.getCompanyId(), Constant.UserRole.CHIEF);
+		if(chief == null){
+			return "Chief Not found";
+		}
+		List<Project> projectList =  projectRepository.findByUserIdAndRequestStatusNot(managerId, Constant.RequestStatus.REMOVED);
+		if(projectList.size() != 0) {
+			for (Project p : projectList) {
+				p.setUserId(chief.getId());
+				projectRepository.save(p);
+			}
+		}
+		List<HumanResource> humanResourceList = humanResourceRepository.findByUserIdAndStatusNot(managerId, Constant.ResourceStatus.REMOVED);
+		if(humanResourceList.size() != 0) {
+			for (HumanResource h : humanResourceList) {
+				h.setUserId(chief.getId());
+				humanResourceRepository.save(h);
+			}
+		}
+		user.setStatus(Constant.ManagerStatus.DEACTIVATED);
+		userRepository.save(user);
+		return "success!";
+	}
 
 }

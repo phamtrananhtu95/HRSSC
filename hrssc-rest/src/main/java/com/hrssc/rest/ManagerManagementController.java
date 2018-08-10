@@ -85,5 +85,11 @@ public class ManagerManagementController {
 	public List<Project> getManagerProjects(@PathVariable(value = "userId") int userId){
 		return userService.getManagerProject(userId);
 	}
+
+	@GetMapping(value = "/deactive-managger/{managerId}")
+	public ResponseStatus removedManager(@PathVariable(value = "managerId") int managerId){
+		ResponseStatus responseStatus = new ResponseStatus(userService.deactiveManager(managerId));
+		return responseStatus;
+	}
 }
 

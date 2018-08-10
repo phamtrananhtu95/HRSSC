@@ -22,13 +22,14 @@ public class Constant {
 	public class RequestStatus {
 		public static final int OPENNING = 1;
 		public static final int CLOSED = 2;
-		public static final int REMOVED = 3;
+		public static final int REMOVED = -1;
 	}
 
 	public class ResourceStatus {
 		public static final int AVAILABLE = 1;
 		public static final int INACTIVE = 2;
 		public static final int BUSY = 3;
+		public static final int REMOVED = -1;
 	}
 	public class ManagerStatus {
 		public static final int ACTIVATED = 1;

@@ -26,4 +26,5 @@ public interface ProjectManagementService {
     String closeProject(int projectId);
     String releaseResource(int jobId);
     String rejectResource(int jobId);
+    String removedProject(int projectId);
 }

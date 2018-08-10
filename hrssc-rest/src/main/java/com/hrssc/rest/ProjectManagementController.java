@@ -123,6 +123,10 @@ public class ProjectManagementController {
         return responseStatus;
     }
 
-
+    @GetMapping(value = "/removed-project/{projectId}")
+    public ResponseStatus removedProject(@PathVariable(value = "projectId") int projectId){
+        ResponseStatus responseStatus = new ResponseStatus(projectManagementService.removedProject(projectId));
+        return responseStatus;
+    }
 
 }

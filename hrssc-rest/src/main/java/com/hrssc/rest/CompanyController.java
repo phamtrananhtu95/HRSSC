@@ -52,8 +52,11 @@ public class CompanyController {
 		return  new ResponseStatus(companyService.updateCompany(company));
 	}
 
-
-
+	@GetMapping(value = "/deactive-company/{companyId}")
+	public ResponseStatus deactiveCompany(@PathVariable(value = "companyId") int companyId){
+		ResponseStatus responseStatus = new ResponseStatus(companyService.deactiveCompany(companyId));
+		return responseStatus;
+	}
 //	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 //	public CompanyDto createCompany(@RequestBody CompanyDto company) {
 //		return companyService.createCompany(company);

@@ -34,4 +34,5 @@ public interface HumanResourceService {
 	HumanResource viewHumanResourceDetails(int id);
 	String changeResourceStatus(HumanResource humanResource);
 	List<Job> viewHumanresourceHistory(int id);
+	String removedResource(int resourceId);
 }

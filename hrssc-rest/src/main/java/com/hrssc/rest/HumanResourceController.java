@@ -114,6 +114,12 @@ public class HumanResourceController {
 	public List<Job> viewHumanresourceHistory(@PathVariable("resourceId") int id){
 		return humanResourceService.viewHumanresourceHistory(id);
 	}
+
+	@GetMapping(value = "/removed-resource/{resourceId}")
+	public ResponseStatus removedResource(@PathVariable(value = "resourceId") int resourceId){
+		ResponseStatus responseStatus = new ResponseStatus(humanResourceService.removedResource(resourceId));
+		return responseStatus;
+	}
 }
 
 

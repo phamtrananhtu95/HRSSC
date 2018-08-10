@@ -436,5 +436,24 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         humanResourceRepository.save(resource);
         return "Success!";
     }
+
+    public String removedProject(int projectId){
+        Project project = projectRepository.findById(projectId);
+        if(project == null || project.getRequestStatus() == Constant.RequestStatus.REMOVED){
+            return "Project not Found!";
+        }
+        List<Job> jobList = jobRepository.findByProjectIdAndStatus(projectId, Constant.JobStatus.PENDING);
+        if(jobList.size() != 0){
+            return "There are resources working on this project! End contract and try again!";
+        }
+        jobList = jobRepository.findByProjectIdAndStatus(projectId, Constant.JobStatus.ON_GOING);
+        if(jobList.size() !=0){
+            return "There are resources working on this project! End contract and try again!";
+        }
+        project.setRequestStatus(Constant.RequestStatus.REMOVED);
+        project.setProcessStatus(Constant.ProjectProcess.FINISHED);
+        projectRepository.save(project);
+        return "Success!";
+    }
 }
 

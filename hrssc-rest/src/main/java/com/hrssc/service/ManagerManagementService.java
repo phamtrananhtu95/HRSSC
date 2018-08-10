@@ -47,4 +47,5 @@ public interface ManagerManagementService {
 	List<ManagerDto> getManagersByCompanyId(int companyId);
 	List<HumanResource> getManagerResource(int userId);
 	List<Project> getManagerProject(int userId);
+	String deactiveManager(int managerId);
 }
