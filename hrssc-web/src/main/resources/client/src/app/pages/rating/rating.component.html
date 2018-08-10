@@ -16,7 +16,7 @@
         <li class="media" *ngFor="let humanResource of listHumanOfProject">
 
           <div class="media-left">
-            <img src="assets/images/avatar.png" style="width: 70px; height: 70px;" class="img-circle" alt="">
+            <img src="{{humanResource?.humanResourceByHumanResourceId?.avatar}}" style="width: 70px; height: 70px;" class="img-circle" alt="">
           </div>
           <div class="media-body">
             <div class="media-heading text-semibold">&nbsp;</div>

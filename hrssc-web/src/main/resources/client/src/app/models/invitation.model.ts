@@ -4,6 +4,7 @@ export class Invitation {
     email: string;
     salary: number;
     countInvite: number;    
+    avatar: string;
     interactionsById: InteractionsById[];
     constructor() {
     }
