@@ -58,19 +58,19 @@
                 <b>{{project?.title}}</b>
               </h1>
               <h4>
-                <b>Skill: {{skillList}}</b>
+                <b>Skill:</b> {{skillList}}
               </h4>
               <!-- <h4>
                 <b>Number: ?</b>
               </h4> -->
               <h4>
                 <b>
-                  Location:{{project?.companyByCompanyId?.city}}</b>
+                  Location:</b> {{project?.companyByCompanyId?.city}}
               </h4>
-              <h4>
+              <!-- <h4>
                 <b>
                   5 days ago</b>
-              </h4>
+              </h4> -->
 
             </div>
             <div class="media-right media-middle">
@@ -80,7 +80,7 @@
               </button>
               <span *ngIf="isManager" style="font-size: 12px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : project.processStatus == 2 ? 'border-danger text-danger-600' : 'border-slate text-slate-600'"
                 class="label label-flat">
-                {{project.processStatus == 1 ? "PENDING" : project.processStatus == 2 ? "On_Going" : "FINISH"}}</span>
+                {{project.processStatus == 1 ? "PENDING" : project.processStatus == 2 ? "On_Going" : "FINISHED"}}</span>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@
           </li>
           <li>
             <a href="#basic-tab2" data-toggle="tab">
-              <h6>Resource Joined</h6>
+              <h6>Joined Resources</h6>
             </a>
           </li>
         </ul>

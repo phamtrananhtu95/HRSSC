@@ -20,8 +20,6 @@ export class InfoProjectViewComponent implements OnInit {
   
   ngOnChanges() {
     if(this.project){
-      console.log(this.project);
-      
       this.projectInfo = Object.assign({}, this.project);
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);

@@ -68,13 +68,14 @@ export class ManageProjectsComponent implements OnInit {
     private auth: AuthenticateService,
     private prjService: ProjectService,
     private router: Router
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
     (<any>window).datatables = true;
     (<any>window).select2 = true;
     (<any>window).datatablesBasic = true;
-
     this.setDisableUntilForStartDate();
     // this.projects = new projectList().projects;
     if (this.auth.checkLogin()) {
@@ -284,6 +285,7 @@ export class ManageProjectsComponent implements OnInit {
     this.isUpdateForm = false;
     this.isUpdatePositionForm = false;
     this.formModel = new Project();
+    this.formModel.processStatus = 1;
     this.positionList = [];
   }
 
@@ -298,28 +300,28 @@ export class ManageProjectsComponent implements OnInit {
       themeState: 'highlight'
       
     });
-    // this.formModel.domain = this.formModel.domain.toString();
-    // this.formModel.type = this.formModel.type.toString();
+    this.formModel.domain = this.formModel.domain.toString();
+    this.formModel.type = this.formModel.type.toString();
 
-    // this.formModel.userId = this.userId;
-    // this.formModel.companyId = this.companyId;
+    this.formModel.userId = this.userId;
+    this.formModel.companyId = this.companyId;
 
-    // // load list
-    // let tmp = new Array<ProjectRequirement>();
-    // this.positionList.forEach(el => {
-    //   tmp.push(el.value);
-    // });
-    // this.formModel.projectRequirementsById = tmp;
-    // this.prjService.addProject(this.formModel).subscribe(
-    //   res => {
-    //     this.getProjectsByCompanyId();
-    //     (<any>$("#modal_small")).modal("hide");
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
-    // console.log(this.formModel);
+    // load list
+    let tmp = new Array<ProjectRequirement>();
+    this.positionList.forEach(el => {
+      tmp.push(el.value);
+    });
+    this.formModel.projectRequirementsById = tmp;
+    this.prjService.addProject(this.formModel).subscribe(
+      res => {
+        this.getProjectsByCompanyId();
+        (<any>$("#modal_small")).modal("hide");
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log(this.formModel);
   }
 
   // update project

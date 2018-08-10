@@ -95,10 +95,13 @@ export class InfoProjectManagerComponent implements OnInit {
         this.projectDomain = this.projectInfo.domain.split(',');
         this.projectType = this.projectInfo.type.split(',');
       }
-
+      
+    //  set duration onchange
+      this.projectInfo.duration = this.countDuration(this.projectInfo.endDate, this.projectInfo.createDate);
 
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
+
       this.status = this.project.processStatus;
       if (this.projectInfo.projectRequirementsById) {
         this.listSkill = [];
@@ -120,6 +123,14 @@ export class InfoProjectManagerComponent implements OnInit {
         });
       }
     }
+  }
+
+  countDuration(endDate, startDate){
+    var oneDay = 24*60*60*1000;
+    var dateEnd = new Date(endDate);
+    var dateStart = new Date(startDate);
+      var diffDays = Math.round(Math.abs((dateEnd.getTime() - dateStart.getTime())/(oneDay)));
+      return diffDays;
   }
 
   loadAllPosition() {
@@ -191,21 +202,30 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   onDateChangedCreate(event: IMyDateModel) {
     this.projectInfo.createDate = event && event.jsdate ? event.jsdate.getTime() : null;
-
+    
     let startDate = event.date;
     let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
     optionsEnd.disableUntil = startDate;
     this.myDatePickerOptionsEnd = optionsEnd;
 
+    // set duration onchange
+    this.projectInfo.duration = this.countDuration(this.projectInfo.endDate, this.projectInfo.createDate);
+
   }
   onDateChangedEnd(event: IMyDateModel) {
     this.projectInfo.endDate = event && event.jsdate ? event.jsdate.getTime() : null;
+
+    // set duration onchange
+    this.projectInfo.duration = this.countDuration(this.projectInfo.endDate, this.projectInfo.createDate);
   }
   ConvertToDatetime(dateValue) {
     if (!dateValue) {
       return null;
     }
     var date = new Date(dateValue);
+    
+    
+
     var dateParse = {
       date: {
         year: date.getFullYear(),

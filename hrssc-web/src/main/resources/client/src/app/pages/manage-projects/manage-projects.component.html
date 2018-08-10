@@ -64,12 +64,12 @@
                   <ul class="nav nav-tabs nav-tabs-top nav-justified">
                     <li class="active">
                       <a href="#AddInfoTab" data-toggle="tab">
-                        <h6>Info</h6>
+                        <h6>Basic Information</h6>
                       </a>
                     </li>
                     <li>
                       <a href="#AddPositionTab" data-toggle="tab">
-                        <h6>Position</h6>
+                        <h6>Requirements</h6>
                       </a>
                     </li>
                     <li>
@@ -184,7 +184,7 @@
                                     <div class="form-group has-feedback has-feedback-left no-margin">
                                       <div class="row">
                                         <div class="col-md-4">
-                                          <div class="form-group has-feedback has-feedback-left no-margin">
+                                          <div class="form-group has-feedback has-feedback-left no-margin" style="z-index: 99;">
                                             <label class="text-bold">Position</label>
 
                                             <ng-select #positionAdd [options]="positionOpt" [(ngModel)]="formPositionModel.positionId" (ngModelChange)="onPositionSelected($event)">
@@ -224,7 +224,7 @@
                                     </div> -->
                                     <!-- add new skill, experience -->
 
-                                    <div class="form-group has-feedback has-feedback-left no-margin" style="height: 200px; overflow: auto;">
+                                    <div class="form-group has-feedback has-feedback-left no-margin" style="height: 200px; overflow: auto;z-index: 98;">
                                       <div *ngFor="let skill of formPositionModel.skillRequirementsById">
                                         <div class="col-sm-12 no-padding">
                                           <div class="col-sm-6" style="padding-left: 0">

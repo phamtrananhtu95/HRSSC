@@ -28,8 +28,8 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group has-feedback">
-        <b>Duration</b>
-        <input type="text" [(ngModel)]="projectInfo.duration" class="form-control">
+        <b>Duration (day)</b>
+        <input type="text" [attr.disabled]="true" [(ngModel)]="projectInfo.duration" class="form-control">
       </div>
     </div>
     <div class="col-sm-6">
@@ -133,7 +133,7 @@
         <select name="select" class="form-control" name="status" (change)="projectInfo.processStatus=$event.target.value" [(ngModel)]="status">
           <option value="1" [selected]="projectInfo?.processStatus==1">Pending</option>
           <option value="2" [selected]="projectInfo?.processStatus!=1">On going</option>
-          <option value="3" [selected]="projectInfo?.processStatus==3">Finish</option>
+          <option value="3" [selected]="projectInfo?.processStatus==3">Finished</option>
         </select>
       </div>
     </div>
