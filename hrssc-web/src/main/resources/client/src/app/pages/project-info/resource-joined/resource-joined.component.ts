@@ -49,6 +49,7 @@ export class ResourceJoinedComponent implements OnInit {
   }
 
   cancelHumanResource(jobId) {
+    
     this.prjService.cancelHumanResource(jobId, this.userId).subscribe(
       res => {
         if (res == true) {
