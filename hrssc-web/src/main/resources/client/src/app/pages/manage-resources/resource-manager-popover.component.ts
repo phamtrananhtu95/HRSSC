@@ -5,6 +5,7 @@ import { AuthenticateService } from '../../services/authenticate.service';
 import { Manager } from '../../models/manager.model';
 import * as jQuery from 'jquery';
 import { skill } from '../../models/skill.model';
+
 import { EmployeeService } from '../../services/employee.service';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 import { NgForm } from '@angular/forms';
@@ -77,25 +78,51 @@ export class ResourceManagerPopoverComponent implements OnInit {
         this.myDatePickerOptionsStart = optionsStart;
     }
 
+    // Add new ver cũ
+    // addNewResource(form: NgForm) {
+    //     this.isValidFormSubmitted = false;
+    //     if (form.invalid) {
+    //         return;
+    //     }
+    //     this.isValidFormSubmitted = true;
+
+    //     this.formModel.resourceSkillsById = this.skills;
+    //     this.employeeService.addHumanResource(this.formModel).subscribe(
+    //         res => {
+    //             this.reloadManagerList.emit();
+    //             (<any>$("#modal_default")).modal("hide");
+    //         },
+    //         err => {
+    //             console.log(err);
+    //         }
+    //     )
+    // }
+
+    // Add new ver mới
     addNewResource(form: NgForm) {
-        this.isValidFormSubmitted = false;
-        if (form.invalid) {
-            return;
-        }
-        this.isValidFormSubmitted = true;
-        
+        // this.isValidFormSubmitted = false;
+        // if (form.invalid) {
+        //     return;
+        // }
+        // this.isValidFormSubmitted = true;
+
         this.formModel.resourceSkillsById = this.skills;
         this.employeeService.addHumanResource(this.formModel).subscribe(
             res => {
+                if (res === "Email existed.") {
+                    alert("giong");
+                }
                 this.reloadManagerList.emit();
                 (<any>$("#modal_default")).modal("hide");
                 // this.formModel = new EmployeeRequest();
+                alert("ko giong");
             },
             err => {
                 console.log(err);
             }
         )
     }
+
     testClick() {
         alert(123);
     }
@@ -118,6 +145,10 @@ export class ResourceManagerPopoverComponent implements OnInit {
     createNewSkill() {
         this.skills.push(new Skill());
         console.log(this.skills);
+    }
+
+    removeSkill(index) {
+        // this.skills = this.skills.filter(skill => skill.index !== index);
     }
 
     addHumanResource() {

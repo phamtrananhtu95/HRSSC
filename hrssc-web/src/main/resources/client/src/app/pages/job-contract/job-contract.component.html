@@ -92,7 +92,8 @@
                         <i class="icon-pencil6 position-left"></i>Edit</button>
                     </div>
                     <div class="col-lg-6" *ngIf="isEditMode && !composeContract">
-                      <ng-select [options]="contractOpts" (selected)="loadContractByVersion()" [(ngModel)]="contractVersion" name="contractVer" placeholder="Select contract version"></ng-select>
+                      <ng-select [options]="contractOpts" (selected)="loadContractByVersion()" [(ngModel)]="contractVersion" name="contractVer"
+                        placeholder="Select contract version"></ng-select>
                       <!-- <p>
                         Selected contract: {{contractVersion | json}}
                       </p> -->
@@ -229,7 +230,10 @@
               </div>
               <div class="col-md-3">
                 <div class="text-right">
-                  <button *ngIf="isEditMode" type="button" class="btn btn-primary" (click)="sendOffer()" id="sweet_success_send_invite">Send Offer
+                  <!-- <button *ngIf="isEditMode" type="button" class="btn btn-primary" (click)="sendOffer()" id="sweet_success_send_invite">Send Offer
+                    <i class="icon-arrow-right14 position-right"></i>
+                  </button> -->
+                  <button *ngIf="isEditMode" type="button" class="btn btn-primary" (click)="sendOffer()">Send Offer
                     <i class="icon-arrow-right14 position-right"></i>
                   </button>
                   <button *ngIf="!isEditMode" type="button" class="btn btn-success" [disabled]="!isCheckTerm" (click)="acceptOffer()" id="sweet_success_accept_invite">Accept

@@ -20,7 +20,6 @@ export class InfoResourceManagerComponent implements OnInit {
     @Output() reloadMatchingProject: EventEmitter<any> = new EventEmitter();
 
     public myDatePickerOptions: IMyDpOptions = {
-        // other options...
         dateFormat: 'dd/mm/yyyy',
     };
     startDate: any = null;
