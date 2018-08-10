@@ -11,9 +11,7 @@ export class ChatMessageComponent implements OnInit {
   userEmail: string;
   messageContent: string;
   userSent: string;
-  isSent: boolean;
   time: Date = new Date();
-  // isOwnMessage: boolean;
 
   constructor(
     private auth: AuthenticateService
@@ -23,8 +21,6 @@ export class ChatMessageComponent implements OnInit {
     
 
     this.userEmail = this.auth.getUserName();
-    console.log(this.userEmail);
-    
     this.messageContent = chatMessage.content;
     this.time = chatMessage.timeSent;
     this.userSent = chatMessage.userSent;

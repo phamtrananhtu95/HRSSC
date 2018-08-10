@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-info-overview',
@@ -12,7 +13,9 @@ export class CompanyInfoOverviewComponent implements OnInit {
   public projectAvailable: any;
   public resourceAvai: any;
   public companyInfo: any;
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -29,4 +32,10 @@ export class CompanyInfoOverviewComponent implements OnInit {
     }
   }
 
+  viewProjectDetail(id) {
+    this.router.navigate(['manager/project/info'], {queryParams:{"id": id}});
+  }
+  viewResourceDetail(id) {
+    this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});
+  }
 }

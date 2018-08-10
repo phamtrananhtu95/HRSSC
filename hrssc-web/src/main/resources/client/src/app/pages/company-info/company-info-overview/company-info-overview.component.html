@@ -105,7 +105,7 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <h6 class="media-heading text-semibold">{{project.title}}</h6>
+                    <h6 class="media-heading text-semibold"><a (click)="viewProjectDetail(project.id)">{{project.title}}</a></h6>
                     <p><b>Type</b>: {{project.type}}</p>
                     <p>{{project.description}}</p>
                   </div>
@@ -150,7 +150,7 @@
                           </a>
                         </div>
                         <div class="media-body">
-                          <h6 class="media-heading text-semibold">{{resource.fullname}}</h6>
+                          <h6 class="media-heading text-semibold"><a (click)="viewResourceDetail(resource.id)">{{resource.fullname}}</a></h6>
                           <p><i>Tel:</i> {{resource.tel}}</p>
                         </div>
                       </div>

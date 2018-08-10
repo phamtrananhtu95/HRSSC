@@ -86,9 +86,9 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
-                                  <label>Project name</label>
+                                  <label class="text-semibold">Project name <i class="icon-question3"></i></label>
                                   <!-- Web application, mobile , desktop -->
-                                  <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="Abc application">
+                                  <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="Abc application" required>
                                   <div class="form-control-feedback">
                                     <i class="icon-office"></i>
                                   </div>
@@ -96,7 +96,7 @@
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
-                                  <label>Domain</label>
+                                  <label class="text-semibold">Domain <i class="icon-question3"></i></label>
                                   <!-- security,  -->
                                   <!-- <input type="text" [(ngModel)]="formModel.domain" class="form-control input-xlg" placeholder="Testing...">
                                   <div class="form-control-feedback">
@@ -111,7 +111,7 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
-                                  <label>Duration</label>
+                                  <label class="text-semibold">Duration <i class="icon-question3"></i></label>
                                   <input type="text" [(ngModel)]="formModel.duration" class="form-control input-lg" placeholder="1 (month)">
                                   <div class="form-control-feedback">
                                     <i class="icon-make-group"></i>
@@ -143,7 +143,6 @@
                                     <my-date-picker name="mydate" [options]="myDatePickerOptionsStart" (dateChanged)="onDateChangedCreate($event)"
                                       required></my-date-picker>
                                   </form>
-                                  {{formModel.createDate}}
                                 </div>
                                 <div class="col-md-6">
                                   <label>End date</label>
@@ -155,7 +154,6 @@
                                     <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" (dateChanged)="onDateChangedEnd($event)"
                                       required></my-date-picker>
                                   </form>
-                                  {{formModel.endDate}}
                                 </div>
 
                               </div>

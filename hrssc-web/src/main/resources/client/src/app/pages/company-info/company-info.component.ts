@@ -79,6 +79,10 @@ export class CompanyInfoComponent implements OnInit {
     this.companyService.getOpeningProject(userId, companyId).subscribe(
       res => {
         this.openProjects = res;
+        this.openProjects.forEach(element => {
+          element.createDate = this.ConvertToDatetime(element.createDate);
+          element.endDate = this.ConvertToDatetime(element.endDate);
+        });
         this.countProject = this.openProjects.length;
       },
       err => {
@@ -97,6 +101,11 @@ export class CompanyInfoComponent implements OnInit {
 
       }
     );
+  }
+  ConvertToDatetime(dateValue) {
+    var date = new Date(parseFloat(dateValue));
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return dateParse;
   }
   viewResourceDetail(id){
     this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});

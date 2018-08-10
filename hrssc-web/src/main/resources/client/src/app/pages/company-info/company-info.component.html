@@ -77,9 +77,9 @@
                 <!-- Company Overview -->
                 <div class="timeline-row">
                   <div class="timeline-icon">
-                    <a href="#">
-                      <img src="assets/images/placeholder.jpg" alt="">
-                    </a>
+                      <div class="bg-warning-400">
+                          <i class="icon-menu7"></i>
+                        </div>
                   </div>
 
                   <div class="panel panel-flat timeline-content">
@@ -171,8 +171,8 @@
                           <tr>
                             <th>Name</th>
                             <th>Type</th>
-                            <th>Created Date</th>
-                            <th>Matched</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Status</th>
                             <th></th>
                           </tr>
@@ -182,13 +182,15 @@
                             <td>{{project.title}}</td>
                             <td>{{project.type}}</td>
                             <td>{{project.createDate}}</td>
-                            <td></td>
+                            <td>{{project.endDate}}</td>
                             <td>
-                              <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'">
-                                {{project.processStatus == 1 ? "PENDING" : "ON GOING"}}</span>
+                                <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-green-400' : project.processStatus == 2 ? 'bg-danger-400' : 'bg-slate-400'">
+                                    {{project.processStatus == 1 ?  "PENDING" : project.processStatus == 2 ? "ON GOING" : "FINISH"}}</span>
+                              <!-- <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'">
+                                {{project.processStatus == 1 ? "PENDING" : "ON GOING"}}</span> -->
                             </td>
-                            <td class="text-center" (click)="viewProjectDetail(project.id)">
-                              <i class="icon-eye"></i>
+                            <td class="text-center" >
+                             <a style="color: black" (click)="viewProjectDetail(project.id)"><i class="icon-eye"></i></a> 
                             </td>
 
                           </tr>

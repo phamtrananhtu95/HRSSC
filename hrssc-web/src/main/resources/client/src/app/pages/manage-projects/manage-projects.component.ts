@@ -288,28 +288,38 @@ export class ManageProjectsComponent implements OnInit {
   }
 
   addNewProject() {
-    this.formModel.domain = this.formModel.domain.toString();
-    this.formModel.type = this.formModel.type.toString();
 
-    this.formModel.userId = this.userId;
-    this.formModel.companyId = this.companyId;
-
-    // load list
-    let tmp = new Array<ProjectRequirement>();
-    this.positionList.forEach(el => {
-      tmp.push(el.value);
+    $.jGrowl("Add Project Success", {
+      // animateOpen: {
+      //   opacity: 'show' 
+      // },
+      theme: 'bg-success',
+      position: 'bottom-right',
+      themeState: 'highlight'
+      
     });
-    this.formModel.projectRequirementsById = tmp;
-    this.prjService.addProject(this.formModel).subscribe(
-      res => {
-        this.getProjectsByCompanyId();
-        (<any>$("#modal_small")).modal("hide");
-      },
-      err => {
-        console.log(err);
-      }
-    );
-    console.log(this.formModel);
+    // this.formModel.domain = this.formModel.domain.toString();
+    // this.formModel.type = this.formModel.type.toString();
+
+    // this.formModel.userId = this.userId;
+    // this.formModel.companyId = this.companyId;
+
+    // // load list
+    // let tmp = new Array<ProjectRequirement>();
+    // this.positionList.forEach(el => {
+    //   tmp.push(el.value);
+    // });
+    // this.formModel.projectRequirementsById = tmp;
+    // this.prjService.addProject(this.formModel).subscribe(
+    //   res => {
+    //     this.getProjectsByCompanyId();
+    //     (<any>$("#modal_small")).modal("hide");
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
+    // console.log(this.formModel);
   }
 
   // update project

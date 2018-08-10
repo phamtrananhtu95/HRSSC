@@ -20,6 +20,8 @@ export class InfoProjectViewComponent implements OnInit {
   
   ngOnChanges() {
     if(this.project){
+      console.log(this.project);
+      
       this.projectInfo = Object.assign({}, this.project);
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
       this.endDate = this.ConvertToDatetime(this.projectInfo.endDate);
@@ -27,7 +29,7 @@ export class InfoProjectViewComponent implements OnInit {
   }
   ConvertToDatetime(dateValue) {
     var date = new Date(parseFloat(dateValue));
-    var dateParse = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     return dateParse;
   }
 }

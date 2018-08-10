@@ -21,7 +21,7 @@ public class Company {
     private String address;
     @JsonView({HomeView.Company.class,HomeView.Project.class,SimilarView.Resource.class,SimilarView.Project.class,JobView.JoinedResource.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class})
     private String city;
-    @JsonView(CompanyView.info.class)
+    @JsonView({ProjectView.details.class,CompanyView.info.class})
     private String tel;
     @JsonView(CompanyView.info.class)
     private String email;
