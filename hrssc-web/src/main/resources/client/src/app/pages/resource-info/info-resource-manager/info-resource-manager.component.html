@@ -69,13 +69,11 @@
             <div *ngFor="let skill of skills">
                 <div class="col-sm-6">
                     <div class="has-feedback">
-
                         <ng-select [options]="skillOpts" [(ngModel)]="skill.skillId" style="z-index: 9;"></ng-select>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="has-feedback">
-
                         <input type="number" [(ngModel)]="skill.experience" class="form-control">
                     </div>
                 </div>

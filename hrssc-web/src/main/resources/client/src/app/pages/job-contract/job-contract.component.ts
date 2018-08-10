@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Employee, Project } from '../../models';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
@@ -11,6 +11,7 @@ import { ContractService } from '../../services/contract.service';
 declare var $: any;
 import { InvitationService } from '../../services/invitation.service';
 import { ChatService } from '../../services/chat.service';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-job-contract',
@@ -63,8 +64,13 @@ export class JobContractComponent implements OnInit {
     private invitationService: InvitationService,
     private chatService: ChatService,
 
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+
+    private toastr: ToastsManager,
+    public vcr: ViewContainerRef,
   ) {
+    this.toastr.setRootViewContainerRef(vcr);
+
     this.userId = this.authenticateService.getUserId();
     this.route.queryParams.subscribe(params => {
       if (!params) {
@@ -211,6 +217,7 @@ export class JobContractComponent implements OnInit {
 
       if (this.isInvite) {
         // console.log("invite á em");
+        this.showSendInviteSuccess();
         this.formContract.contractByContractId.latestEditorId = this.userId;
         this.employeeService.inviteHumanResource(this.formContract).subscribe(
           res => {
@@ -233,7 +240,7 @@ export class JobContractComponent implements OnInit {
       }
       else {
         // console.log("aply á em");
-
+        this.showSendApplySuccess();
         this.projectService.applyResource(this.formContract).subscribe(
           res => {
             // noti for appliances
@@ -250,18 +257,20 @@ export class JobContractComponent implements OnInit {
         );
       }
     } else {
+      this.showSendOfferSuccess();
+      
       let notiUserid = this.formContract.contractByContractId.latestEditorId;
       this.formContract.contractByContractId.latestEditorId = this.userId;
+      
       this.contractService.changeOffer(this.formContract.contractByContractId).subscribe(
         res => {
-
           // OFFER_DEALING
           let companyName = this.project.companyByCompanyId.name;
           let notiType = "Offer Dealing";
           let msg = "New " + notiType + " of " + companyName + " company at " + this.project.title + " project";
           this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, notiUserid);
 
-          this.router.navigate(['manager/invitation']);
+          this.router.navigate(['home']);
         },
         err => {
           console.log(err);
@@ -389,5 +398,15 @@ export class JobContractComponent implements OnInit {
       err => {
         console.log(err);
       })
-    }
+  }
+
+  showSendOfferSuccess() {
+    this.toastr.success('Send offer success!', 'Success!', {toastLife: 2000});
+  }
+  showSendInviteSuccess() {
+    this.toastr.success('Send offer success!', 'Success!', {toastLife: 2000});
+  }
+  showSendApplySuccess() {
+    this.toastr.success('Send offer success!', 'Success!', {toastLife: 2000});
+  }
 }

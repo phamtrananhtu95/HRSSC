@@ -20,7 +20,7 @@
               <div class="thumb">
                 <!-- <img src="assets/images/AT-1-85.jpg" alt=""> -->
                 <img src="{{humanResource?.avatar}}" alt="">
-                
+
                 <div class="caption-overflow">
                   <!-- <span>
                     <a href="assets/images/AT-1-85.jpg" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox">
@@ -60,25 +60,31 @@
               <h1 class="media-heading">
                 <b>{{humanResource.fullname}}</b>
               </h1>
-              <h4 class="text-semibold">
-                <b>Skills: {{skillList}}</b>
+              <h4 class="">
+                Skills:
+                <b> {{skillList}}</b>
               </h4>
 
               <h4>
+                Location:
                 <b>
-                  Location: {{humanResource?.companyByCompanyId?.city}}</b>
+                  {{humanResource?.companyByCompanyId?.city}}</b>
               </h4>
               <h4>
-                <b>Salary: {{humanResource.salary | number:'.0-2'}} VND</b>
+                Salary:
+                <b>{{humanResource.salary | number:'.0-2'}} VND</b>
               </h4>
               <h4>
-                <b>Available date: {{humanResource.availableDate | date:'dd/MM/yyyy'}}</b>
+                Available date:
+                <b>{{humanResource.availableDate | date:'dd/MM/yyyy'}}</b>
               </h4>
               <h4>
-                <b>Score: {{humanResource.avgRating}}</b>
+                Score:
+                <b>{{humanResource.avgRating}}</b>
               </h4>
               <!-- rating -->
-              <div class="rating-block" style="position: absolute; bottom: -5px; left: 170px;" [popover]="myPopover" [popoverOnHover]="true" [popoverCloseOnMouseOutside]="true">
+              <div class="rating-block" style="position: absolute; bottom: -5px; left: 170px;" [popover]="myPopover" [popoverOnHover]="true"
+                [popoverCloseOnMouseOutside]="true">
                 <rating [(ngModel)]="avgRating" [readonly]="true" style="font-size: 20px;">
                 </rating>
               </div>
@@ -139,9 +145,10 @@
 
               <span *ngIf="isOwnManager" style="font-size: 14px;" [ngClass]="humanResource.status == 1 ? 'border-success text-success-600' : humanResource.status == 2 ? 'border-slate text-slate-600' : 'border-danger text-danger-600'"
                 class="label label-flat">
-                {{humanResource.status == 1 ? "Activated" : humanResource.status == 2 ? "Inactive": "Busy"}}</span>
+                {{humanResource.status == 1 ? "Available" : humanResource.status == 2 ? "Inactive": "Busy"}}</span>
 
-              <button *ngIf="!isOwnManager && !isChief" [disabled]="isEmptyProject" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info">
+              <button *ngIf="!isOwnManager && !isChief" [disabled]="isEmptyProject" type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                data-target="#modal_theme_info">
                 Invite
                 <i class="icon-play3 position-right"></i>
               </button>

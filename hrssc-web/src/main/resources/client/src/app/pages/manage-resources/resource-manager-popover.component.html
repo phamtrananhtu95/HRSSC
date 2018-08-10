@@ -298,8 +298,7 @@
                                     <div class="col-sm-6">
                                         <b>Salary</b>
                                         <div class="form-group has-feedback">
-                                            <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $"
-                                            currencyMask [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}">
+                                            <input type="text" [(ngModel)]="formModel.salary" class="form-control" placeholder="$ $ $" currencyMask [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}">
                                             <div class="form-control-feedback">
                                                 <i class="icon-coins text-muted"></i>
                                             </div>
@@ -360,16 +359,34 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-1">
+                                                <label>&ensp;</label>
+                                                <div class="bootstrap-select" style="width: 100%;">
+                                                    <button [disabled]="skills.length===1" type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="removeSkill(skill.index)">
+                                                        <i class="icon-minus2 text-muted"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-1">
+                                        <!-- <div class="col-sm-1">
                                             <label>&ensp;</label>
                                             <div class="btn-group bootstrap-select" style="width: 100%;">
                                                 <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
                                                     <i class="icon-plus22 text-muted"></i>
                                                 </button>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5"></div>
+                                    <div class="col-sm-2" style="text-align: center;">
+                                        <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="createNewSkill()">
+                                            <i class="icon-plus22 text-muted"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-5"></div>
                                 </div>
                             </div>
                         </div>
@@ -427,7 +444,7 @@
                     </div>
                     <div class="col-sm-6">
                         <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" (click)="addNewResource()">Add new</button>
+                        <button type="button" class="btn btn-primary" (click)="addNewResource()">Save</button>
                     </div>
                 </div>
             </div>
