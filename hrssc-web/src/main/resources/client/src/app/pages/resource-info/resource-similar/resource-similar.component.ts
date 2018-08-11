@@ -22,6 +22,8 @@ export class ResourceSimilarComponent implements OnInit {
         this.employeeService.loadSimilarHumanResource(this.resourceId).subscribe(
             res => {
                 this.similars = res;
+                console.log(this.similars);
+                
             },
             err => {
                 console.log(err);

@@ -45,6 +45,8 @@ export class ManagerInfoComponent implements OnInit {
     this.managerService.getManagerById(this.managerId).subscribe(
       res => {
         this.manager = res;
+        console.log(this.manager);
+        
       },
       err => {
 

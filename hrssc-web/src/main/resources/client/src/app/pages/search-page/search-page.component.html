@@ -113,7 +113,7 @@
               <div class="col-lg-3 col-sm-6" *ngFor="let resource of listResourceSearch">
                 <div class="thumbnail">
                   <div class="thumb thumb-rounded">
-                    <img src="assets/images/avatar2.png" alt="">
+                    <img src="{{resource?.avatar}}" style="width: 169px;height: 169px;" alt="{{resource.fullname}}">
                     <div class="caption-overflow">
                       <span>
                         <a (click)="viewDetailResource(resource.id)" class="btn text-white btn-flat btn-icon ml-5">
@@ -166,7 +166,7 @@
                     <div class="media-left">
                       <div class="thumb">
                         <a>
-                          <img src="assets/images/evolable-asia-logo-170-151.png" class="img-responsive img-rounded media-preview" alt="">
+                          <img src="{{project?.companyByCompanyId?.logo}}" style="width: 90px;height: 90px;" class="img-responsive img-rounded media-preview" alt="{{project?.companyByCompanyId?.name}}">
 
                         </a>
                       </div>
@@ -224,7 +224,7 @@
                 <div class="content-group">
                   <div class="thumb">
                     <a href="#">
-                      <img src="assets/images/placeholder.jpg" class="img-responsive img-rounded" alt="">
+                      <img src="{{viewProjectModel?.companyByCompanyId?.logo}}" style="width: 247px;height: 247px;" class="img-responsive img-rounded" alt="{{viewProjectModel?.companyByCompanyId?.name}}">
                       <span class="zoom-image">
                         <i class="icon-play3"></i>
                       </span>

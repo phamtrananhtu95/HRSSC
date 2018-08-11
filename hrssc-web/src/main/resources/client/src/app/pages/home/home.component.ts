@@ -80,6 +80,8 @@ export class HomeComponent implements OnInit {
     this.prjSerivce.getProjects(this.userId).subscribe(
       res => {
           this.projects = res;
+          console.log(this.projects);
+          
       },
       err => {
 

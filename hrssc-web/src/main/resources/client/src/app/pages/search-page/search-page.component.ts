@@ -94,7 +94,8 @@ export class SearchPageComponent implements OnInit {
         res => {
           
           this.listResourceSearch = res;
-
+          console.log(this.listResourceSearch);
+          
           this.countResource = this.listResourceSearch.length;
         },
         err => {

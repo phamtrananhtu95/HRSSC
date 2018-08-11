@@ -41,6 +41,9 @@ export class ProjectSimilarComponent implements OnInit {
         this.listSimilarProject = new Array<ProjectSimilar>();
 
         this.listSimilarProject = res;
+        console.log(this.listSimilarProject);
+        
+
         this.listSimilarProject.forEach(el => {
           el.listSkillTitle = [];
           this.skillListtmp = [];

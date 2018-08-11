@@ -28,6 +28,8 @@ export class ProjectMatchingComponent {
     getProjectMatching() {
         this.projectService.loadMatchingProject(this.userId, this.resourceId).subscribe(res => {
             this.projectsMatched = res;
+            console.log(this.projectsMatched);
+            
             this.combineSkillForProject();
         })
     }

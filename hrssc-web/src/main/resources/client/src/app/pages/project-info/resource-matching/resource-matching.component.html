@@ -8,7 +8,9 @@
           <div class="media-left ">
             <div class="thumb">
                 <a href="#">
-                    <img src="assets/images/avatar.png" class="media-preview" alt="">
+                    <!-- {{resource.humanResourceByHumanResourceId.avatar}} -->
+                    <img src="{{resource.humanResourceByHumanResourceId.avatar}}" 
+                    style="width: 90px;height: auto;max-width: 90px;max-height: 90px" class="media-preview" alt="{{resource.humanResourceByHumanResourceId.fullname}}">
                   </a>
             </div>
           </div>

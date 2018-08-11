@@ -69,6 +69,8 @@ export class CompanyInfoComponent implements OnInit {
     this.companyService.getCompanyInfoById(this.companyId).subscribe(
       res => {
           this.company = res;
+          console.log(this.company);
+          
       },
       err => {
 

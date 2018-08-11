@@ -34,6 +34,9 @@ export class ResourceMatchingComponent implements OnInit {
     this.prjService.getResourceMatching(userId, projectId).subscribe(
       res => {
         this.listResourceMatch = res;
+
+        console.log(this.listResourceMatch);
+        
         this.listResourceMatch.forEach(element => {
           element.listSkill = "";
           element.humanResourceByHumanResourceId.resourceSkillsById.forEach(el => {
