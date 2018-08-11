@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User, Employee, SkillBySkillId } from '../../models';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
+import { ResourceManagerPopoverComponent } from './resource-manager-popover.component';
 
 @Component({
   selector: 'app-manage-resources',
@@ -10,6 +11,8 @@ import { AuthenticateService } from '../../services/authenticate.service';
   styleUrls: ['./manage-resources.component.css']
 })
 export class ManageResourcesComponent implements OnInit {
+  @ViewChild(ResourceManagerPopoverComponent) resourceManagerPopoverComponent: ResourceManagerPopoverComponent;
+
   // public resources: User[]
   public parentTitle = "Home";
   public title = " - Manage resources";

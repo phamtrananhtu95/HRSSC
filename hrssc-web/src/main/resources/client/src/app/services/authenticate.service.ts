@@ -76,6 +76,11 @@ export class AuthenticateService {
     return userInfo ? userInfo.roleID : null;
   }
 
+  getAvatar(){
+    let userInfo = this.getUserInfo();
+    return userInfo ? userInfo.roleID : null;
+  }
+
   checkRole(subMenu) {
     let roleID =this.getRoleId();
     if (subMenu && roleID) {

@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   public countNotify: number;
   public interval;
 
+  public userAvatar: any;
+
   // logout
   model: any = {};
   loading = false;
@@ -61,6 +63,12 @@ export class HeaderComponent implements OnInit {
     if (userId) {
       this.header.setUserIdToHead(userId);
     }
+
+    let avatar = this.authenticateService.getAvatar();
+    if (avatar) {
+      this.header.setAvatartoHead(avatar);
+    }
+
     this.interval = setInterval(() => {
       this.listLogNotify = this.chatService.getLogNotify();
 

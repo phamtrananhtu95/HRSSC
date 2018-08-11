@@ -59,6 +59,11 @@ export class ResourceManagerPopoverComponent implements OnInit {
         // From wizard_steps.
         (<any>window).resourceManagerPopoverComponent = this;
         this.getSkillOpts();
+        this.initFormModel();
+    }
+
+    private initFormModel(){
+        this.formModel = new EmployeeRequest();
         this.skills = [];
         this.skills.push(new Skill());
 
@@ -67,8 +72,6 @@ export class ResourceManagerPopoverComponent implements OnInit {
 
         // Set default status for resource when addnew
         this.formModel.status = 2;
-
-        this.setDisableUntilForStartDate();
     }
 
     setDisableUntilForStartDate() {
@@ -114,7 +117,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
                 }
                 this.reloadManagerList.emit();
                 (<any>$("#modal_default")).modal("hide");
-                // this.formModel = new EmployeeRequest();
+                this.initFormModel();
                 alert("ko giong");
             },
             err => {

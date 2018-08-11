@@ -30,4 +30,8 @@ export class HeaderService {
   setUserIdToHead(userId: string) {
     this.userIdSource.next(userId);
   }
+
+  setAvatartoHead(avatar: string) {
+    this.userSource.next(avatar);
+  }
 }

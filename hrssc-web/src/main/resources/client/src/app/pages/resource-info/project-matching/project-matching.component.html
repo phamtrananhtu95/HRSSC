@@ -76,27 +76,27 @@
 </div> -->
 
 <div class="panel panel-flat">
-        <div class="panel-heading">
-            <h6 class="panel-title text-center text-semibold">Matched projects</h6>
-        </div>
-    
-        <div class="panel-body">
-            <div class="media" *ngFor="let project of projectsMatched">
-                <div class="media-left ">
-                    <div class="thumb">
-                        <a href="#">
-                            <img src="{{project?.projectByProjectId?.companyByCompanyId?.logo}}" style="width: 90px;height: 90px;" class="media-preview" alt="{{project?.projectByProjectId?.title}}">
-                        </a>
-                    </div>
-    
-                </div>
-                <div class="media-body">
-                    <a (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)">{{project?.projectByProjectId?.title}}
-                        <span class="media-annotation pull-right">3:03</span>
-                    </a>
-                    <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>
-                    <p>{{project?.projectByProjectId?.combinedSkill}}</p>
-                </div>
+    <div class="panel-heading">
+        <h6 class="panel-title text-center text-semibold">Matched projects</h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="media" *ngFor="let project of projectsMatched">
+            <div class="media-left ">
+                <a>
+                    <img src="{{project?.projectByProjectId?.companyByCompanyId?.logo}}" style="width: 70px; height: 70px;" class="img-circle"
+                        alt="">
+                </a>
+
+            </div>
+            <div class="media-body">
+                <a (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)">{{project?.projectByProjectId?.title}}
+                    <span class="media-annotation pull-right">3:03</span>
+                </a>
+                <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>
+                <p>{{project?.projectByProjectId?.combinedSkill}}</p>
+                >>>>>>> 4311559 fix reload add new popup
             </div>
         </div>
     </div>
+</div>
