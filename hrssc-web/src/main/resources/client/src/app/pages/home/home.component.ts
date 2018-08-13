@@ -46,6 +46,9 @@ export class HomeComponent implements OnInit {
 
   public userId;
 
+  public listSkillProject = [];
+  public skillList: any;
+
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
@@ -70,18 +73,41 @@ export class HomeComponent implements OnInit {
     this.employeeService.getResource(this.userId).subscribe(
       res => {
         this.resources = res;
+        this.resources.forEach(element => {
+          element.availableDate = this.ConvertToDatetime(element.availableDate);
+          element.availableDuration = this.ConvertToDatetime(element.availableDuration);
+        });
+        
       },
       err => {
         console.log(err);
       });
+  }
+  ConvertToDatetime(dateValue) {
+    var date = new Date(parseFloat(dateValue));
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return dateParse;
   }
   getProjects() {
     this.projects = [];
     this.prjSerivce.getProjects(this.userId).subscribe(
       res => {
           this.projects = res;
-          console.log(this.projects);
-          
+          this.listSkillProject = [];
+          this.projects.forEach(element => {
+            element.createDate = this.ConvertToDatetime(element.createDate);
+            element.endDate = this.ConvertToDatetime(element.endDate);
+
+            // add skill string vao list
+            this.skillList = [];
+            element.skill = [];
+            element.projectRequirementsById.forEach(el => {
+              
+              el.skillRequirementsById.forEach(el2 => {
+                element.skill.push(el2.skillBySkillId.title)
+              });
+            });
+          });
       },
       err => {
 
@@ -93,6 +119,8 @@ export class HomeComponent implements OnInit {
     this.companyService.getCompanyByUserId(this.userId).subscribe(
       res => {
         this.companies = res;
+        console.log(this.companies);
+        
       },
       err => {
 

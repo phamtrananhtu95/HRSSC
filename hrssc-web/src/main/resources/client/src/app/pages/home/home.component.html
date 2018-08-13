@@ -100,28 +100,33 @@
 
               <div class="row">
                 <div class="col-lg-4 col-md-4" *ngFor="let resource of resources">
-                  <div class="panel panel-body" id="resource" (click)="viewResourceDetail(resource.id)">
-                    <div class="media" style="height: 80px">
-                      <div class="media-left">
-                        <a href="assets/images/avatar.png" data-popup="lightbox">
-                          <img src="{{resource.avatar}}" class="img-circle img-lg" alt="">
+                  <div class="panel panel-body" id="resource">
+                    <div class="media">
+                      <div class="media-left" style="padding-right: 0">
+                        <a data-popup="lightbox">
+                          <img src="{{resource.avatar}}" style="width: 70px;height: 85px;" alt="">
                         </a>
                       </div>
 
                       <div class="media-body">
                         <div class="media-heading col-sm-12 no-padding">
-                          <div class="col-sm-6">
-                            <h6 class="media-heading text-bold">{{resource.fullname}}</h6>
+                          <div class="col-sm-12">
+                            <h6 (click)="viewResourceDetail(resource.id)" class="media-heading text-bold">{{resource.fullname}}</h6>
                           </div>
-                          <div class="col-sm-6 no-padding text-right">
+                          <!-- <div class="col-sm-6 no-padding text-right">
                             <i>Jun 1st - Dec 6th</i>
-                          </div>
+                          </div> -->
                         </div>
-
+                        <span (click)="viewCompanyDetail(resource.companyId)" class="media-heading col-sm-12 text-semibold">{{resource?.companyByCompanyId?.name}}</span>
+                        <span class="media-heading col-sm-12">Available from
+                          <b>{{resource.availableDate}}</b> to
+                          <b>{{resource.availableDuration}}</b>
+                        </span>
                         <h6 class="media-heading col-sm-12">
-                          <i *ngFor="let x of resource.resourceSkillsById">{{x.skillBySkillId.title}}, </i>
+                          <!-- <i *ngFor="let x of resource.resourceSkillsById">{{x.skillBySkillId.title}}, </i> -->
+                          <button style="margin-right: 3px;padding: 2px 5px;font-size: 11px" *ngFor="let x of resource.resourceSkillsById" class="btn btn-xs btn-flat border-grey">{{x.skillBySkillId.title}}</button>
                         </h6>
-                        <span class="media-heading col-sm-12 text-semibold">{{resource?.companyByCompanyId?.name}}</span>
+
                       </div>
 
                     </div>
@@ -166,35 +171,38 @@
             <div class="tab-pane" id="highlighted-justified-tab2">
               <div class="row">
                 <div class="col-lg-4 col-md-4" *ngFor="let project of projects">
-                  <div class="panel panel-body" id="resource" (click)="viewProjectDetail(project.id)">
-                    <div class="media" style="height: 80px">
-                      <div class="media-left">
+                  <div class="panel panel-body" id="resource">
+                    <div class="media" style="height: 150px;">
+                      <div class="media-left" style="padding-right: 0">
                         <a href="#" data-popup="lightbox">
-                          <img src="{{project?.companyByCompanyId?.logo}}" class="img-circle img-lg" alt="{{project?.companyByCompanyId?.name}}">
+                          <img src="{{project?.companyByCompanyId?.logo}}" style="width: 70px;height: 85px;" alt="{{project?.companyByCompanyId?.name}}">
                         </a>
                       </div>
-                      <!-- <div class="media-body">
-                        <h6 class="media-heading">{{project.name}}</h6>
-                        <span class="text-muted">{{project.company}}</span>
-                      </div>
-                      <div class="media-body">
-                        <h6 class="media-heading">{{project.skill}}</h6>
-                        <span class="text-muted">25-5-2018</span>
-                      </div> -->
+
                       <div class="media-body">
                         <div class="media-heading col-sm-12 no-padding">
-                          <div class="col-sm-6">
-                            <h6 class="media-heading text-bold" style="overflow: hidden;">{{project.title}}</h6>
+                          <div class="col-sm-12">
+                            <h6 (click)="viewProjectDetail(project.id)" class="media-heading text-bold" style="width: 260px;overflow: hidden;white-space: nowrap;text-overflow:  ellipsis;">{{project.title}}</h6>
                           </div>
-                          <div class="col-sm-6 no-padding text-right">
-                            <i>Jun 1st - Dec 6th</i>
-                          </div>
+
                         </div>
+                        <span (click)="viewCompanyDetail(project.companyId)" class="media-heading col-sm-12 text-semibold">{{project?.companyByCompanyId?.name}}</span>
+                        <span class="media-heading col-sm-12">Start working from
+                          <b>{{project.createDate}}</b> to
+                          <b>{{project.endDate}}</b>
+                        </span>
+                        <span class="media-heading col-sm-12">
+                          <span class="text-semibold">Domain: </span>{{project.domain}}
+                        </span>
+                        <span class="media-heading col-sm-12">
+                          <span class="text-semibold">Type: </span> {{project.type}}
+                        </span>
 
                         <h6 class="media-heading col-sm-12">
-                          <!-- <i *ngFor="let x of resource.resourceSkillsById">{{x.skillBySkillId.title}}, </i> -->
+                          <button style="margin-right: 3px;padding: 2px 5px;font-size: 11px" class="btn btn-xs btn-flat border-grey" *ngFor="let x of project.skill">
+                            {{x}}
+                          </button>
                         </h6>
-                        <span class="media-heading col-sm-12 text-semibold">{{project?.companyByCompanyId?.name}}</span>
                       </div>
                     </div>
                   </div>
@@ -215,7 +223,7 @@
         <div class="col-lg-4 col-md-6" *ngFor="let company of companies">
           <div class="thumbnail" id="company" (click)="viewCompanyDetail(company.id)" style="height: 350px;">
             <div class="thumb thumb-rounded">
-              <img src="assets/images/evolable-asia-logo-170-151.png" alt="">
+              <img src="{{company.logo}}" style="width: 225px;height: 225px;" alt="{{company.name}}">
               <div class="caption-overflow">
                 <span>
                   <a href="assets/images/avatar.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox">
@@ -232,7 +240,7 @@
               <h6 class="text-semibold no-margin">{{company.name}}
                 <small class="display-block">{{company.city}}</small>
               </h6>
-              <ul class="icons-list mt-15">
+              <!-- <ul class="icons-list mt-15">
                 <li>
                   <a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Google Drive">
                     <i class="icon-google-drive"></i>
@@ -248,7 +256,7 @@
                     <i class="icon-github"></i>
                   </a>
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </div>

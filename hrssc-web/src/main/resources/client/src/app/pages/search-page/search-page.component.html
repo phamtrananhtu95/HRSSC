@@ -166,7 +166,8 @@
                     <div class="media-left">
                       <div class="thumb">
                         <a>
-                          <img src="{{project?.companyByCompanyId?.logo}}" style="width: 90px;height: 90px;" class="img-responsive img-rounded media-preview" alt="{{project?.companyByCompanyId?.name}}">
+                          <img src="{{project?.companyByCompanyId?.logo}}" style="width: 90px;height: 90px;" class="img-responsive img-rounded media-preview"
+                            alt="{{project?.companyByCompanyId?.name}}">
 
                         </a>
                       </div>
@@ -224,7 +225,8 @@
                 <div class="content-group">
                   <div class="thumb">
                     <a href="#">
-                      <img src="{{viewProjectModel?.companyByCompanyId?.logo}}" style="width: 247px;height: 247px;" class="img-responsive img-rounded" alt="{{viewProjectModel?.companyByCompanyId?.name}}">
+                      <img src="{{viewProjectModel?.companyByCompanyId?.logo}}" style="width: 247px;height: 247px;" class="img-responsive img-rounded"
+                        alt="{{viewProjectModel?.companyByCompanyId?.name}}">
                       <span class="zoom-image">
                         <i class="icon-play3"></i>
                       </span>
@@ -241,7 +243,7 @@
                 <ul class="list content-group">
                   <li>
                     <span class="text-semibold">Company:</span>
-                    <a href="#">{{viewProjectModel?.companyByCompanyId?.name}}</a>
+                    <a (click)="viewCompanyDetail(viewProjectModel?.companyId)">{{viewProjectModel?.companyByCompanyId?.name}}</a>
                   </li>
                   <li>
                     <span class="text-semibold">Location:</span> {{viewProjectModel?.companyByCompanyId?.city}}</li>
@@ -250,10 +252,12 @@
                     <a href="#">{{viewProjectModel?.type}}</a>
                   </li>
                   <li>
-                    <span class="text-semibold">Skill require:</span>
+                    <span class="text-semibold">Skill require: {{skillList}}</span>
                   </li>
                   <li>
-                    <span class="text-semibold">Date start:</span> June 1, 2015</li>
+                    <span class="text-semibold">Date start:</span> {{viewProjectModel?.createDate}}</li>
+                  <li>
+                    <span class="text-semibold">Date start:</span> {{viewProjectModel?.endDate}}</li>
                 </ul>
 
 

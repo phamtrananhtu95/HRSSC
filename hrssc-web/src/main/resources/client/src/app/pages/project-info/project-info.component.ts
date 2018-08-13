@@ -60,6 +60,8 @@ export class ProjectInfoComponent implements OnInit {
       res => {
         this.skillList = "";
         this.project = res;
+        console.log(this.project);
+        
         this.userIdByProjectId = this.project.userId;
         this.isManager = this.userId === this.userIdByProjectId;
 

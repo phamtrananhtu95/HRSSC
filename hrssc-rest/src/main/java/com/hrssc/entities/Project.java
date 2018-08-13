@@ -23,7 +23,7 @@ public class Project {
     private long duration;
     @JsonView({HomeView.Project.class,SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String type;
-    @JsonView({SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({HomeView.Project.class,SimilarView.Project.class,HumanResourceView.history.class,ApplianceView.Listview.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.Summary.class,ProjectView.details.class,UserView.details.class})
     private String domain;
     @JsonView({ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private int processStatus;

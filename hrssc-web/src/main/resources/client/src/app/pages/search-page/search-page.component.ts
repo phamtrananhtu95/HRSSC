@@ -36,6 +36,7 @@ export class SearchPageComponent implements OnInit {
   ];
 
   public viewProjectModel:any;
+  public skillList: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -113,8 +114,23 @@ export class SearchPageComponent implements OnInit {
     if (this.searchProjectModel) {
       this.searchService.searchByProject(model).subscribe(
         res => {
+          this.skillList = "";
           console.log(res);
+          
           this.listProjectSearch = res;
+          this.listProjectSearch[0].projectRequirementsById.forEach(el => {
+            el.skillRequirementsById.forEach(el2 => {
+              this.skillList = this.skillList + el2.skillBySkillId.title + ", ";
+            });
+          });
+          var lastIndex = this.skillList.lastIndexOf(", ");
+          this.skillList = this.skillList.substring(0, lastIndex);
+
+          console.log(this.skillList);
+          
+
+          this.listProjectSearch[0].createDate = this.ConvertToDatetime(this.listProjectSearch[0].createDate);
+          this.listProjectSearch[0].endDate = this.ConvertToDatetime(this.listProjectSearch[0].endDate);
           this.viewProjectModel = this.listProjectSearch[0];
           this.countProject = this.listProjectSearch.length;
         },
@@ -124,11 +140,23 @@ export class SearchPageComponent implements OnInit {
       );
     }
   }
+  ConvertToDatetime(dateValue) {
+    var date = new Date(parseFloat(dateValue));
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return dateParse;
+  }
   viewProject(project) {
-
+    project.createDate = this.ConvertToDatetime(project.createDate);
+    project.endDate = this.ConvertToDatetime(project.endDate);
+    this.skillList = "";
+    project.projectRequirementsById.forEach(el => {
+      el.skillRequirementsById.forEach(el2 => {
+        this.skillList = this.skillList + el2.skillBySkillId.title + ", ";
+      });
+    });
+    var lastIndex = this.skillList.lastIndexOf(", ");
+    this.skillList = this.skillList.substring(0, lastIndex);
     this.viewProjectModel = project;
-    console.log(this.viewProjectModel);
-    
   }
   viewDetailProject(projectId){
     this.router.navigate(['manager/project/info'], {queryParams:{"id": projectId}});
@@ -143,5 +171,8 @@ export class SearchPageComponent implements OnInit {
 
       }
     );
+  }
+  viewCompanyDetail(companyId) {
+    this.router.navigate(['company/info'], {queryParams:{"id": companyId}});
   }
 }
