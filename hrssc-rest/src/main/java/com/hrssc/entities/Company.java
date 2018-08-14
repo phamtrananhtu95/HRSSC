@@ -26,7 +26,7 @@ public class Company {
     @JsonView(CompanyView.info.class)
     private String email;
     private int status;
-    @JsonView({ContractView.overview.class,ContractView.detail.class,HomeView.Company.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,HomeView.Project.class,HomeView.Resource.class,SimilarView.Resource.class,SimilarView.Project.class,ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class,FeedbackView.loadAllview.class})
+    @JsonView({ApplianceView.Listview.class,ContractView.overview.class,ContractView.detail.class,HomeView.Company.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,HomeView.Project.class,HomeView.Resource.class,SimilarView.Resource.class,SimilarView.Project.class,ApplianceView.Listview.class,JobView.JoinedResource.class,HumanResourceView.history.class,CompanyView.info.class,InvitationView.ListView.class,MatchingView.Resource.class,MatchingView.Project.class,HumanResourceView.details.class,ProjectView.details.class,FeedbackView.loadAllview.class})
     private String logo;
     private Collection<HumanResource> humanResourcesById;
     private Collection<Project> projectsById;
