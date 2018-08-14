@@ -38,10 +38,13 @@ export class ResourceMatchingComponent implements OnInit {
         console.log(this.listResourceMatch);
         
         this.listResourceMatch.forEach(element => {
+          element.humanResourceByHumanResourceId.availableDate = this.ConvertToDatetime(element.humanResourceByHumanResourceId.availableDate);
+          element.humanResourceByHumanResourceId.availableDuration = this.ConvertToDatetime(element.humanResourceByHumanResourceId.availableDuration);
           element.listSkill = "";
           element.humanResourceByHumanResourceId.resourceSkillsById.forEach(el => {
               element.listSkill = element.listSkill + el.skillBySkillId.title + ", ";
           });
+
         });
       },
       err => {
@@ -49,7 +52,17 @@ export class ResourceMatchingComponent implements OnInit {
     );
   }
 
+  ConvertToDatetime(dateValue) {
+    var date = new Date(parseFloat(dateValue));
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return dateParse;
+  }
+
   navigateResource(id){
     this.router.navigate(['manager/resource/info'], {queryParams:{"id": id}});
+  }
+
+  viewCompanyDetail(companyId) {
+    this.router.navigate(['company/info'], {queryParams:{"id": companyId}});
   }
 }

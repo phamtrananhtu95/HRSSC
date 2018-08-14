@@ -54,4 +54,8 @@ export class ProjectMatchingComponent {
         this.router.navigate(['manager/project/info'], { queryParams: { "id": projectId } });
     }
 
+    viewCompanyDetail(companyId) {
+        this.router.navigate(['company/info'], {queryParams:{"id": companyId}});
+      }
+
 }

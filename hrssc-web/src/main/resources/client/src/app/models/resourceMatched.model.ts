@@ -4,6 +4,7 @@ export class ResourceMatch {
     rankingScore: number;
     humanResourceId: number;
     listSkill: string;
+
     humanResourceByHumanResourceId: humanResourceById;
     constructor() {
         this.listSkill = "";
@@ -16,6 +17,8 @@ export class humanResourceById {
     email: string;
     tel: string;
     salary: string;
+    availableDate: string;
+    availableDuration: string;
     companyByCompanyId: {
         id: number,
         name: string,

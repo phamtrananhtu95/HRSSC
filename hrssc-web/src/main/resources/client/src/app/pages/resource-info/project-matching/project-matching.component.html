@@ -78,6 +78,15 @@
 <div class="panel panel-flat">
     <div class="panel-heading">
         <h6 class="panel-title text-center text-semibold">Matched projects</h6>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li>
+                    <a href="#">
+                      <i class="icon-sync"></i>
+                    </a>
+                  </li>
+            </ul>
+        </div>
     </div>
 
     <div class="panel-body">
@@ -90,11 +99,20 @@
 
             </div>
             <div class="media-body">
-                <a (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)">{{project?.projectByProjectId?.title}}
-                    <span class="media-annotation pull-right">3:03</span>
-                </a>
-                <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>
-                <p>{{project?.projectByProjectId?.combinedSkill}}</p>
+                <div class="media-heading col-sm-12 no-padding">
+                    <div class="col-sm-12">
+                      <h6 (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)" class="media-heading text-bold">{{project?.projectByProjectId?.title}}</h6>
+                    </div>
+                  </div>
+                  <span class="media-heading col-sm-12">
+                    Company: <a (click)="viewCompanyDetail(project?.projectByProjectId?.companyByCompanyId?.id)">{{project?.projectByProjectId?.companyByCompanyId?.name}}</a> 
+                  </span>
+                  <!-- <span class="media-heading col-sm-12">
+                    Available {{resource.humanResourceByHumanResourceId.availableDate}} To {{resource.humanResourceByHumanResourceId.availableDuration}}
+                  </span> -->
+                  <span class="media-heading col-sm-12">
+                    Skill: {{project?.projectByProjectId?.combinedSkill}}
+                  </span>
             </div>
         </div>
     </div>

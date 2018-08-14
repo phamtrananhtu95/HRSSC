@@ -32,7 +32,7 @@
 
               <div class="caption text-center">
                 <h6 class="text-semibold no-margin">{{project?.companyByCompanyId?.name}}</h6>
-                <ul class="icons-list mt-15">
+                <!-- <ul class="icons-list mt-15">
                   <li>
                     <a href="#" data-popup="tooltip" title="Google Drive" data-container="body">
                       <i class="icon-google-drive"></i>
@@ -48,7 +48,7 @@
                       <i class="icon-github"></i>
                     </a>
                   </li>
-                </ul>
+                </ul> -->
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@
                 data-toggle="modal" data-target="#modal_theme_info">
                 Apply
               </button>
-              <span *ngIf="isManager" style="font-size: 12px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : project.processStatus == 2 ? 'border-danger text-danger-600' : 'border-slate text-slate-600'"
+              <span *ngIf="isManager" style="font-size: 14px;" [ngClass]="project.processStatus == 1 ? 'border-success text-success-600' : project.processStatus == 2 ? 'border-danger text-danger-600' : 'border-slate text-slate-600'"
                 class="label label-flat">
                 {{project.processStatus == 1 ? "PENDING" : project.processStatus == 2 ? "On_Going" : "FINISHED"}}</span>
             </div>

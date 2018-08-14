@@ -34,5 +34,7 @@ export class ResourceSimilarComponent implements OnInit {
     viewHumanDetail(humanResourceId) {
         this.router.navigate(['manager/resource/info'], { queryParams: { "id": humanResourceId } });
     }
-
+    viewCompanyDetail(companyId) {
+        this.router.navigate(['company/info'], { queryParams: { "id": companyId } });
+    }
 }
