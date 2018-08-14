@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ResourceManagerPopoverComponent } from './resource-manager-popover.component';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-manage-resources',
@@ -85,12 +86,31 @@ export class ManageResourcesComponent implements OnInit {
     this.router.navigate(['manager/resource/info'], { queryParams: { "id": humanResourceId } });
   }
 
+
+
   removeHuman(humanId) {
-    this.employeeService.removeHuman(humanId).subscribe(
-      res => {
-        this.getHumanResourceByManagerId();
-      }
-    )
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this resource!',
+      icon: 'warning',
+      buttons: ["Cancel", true],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Delete success", {
+            icon: "success",
+          });
+          this.employeeService.removeHuman(humanId).subscribe(
+            res => {
+              this.getHumanResourceByManagerId();
+            }
+          )
+        }
+      });
+
+    // swal("Oops...", "Something went wrong!", "error");
+
 
   }
 }

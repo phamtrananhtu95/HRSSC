@@ -265,7 +265,7 @@
       <app-chat-popup *ngIf="show" [contractid]="formContract.contractByContractId.id"></app-chat-popup>
 
     </div>
-    <div id="chat-button" (click)="showChat()">
+    <div id="chat-button" *ngIf="isActiveChatPopup" (click)="showChat()">
       <a>CONNECT CHAT</a>
     </div>
   </div>

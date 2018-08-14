@@ -49,6 +49,7 @@ export class JobContractComponent implements OnInit {
   public isEditable: boolean;
   public formOffer = new ContractByContractId();
   public show: boolean = false;
+  public isActiveChatPopup: boolean;
 
 
   // Call api invite or apply
@@ -82,6 +83,7 @@ export class JobContractComponent implements OnInit {
       // 
       this.isInvite = params.isInvite === 'true';
       if (this.composeContract) {
+        this.isActiveChatPopup = false;
         this.isEditMode = true;
         this.isEditable = true;
         let resourceId = params.humanResourceId;
@@ -91,6 +93,7 @@ export class JobContractComponent implements OnInit {
         this.getHumanResourceById(resourceId, true);
         this.getProject(projectId);
       } else {
+        this.isActiveChatPopup = true;
         this.getContractInfo(params.interactionsId);
       }
 
