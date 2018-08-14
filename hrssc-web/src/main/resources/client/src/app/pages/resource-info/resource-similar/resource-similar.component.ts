@@ -23,7 +23,20 @@ export class ResourceSimilarComponent implements OnInit {
             res => {
                 this.similars = res;
                 console.log(this.similars);
-                
+
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    ngOnChanges() {
+        this.employeeService.loadSimilarHumanResource(this.resourceId).subscribe(
+            res => {
+                this.similars = res;
+                console.log(this.similars);
+
             },
             err => {
                 console.log(err);

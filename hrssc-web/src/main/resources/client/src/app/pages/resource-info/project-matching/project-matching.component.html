@@ -76,20 +76,27 @@
 </div> -->
 
 <div class="panel panel-flat">
-    <div class="panel-heading">
+    <div class="panel-heading media">
+        <!-- <button type="button" class="btn btn-link">
+            <i class="icon-reload-alt"></i>
+        </button> -->
+      
+
         <h6 class="panel-title text-center text-semibold">Matched projects</h6>
         <div class="heading-elements">
             <ul class="icons-list">
                 <li>
-                    <a href="#">
-                      <i class="icon-sync"></i>
+           
+                    <a (click)="rematchProject()">
+                        <i class="icon-sync"></i>
                     </a>
-                  </li>
+                </li>
             </ul>
         </div>
     </div>
 
     <div class="panel-body">
+
         <div class="media" *ngFor="let project of projectsMatched">
             <div class="media-left ">
                 <a>
@@ -99,6 +106,7 @@
 
             </div>
             <div class="media-body">
+<<<<<<< Upstream, based on latest
                 <div class="media-heading col-sm-12 no-padding">
                     <div class="col-sm-12">
                       <h6 (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)" class="media-heading text-bold">{{project?.projectByProjectId?.title}}</h6>
@@ -113,6 +121,13 @@
                   <span class="media-heading col-sm-12">
                     Skill: {{project?.projectByProjectId?.combinedSkill}}
                   </span>
+=======
+                <a (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)">{{project?.projectByProjectId?.title}}
+                    <!-- <span class="media-annotation pull-right">3:03</span> -->
+                </a>
+                <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>
+                <p>{{project?.projectByProjectId?.combinedSkill}}</p>
+>>>>>>> 23ac27e rematch, fix something
             </div>
         </div>
     </div>
