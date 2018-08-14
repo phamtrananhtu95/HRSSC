@@ -64,10 +64,10 @@ export class HeaderComponent implements OnInit {
       this.header.setUserIdToHead(userId);
     }
 
-    let avatar = this.authenticateService.getAvatar();
-    if (avatar) {
-      this.header.setAvatartoHead(avatar);
-    }
+    // let avatar = this.authenticateService.getAvatar();
+    // if (avatar) {
+    //   this.header.setAvatartoHead(avatar);
+    // }
 
     this.interval = setInterval(() => {
       this.listLogNotify = this.chatService.getLogNotify();

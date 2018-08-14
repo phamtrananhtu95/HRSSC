@@ -93,4 +93,10 @@ export class EmployeeService {
     return this.restService.get(url);
   }
 
+  // Remove employee
+  removeHuman(humanResourceId){
+    let url = "humanResource/removed-resource/" + humanResourceId;
+    return this.restService.get(url);
+  }
+
 }

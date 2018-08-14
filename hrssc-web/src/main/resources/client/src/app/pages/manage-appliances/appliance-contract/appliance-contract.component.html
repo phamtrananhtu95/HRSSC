@@ -52,7 +52,7 @@
   <div id="collapse1" class="panel-collapse collapse">
     <div class="panel-body" *ngFor="let contracts of project.interactionsById">
       <div class="media-left">
-        <img src="assets/images/FPT.jpg" alt="">
+        <img src="{{contracts.humanResourceByHumanResourceId.companyByCompanyId.logo}}" alt="">
       </div>
       <div class="media-body">
         <i>You invited </i>
