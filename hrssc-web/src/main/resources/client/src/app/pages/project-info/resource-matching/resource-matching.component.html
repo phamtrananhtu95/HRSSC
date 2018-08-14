@@ -1,6 +1,6 @@
 <div class="panel panel-flat">
   <div class="panel-heading">
-    <h6 class="panel-title text-center text-semibold">Resource matching</h6>
+    <h6 class="panel-title text-center text-semibold">Matched resource</h6>
   </div>
   
   <div class="panel-body">
@@ -15,10 +15,22 @@
             </div>
           </div>
           <div class="media-body">
-            <a (click)="navigateResource(resource.humanResourceByHumanResourceId.id)">{{resource.humanResourceByHumanResourceId.fullname}} <span class="media-annotation pull-right">3:03</span></a>
-            <p>Email: {{resource.humanResourceByHumanResourceId.email}}</p>
-            <p>Company: {{resource.humanResourceByHumanResourceId.companyByCompanyId.name}}</p>
-            <p>Skill: {{resource.listSkill}}</p>
+            <div class="media-heading col-sm-12 no-padding">
+              <div class="col-sm-12">
+                <h6 (click)="navigateResource(resource.humanResourceByHumanResourceId.id)" class="media-heading text-bold">{{resource.humanResourceByHumanResourceId.fullname}}</h6>
+              </div>
+            </div>
+            <span class="media-heading col-sm-12">
+              Company: <a (click)="viewCompanyDetail(resource?.humanResourceByHumanResourceId?.companyByCompanyId?.id)">{{resource.humanResourceByHumanResourceId.companyByCompanyId.name}}</a> 
+            </span>
+            <span class="media-heading col-sm-12">
+              <!-- Email: {{resource.humanResourceByHumanResourceId.email}} -->
+              Available {{resource.humanResourceByHumanResourceId.availableDate}} To {{resource.humanResourceByHumanResourceId.availableDuration}}
+            </span>
+            <span class="media-heading col-sm-12">
+              Skill: {{resource.listSkill}}
+            </span>
+            
           </div>
       </div>
       <!-- <div class="media">

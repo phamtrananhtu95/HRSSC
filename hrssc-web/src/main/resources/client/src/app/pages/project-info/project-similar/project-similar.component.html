@@ -13,11 +13,26 @@
         </div>
       </div>
       <div class="media-body">
-        <a (click)="navigateProject(x.similarProjectId)">{{x.projectBySimilarProjectId.title}}
-          <!-- <span class="media-annotation pull-right">3:03</span> -->
+        <!-- <a (click)="navigateProject(x.similarProjectId)">{{x.projectBySimilarProjectId.title}}
         </a>
         <p>Company: {{x.projectBySimilarProjectId.companyByCompanyId.name}}</p>
-        <p>SKill: <span *ngFor="let skill of x.listSkillTitle"> {{skill}}, </span> </p>
+        <p>SKill: <span *ngFor="let skill of x.listSkillTitle"> {{skill}}, </span> </p> -->
+
+
+        <div class="media-heading col-sm-12 no-padding">
+          <div class="col-sm-12">
+            <h6 (click)="navigateProject(x.similarProjectId)" class="media-heading text-bold">{{x.projectBySimilarProjectId.title}}</h6>
+          </div>
+        </div>
+        <span class="media-heading col-sm-12">
+          Company: <a (click)="viewCompanyDetail(x.projectBySimilarProjectId.companyId)">{{x.projectBySimilarProjectId.companyByCompanyId.name}}</a> 
+        </span>
+        <span class="media-heading col-sm-12">
+          <!-- Email: {{resource.humanResourceByHumanResourceId.email}} -->
+          <!-- From  -->
+        </span>
+        <p class="media-heading col-sm-12">SKill: <span *ngFor="let skill of x.listSkillTitle"> {{skill}}, </span> </p>
+
       </div>
     </div>
   </div>

@@ -94,9 +94,15 @@ export class EmployeeService {
   }
 
   // Remove employee
-  removeHuman(humanResourceId){
+  removeHuman(humanResourceId) {
     let url = "humanResource/removed-resource/" + humanResourceId;
     return this.restService.get(url);
+  }
+
+  // Matching 
+  matchingResource(humanResource) {
+    let url = "matching/resource";
+    return this.restService.post(url, humanResource);
   }
 
 }

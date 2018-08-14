@@ -1,6 +1,6 @@
 <div class="panel panel-flat">
     <div class="panel-heading">
-        <h6 class="panel-title text-center text-semibold">Similar</h6>
+        <h6 class="panel-title text-center text-semibold">Similar resources</h6>
     </div>
 
     <div class="panel-body">
@@ -14,11 +14,27 @@
 
             </div>
             <div class="media-body">
-                <a (click)="viewHumanDetail(similar?.similarResourceId)">{{similar?.humanResourceBySimilarResourceId?.fullname}}
-                    <!-- <span class="media-annotation pull-right">3:03</span> -->
+                <!-- <a (click)="viewHumanDetail(similar?.similarResourceId)">{{similar?.humanResourceBySimilarResourceId?.fullname}}
                 </a>
                 <p>{{similar?.humanResourceBySimilarResourceId?.companyByCompanyId?.name}}</p>
-                <p>{{skillList}}</p>
+                <p>{{skillList}}</p> -->
+
+                <div class="media-heading col-sm-12 no-padding">
+                    <div class="col-sm-12">
+                      <h6 (click)="viewHumanDetail(similar?.similarResourceId)" class="media-heading text-bold">{{similar?.humanResourceBySimilarResourceId?.fullname}}</h6>
+                    </div>
+                  </div>
+                  <span class="media-heading col-sm-12">
+                    Company:
+                    <a (click)="viewCompanyDetail(similar?.humanResourceBySimilarResourceId?.companyId)">{{similar?.humanResourceBySimilarResourceId?.companyByCompanyId?.name}}</a>
+                  </span>
+                  <!-- <span class="media-heading col-sm-12">
+                              Available {{resource.humanResourceByHumanResourceId.availableDate}} To {{resource.humanResourceByHumanResourceId.availableDuration}}
+                            </span> -->
+                  <span class="media-heading col-sm-12">
+                    Skill: {{skillList}}
+                  </span>
+
             </div>
         </div>
         <!-- <div class="media">

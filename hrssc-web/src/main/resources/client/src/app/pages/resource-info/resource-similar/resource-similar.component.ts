@@ -23,7 +23,20 @@ export class ResourceSimilarComponent implements OnInit {
             res => {
                 this.similars = res;
                 console.log(this.similars);
-                
+
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    ngOnChanges() {
+        this.employeeService.loadSimilarHumanResource(this.resourceId).subscribe(
+            res => {
+                this.similars = res;
+                console.log(this.similars);
+
             },
             err => {
                 console.log(err);
@@ -34,5 +47,7 @@ export class ResourceSimilarComponent implements OnInit {
     viewHumanDetail(humanResourceId) {
         this.router.navigate(['manager/resource/info'], { queryParams: { "id": humanResourceId } });
     }
-
+    viewCompanyDetail(companyId) {
+        this.router.navigate(['company/info'], { queryParams: { "id": companyId } });
+    }
 }

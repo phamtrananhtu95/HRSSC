@@ -17,7 +17,12 @@ export class ProjectSimilarComponent implements OnInit {
     private route: ActivatedRoute,
     private prjService: ProjectService,
     private router: Router
-  ) { }
+  ) { 
+    this.route.queryParams.subscribe(param => {
+      this.projectId= this.route.snapshot.queryParams['id'];
+      this.getSimilarProject();
+    });
+  }
 
   ngOnInit() {
     this.projectId = this.route.snapshot.queryParams['id'];
@@ -34,6 +39,10 @@ export class ProjectSimilarComponent implements OnInit {
     //   }
     // });
   }
+  // ngOnChanges(){
+  //   this.projectId = this.route.snapshot.queryParams['id'];
+  //   this.getSimilarProject();
+  // }
 
   getSimilarProject() {
     this.prjService.getSimilarProject(this.projectId).subscribe(
@@ -45,6 +54,9 @@ export class ProjectSimilarComponent implements OnInit {
         
 
         this.listSimilarProject.forEach(el => {
+          el.projectBySimilarProjectId.duration = this.ConvertToDatetime(el.projectBySimilarProjectId.duration);
+          el.projectBySimilarProjectId.endDate = this.ConvertToDatetime(el.projectBySimilarProjectId.endDate);
+
           el.listSkillTitle = [];
           this.skillListtmp = [];
           let projectByProjectId = el.projectBySimilarProjectId;
@@ -65,6 +77,12 @@ export class ProjectSimilarComponent implements OnInit {
     );
   }
 
+  ConvertToDatetime(dateValue) {
+    var date = new Date(parseFloat(dateValue));
+    var dateParse = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return dateParse;
+  }
+
   navigateProject(id) {
     this.router.navigate(['manager/project/info'], { queryParams: { "id": id } });
     // window.location.reload();
@@ -73,5 +91,9 @@ export class ProjectSimilarComponent implements OnInit {
   removeDuplicateUsingSet(arr) {
     let unique_array = Array.from(new Set(arr))
     return unique_array
+  }
+
+  viewCompanyDetail(companyId) {
+    this.router.navigate(['company/info'], {queryParams:{"id": companyId}});
   }
 }

@@ -28,9 +28,9 @@
 
           <tr *ngFor="let humanResources of humanResource">
             <td (click)="viewHumanResourceDetail(humanResources.id)">{{humanResources.fullname}}</td>
-            <td>{{humanResources.skill}}</td>
-            <td>{{humanResources.tel}}</td>
-            <td>{{humanResources.email}}</td>
+            <td (click)="viewHumanResourceDetail(humanResources.id)">{{humanResources.skill}}</td>
+            <td (click)="viewHumanResourceDetail(humanResources.id)">{{humanResources.tel}}</td>
+            <td (click)="viewHumanResourceDetail(humanResources.id)">{{humanResources.email}}</td>
             <td>
               <span class="label" [ngClass]="humanResources.status == 1 ? 'bg-green-400' : humanResources.status == 2 ? 'bg-blue-400' : 'btn-danger'">
                 {{humanResources.status == 1 ? "Activated" : humanResources.status == 2 ? "Inactivate" : "Busy"}}</span>
