@@ -34,6 +34,7 @@ public interface HumanResourceRepository extends JpaRepository<HumanResource, In
 
     @Query("SELECT resource FROM human_resource resource " +
             "WHERE resource.companyId <>:companyId " +
+            "  AND resource.status = '1'"+
             "  AND resource.companyByCompanyId.name LIKE CONCAT('%',:companyName,'%') " +
             "  AND resource.companyByCompanyId.city LIKE CONCAT('%',:location,'%') " +
             "  AND resource.id IN (SELECT skr.humanResourceId from resource_skills skr " +

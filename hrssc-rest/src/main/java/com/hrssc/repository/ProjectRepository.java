@@ -25,6 +25,8 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     @Query("SELECT prj FROM project prj " +
             "WHERE prj.companyId <>:companyId " +
+            "  AND prj.requestStatus = '1'"+
+            "  AND prj.processStatus <> '3'"+
             "  AND prj.companyByCompanyId.name LIKE CONCAT('%',:companyName,'%') " +
             "  AND prj.companyByCompanyId.city LIKE CONCAT('%',:location,'%') " +
             "  AND prj.id IN (SELECT prjr.projectId FROM project_requirements prjr " +

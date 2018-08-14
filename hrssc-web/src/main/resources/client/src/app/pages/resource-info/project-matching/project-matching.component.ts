@@ -10,7 +10,8 @@ declare var $: any;
 
 @Component({
     selector: 'app-project-matching',
-    templateUrl: './project-matching.component.html'
+    templateUrl: './project-matching.component.html',
+    styleUrls: ['./project-matching.component.css']
 })
 export class ProjectMatchingComponent {
 

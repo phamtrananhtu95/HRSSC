@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { User, Employee, SkillBySkillId } from '../../models';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { ResourceManagerPopoverComponent } from './resource-manager-popover.component';
 import swal from 'sweetalert';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-manage-resources',
@@ -30,8 +31,12 @@ export class ManageResourcesComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private toastr: ToastsManager,
+    public vcr: ViewContainerRef,
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     (<any>window).datatables = true;
@@ -50,13 +55,6 @@ export class ManageResourcesComponent implements OnInit {
   getHumanResourceByManagerId() {
     this.employeeService.getHumanResourceByManagerId(this.managerId).subscribe(
       res => {
-
-        // res.forEach(human => {
-        //   if (human.id != -1) {
-        //     this.humanResource.push(human)
-        //   }
-        // });
-
         this.humanResource = res;
         this.humanResource = this.humanResource.filter(human => human.status !== -1);
         // console.log("aaaaaaaaaaaaaaaa" + JSON.stringify(this.humanResource));
@@ -89,28 +87,20 @@ export class ManageResourcesComponent implements OnInit {
 
 
   removeHuman(humanId) {
-    swal({
-      title: 'Are you sure?',
-      text: 'Once deleted, you will not be able to recover this resource!',
-      icon: 'warning',
-      buttons: ["Cancel", true],
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          swal("Delete success", {
-            icon: "success",
-          });
-          this.employeeService.removeHuman(humanId).subscribe(
-            res => {
-              this.getHumanResourceByManagerId();
-            }
-          )
-        }
-      });
+    this.employeeService.removeHuman(humanId).subscribe(
+      res => {
+        this.getHumanResourceByManagerId();
+        this.showRemoveSuccess();
+      }
+    )
 
-    // swal("Oops...", "Something went wrong!", "error");
+  }
 
+  showRemoveSuccess() {
+    this.toastr.success('Remove resource success!', 'Success!', {toastLife: 2000});
+  }
 
+  showAddnewSuccess() {
+    this.toastr.success('Add new resource success!', 'Success!', {toastLife: 2000});
   }
 }
