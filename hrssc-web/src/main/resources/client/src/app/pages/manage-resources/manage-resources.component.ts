@@ -87,12 +87,32 @@ export class ManageResourcesComponent implements OnInit {
 
 
   removeHuman(humanId) {
-    this.employeeService.removeHuman(humanId).subscribe(
-      res => {
-        this.getHumanResourceByManagerId();
-        this.showRemoveSuccess();
-      }
-    )
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this resource!',
+      icon: 'warning',
+      buttons: ["Cancel", true],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Delete success", {
+            icon: "success",
+          });
+          this.employeeService.removeHuman(humanId).subscribe(
+            res => {
+              this.getHumanResourceByManagerId();
+            }
+          )
+        }
+      });
+
+    // this.employeeService.removeHuman(humanId).subscribe(
+    //   res => {
+    //     this.getHumanResourceByManagerId();
+    //     this.showRemoveSuccess();
+    //   }
+    // )
 
   }
 
