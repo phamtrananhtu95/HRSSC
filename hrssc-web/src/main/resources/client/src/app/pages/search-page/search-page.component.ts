@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Search } from '../../models/search.model';
 import { SearchService } from '../../services/search.service';
 import { EmployeeService } from '../../services/employee.service';
-
+declare var $: any;
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -74,6 +74,9 @@ export class SearchPageComponent implements OnInit {
   ngOnInit() {
     this.searchResource(this.searchResourceModel);
     this.searchProject(this.searchProjectModel);
+    console.log(this.countProject);
+    
+    // this.showAlertSearch(this.countResource, this.countProject);
     this.getSkillList();
   }
   search() {
@@ -86,6 +89,19 @@ export class SearchPageComponent implements OnInit {
     }
     this.searchResource(this.searchModel);
     this.searchProject(this.searchModel);
+  }
+
+  showAlertSearch(countResource, countPrj){
+    var s = countResource +"resources,"+ countPrj +" projects found";
+    $.jGrowl(s, {
+      // animateOpen: {
+      //   opacity: 'show' 
+      // },
+      theme: 'bg-success',
+      position: 'bottom-right',
+      themeState: 'highlight'
+      
+    });
   }
 
   searchResource(model: any) {

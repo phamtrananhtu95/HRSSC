@@ -4,6 +4,7 @@ import { AuthenticateService } from '../../services/authenticate.service';
 import { ProjectService } from '../../services/project.service';
 import { Router } from '@angular/router';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
+import swal from 'sweetalert';
 
 declare var $: any;
 
@@ -291,37 +292,38 @@ export class ManageProjectsComponent implements OnInit {
 
   addNewProject() {
 
-    $.jGrowl("Add Project Success", {
-      // animateOpen: {
-      //   opacity: 'show' 
-      // },
-      theme: 'bg-success',
-      position: 'bottom-right',
-      themeState: 'highlight'
+    // $.jGrowl("Add Project Success", {
+    //   // animateOpen: {
+    //   //   opacity: 'show' 
+    //   // },
+    //   theme: 'bg-success',
+    //   position: 'bottom-right',
+    //   themeState: 'highlight'
       
-    });
-    // this.formModel.domain = this.formModel.domain.toString();
-    // this.formModel.type = this.formModel.type.toString();
-
-    // this.formModel.userId = this.userId;
-    // this.formModel.companyId = this.companyId;
-
-    // // load list
-    // let tmp = new Array<ProjectRequirement>();
-    // this.positionList.forEach(el => {
-    //   tmp.push(el.value);
     // });
-    // this.formModel.projectRequirementsById = tmp;
-    // this.prjService.addProject(this.formModel).subscribe(
-    //   res => {
-    //     this.getProjectsByCompanyId();
-    //     (<any>$("#modal_small")).modal("hide");
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
-    // console.log(this.formModel);
+    this.formModel.domain = this.formModel.domain.toString();
+    this.formModel.type = this.formModel.type.toString();
+
+    this.formModel.userId = this.userId;
+    this.formModel.companyId = this.companyId;
+
+    // load list
+    let tmp = new Array<ProjectRequirement>();
+    this.positionList.forEach(el => {
+      tmp.push(el.value);
+    });
+    this.formModel.projectRequirementsById = tmp;
+    this.prjService.addProject(this.formModel).subscribe(
+      res => {
+        swal("Add Success", "Your project has been added!", "success");
+        this.getProjectsByCompanyId();
+        (<any>$("#modal_small")).modal("hide");
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log(this.formModel);
   }
 
   // update project

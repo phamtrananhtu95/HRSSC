@@ -4,6 +4,7 @@ import { ProjectService } from '../../../services/project.service';
 import { IMyDateModel, IMyDpOptions } from 'angular4-datepicker/src/my-date-picker';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-info-project-manager',
@@ -285,6 +286,7 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   updatePrj() {
 
+
     var listPosition = [];
     this.positionList.forEach(el => {
       listPosition.push(el.value);
@@ -297,6 +299,8 @@ export class InfoProjectManagerComponent implements OnInit {
 
     this.prjService.updateProject(this.projectInfo).subscribe(
       res => {
+
+        swal("Update Success", "Your project has been updated!", "success");
         (<any>$("#modal_small")).modal("hide");
         this.reloadMatchingResource.emit();
         this.reloadProject.emit();

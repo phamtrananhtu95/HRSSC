@@ -30,8 +30,11 @@ export class CompanyProfileComponent implements OnInit {
   }
 
   updateCompany() {
+
+
     this.companyService.updateCompany(this.companiesInfo).subscribe(
       res => {
+        swal("Update Success", "Your profile has been updated!", "success");
         this.reloadCompanyInfo.emit();
       },
       err => {
