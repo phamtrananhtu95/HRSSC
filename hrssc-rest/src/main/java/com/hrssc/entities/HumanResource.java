@@ -22,9 +22,9 @@ public class HumanResource {
     private String email;
     @JsonView({SimilarView.Resource.class,HumanResourceView.overview.class,MatchingView.Project.class,UserView.details.class,HumanResourceView.details.class,ProjectView.details.class})
     private String tel;
-    @JsonView({HomeView.Resource.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({MatchingView.Project.class,HomeView.Resource.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDate;
-    @JsonView({HomeView.Resource.class,HumanResourceView.overview.class,HumanResourceView.details.class})
+    @JsonView({MatchingView.Project.class,HomeView.Resource.class,HumanResourceView.overview.class,HumanResourceView.details.class})
     private Long availableDuration;
     @JsonView({HomeView.Resource.class,ContractView.detail.class,FeedbackView.resourceFeedback.class,FeedbackView.projectFeedback.class,SimilarView.Resource.class,JobView.JoinedResource.class,ApplianceView.Listview.class,HumanResourceView.overview.class,ProjectView.details.class})
     private int companyId;

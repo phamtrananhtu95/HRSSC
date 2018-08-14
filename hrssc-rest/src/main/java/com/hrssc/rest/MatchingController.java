@@ -1,6 +1,7 @@
 package com.hrssc.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.hrssc.domain.dto.ResponseStatus;
 import com.hrssc.domain.jacksonview.MatchingView;
 import com.hrssc.entities.HumanResource;
 import com.hrssc.entities.Interaction;
@@ -24,8 +25,15 @@ public class MatchingController {
 
     @JsonView(MatchingView.Project.class)
     @PostMapping(value = "/project")
-    public List<Interaction> matchProject(@RequestBody Project project) {
-        return matchingService.matchProject(project.getId());
+    public ResponseStatus matchProject(@RequestBody Project project) {
+        ResponseStatus response = new ResponseStatus();
+        response.setCode("500");
+        response.setMessage("Error occurred, Matching project failed");
+        if(matchingService.matchProject(project.getId()) != null){
+            response.setCode("200");
+            response.setMessage("Successfully Matched project");
+        }
+        return response;
     }
 
     @JsonView(MatchingView.Resource.class)
@@ -40,8 +48,15 @@ public class MatchingController {
 
     @JsonView(MatchingView.Resource.class)
     @PostMapping(value = "/resource")
-    public List<Interaction> matchResource(@RequestBody HumanResource resource) {
-        return matchingService.matchResource(resource.getId());
+    public ResponseStatus matchResource(@RequestBody HumanResource resource) {
+        ResponseStatus response = new ResponseStatus();
+        response.setCode("500");
+        response.setMessage("Error occurred, Matching resource failed");
+        if(matchingService.matchResource(resource.getId()) != null){
+            response.setCode("200");
+            response.setMessage("Successfully Matched resource");
+        }
+        return response;
     }
 
     @JsonView(MatchingView.Project.class)

@@ -15,9 +15,9 @@ public class Project {
     private String title;
     @JsonView({HomeView.Project.class,ApplianceView.Listview.class,ProjectView.ListView.class,ProjectView.details.class})
     private String description;
-    @JsonView({HomeView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({MatchingView.Resource.class,HomeView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,ProjectView.details.class,UserView.details.class})
     private long createDate;
-    @JsonView({HomeView.Project.class,SimilarView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
+    @JsonView({MatchingView.Resource.class,HomeView.Project.class,SimilarView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class,UserView.details.class})
     private long endDate;
     @JsonView({SimilarView.Project.class,ApplianceView.Listview.class,InvitationView.ListView.class,ProjectView.ListView.class,MatchingView.Resource.class,ProjectView.details.class})
     private long duration;
