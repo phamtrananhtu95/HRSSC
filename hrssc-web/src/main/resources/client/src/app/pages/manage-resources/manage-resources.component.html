@@ -33,7 +33,7 @@
             <td (click)="viewHumanResourceDetail(humanResources.id)">{{humanResources.email}}</td>
             <td>
               <span class="label" [ngClass]="humanResources.status == 1 ? 'bg-green-400' : humanResources.status == 2 ? 'bg-blue-400' : 'btn-danger'">
-                {{humanResources.status == 1 ? "Activated" : humanResources.status == 2 ? "Inactivate" : "Busy"}}</span>
+                {{humanResources.status == 1 ? "Available" : humanResources.status == 2 ? "Inactivate" : "Busy"}}</span>
 
             </td>
             <td class="text-center">

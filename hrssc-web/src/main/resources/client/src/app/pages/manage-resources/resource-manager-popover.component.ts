@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { ManagementService } from '../../services/management.service';
 import { User, Skill, Employee, EmployeeRequest } from '../../models';
 import { AuthenticateService } from '../../services/authenticate.service';
@@ -9,6 +9,7 @@ import { skill } from '../../models/skill.model';
 import { EmployeeService } from '../../services/employee.service';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 import { NgForm } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr';
 // import { UiSwitchModule } from 'ngx-ui-switch';
 
 declare var $: any;
@@ -45,8 +46,13 @@ export class ResourceManagerPopoverComponent implements OnInit {
     constructor(
         private managementService: ManagementService,
         private employeeService: EmployeeService,
-        private authenticateService: AuthenticateService
-    ) { }
+        private authenticateService: AuthenticateService,
+        private toastr: ToastsManager,
+        public vcr: ViewContainerRef,
+    ) {
+    this.toastr.setRootViewContainerRef(vcr);
+        
+     }
 
     ngOnChanges() {
         // this.formModel = Object.assign({}, this.editManagerModel);
@@ -110,6 +116,7 @@ export class ResourceManagerPopoverComponent implements OnInit {
         // this.isValidFormSubmitted = true;
 
         this.formModel.resourceSkillsById = this.skills;
+        this.showAddnewSuccess();
         this.employeeService.addHumanResource(this.formModel).subscribe(
             res => {
                 if (res === "Email existed.") {
@@ -125,6 +132,10 @@ export class ResourceManagerPopoverComponent implements OnInit {
             }
         )
     }
+
+    showAddnewSuccess() {
+        this.toastr.success('Add new resource success!', 'Success!', {toastLife: 2000});
+      }
 
     testClick() {
         alert(123);
