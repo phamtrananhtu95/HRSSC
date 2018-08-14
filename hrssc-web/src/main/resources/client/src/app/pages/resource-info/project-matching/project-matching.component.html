@@ -80,13 +80,13 @@
         <!-- <button type="button" class="btn btn-link">
             <i class="icon-reload-alt"></i>
         </button> -->
-      
+
 
         <h6 class="panel-title text-center text-semibold">Matched projects</h6>
         <div class="heading-elements">
             <ul class="icons-list">
                 <li>
-           
+
                     <a (click)="rematchProject()">
                         <i class="icon-sync"></i>
                     </a>
@@ -106,28 +106,22 @@
 
             </div>
             <div class="media-body">
-<<<<<<< Upstream, based on latest
                 <div class="media-heading col-sm-12 no-padding">
                     <div class="col-sm-12">
-                      <h6 (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)" class="media-heading text-bold">{{project?.projectByProjectId?.title}}</h6>
+                        <h6 (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)" class="media-heading text-bold">{{project?.projectByProjectId?.title}}</h6>
                     </div>
-                  </div>
-                  <span class="media-heading col-sm-12">
-                    Company: <a (click)="viewCompanyDetail(project?.projectByProjectId?.companyByCompanyId?.id)">{{project?.projectByProjectId?.companyByCompanyId?.name}}</a> 
-                  </span>
-                  <!-- <span class="media-heading col-sm-12">
+                </div>
+                <span class="media-heading col-sm-12">
+                    Company:
+                    <a (click)="viewCompanyDetail(project?.projectByProjectId?.companyByCompanyId?.id)">{{project?.projectByProjectId?.companyByCompanyId?.name}}</a>
+                </span>
+                <!-- <span class="media-heading col-sm-12">
                     Available {{resource.humanResourceByHumanResourceId.availableDate}} To {{resource.humanResourceByHumanResourceId.availableDuration}}
                   </span> -->
-                  <span class="media-heading col-sm-12">
+                <span class="media-heading col-sm-12">
                     Skill: {{project?.projectByProjectId?.combinedSkill}}
-                  </span>
-=======
-                <a (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)">{{project?.projectByProjectId?.title}}
-                    <!-- <span class="media-annotation pull-right">3:03</span> -->
-                </a>
-                <p>{{project?.projectByProjectId?.companyByCompanyId?.name}}</p>
-                <p>{{project?.projectByProjectId?.combinedSkill}}</p>
->>>>>>> 23ac27e rematch, fix something
+                </span>
+
             </div>
         </div>
     </div>
