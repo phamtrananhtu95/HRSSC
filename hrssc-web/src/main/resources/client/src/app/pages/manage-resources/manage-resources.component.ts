@@ -18,11 +18,11 @@ export class ManageResourcesComponent implements OnInit {
   public title = " - Manage resources";
   public subTitle = " - Resource";
   public titleLink = " / Resources";
-  
-  
+
+
   public humanResource: Employee[];
   // public humanResource = new Array<Employee>();
-  
+
   public managerId;
   public resourceId;
 
@@ -31,7 +31,7 @@ export class ManageResourcesComponent implements OnInit {
     private authenticateService: AuthenticateService,
     private router: Router
   ) { }
-  
+
   ngOnInit() {
     (<any>window).datatables = true;
     (<any>window).select2 = true;
@@ -42,15 +42,23 @@ export class ManageResourcesComponent implements OnInit {
 
     // (<any>window).formSelect2 = true;
     // (<any>window).interactionsMin = true;
-    
+
 
   }
 
-  getHumanResourceByManagerId(){
+  getHumanResourceByManagerId() {
     this.employeeService.getHumanResourceByManagerId(this.managerId).subscribe(
       res => {
+
+        // res.forEach(human => {
+        //   if (human.id != -1) {
+        //     this.humanResource.push(human)
+        //   }
+        // });
+
         this.humanResource = res;
-        console.log(this.humanResource);
+        this.humanResource = this.humanResource.filter(human => human.status !== -1);
+        // console.log("aaaaaaaaaaaaaaaa" + JSON.stringify(this.humanResource));
         this.bindSkill();
       },
       error => {
@@ -59,21 +67,30 @@ export class ManageResourcesComponent implements OnInit {
     )
   }
 
-  bindSkill(){
+  bindSkill() {
     this.humanResource.forEach(resource => {
-        let skills = resource.resourceSkillsById;
-        if (!skills || skills.length < 1) {
-          return;
-        }
-        let skillList = "";
-        for (let i = 0; i < skills.length - 1; i++) {
-          skillList = skillList + skills[i].skillBySkillId.title + ", ";
-        }
-        skillList = skillList + skills[skills.length - 1].skillBySkillId.title;
-        resource.skill = skillList;
+      let skills = resource.resourceSkillsById;
+      if (!skills || skills.length < 1) {
+        return;
+      }
+      let skillList = "";
+      for (let i = 0; i < skills.length - 1; i++) {
+        skillList = skillList + skills[i].skillBySkillId.title + ", ";
+      }
+      skillList = skillList + skills[skills.length - 1].skillBySkillId.title;
+      resource.skill = skillList;
     });
   }
   viewHumanResourceDetail(humanResourceId) {
-    this.router.navigate(['manager/resource/info'], {queryParams:{"id": humanResourceId}});
+    this.router.navigate(['manager/resource/info'], { queryParams: { "id": humanResourceId } });
+  }
+
+  removeHuman(humanId) {
+    this.employeeService.removeHuman(humanId).subscribe(
+      res => {
+        this.getHumanResourceByManagerId();
+      }
+    )
+
   }
 }

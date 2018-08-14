@@ -26,8 +26,8 @@
         </thead>
         <tbody>
 
-          <tr *ngFor="let humanResources of humanResource" (click)="viewHumanResourceDetail(humanResources.id)">
-            <td>{{humanResources.fullname}}</td>
+          <tr *ngFor="let humanResources of humanResource">
+            <td (click)="viewHumanResourceDetail(humanResources.id)">{{humanResources.fullname}}</td>
             <td>{{humanResources.skill}}</td>
             <td>{{humanResources.tel}}</td>
             <td>{{humanResources.email}}</td>
@@ -37,7 +37,7 @@
 
             </td>
             <td class="text-center">
-              <button type="button" class="btn btn-link">
+              <button type="button" class="btn btn-link" (click)="removeHuman(humanResources.id)">
                 <i class="icon-cross2 position-left"></i>
               </button>
             </td>
