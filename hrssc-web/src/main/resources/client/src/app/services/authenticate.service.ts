@@ -44,9 +44,9 @@ export class AuthenticateService {
     let username = userInfo ? userInfo.username : null;
     let userId = userInfo ? userInfo.id : null;
     let userFullName = userInfo ? userInfo.fullname : null;
-    // this.header.setUserNametoHead(username);
+    this.header.setUserNametoHead(username);
     this.header.setUserIdToHead(userId);
-    this.header.setUserNametoHead(userFullName);
+    // this.header.setUserNametoHead(userFullName);
     this.session.saveInLocal(this.USER_INFOR, userInfo);
   }
 
@@ -60,7 +60,7 @@ export class AuthenticateService {
 
   getUserName() {
     let userInfo = this.getUserInfo();
-    return userInfo ? userInfo.fullname : null;
+    return userInfo ? userInfo.username : null;
   }
 
   getUserId() {

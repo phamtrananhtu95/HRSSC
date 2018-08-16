@@ -1,158 +1,165 @@
-<div class="content">
-
-  <!-- Fieldset legend -->
-  <div class="row">
-    <div class="col-md-8">
-
-      <!-- Advanced legend -->
-      <form class="form-horizontal" action="#">
-        <div class="panel panel-flat">
-          <div class="panel-heading text-center">
-            <h5 class="panel-title text-bold">Job contract</h5>
-          </div>
-
-          <div class="panel-body">
-
-            <!-- Parties -->
-            <fieldset>
-              <legend class="text-semibold">
-                <i class="icon-file-text2 position-left"></i>
-                <b>Parties</b>
-
-              </legend>
-
-              <div class="collapse in" id="demo1">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="panel panel-body">
-                      <div class="media">
-                        <div class="media-left">
-                          <img src="{{contractDetail?.humanResourceByHumanResourceId?.avatar}}" class="img-circle img-lg" alt="">
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <div class="content">
+    
+      <!-- Fieldset legend -->
+      <div class="row">
+        <div class="">
+    
+          <!-- Advanced legend -->
+          <form class="form-horizontal" action="#">
+            <div class="panel panel-flat">
+              <div class="panel-heading text-center">
+                <h5 class="panel-title text-bold">Job contract</h5>
+              </div>
+    
+              <div class="panel-body">
+    
+                <!-- Parties -->
+                <fieldset>
+                  <legend class="text-semibold">
+                    <i class="icon-file-text2 position-left"></i>
+                    <b>Parties</b>
+    
+                  </legend>
+    
+                  <div class="collapse in" id="demo1">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="panel panel-body">
+                          <div class="media">
+                            <div class="media-left">
+                              <img src="{{contractDetail?.humanResourceByHumanResourceId?.avatar}}" class="img-circle img-lg" alt="">
+                            </div>
+    
+                            <div class="media-body">
+                              <h6 class="media-heading">{{contractDetail?.humanResourceByHumanResourceId?.fullname}}
+                                <a></a>
+                              </h6>
+                              <span class="label border-left-primary label-striped">{{contractDetail?.humanResourceByHumanResourceId?.companyByCompanyId?.name}}</span>
+                            </div>
+                            <label>
+                              &nbsp;
+                            </label>
+                          </div>
                         </div>
-
-                        <div class="media-body">
-                          <h6 class="media-heading">{{contractDetail?.humanResourceByHumanResourceId?.fullname}}
-                            <a></a>
-                          </h6>
-                          <span class="label border-left-primary label-striped">{{contractDetail?.humanResourceByHumanResourceId?.companyByCompanyId?.name}}</span>
+                      </div>
+    
+                      <div class="col-md-6">
+                        <div class="panel panel-body">
+                          <div class="media">
+                            <div class="media-left">
+                              <img src="{{contractDetail?.projectByProjectId?.companyByCompanyId?.logo}}" class="img-circle img-lg" alt="">
+                            </div>
+    
+                            <div class="media-body">
+                              <h6 class="media-heading">{{contractDetail?.projectByProjectId?.title}}
+                                <a></a>
+                              </h6>
+                              <span class="label border-left-primary label-striped">{{contractDetail?.projectByProjectId?.companyByCompanyId?.name}}</span>
+                            </div>
+                            <label>
+                              &nbsp;
+                            </label>
+                          </div>
                         </div>
-                        <label>
-                          &nbsp;
-                        </label>
                       </div>
                     </div>
+    
                   </div>
-
-                  <div class="col-md-6">
-                    <div class="panel panel-body">
-                      <div class="media">
-                        <div class="media-left">
-                          <img src="{{contractDetail?.projectByProjectId?.companyByCompanyId?.logo}}" class="img-circle img-lg" alt="">
+                </fieldset>
+    
+                <!-- Term contract -->
+                <fieldset>
+                  <legend class="text-semibold">
+                    <div class="row">
+                      <i class=" icon-pen position-left"></i>
+                      <b>Term of contract</b>
+                    </div>
+                  </legend>
+    
+                  <div class="collapse in" id="demo2">
+    
+                    <div class="form-group">
+                      <div>
+                        <label class="col-lg-2 control-label">Start date:</label>
+                        <div class="col-lg-4">
+                          <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.startDate | date:'dd/MM/yyyy' }}</label>
                         </div>
-
-                        <div class="media-body">
-                          <h6 class="media-heading">{{contractDetail?.projectByProjectId?.title}}
-                            <a></a>
-                          </h6>
-                          <span class="label border-left-primary label-striped">{{contractDetail?.projectByProjectId?.companyByCompanyId?.name}}</span>
+                      </div>
+                      <div>
+                        <label class="col-lg-2 control-label">End date:</label>
+                        <div class="col-lg-4">
+                          <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.endDate | date:'dd/MM/yyyy' }}</label>
                         </div>
-                        <label>
-                          &nbsp;
-                        </label>
                       </div>
                     </div>
+    
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Monthly payment:</label>
+                      <div class="col-lg-5">
+                        <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.salary | number:'.0-2'}}</label>
+                      </div>
+                      <label class="col-lg-2 control-label text-bold">(VND)</label>
+                    </div>
+    
+                    <div class="form-group">
+                      <div class="col-lg-3">
+                        <label class="control-label">Additional terms: </label>
+                      </div>
+    
+                      <div class="col-lg-9">
+                        <p class="text-bold">{{contractDetail?.contractByContractId?.additionalTerms}}</p>
+                      </div>
+                    </div>
+    
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Accepted date:</label>
+                      <div class="col-lg-9">
+                        <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.acceptedDate | date:'dd/MM/yyyy' }}</label>
+                      </div>
+                    </div>
+    
                   </div>
-                </div>
-
-              </div>
-            </fieldset>
-
-            <!-- Term contract -->
-            <fieldset>
-              <legend class="text-semibold">
+                </fieldset>
+    
                 <div class="row">
-                  <i class=" icon-pen position-left"></i>
-                  <b>Term of contract</b>
-                </div>
-              </legend>
-
-              <div class="collapse in" id="demo2">
-
-                <div class="form-group">
-                  <div>
-                    <label class="col-lg-2 control-label">Start date:</label>
-                    <div class="col-lg-4">
-                      <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.startDate | date:'dd/MM/yyyy' }}</label>
+                  <div class="col-md-3">
+    
+                    Status:
+                    <span class="label" [ngClass]="contractDetail?.status == 1 ? 'bg-blue-400' : contractDetail?.status == 2 ? 'bg-green-400' : contractDetail?.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
+                      {{contractDetail?.status == 1 ? "PENDING" : contractDetail?.status == 2 ? "ON GOING" : contractDetail?.status == 3 ? "FINISH"
+                      : "CANCEL"}}</span>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-right">
+    
                     </div>
                   </div>
-                  <div>
-                    <label class="col-lg-2 control-label">End date:</label>
-                    <div class="col-lg-4">
-                      <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.endDate | date:'dd/MM/yyyy' }}</label>
-                    </div>
+                  <div class="col-md-4">
+                    <span class="label border-left-danger label-striped">
+                      <a (click)="viewLogChatContract(contractDetail.contractByContractId.id)">
+                        <b>Contract's chat log</b>
+                      </a>
+                    </span>
+    
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Monthly payment:</label>
-                  <div class="col-lg-5">
-                    <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.salary | number:'.0-2'}}</label>
-                  </div>
-                  <label class="col-lg-2 control-label text-bold">(VND)</label>
-                </div>
-
-                <div class="form-group">
-                  <div class="col-lg-3">
-                    <label class="control-label">Additional terms: </label>
-                  </div>
-
-                  <div class="col-lg-9">
-                    <p class="text-bold">{{contractDetail?.contractByContractId?.additionalTerms}}</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Accepted date:</label>
-                  <div class="col-lg-9">
-                    <label class="text-bold" style="margin-top: 7px;">{{contractDetail?.contractByContractId?.acceptedDate | date:'dd/MM/yyyy' }}</label>
-                  </div>
-                </div>
-
-              </div>
-            </fieldset>
-
-            <div class="row">
-              <div class="col-md-3">
-
-                Status:
-                <span class="label" [ngClass]="contractDetail?.status == 1 ? 'bg-blue-400' : contractDetail?.status == 2 ? 'bg-green-400' : contractDetail?.status == 3 ? 'bg-slate-400' : 'bg-danger-400'">
-                  {{contractDetail?.status == 1 ? "PENDING" : contractDetail?.status == 2 ? "ON GOING" : contractDetail?.status == 3 ? "FINISH"
-                  : "CANCEL"}}</span>
-              </div>
-              <div class="col-md-5">
-                <div class="text-right">
-
-                </div>
-              </div>
-              <div class="col-md-4">
-                <span class="label border-left-danger label-striped">
-                  <a (click)="viewLogChatContract(contractDetail.contractByContractId.id)">
-                    <b>Contract's chat log</b>
-                  </a>
-                </span>
-
+    
               </div>
             </div>
-
-          </div>
+          </form>
+          <!-- /a legend -->
+    
         </div>
-      </form>
-      <!-- /a legend -->
-
+    
+      </div>
+      <!-- /fieldset legend -->
     </div>
 
   </div>
-  <!-- /fieldset legend -->
+  <div class="col-lg-2"></div>
 </div>
 
 <!-- Human modal -->
