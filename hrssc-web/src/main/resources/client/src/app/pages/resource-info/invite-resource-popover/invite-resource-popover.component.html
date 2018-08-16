@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h6 class="modal-title">Invitation</h6>
+                <b class="modal-title">The list projects to invite</b>
             </div>
             <div class="modal-body text-center">
                 <div *ngFor="let project of projects">
@@ -22,7 +22,7 @@
                         <i class="text-muted">project</i>
                     </div>
                     <div class="media-right">
-                        <button class="btn btn-success" (click)="viewContract(humanResource.id, project.id)"
+                        <button class="btn btn-success text-bold" (click)="viewContract(humanResource.id, project.id)"
                         >Invite</button>
                     </div>
                     <hr>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Feedback } from '../../models/feedback.model';
 import { EmployeeService } from '../../services/employee.service';
 import { AuthenticateService } from '../../services/authenticate.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { humanResourceById } from '../../models/resourceMatched.model';
 import { ChatService } from '../../services/chat.service';
 
@@ -27,7 +27,9 @@ export class RatingComponent implements OnInit {
     private employeeService: EmployeeService,
     private authenticateService: AuthenticateService,
     private route: ActivatedRoute,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private router: Router,
+    
   ) {
     this.userId = this.authenticateService.getUserId();
   }
@@ -85,6 +87,10 @@ export class RatingComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  skipFeedback() {
+    this.router.navigate(['home']);
   }
 
 }

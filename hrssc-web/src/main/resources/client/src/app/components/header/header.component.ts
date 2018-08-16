@@ -64,6 +64,11 @@ export class HeaderComponent implements OnInit {
       this.header.setUserIdToHead(userId);
     }
 
+    // let userName = this.authenticateService.getUserName();
+    // if (userName) {
+    //   this.header.setUserNameToHead(userName);
+    // }
+
     // let avatar = this.authenticateService.getAvatar();
     // if (avatar) {
     //   this.header.setAvatartoHead(avatar);

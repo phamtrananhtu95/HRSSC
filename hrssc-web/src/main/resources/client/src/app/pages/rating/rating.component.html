@@ -1,4 +1,4 @@
-<app-page-header [parentTitle]="parentTitle" [title]="title" [titleLink]="titleLink" ></app-page-header>
+<app-page-header [parentTitle]="parentTitle" [title]="title" [titleLink]="titleLink"></app-page-header>
 
 <!-- Content area -->
 <div class="content row">
@@ -16,7 +16,8 @@
         <li class="media" *ngFor="let humanResource of listHumanOfProject">
 
           <div class="media-left">
-            <img src="{{humanResource?.humanResourceByHumanResourceId?.avatar}}" style="width: 70px; height: 70px;" class="img-circle" alt="">
+            <img src="{{humanResource?.humanResourceByHumanResourceId?.avatar}}" style="width: 70px; height: 70px;" class="img-circle"
+              alt="">
           </div>
           <div class="media-body">
             <div class="media-heading text-semibold">&nbsp;</div>
@@ -32,8 +33,8 @@
           <div class="media-right media-middle">
             <ul class="icons-list text-nowrap">
               <li>
-                <button type="button" class="btn bg-teal-400 btn-labeled dropdown-toggle" data-toggle="modal"
-                 [attr.data-target]="'#humanResource' + humanResource.id" (click)="reloadLibrary()">
+                <button type="button" class="btn bg-teal-400 btn-labeled dropdown-toggle" data-toggle="modal" [attr.data-target]="'#humanResource' + humanResource.id"
+                  (click)="reloadLibrary()">
                   <b>
                     <i class="icon-rating2"></i>
                   </b> Feedback
@@ -135,7 +136,7 @@
 
                   <div class="">
                     <h6 style="margin-left: 15px">Comment</h6>
-                    <textarea rows="3" cols="5" class="form-control" [(ngModel)]="feedbackForm.comment" placeholder="Default textarea"></textarea>
+                    <textarea rows="3" cols="5" class="form-control" [(ngModel)]="feedbackForm.comment" placeholder="Your comment"></textarea>
                   </div>
                 </div>
 
@@ -150,7 +151,10 @@
         </li>
       </ul>
 
-
+      <div class="text-left" style="margin-top: 5px;">
+        <button class="btn btn-link" (click)="skipFeedback()">
+          <i class="icon-undo position-left"></i> Skip feedback</button>
+      </div>
 
     </div>
   </div>

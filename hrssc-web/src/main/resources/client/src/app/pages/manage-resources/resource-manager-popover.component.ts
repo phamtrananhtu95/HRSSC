@@ -125,7 +125,6 @@ export class ResourceManagerPopoverComponent implements OnInit {
                 this.reloadManagerList.emit();
                 (<any>$("#modal_default")).modal("hide");
                 this.initFormModel();
-                alert("ko giong");
             },
             err => {
                 console.log(err);

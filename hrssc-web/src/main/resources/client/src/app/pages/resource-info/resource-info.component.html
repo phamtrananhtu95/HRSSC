@@ -146,10 +146,10 @@
                 class="label label-flat">
                 {{humanResource.status == 1 ? "Available" : humanResource.status == 2 ? "Inactive": "Busy"}}</span>
 
-              <button *ngIf="!isOwnManager && !isChief" [disabled]="isEmptyProject" type="button" class="btn btn-info btn-sm" data-toggle="modal"
+              <button *ngIf="!isOwnManager && !isChief" [disabled]="isEmptyProject" type="button" class="btn btn-info btn-sm text-bold" data-toggle="modal"
                 data-target="#modal_theme_info">
                 Invite
-                <i class="icon-play3 position-right"></i>
+                <i class="icon-flip-horizontal2 position-right"></i>
               </button>
               <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info">Launch
                   <i class="icon-play3 position-right"></i>
