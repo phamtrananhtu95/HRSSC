@@ -19,8 +19,6 @@ export class HeaderComponent implements OnInit {
   public countNotify: number;
   public interval;
 
-  public userAvatar: any;
-
   // logout
   model: any = {};
   loading = false;

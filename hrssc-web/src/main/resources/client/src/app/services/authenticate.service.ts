@@ -43,7 +43,7 @@ export class AuthenticateService {
   saveUserInfo(userInfo: any) {
     let username = userInfo ? userInfo.username : null;
     let userId = userInfo ? userInfo.id : null;
-    let userFullName = userInfo ? userInfo.fullname : null;
+    // let userFullName = userInfo ? userInfo.fullname : null;
     this.header.setUserNametoHead(username);
     this.header.setUserIdToHead(userId);
     // this.header.setUserNametoHead(userFullName);
@@ -74,11 +74,6 @@ export class AuthenticateService {
   }
 
   getRoleId() {
-    let userInfo = this.getUserInfo();
-    return userInfo ? userInfo.roleID : null;
-  }
-
-  getAvatar(){
     let userInfo = this.getUserInfo();
     return userInfo ? userInfo.roleID : null;
   }

@@ -29,27 +29,11 @@
                   </span> -->
                 </div>
               </div>
-
+<!-- 
               <div class="caption text-center">
                 <h6 class="text-semibold no-margin">{{project?.companyByCompanyId?.name}}</h6>
-                <!-- <ul class="icons-list mt-15">
-                  <li>
-                    <a href="#" data-popup="tooltip" title="Google Drive" data-container="body">
-                      <i class="icon-google-drive"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-popup="tooltip" title="Twitter" data-container="body">
-                      <i class="icon-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-popup="tooltip" title="Github" data-container="body">
-                      <i class="icon-github"></i>
-                    </a>
-                  </li>
-                </ul> -->
-              </div>
+
+              </div> -->
             </div>
           </div>
           <div class="col-md-9">
@@ -71,7 +55,10 @@
                 <b>
                   5 days ago</b>
               </h4> -->
-
+              <h4>
+                <b>
+                  Company:</b> {{project?.companyByCompanyId?.name}}
+              </h4>
             </div>
             <div class="media-right media-middle">
               <button *ngIf="!isManager && !isChief" type="submit" class="btn btn-success btn-rounded btn-xlg" (click)="getAvailableResource()"
