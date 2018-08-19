@@ -359,6 +359,35 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         if(project== null){
             throw new NotFoundException("Project Not Found");
         }
+        if(project.getProcessStatus() == Constant.ProjectProcess.PENDING){
+            //Doi job va resource status
+            List<Job> jobList = jobRepository.findByProjectId(projectId);
+            long leavedate = System.currentTimeMillis();
+            if(!jobList.isEmpty()) {
+                for (Job tmp : jobList) {
+                    HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
+                    resource.setStatus(Constant.ResourceStatus.AVAILABLE);
+                    humanResourceRepository.save(resource);
+                    tmp.setLeaveDate(leavedate);
+                    tmp.setStatus(Constant.JobStatus.CANCEL);
+                    jobRepository.save(tmp);
+                }
+            }
+        }else {
+            //Doi job va resource status
+            List<Job> jobList = jobRepository.findByProjectId(projectId);
+            long leavedate = System.currentTimeMillis();
+            if(!jobList.isEmpty()) {
+                for (Job tmp : jobList) {
+                    HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
+                    resource.setStatus(Constant.ResourceStatus.INACTIVE);
+                    humanResourceRepository.save(resource);
+                    tmp.setLeaveDate(leavedate);
+                    tmp.setStatus(Constant.JobStatus.FINISHED);
+                    jobRepository.save(tmp);
+                }
+            }
+        }
         //Doi project status
         project.setRequestStatus(Constant.RequestStatus.CLOSED);
         project.setProcessStatus(Constant.ProjectProcess.FINISHED);
@@ -370,19 +399,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
                 interactionRepository.delete(tmp);
             }
         }
-        //Doi job va resource status
-        List<Job> jobList = jobRepository.findByProjectId(projectId);
-        long leavedate = System.currentTimeMillis();
-        if(!jobList.isEmpty()) {
-            for (Job tmp : jobList) {
-                HumanResource resource = humanResourceRepository.getById(tmp.getHumanResourceId());
-                resource.setStatus(Constant.ResourceStatus.INACTIVE);
-                humanResourceRepository.save(resource);
-                tmp.setLeaveDate(leavedate);
-                tmp.setStatus(Constant.JobStatus.FINISHED);
-                jobRepository.save(tmp);
-            }
-        }
+
         return project;
     }
 

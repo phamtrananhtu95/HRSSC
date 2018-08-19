@@ -52,7 +52,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         for (Job jobtmp: jobList) {
             List<Feedback> feedbackList = (List<Feedback>) jobtmp.getFeedbacksById();
             if(!feedbackList.isEmpty()){
-                long duration = (jobtmp.getLeaveDate() - jobtmp.getJoinedate())/86400000;
+                Contract contract = contractRepository.findById((int)jobtmp.getContractId());
+                long duration = (contract.getEndDate() - contract.getStartDate())/86400000;
                 jobtmp.setJoinedate(duration);
                 resultList.addAll(feedbackList);
 
@@ -203,7 +204,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         List<Project> projectList = projectRepository.findByUserIdAndProcessStatus(userId, Constant.ProjectProcess.FINISHED);
         List<Project> resultList = new ArrayList<>();
         for (Project tmp: projectList) {
-            List<Job> jobList = jobRepository.findByProjectId(tmp.getId());
+            List<Job> jobList = jobRepository.findByProjectIdAndStatus(tmp.getId(), Constant.JobStatus.FINISHED);
             List<Job> resultJobList = new ArrayList<>();
             if(!jobList.isEmpty()) {
                 for (Job jobtmp : jobList) {
