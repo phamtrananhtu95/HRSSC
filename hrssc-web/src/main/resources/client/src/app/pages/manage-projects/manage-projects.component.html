@@ -32,9 +32,9 @@
             <td>{{project.createDate}}</td>
             <td>{{project.endDate}}</td>
             <td>
-                <!-- [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'" -->
+              <!-- [ngClass]="project.processStatus == 1 ? 'bg-blue-400' : 'btn-danger'" -->
               <span class="label" [ngClass]="project.processStatus == 1 ? 'bg-green-400' : project.processStatus == 2 ? 'bg-danger-400' : 'bg-slate-400'">
-                {{project.processStatus == 1 ?  "PENDING" : project.processStatus == 2 ? "ON GOING" : "FINISH"}}</span>
+                {{project.processStatus == 1 ? "PENDING" : project.processStatus == 2 ? "ON GOING" : "FINISH"}}</span>
             </td>
             <td class="btn-r-e">
               <button type="submit" class="btn">
@@ -86,9 +86,11 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
-                                  <label class="text-semibold">Project name <i class="icon-question3"></i></label>
+                                  <label class="text-semibold">Project name
+                                    <i class="icon-question3" data-popup="tooltip-custom" title="Primary tooltip" data-placement="bottom" data-container="body"></i>
+                                  </label>
                                   <!-- Web application, mobile , desktop -->
-                                  <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="Abc application" required>
+                                  <input type="text" [(ngModel)]="formModel.title" class="form-control input-xlg" placeholder="" required>
                                   <div class="form-control-feedback">
                                     <i class="icon-office"></i>
                                   </div>
@@ -96,36 +98,16 @@
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group has-feedback has-feedback-left">
-                                  <label class="text-semibold">Domain <i class="icon-question3"></i></label>
+                                  <label class="text-semibold">Domain
+                                    <i class="icon-question3"></i>
+                                  </label>
                                   <!-- security,  -->
                                   <!-- <input type="text" [(ngModel)]="formModel.domain" class="form-control input-xlg" placeholder="Testing...">
                                   <div class="form-control-feedback">
                                     <i class="icon-office"></i>
                                   </div> -->
 
-                                  <ng-select [options]="listDomainOpt" [multiple]=true [(ngModel)]="formModel.domain" style="z-index: 99;">
-                                  </ng-select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <div class="form-group has-feedback has-feedback-left">
-                                  <label class="text-semibold">Duration <i class="icon-question3"></i></label>
-                                  <input type="text" [(ngModel)]="formModel.duration" class="form-control input-lg" placeholder="1 (month)">
-                                  <div class="form-control-feedback">
-                                    <i class="icon-make-group"></i>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group has-feedback has-feedback-left">
-                                  <label>Type</label>
-                                  <!-- <input type="text" [(ngModel)]="formModel.type" class="form-control input-lg" placeholder="Web Applicaition..">
-                                  <div class="form-control-feedback">
-                                    <i class="icon-make-group"></i>
-                                  </div> -->
-                                  <ng-select [options]="listTypeOpt" [multiple]=true [(ngModel)]="formModel.type" style="z-index: 89;">
+                                  <ng-select class="test" [options]="listDomainOpt" [multiple]=true [(ngModel)]="formModel.domain" style="z-index: 99;">
                                   </ng-select>
                                 </div>
                               </div>
@@ -140,8 +122,7 @@
                                                 <i class="icon-droplets"></i>
                                               </div> -->
                                   <form #myForm="ngForm" novalidate>
-                                    <my-date-picker name="mydate" [options]="myDatePickerOptionsStart" (dateChanged)="onDateChangedCreate($event)"
-                                      required></my-date-picker>
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptionsStart" (dateChanged)="onDateChangedCreate($event)" required></my-date-picker>
                                   </form>
                                 </div>
                                 <div class="col-md-6">
@@ -151,13 +132,37 @@
                                                 <i class="icon-droplets"></i>
                                               </div> -->
                                   <form #myForm="ngForm" novalidate>
-                                    <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" (dateChanged)="onDateChangedEnd($event)"
-                                      required></my-date-picker>
+                                    <my-date-picker name="mydate" [options]="myDatePickerOptionsEnd" (dateChanged)="onDateChangedEnd($event)" required></my-date-picker>
                                   </form>
                                 </div>
 
                               </div>
                             </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group has-feedback has-feedback-left">
+                                  <label class="text-semibold">Duration
+                                    <i class="icon-question3"></i>
+                                  </label>
+                                  <input type="text" [(ngModel)]="formModel.duration" [attr.disabled]="true" class="form-control input-lg" placeholder="">
+                                  <div class="form-control-feedback">
+                                    <i class="icon-make-group"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group has-feedback has-feedback-left">
+                                  <label>Type</label>
+                                  <!-- <input type="text" [(ngModel)]="formModel.type" class="form-control input-lg" placeholder="Web Applicaition..">
+                                  <div class="form-control-feedback">
+                                    <i class="icon-make-group"></i>
+                                  </div> -->
+                                  <ng-select class="test" [options]="listTypeOpt" [multiple]=true [(ngModel)]="formModel.type" style="z-index: 89;">
+                                  </ng-select>
+                                </div>
+                              </div>
+                            </div>
+
 
                             <div class="row">
                               <div class="col-md-6">
@@ -206,7 +211,7 @@
                                             <label class="text-bold" for="">Payment</label>
                                             <div class="form-group">
                                               <!-- <input type="text" id="quantityAdd"> -->
-                                              <input type="number" [(ngModel)]="formPositionModel.payment" id="paymentAdd" class="form-control input-sm">
+                                              <input type="text" [(ngModel)]="formPositionModel.payment" id="paymentAdd" class="form-control input-sm" currencyMask [options]="{ align: 'left', prefix: ' ', thousands: '.', precision: 0}">
                                             </div>
                                           </div>
                                         </div>
@@ -227,19 +232,28 @@
                                     <div class="form-group has-feedback has-feedback-left no-margin" style="height: 200px; overflow: auto;z-index: 98;">
                                       <div *ngFor="let skill of formPositionModel.skillRequirementsById">
                                         <div class="col-sm-12 no-padding">
-                                          <div class="col-sm-6" style="padding-left: 0">
+                                          <div class="col-sm-5" style="padding-left: 0">
                                             <div class="form-group has-feedback">
                                               <label class="text-bold">Skill</label>
                                               <ng-select #skillAdd [options]="skillOpt" [(ngModel)]="skill.skillId"></ng-select>
                                             </div>
                                           </div>
-                                          <div class="col-sm-6" style="padding-right: 0">
+                                          <div class="col-sm-5">
                                             <div class="form-group has-feedback">
                                               <label class="text-bold">Experience</label>
-                                              <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="5 years">
+                                              <input type="number" [(ngModel)]="skill.experience" class="form-control" placeholder="1 years">
                                               <div class="form-control-feedback">
                                                 <i class="icon-calendar text-muted"></i>
                                               </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-2">
+
+                                            <label class="text-bold"></label>
+                                            <div class="form-group has-feedback">
+                                              <button type="button" class="btn text-success-400 btn-flat btn-icon btn-rounded" (click)="deleteSkill(skill)">
+                                                <i class="icon-minus2 text-muted"></i>
+                                              </button>
                                             </div>
                                           </div>
                                         </div>
@@ -265,6 +279,7 @@
                                     </div> -->
 
                                     <div class="modal-footer">
+                                        <button type="submit" (click)="resetPositionForm()" class="btn btn-primary">Reset</button>
                                       <button type="submit" (click)="addNewPosition()" class="btn btn-primary">Add position</button>
                                     </div>
                                   </div>

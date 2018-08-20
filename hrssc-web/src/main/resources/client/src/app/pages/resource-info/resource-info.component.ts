@@ -86,7 +86,6 @@ export class ResourceInfoComponent implements OnInit {
       res => {
 
         this.humanResource = res;
-        console.log(this.humanResource);
         
         this.userByUserId = this.humanResource.userByUserId.id;
         this.isOwnManager = this.userId === this.userByUserId;

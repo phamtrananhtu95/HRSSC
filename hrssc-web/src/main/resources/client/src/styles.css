@@ -29,4 +29,9 @@ ng-select.test > div > div.single > div.value{
 ng-select.test > div > div.single > div.clear {
     line-height: 40px;
 }
-
+ng-select.test > div > div.multiple {
+    min-height: 40px;
+}
+ng-select.test > div > div.multiple > div.option span.deselect-option {
+    line-height: 30px;
+}

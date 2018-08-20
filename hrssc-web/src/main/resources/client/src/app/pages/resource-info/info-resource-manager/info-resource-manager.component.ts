@@ -4,6 +4,7 @@ import { Employee, Skill } from './../../../models/employee.model';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import swal from 'sweetalert';
 
 import * as jQuery from 'jquery';
 import { ToastsManager } from 'ng2-toastr';
@@ -123,6 +124,7 @@ export class InfoResourceManagerComponent implements OnInit {
         this.resourceInfo.resourceSkillsById = this.skills;
         this.employeeService.updateHumanResource(this.resourceInfo).subscribe(
             res => {
+                swal("Update Success", "Your resource has been updated!", "success");
                 this.reloadManagerList.emit();
                 this.reloadMatchingProject.emit();
                 setTimeout(function () {
