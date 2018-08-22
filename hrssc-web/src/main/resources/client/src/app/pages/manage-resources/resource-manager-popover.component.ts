@@ -160,8 +160,8 @@ export class ResourceManagerPopoverComponent implements OnInit {
         console.log(this.skills);
     }
 
-    removeSkill(index) {
-        // this.skills = this.skills.filter(skill => skill.index !== index);
+    removeSkill(skillId) {
+        this.skills = this.skills.filter(skill => skill.skillId !== skillId);
     }
 
     addHumanResource() {
