@@ -12,6 +12,7 @@ declare var $: any;
 import { InvitationService } from '../../services/invitation.service';
 import { ChatService } from '../../services/chat.service';
 import { ToastsManager } from 'ng2-toastr';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-job-contract',
@@ -204,7 +205,7 @@ export class JobContractComponent implements OnInit {
   }
 
   sendOffer() {
-    debugger;
+    // debugger;
     // let msg = "has been Invite";
     // let notiType = "Invite";
     // let userId = this.humanResource.userByUserId.id;
@@ -220,7 +221,7 @@ export class JobContractComponent implements OnInit {
 
       if (this.isInvite) {
         // console.log("invite á em");
-        this.showSendInviteSuccess();
+        // this.showSendInviteSuccess();
         this.formContract.contractByContractId.latestEditorId = this.userId;
         this.employeeService.inviteHumanResource(this.formContract).subscribe(
           res => {
@@ -232,7 +233,12 @@ export class JobContractComponent implements OnInit {
             let userId = this.humanResource.userByUserId.id;
             this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
 
-            this.router.navigate(['home']);
+            swal("Send Offer Success", "You have been send offer success!", "Success")
+            .then((value) => {
+              this.router.navigate(['home']);
+            });
+
+            
             // send notify
 
           },
@@ -243,7 +249,7 @@ export class JobContractComponent implements OnInit {
       }
       else {
         // console.log("aply á em");
-        this.showSendApplySuccess();
+        // this.showSendApplySuccess();
         this.projectService.applyResource(this.formContract).subscribe(
           res => {
             // noti for appliances
@@ -252,7 +258,12 @@ export class JobContractComponent implements OnInit {
             let msg = this.humanResource.fullname + " of " + companyName + "want to " + notiType + " " + " to " + this.project.title + " project";
             let userId = this.project.userId;
             this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, userId);
-            this.router.navigate(['home']);
+            
+            swal("Send Offer Success", "You have been send offer success!", "Success")
+            .then((value) => {
+              this.router.navigate(['home']);
+            });
+            // this.router.navigate(['home']);
           },
           err => {
             console.log(err);
@@ -260,7 +271,7 @@ export class JobContractComponent implements OnInit {
         );
       }
     } else {
-      this.showSendOfferSuccess();
+      // this.showSendOfferSuccess();
       
       let notiUserid = this.formContract.contractByContractId.latestEditorId;
       this.formContract.contractByContractId.latestEditorId = this.userId;
@@ -273,7 +284,11 @@ export class JobContractComponent implements OnInit {
           let msg = "New " + notiType + " of " + companyName + " company at " + this.project.title + " project";
           this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, notiUserid);
 
-          this.router.navigate(['home']);
+          swal("Send Offer Success", "You have been send offer success!", "Success")
+          .then((value) => {
+            this.router.navigate(['home']);
+          });
+          // this.router.navigate(['home']);
         },
         err => {
           console.log(err);
@@ -296,7 +311,12 @@ export class JobContractComponent implements OnInit {
         let notiType = "Accept offer";
         let msg = "Accept offer";
         this.chatService.sendNotify(msg, notiType, this.formContract.projectId, this.formContract.humanResourceId, notiUserid);
-        this.router.navigate(['home']);
+        
+        swal("Accept Offer Success", "You accepted offer!", "Success")
+        .then((value) => {
+          this.router.navigate(['home']);
+        });
+        // this.router.navigate(['home']);
       }
     );
   }

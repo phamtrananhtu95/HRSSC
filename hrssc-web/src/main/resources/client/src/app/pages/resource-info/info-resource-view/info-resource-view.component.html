@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <h6 class="text-semibold no-margin-top">{{humanResource.salary | currency:'USD':true:'1.0-0'}} vnd</h6>
+                        <h6 class="text-semibold no-margin-top">{{humanResource.salary | number:'.0-2'}} vnd</h6>
                         <ul class="list list-unstyled">
                             <li>Tel:
                                 <span class="text-semibold">{{humanResource.tel}}</span>

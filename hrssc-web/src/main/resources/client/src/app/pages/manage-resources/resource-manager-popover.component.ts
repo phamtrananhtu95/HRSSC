@@ -10,6 +10,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-picker';
 import { NgForm } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr';
+import swal from 'sweetalert';
 // import { UiSwitchModule } from 'ngx-ui-switch';
 
 declare var $: any;
@@ -116,12 +117,13 @@ export class ResourceManagerPopoverComponent implements OnInit {
         // this.isValidFormSubmitted = true;
 
         this.formModel.resourceSkillsById = this.skills;
-        this.showAddnewSuccess();
+        // this.showAddnewSuccess();
         this.employeeService.addHumanResource(this.formModel).subscribe(
             res => {
-                if (res === "Email existed.") {
-                    alert("giong");
-                }
+                // if (res === "Email existed.") {
+                //     alert("giong");
+                // }
+                swal("Add Success", "Your resource has been added!", "success");
                 this.reloadManagerList.emit();
                 (<any>$("#modal_default")).modal("hide");
                 this.initFormModel();
