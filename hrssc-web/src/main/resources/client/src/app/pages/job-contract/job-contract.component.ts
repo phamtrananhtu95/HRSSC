@@ -310,7 +310,7 @@ export class JobContractComponent implements OnInit {
           let contractVer = res[i];
           // var dealDateParse = parseInt(contractVer.dealDate);
           // var date = new Date(dealDateParse);
-          var dateConvert = this.ConvertToDatetime(contractVer.dealDate * 1000);
+          var dateConvert = this.ConvertToDatetime(contractVer.dealDate);
           var dd = dateConvert.date.day;
           var mm = dateConvert.date.month;
           var yyyy = dateConvert.date.year;
