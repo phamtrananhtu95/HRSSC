@@ -100,6 +100,8 @@ export class ManageProjectsComponent implements OnInit {
       this.listType.forEach(type => {
         this.listTypeOpt.push({ value: type.toString(), label: type })
       });
+      // reset form position
+      this.resetPositionForm();
       // 
       // this.formPositionModel.positionId = '1';
       // if (this.formPositionModel.positionId) {
@@ -114,7 +116,13 @@ export class ManageProjectsComponent implements OnInit {
     }
   }
 
-
+  countDuration(endDate, startDate){
+    var oneDay = 24*60*60*1000;
+    var dateEnd = new Date(endDate);
+    var dateStart = new Date(startDate);
+      var diffDays = Math.round(Math.abs((dateEnd.getTime() - dateStart.getTime())/(oneDay)));
+      return diffDays;
+  }
 
   onDateChangedCreate(event: IMyDateModel) {
     this.formModel.createDate = event && event.jsdate ? event.jsdate.getTime() : null;
@@ -123,9 +131,17 @@ export class ManageProjectsComponent implements OnInit {
     optionsEnd.disableUntil = startDate;
     this.myDatePickerOptionsEnd = optionsEnd;
 
+
+    // set duration
+    if(this.formModel.endDate != null) {
+      this.formModel.duration = this.countDuration(this.formModel.endDate, this.formModel.createDate);
+    }
   }
   onDateChangedEnd(event: IMyDateModel) {
     this.formModel.endDate = event && event.jsdate ? event.jsdate.getTime() : null;
+    if(this.formModel.createDate != null){
+      this.formModel.duration = this.countDuration(this.formModel.endDate, this.formModel.createDate);
+    }
   }
 
   getProjectsByCompanyId() {
@@ -190,7 +206,14 @@ export class ManageProjectsComponent implements OnInit {
   createNewSkill() {
     this.formPositionModel.skillRequirementsById.push(new SkillRequirement());
   }
-
+  deleteSkill(skill){
+    this.formPositionModel.skillRequirementsById = this.formPositionModel.skillRequirementsById.filter(function (el) {
+      return el !== skill;
+    }) 
+  }
+  resetPositionForm() {
+    this.formPositionModel = new ProjectRequirement();
+  }
   // onSkillSelected(val: any) {
   //   val.forEach(val => {
   //     this.listSkillExp.forEach(el => {
@@ -246,8 +269,7 @@ export class ManageProjectsComponent implements OnInit {
     })
     this.countId = this.countId + 1;
 
-    $('#quantityAdd').val('');
-    $('#paymentAdd').val('');
+    this.resetPositionForm();
 
 
     // ver 2

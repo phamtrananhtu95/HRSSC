@@ -76,53 +76,45 @@
 </div> -->
 
 <div class="panel panel-flat">
-    <div class="panel-heading media">
-        <!-- <button type="button" class="btn btn-link">
-            <i class="icon-reload-alt"></i>
-        </button> -->
-
-
-        <h6 class="panel-title text-center text-semibold">Matched projects</h6>
-        <div class="heading-elements">
-            <ul class="icons-list">
-                <li>
-
-                    <a (click)="rematchProject()">
-                        <i class="icon-sync"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+  <div class="panel-heading">
+    <h6 class="panel-title text-center text-semibold">Matched projects</h6>
+    <div class="heading-elements">
+      <ul class="icons-list">
+        <li>
+          <a href="#">
+            <i class="icon-sync"></i>
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <div class="panel-body">
+  <div class="panel-body">
+    <div class="media" *ngFor="let project of projectsMatched">
+      <div class="media-left ">
+        <a>
+          <img src="{{project?.projectByProjectId?.companyByCompanyId?.logo}}" style="width: 70px; height: 70px;" class="img-circle"
+            alt="">
+        </a>
 
-        <div class="media" *ngFor="let project of projectsMatched">
-            <div class="media-left ">
-                <a>
-                    <img src="{{project?.projectByProjectId?.companyByCompanyId?.logo}}" style="width: 70px; height: 70px;" class="img-circle"
-                        alt="">
-                </a>
-
-            </div>
-            <div class="media-body">
-                <div class="media-heading col-sm-12 no-padding">
-                    <div class="col-sm-12">
-                        <h6 (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)" class="media-heading text-bold">{{project?.projectByProjectId?.title}}</h6>
-                    </div>
-                </div>
-                <span class="media-heading col-sm-12">
-                    Company:
-                    <a (click)="viewCompanyDetail(project?.projectByProjectId?.companyByCompanyId?.id)">{{project?.projectByProjectId?.companyByCompanyId?.name}}</a>
-                </span>
-                <!-- <span class="media-heading col-sm-12">
+      </div>
+      <div class="media-body">
+        <div class="media-heading col-sm-12 no-padding">
+          <div class="col-sm-12">
+            <h6 (click)="viewHumanProjectDetail(project?.projectByProjectId?.id)" class="media-heading text-bold">{{project?.projectByProjectId?.title}}</h6>
+          </div>
+        </div>
+        <span class="media-heading col-sm-12">
+          Company:
+          <a (click)="viewCompanyDetail(project?.projectByProjectId?.companyByCompanyId?.id)">{{project?.projectByProjectId?.companyByCompanyId?.name}}</a>
+        </span>
+        <!-- <span class="media-heading col-sm-12">
                     Available {{resource.humanResourceByHumanResourceId.availableDate}} To {{resource.humanResourceByHumanResourceId.availableDuration}}
                   </span> -->
-                <span class="media-heading col-sm-12">
-                    Skill: {{project?.projectByProjectId?.combinedSkill}}
-                </span>
-
-            </div>
-        </div>
+        <span class="media-heading col-sm-12">
+          Skill: {{project?.projectByProjectId?.combinedSkill}}
+        </span>
+      </div>
     </div>
+  </div>
 </div>

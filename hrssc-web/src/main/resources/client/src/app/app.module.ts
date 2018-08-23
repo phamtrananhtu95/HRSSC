@@ -102,6 +102,7 @@ import { ManageProjectContractComponent } from './pages/manage-project-contract/
 import { ViewContractComponent } from './pages/view-contract/view-contract.component';
 import { CompanyInfoOverviewComponent } from './pages/company-info/company-info-overview/company-info-overview.component';
 
+
 const appRoutes: Routes = [
 
   {

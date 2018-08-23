@@ -4,25 +4,21 @@ import { ProjectMatch } from './../../../models/projectMatched.model';
 import * as jQuery from 'jquery';
 import { ProjectService } from '../../../services/project.service';
 import { Router } from '@angular/router';
-import { EmployeeService } from '../../../services/employee.service';
-import { EmployeeRequest } from '../../../models';
 declare var $: any;
 
 @Component({
     selector: 'app-project-matching',
-    templateUrl: './project-matching.component.html',
-    styleUrls: ['./project-matching.component.css']
+    templateUrl: './project-matching.component.html'
 })
 export class ProjectMatchingComponent {
 
     @Input() userId: number;
     @Input() resourceId: number;
     public projectsMatched: ProjectMatch[];
-    public formModel = new EmployeeRequest();
+
     constructor(
         private projectService: ProjectService,
-        private router: Router,
-        private employeeService: EmployeeService
+        private router: Router
     ) { }
 
     ngOnChanges() {
@@ -59,19 +55,7 @@ export class ProjectMatchingComponent {
     }
 
     viewCompanyDetail(companyId) {
-        this.router.navigate(['company/info'], {queryParams:{"id": companyId}});
-      }
-
-    rematchProject() {
-        this.formModel.id = this.resourceId;
-        this.employeeService.matchingResource(this.formModel).subscribe(
-            res => {
-                this.getProjectMatching();
-            },
-            err => {
-                console.log(err);
-            }
-        );
+        this.router.navigate(['company/info'], { queryParams: { "id": companyId } });
     }
 
 }

@@ -96,8 +96,8 @@ export class InfoProjectManagerComponent implements OnInit {
         this.projectDomain = this.projectInfo.domain.split(',');
         this.projectType = this.projectInfo.type.split(',');
       }
-      
-    //  set duration onchange
+
+      //  set duration onchange
       this.projectInfo.duration = this.countDuration(this.projectInfo.endDate, this.projectInfo.createDate);
 
       this.createDate = this.ConvertToDatetime(this.projectInfo.createDate);
@@ -126,12 +126,12 @@ export class InfoProjectManagerComponent implements OnInit {
     }
   }
 
-  countDuration(endDate, startDate){
-    var oneDay = 24*60*60*1000;
+  countDuration(endDate, startDate) {
+    var oneDay = 24 * 60 * 60 * 1000;
     var dateEnd = new Date(endDate);
     var dateStart = new Date(startDate);
-      var diffDays = Math.round(Math.abs((dateEnd.getTime() - dateStart.getTime())/(oneDay)));
-      return diffDays;
+    var diffDays = Math.round(Math.abs((dateEnd.getTime() - dateStart.getTime()) / (oneDay)));
+    return diffDays;
   }
 
   loadAllPosition() {
@@ -171,28 +171,36 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   onSkillSelected(val: any) {
 
-
-    this.formPositionModel.skillRequirementsById = [];
-    // console.log(val);
-
-    // if (val.includes(lastItem)) {
-    val.forEach(val => {
-      this.listSkillExp.forEach(el => {
-        if (el.id.toString() === val) {
-          // this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
-          // console.log(this.formPositionModel.skillRequirementsById);
-
-          this.formPositionModel.skillRequirementsById.push({
-            skillId: el.id,
-            skillBySkillId: {
-              id: el.id,
-              title: el.title
-            },
-          });
-        }
-      });
+    // this.formPositionModel.skillRequirementsById = [];
+    var arrTmp = [];
+    this.formPositionModel.skillRequirementsById.forEach(element => {
+      arrTmp.push(element.skillId.toString());
     });
-    
+
+    if(val.length > arrTmp.length){
+      var arrUnique = val.filter(function(obj) { return arrTmp.indexOf(obj) == -1; });
+      arrUnique.forEach(element => {
+        this.listSkillExp.forEach(el => {
+          if (el.id.toString() === element) {
+            // this.formPositionModel.skillRequirementsById.skillBySkillId.push(el);
+            // console.log(this.formPositionModel.skillRequirementsById);
+  
+            this.formPositionModel.skillRequirementsById.push({
+              skillId: el.id,
+              skillBySkillId: {
+                id: el.id,
+                title: el.title
+              },
+            });
+          }
+        });
+      });
+    }else {
+      var arrDel = arrTmp.filter(function(obj) { return val.indexOf(obj) == -1; });
+      this.formPositionModel.skillRequirementsById = this.formPositionModel.skillRequirementsById.filter(function (el) {
+        return el.skillId.toString() !== arrDel.toString();
+      })
+    }
   }
 
   setDisableUntilForStartDate() {
@@ -203,7 +211,7 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   onDateChangedCreate(event: IMyDateModel) {
     this.projectInfo.createDate = event && event.jsdate ? event.jsdate.getTime() : null;
-    
+
     let startDate = event.date;
     let optionsEnd = JSON.parse(JSON.stringify(this.myDatePickerOptionsEnd));
     optionsEnd.disableUntil = startDate;
@@ -224,8 +232,8 @@ export class InfoProjectManagerComponent implements OnInit {
       return null;
     }
     var date = new Date(dateValue);
-    
-    
+
+
 
     var dateParse = {
       date: {
@@ -238,7 +246,10 @@ export class InfoProjectManagerComponent implements OnInit {
   }
   editPosition(val: any) {
     this.isPositionUpdate = true;
+    console.log(val);
+
     this.formPositionModel = Object.assign({}, val.value);
+    console.log(this.positionList);
     this.positionList.forEach(el => {
       if (el.id === val.id) {
         this.formPositionModel = el.value;
