@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service("feedbackService")
@@ -45,6 +46,19 @@ public class FeedbackServiceImpl implements FeedbackService {
     @PersistenceContext
     EntityManager entityManager;
 
+    Comparator<Feedback> dateComparator = new Comparator<Feedback>() {
+        @Override
+        public int compare(Feedback f1, Feedback f2) {
+            if(f2.getTimestamp() > f1.getTimestamp()){
+                return 1;
+            }
+            if(f2.getTimestamp() < f1.getTimestamp()){
+                return -1;
+            }
+
+            return 0;
+        }
+    };
 
     public List<Feedback> loadAllFeedback(int resourceId){
         List<Job> jobList = jobRepository.findByHumanResourceId(resourceId);
@@ -59,6 +73,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
             }
         }
+        resultList.sort(dateComparator);
         return resultList;
     }
 
